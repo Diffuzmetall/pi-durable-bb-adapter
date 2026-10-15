@@ -1,0 +1,38 @@
+{
+  "task": "bbup-0-baseline",
+  "scope": "UNIT/build/doctor/archived/shared-integration component ONLY",
+  "verdict": "PASS independently reviewed component; NOT full BB0 acceptance",
+  "recordedBy": "RusticCanyon",
+  "attribution": "Coordinator transcription of the independent native review-bb0-inventory answer; not a checker-authored artifact",
+  "implementer": "lead-bb0 / IvoryBridge",
+  "checker": "review-bb0-inventory",
+  "sourceReport": "Native subagent answer in parent conversation; bounded technical review, no tests/builds or source/artifact/tracker/Git writes",
+  "checkpoint": {
+    "path": "evidence/BB0/lead-baseline-unit-checkpoint.json",
+    "sha256": "4fab67577dca0db6c78e7e5ccf3b46518b95210f7a277803c7defea0457be6ba",
+    "candidateManifestSha256": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645",
+    "productBaseRevision": "a1380fc02a95662fc942e0ffbb088315ca3b969f",
+    "actualHeadAtCheck": "c8605c4ca09c7823ff2a53d2b0bb3d182628fcb6",
+    "binding": "Explicit source/evidence/output hashes, not the checkpoint's stale HEAD label; intervening commits are coordinator-only"
+  },
+  "verified": [
+    "All 13 checkpoint-listed file hashes and all nine final output hashes match",
+    "All nine final outputs byte-identical to the preserved successful historical run, despite separately recorded cache paths",
+    "Fresh namespace-private BB build root, empty-root allowlist, read-only exact cache/code/dependencies and private network boundary",
+    "Actual unchanged package build before npm test, doctor, four archived regressions and two focused shared-host tests",
+    "Archived changes restricted to verified provider import prefixes; assertions unchanged",
+    "224 total / 223 pass / one explicit default SQLite skip; focused unchanged integration covers the real SQLite case",
+    "JUnit has five real command cases, not fabricated assertion counts",
+    "Donor and extra-input before/after parity; initial failures retained; final cache distinguished from superseded cache"
+  ],
+  "versionLimits": {
+    "providerDeclaredSDK": "0.6.15",
+    "actualArtifactSDK": "0.6.37",
+    "bb": "0.46.0",
+    "hostSource": "1.0.2",
+    "runtimeOverlay": "1.2.0",
+    "alignment": "Mixed existing baseline only; no coherent SDK migration or generic-root compatibility claim"
+  },
+  "workflowLimits": "Checker reported missing Poteto leaf paths and skipped nested no-comments pass; no false skill execution claim. Parent loaded the actual installed principle bodies separately.",
+  "excluded": ["lead-baseline-live.py WIP", "live/performance", "ten lanes and BB UI PNGs", "plugin installation", "full BB0 closure", "deployment"]
+}

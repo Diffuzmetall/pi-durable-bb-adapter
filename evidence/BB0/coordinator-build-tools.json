@@ -1,0 +1,38 @@
+{
+  "task": "bbup-0-build-tools",
+  "researchActor": "scout-port",
+  "parentVerifier": "RusticCanyon",
+  "verdict": "PASS bounded read-only exact-cache investigation only; NOT plugin build acceptance",
+  "installedContract": {
+    "source": "/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/start-server.js",
+    "previouslyRecordedBundleSha256": "ebf1bbe1273ecf6ccf4da4ba060a1f4c11b4c2bf9a981746c9a4eb9ec6824204",
+    "parentReadRanges": ["197663-197784", "199130-199155"],
+    "symbols": ["PLUGIN_TOOLCHAIN_PINS", "pinKey", "toolchainCacheDir", "toolchainFrom", "isInstalled", "resolvePluginBuildToolchain", "getPluginBuildToolchain"],
+    "cacheRule": "<dataDir>/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0",
+    "acceptancePredicate": "Exact sorted marker pin key AND all four package versions plus resolvable toolchain modules; cached path checked before npm-fetch staging",
+    "pins": {"esbuild":"0.28.1", "@tailwindcss/node":"4.3.0", "@tailwindcss/oxide":"4.3.0", "tailwindcss":"4.3.0"}
+  },
+  "existingCache": "/home/ubuntu/.bb/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0",
+  "parentVerifiedMarker": {"pins":"@tailwindcss/node@4.3.0,@tailwindcss/oxide@4.3.0,esbuild@0.28.1,tailwindcss@4.3.0"},
+  "parentVerifiedManifestSha256": {
+    "esbuild": "d55d1d19fcc5b6079e4a71dd4111340c79c682bc36835ac7058a0c364c7db58a",
+    "@tailwindcss/node": "455ecf713a3a328510aa954ce3b9417e393ea3e40587618701cd2d82259aa703",
+    "@tailwindcss/oxide": "4a9b55be481705a64f0551278368bd54c6c8cb1d1a7421c381898f6af75da371",
+    "tailwindcss": "3e87bf49f863a5b83b473e1e10212561b406c69e6101423e757340c876f374ee"
+  },
+  "parentVerifiedNativeBinarySha256": {
+    "node_modules/@esbuild/linux-x64/bin/esbuild": "0c6588b092a2c291a72bab90659f3c9e0e25e0fe59c9ac12b4dae4d945e5548c",
+    "node_modules/@tailwindcss/oxide-linux-x64-gnu/tailwindcss-oxide.linux-x64-gnu.node": "e53480389e5ea780096dec54cfa786f6f6a9dab813db9b797861481e0fed9354",
+    "node_modules/lightningcss-linux-x64-gnu/lightningcss.linux-x64-gnu.node": "2024f99789a601c7438b387117032ba07594cbba9b784064b47cdc60a0972326"
+  },
+  "correctedFailureLocalization": {
+    "evidenceLog": "evidence/BB0/lead-private/.cache/run-t9psf89a/provider-npm-build.log",
+    "logSha256": "a96797b24ae9befe5ab0bbd9daac12efb2eb98429b8ef5e6fd384b1b5921546c",
+    "actualError": "ENOENT mkdir '/home/ubuntu/Projects/pi-durable-bb-adapter/.test-bb'",
+    "rejectedScoutInference": "Scout initially mistook evidence-log path for error target and blamed log-parent setup; parent refuted this from actual log. Scout explicitly withdrew that diagnosis.",
+    "scopeOfDiagnosis": "Private dataDir/cache namespace setup, not proof of missing exact packages or SDK product incompatibility"
+  },
+  "sameLeadFixtureAdmission": "Expose ONLY audited exact toolchain subtree readonly at supported cache path in fresh namespace-private BB data root; retain explicit test CLI settings and do not bind real host .test-bb or whole .bb. New transitive before/after audit and boundary probes required; escaping links fail closed.",
+  "stillForbidden": ["network/download/install expansion", "cache marker forgery", "silent dependency or SDK version fallback", "custom replacement builder", "production-state access or writes", "plugin installation/activation"],
+  "remainingGate": "Same Lead must rerun actual complete npm run build and full npm test after fixture correction; any failure remains FAIL. Changed runner and full baseline require independent review and behavioral QA."
+}
