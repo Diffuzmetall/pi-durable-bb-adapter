@@ -1,0 +1,30 @@
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*
+
+# Private runtime state and dependencies are never repository content.
+/.test-bb/
+/.beads/*
+!/.beads/issues.jsonl
+**/node_modules/
+**/dist/
+**/.cache/
+**/__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db-*
+*.pem
+*.key
+/evidence/**/*.log
+/evidence/**/*.mp4
+/evidence/**/*.webm
