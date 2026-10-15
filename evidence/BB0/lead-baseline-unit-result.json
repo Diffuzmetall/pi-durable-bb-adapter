@@ -1,0 +1,177 @@
+{
+  "phase": "unit_build_doctor_prebuilt",
+  "commands": [
+    {
+      "name": "provider-npm-build",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/bb0-state/provider",
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 4.079,
+      "log": "/bb0-state/provider-npm-build.log",
+      "logSha256": "3f783d8199542c37ddb19896632cbb1d0e26198e92253445637693fd49c43303"
+    },
+    {
+      "name": "provider-npm-test",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/npm",
+        "test"
+      ],
+      "cwd": "/bb0-state/provider",
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 9.114,
+      "log": "/bb0-state/provider-npm-test.log",
+      "logSha256": "6a2a60785dfa00a6c00d0d51243089c3e38748bf4d0a530ddf540df6497dc837"
+    },
+    {
+      "name": "provider-npm-doctor",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/npm",
+        "run",
+        "doctor"
+      ],
+      "cwd": "/bb0-state/provider",
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 1.671,
+      "log": "/bb0-state/provider-npm-doctor.log",
+      "logSha256": "13178f41cbb78b1ad63710ca3d987c1e21e9d3001d06748a6a56b8f2f166d195"
+    },
+    {
+      "name": "archived-regressions",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "--test",
+        "/bb0-state/provider/archived-upgrade/upgrade-background-contract.test.mjs",
+        "/bb0-state/provider/archived-upgrade/upgrade-sdk-resources.test.mjs"
+      ],
+      "cwd": "/bb0-state/provider",
+      "environmentOverrides": {},
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 1.569,
+      "log": "/bb0-state/archived-regressions.log",
+      "logSha256": "9b50fa46220e7dadac4c2008704361a5151575e91e8c8b37a8c604a1f1d53823"
+    },
+    {
+      "name": "shared-host-integration",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "--test",
+        "tests/shared-host.test.ts"
+      ],
+      "cwd": "/bb0-state/provider",
+      "environmentOverrides": {
+        "PI_DURABLE_SHARED_HOST_MODULE": "/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/packages/coding-agent/src/experimental/durable/shared-server.ts",
+        "PI_DURABLE_SHARED_HOST_LOADER": "/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/global-runtime.mjs",
+        "PI_DURABLE_RUNNER_PATH": "/bb0-state/provider/dist/runner/index.js"
+      },
+      "exitCode": 0,
+      "timeout": false,
+      "elapsedSeconds": 4.729,
+      "log": "/bb0-state/shared-host-integration.log",
+      "logSha256": "c2ee9966d278738d46561a6d4fd4a31c8bb24e7a7e5843f523b02ca050b22f71"
+    }
+  ],
+  "candidateSourceMutated": false,
+  "network": "private namespace; code/dependencies readonly; all outputs in fresh private source copy",
+  "verifiedProviderSourceFiles": 191,
+  "archiveTransforms": [
+    {
+      "name": "upgrade-background-contract.test.mjs",
+      "originSha256": "7f97672529ecbdbf44b305dacdb828f92841caf9b62d8c8f9826f023ba8a9b92",
+      "executedSha256": "3353176a333da6eb85d6b3e4e3b8e19d78e98705764a7363f3d8d7fe0d18a4ce",
+      "change": "Only donor provider absolute import prefix rebased to verified private candidate source copy; assertions unchanged"
+    },
+    {
+      "name": "upgrade-sdk-resources.test.mjs",
+      "originSha256": "858902c058518bbfc85901e5118cea37a270dd7889e2e7698c766c9cdabf5ecf",
+      "executedSha256": "1a7e718b79165463805a7d10f499e7c3738f587566fcc93497b49e1abd0a787a",
+      "change": "Only donor provider absolute import prefix rebased to verified private candidate source copy; assertions unchanged"
+    },
+    {
+      "name": "upgrade-upstream-bg-canonical.ts",
+      "originSha256": "1c0adb517c57a1530d99361c9a40d9fcc356e3eeb1f8907c7b88ad2bf0d01b15",
+      "executedSha256": "1c0adb517c57a1530d99361c9a40d9fcc356e3eeb1f8907c7b88ad2bf0d01b15",
+      "change": "Only donor provider absolute import prefix rebased to verified private candidate source copy; assertions unchanged"
+    },
+    {
+      "name": "upgrade-upstream-bg-original.ts",
+      "originSha256": "7c721cb8adae9c885e3ead32e4ed04129be22acaf0a6d955bc864db9b2034f1d",
+      "executedSha256": "7c721cb8adae9c885e3ead32e4ed04129be22acaf0a6d955bc864db9b2034f1d",
+      "change": "Only donor provider absolute import prefix rebased to verified private candidate source copy; assertions unchanged"
+    }
+  ],
+  "offlineToolchainContract": {
+    "status": "PASS",
+    "actualVersions": {
+      "esbuild": "0.28.1",
+      "@tailwindcss/node": "4.3.0",
+      "@tailwindcss/oxide": "4.3.0",
+      "tailwindcss": "4.3.0"
+    },
+    "markerPins": "@tailwindcss/node@4.3.0,@tailwindcss/oxide@4.3.0,esbuild@0.28.1,tailwindcss@4.3.0",
+    "source": "Exact audited existing code cache mounted readonly under fresh private BB build-data root; no downloads"
+  },
+  "fullBuildGate": {
+    "status": "PASS",
+    "exitCode": 0
+  },
+  "outputs": [
+    {
+      "path": "/bb0-state/provider/dist/host.js",
+      "sha256": "0330c2bd522f6943345f761eff3b6b357d074be82f0062b9c270b25ca4262a1e",
+      "bytes": 8308618
+    },
+    {
+      "path": "/bb0-state/provider/dist/host.js.map",
+      "sha256": "e1683f3c05cf76f8432da1f09092daa3acd8328b6f73b70a001bf1d682abe2f0",
+      "bytes": 9226965
+    },
+    {
+      "path": "/bb0-state/provider/dist/host.meta.json",
+      "sha256": "071cbf27af184044813a5109c7bdbeaa8bba02e40e1d274f760e6e310c073b7b",
+      "bytes": 312
+    },
+    {
+      "path": "/bb0-state/provider/dist/package.json",
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae",
+      "bytes": 18
+    },
+    {
+      "path": "/bb0-state/provider/dist/runner/index.js",
+      "sha256": "351c30066a9d7dc02c88f96c69e274fdc4f6f9be071307279ff1f8d902a096aa",
+      "bytes": 101255
+    },
+    {
+      "path": "/bb0-state/provider/dist/runner/index.js.map",
+      "sha256": "3cb64b64967d20dab548375c6ef8eb8fd5e938488d5e976c434a39a844995e8d",
+      "bytes": 207971
+    },
+    {
+      "path": "/bb0-state/provider/dist/server.js",
+      "sha256": "50c399cd590008b44c8b6e8998faafe3d679bde0a36ce3f11bcaae40f7c2fe76",
+      "bytes": 8060150
+    },
+    {
+      "path": "/bb0-state/provider/dist/server.js.map",
+      "sha256": "f2899bfc93212041e619f4805797ce512cc21313d4fe2464768279425c18d705",
+      "bytes": 8883329
+    },
+    {
+      "path": "/bb0-state/provider/dist/server.meta.json",
+      "sha256": "d1993a022a38ec7ebafed33173516c705f15c00df7314a15b265a0bfec26d5aa",
+      "bytes": 224
+    }
+  ],
+  "junitSemantics": "One testcase per real command gate; full original test output retained, not a fabricated per-assertion count",
+  "status": "PASS"
+}

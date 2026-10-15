@@ -17,6 +17,8 @@ CWD_ROOTS = {'provider': ROOT / 'candidates/provider', 'host': ROOT / 'candidate
 parser = argparse.ArgumentParser()
 parser.add_argument('--probe', action='store_true')
 parser.add_argument('--boot', action='store_true')
+parser.add_argument('--baseline', action='store_true', help='Private baseline fixture; optional --probe')
+parser.add_argument('--baseline-phase', choices=['unit','live'], default='unit')
 parser.add_argument('--allow-test-bb-network', action='store_true')
 parser.add_argument('--cwd', choices=list(CWD_ROOTS), default='provider')
 parser.add_argument('command', nargs=argparse.REMAINDER)
@@ -24,11 +26,11 @@ args = parser.parse_args()
 if args.allow_test_bb_network:
     parser.error('Host network is forbidden for bbup-0-boot')
 command = args.command[1:] if args.command[:1] == ['--'] else args.command
-if args.probe and args.boot:
-    parser.error('Choose --probe or --boot')
-if (args.probe or args.boot) and command:
+if args.boot and (args.probe or args.baseline):
+    parser.error('Choose standalone --boot or baseline/probe mode')
+if (args.probe or args.boot or args.baseline) and command:
     parser.error('Probe/boot modes have fixed commands')
-if not command and not (args.probe or args.boot):
+if not command and not (args.probe or args.boot or args.baseline):
     parser.error('Pass an explicit admitted probe command after --')
 BASE.mkdir(parents=True, exist_ok=True, mode=0o700)
 os.chmod(BASE, 0o700)
@@ -52,7 +54,14 @@ env = {
     'PI_DURABLE_GLOBAL_ROOT': GLOBAL, 'HINDSIGHT_DISABLED': '1', 'HINDSIGHT_DISABLE_HOOKS': '1',
     'BB0_HIDDEN_SENTINEL': str(hidden), 'BB0_HOST_NET_NS': os.readlink('/proc/self/ns/net'),
 }
-if args.boot:
+if args.baseline:
+    (state/'bb-build-data/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0').mkdir(parents=True, mode=0o700)
+    os.chmod(state/'bb-build-data',0o700)
+    os.chmod(state/'bb-build-data/plugins',0o700)
+    env.update({'PATH':env['PATH']+':/home/ubuntu/.bb-server/app/node_modules/.bin',
+        'BB_SERVER_URL':'http://127.0.0.1:40886','BB_DATA_DIR':str(ROOT/'.test-bb'),
+        'BB_HOST_DAEMON_PORT':'40887'})
+if args.boot or args.baseline:
     settings = {'defaultProvider':'bb0-offline', 'defaultModel':'boot-only', 'packages':[], 'extensions':[]}
     models = {'providers': {'bb0-offline': {'api':'openai-completions', 'baseUrl':'http://127.0.0.1:9/never-call',
         'apiKey':'synthetic-offline-not-a-secret', 'models':[{'id':'boot-only','name':'BB0 offline boot only',
@@ -68,6 +77,8 @@ readable = ['/usr/bin','/usr/lib','/usr/lib64','/usr/share/terminfo','/usr/share
     GLOBAL + '/@earendil-works', str(ROOT / 'candidates/provider'), str(ROOT / 'candidates/host'),
     '/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules',
     '/home/ubuntu/.local/share/pi-durable/host/node_modules']
+if args.baseline:
+    readable += [GLOBAL+'/npm','/home/ubuntu/.bb-server/app/node_modules']
 for path in readable:
     if Path(path).exists():
         bwrap += ['--ro-bind',path,path]
@@ -78,6 +89,22 @@ bwrap += ['--bind',str(state),'/bb0-state','--ro-bind',str(protected),'/bb0-read
 if args.boot:
     bwrap += ['--ro-bind',str(ROOT / 'evidence/BB0/lead-boot.py'),'/bb0-boot.py']
     command = ['/usr/bin/python3','/bb0-boot.py']
+if args.baseline:
+    # Same explicit BB_DATA_DIR spelling, but ONLY a fresh private build fixture is mounted.
+    build_data = str(ROOT/'.test-bb')
+    cache_name = 'toolchain-0.28.1-4.3.0-4.3.0-4.3.0'
+    bwrap += ['--bind',str(state/'bb-build-data'),build_data,
+        '--ro-bind','/home/ubuntu/.bb/plugins/'+cache_name,build_data+'/plugins/'+cache_name]
+    driver = 'lead-baseline-live.py' if args.baseline_phase=='live' else 'lead-baseline.py'
+    bwrap += ['--ro-bind',str(ROOT/'evidence/BB0'/driver),'/bb0-baseline.py',
+        '--ro-bind',str(ROOT/'candidate-manifest.json'),'/bb0-candidate-manifest.json',
+        '--ro-bind','/home/ubuntu/.local/share/pi-durable/global-runtime.mjs','/bb0-managed-global-runtime.mjs',
+        '--ro-bind','/home/ubuntu/.local/share/pi-durable/global-runtime.mjs',str(ROOT/'candidates/global-runtime.mjs')]
+    archive = '/home/ubuntu/.bb-server/thread-storage/thr_m5gua3gqyg'
+    for name in ['upgrade-background-contract.test.mjs','upgrade-sdk-resources.test.mjs',
+                 'upgrade-upstream-bg-original.ts','upgrade-upstream-bg-canonical.ts']:
+        bwrap += ['--ro-bind',archive+'/'+name,'/bb0-archive/'+name]
+    command = ['/usr/bin/python3','/bb0-baseline.py']
 if args.probe:
     code = r'''
 import errno,json,os,pathlib,socket,subprocess
@@ -105,12 +132,21 @@ assert not hidden.exists(), 'Private sentinel outside allowlist became visible'
 try: hidden.read_bytes()
 except FileNotFoundError: pass
 else: raise AssertionError('Hidden sentinel readable')
-for path in ['/home/ubuntu/.ssh','/home/ubuntu/.pi','/home/ubuntu/.aws','/home/ubuntu/.local/share/pi-pocket-eval','/home/ubuntu/.bb-server','/run/user']:
+for path in ['/home/ubuntu/.ssh','/home/ubuntu/.pi','/home/ubuntu/.aws','/home/ubuntu/.bb','/home/ubuntu/.local/share/pi-pocket-eval','/home/ubuntu/.bb-server/auth.json','/home/ubuntu/.bb-server/thread-storage','/home/ubuntu/.bb-server/settings.json','/run/user']:
     assert not pathlib.Path(path).exists(), path
 try: pathlib.Path('/bb0-readonly/must-not-exist').write_text('blocked')
 except OSError as e: assert e.errno==errno.EROFS,repr(e)
 else: raise AssertionError('Readonly fixture accepted write')
 pathlib.Path('/bb0-state/write-ok').write_text('private writes work')
+if 'BB_DATA_DIR' in os.environ:
+    build_data=pathlib.Path(os.environ['BB_DATA_DIR'])
+    assert not (build_data/'bb.db').exists(), 'A real BB database was exposed'
+    assert not (build_data/'auth.json').exists(), 'A real BB credential fixture was exposed'
+    (build_data/'private-build-write-check').write_text('fresh private build data only')
+    cache=build_data/'plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0'
+    try: (cache/'must-not-exist').write_text('blocked')
+    except OSError as e: assert e.errno==errno.EROFS,repr(e)
+    else: raise AssertionError('Build toolchain cache accepted a write')
 assert pathlib.Path('/bb0-readonly/sentinel').read_text()=='private readonly fixture\n'
 mounts=[line.split() for line in pathlib.Path('/proc/self/mountinfo').read_text().splitlines()]
 for path in [os.environ['PI_DURABLE_GLOBAL_ROOT']+'/@earendil-works','/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules','/home/ubuntu/.local/share/pi-durable/host/node_modules']:
@@ -119,7 +155,7 @@ for path in [os.environ['PI_DURABLE_GLOBAL_ROOT']+'/@earendil-works','/home/ubun
 print(json.dumps({'confidentiality':'PASS','readonly':'PASS','privateWrites':'PASS','donorMountsReadonly':'PASS','isolatedNetwork':'PASS','environment':dict(os.environ)},indent=2))
 '''
     command = ['/usr/bin/python3','-c',code]
-cwd = '/bb0-state/work' if args.boot else str(CWD_ROOTS[args.cwd])
+cwd = '/bb0-state/work' if (args.boot or args.baseline) else str(CWD_ROOTS[args.cwd])
 bwrap += ['--remount-ro','/','--clearenv']
 for key,value in env.items():
     bwrap += ['--setenv',key,value]

@@ -1,0 +1,206 @@
+{
+  "phase": "BB0-unit-build-doctor-archived-shared-integration ONLY",
+  "actor": "IvoryBridge",
+  "status": "needs_checks",
+  "meaning": "All required UNIT component self-check gates pass; distinct parent-arranged review/QA pending. NOT full BB0 acceptance.",
+  "head": "a1380fc02a95662fc942e0ffbb088315ca3b969f",
+  "candidateManifestSha256": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645",
+  "stateDirectory": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/run-p6mrxw7n",
+  "rerunCommand": "python3 evidence/BB0/lead-sandbox.py --baseline",
+  "boundaryCommand": "python3 evidence/BB0/lead-sandbox.py --baseline --probe",
+  "commandExitCodes": {
+    "provider-npm-build": 0,
+    "provider-npm-test": 0,
+    "provider-npm-doctor": 0,
+    "archived-regressions": 0,
+    "shared-host-integration": 0
+  },
+  "testCounts": {
+    "npmTest": {
+      "tests": 224,
+      "pass": 223,
+      "fail": 0,
+      "skipped": 1,
+      "skip": "Optional real SQLite integration default-skipped; explicitly run below unchanged"
+    },
+    "archivedRegressions": {
+      "pass": 4,
+      "fail": 0
+    },
+    "focusedSharedHostIntegration": {
+      "pass": 2,
+      "fail": 0
+    },
+    "junit": "5 real command gates, not assertion count; no required command skipped"
+  },
+  "sdkStamp": {
+    "node": "24.19.0",
+    "provider": "0.2.29",
+    "providerDeclaredBBSDK": "0.6.15",
+    "actualBBBuildSDK": "0.6.37",
+    "bb": "0.46.0",
+    "hostSources": "1.0.2",
+    "managedHostRuntimeOverlay": "1.2.0",
+    "alignment": "Mixed existing baseline preserved, no SDK pin migration or compatibility shim"
+  },
+  "audits": {
+    "donor": {
+      "records": 35488,
+      "symlinks": 17,
+      "sha256": "98478c1f6a9b37e6509c1f8e49e92476911a32c7d45b5f4ad3cdf37995732dfd",
+      "beforeAfterParity": true
+    },
+    "extra": {
+      "records": 14252,
+      "sha256": "c8bf2649be33af83eae216f94758d01950a7f7e6d3ef55d45bf7511e46bcea4b",
+      "beforeAfterParity": true
+    }
+  },
+  "cache": {
+    "usedFinal": "/home/ubuntu/.bb/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0",
+    "usedSuperseded003": "/home/ubuntu/.bb-server/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0",
+    "superseded003ClosureSha256": "5cc26ec6ae96483c9f725a475d5542de972ec7b79e9705a62c804be1f87d1fe6",
+    "finalAnd003OutputsByteIdentical": true,
+    "inspections": {
+      "/home/ubuntu/.bb/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0": {
+        "versions": {
+          "esbuild": "0.28.1",
+          "@tailwindcss/node": "4.3.0",
+          "@tailwindcss/oxide": "4.3.0",
+          "tailwindcss": "4.3.0"
+        },
+        "markerSha256": "63dc2e48fd409cd88dc97ddd74941d6adf05c6798f7e4c9e93114422b9ad4c96",
+        "nativeBinaries": {
+          "@esbuild/linux-x64/bin/esbuild": "0c6588b092a2c291a72bab90659f3c9e0e25e0fe59c9ac12b4dae4d945e5548c",
+          "@tailwindcss/oxide-linux-x64-gnu/tailwindcss-oxide.linux-x64-gnu.node": "e53480389e5ea780096dec54cfa786f6f6a9dab813db9b797861481e0fed9354",
+          "lightningcss-linux-x64-gnu/lightningcss.linux-x64-gnu.node": "2024f99789a601c7438b387117032ba07594cbba9b784064b47cdc60a0972326"
+        }
+      },
+      "/home/ubuntu/.bb-server/plugins/toolchain-0.28.1-4.3.0-4.3.0-4.3.0": {
+        "versions": {
+          "esbuild": "0.28.1",
+          "@tailwindcss/node": "4.3.0",
+          "@tailwindcss/oxide": "4.3.0",
+          "tailwindcss": "4.3.0"
+        },
+        "markerSha256": "63dc2e48fd409cd88dc97ddd74941d6adf05c6798f7e4c9e93114422b9ad4c96",
+        "nativeBinaries": {
+          "@esbuild/linux-x64/bin/esbuild": "0c6588b092a2c291a72bab90659f3c9e0e25e0fe59c9ac12b4dae4d945e5548c",
+          "@tailwindcss/oxide-linux-x64-gnu/tailwindcss-oxide.linux-x64-gnu.node": "e53480389e5ea780096dec54cfa786f6f6a9dab813db9b797861481e0fed9354",
+          "lightningcss-linux-x64-gnu/lightningcss.linux-x64-gnu.node": "2024f99789a601c7438b387117032ba07594cbba9b784064b47cdc60a0972326"
+        }
+      }
+    },
+    "mount": "ONLY exact cache readonly at private namespace-only BB_DATA_DIR/plugins/...; real .test-bb and operational BB state never mounted"
+  },
+  "outputs": [
+    {
+      "path": "/bb0-state/provider/dist/host.js",
+      "sha256": "0330c2bd522f6943345f761eff3b6b357d074be82f0062b9c270b25ca4262a1e",
+      "bytes": 8308618
+    },
+    {
+      "path": "/bb0-state/provider/dist/host.js.map",
+      "sha256": "e1683f3c05cf76f8432da1f09092daa3acd8328b6f73b70a001bf1d682abe2f0",
+      "bytes": 9226965
+    },
+    {
+      "path": "/bb0-state/provider/dist/host.meta.json",
+      "sha256": "071cbf27af184044813a5109c7bdbeaa8bba02e40e1d274f760e6e310c073b7b",
+      "bytes": 312
+    },
+    {
+      "path": "/bb0-state/provider/dist/package.json",
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae",
+      "bytes": 18
+    },
+    {
+      "path": "/bb0-state/provider/dist/runner/index.js",
+      "sha256": "351c30066a9d7dc02c88f96c69e274fdc4f6f9be071307279ff1f8d902a096aa",
+      "bytes": 101255
+    },
+    {
+      "path": "/bb0-state/provider/dist/runner/index.js.map",
+      "sha256": "3cb64b64967d20dab548375c6ef8eb8fd5e938488d5e976c434a39a844995e8d",
+      "bytes": 207971
+    },
+    {
+      "path": "/bb0-state/provider/dist/server.js",
+      "sha256": "50c399cd590008b44c8b6e8998faafe3d679bde0a36ce3f11bcaae40f7c2fe76",
+      "bytes": 8060150
+    },
+    {
+      "path": "/bb0-state/provider/dist/server.js.map",
+      "sha256": "f2899bfc93212041e619f4805797ce512cc21313d4fe2464768279425c18d705",
+      "bytes": 8883329
+    },
+    {
+      "path": "/bb0-state/provider/dist/server.meta.json",
+      "sha256": "d1993a022a38ec7ebafed33173516c705f15c00df7314a15b265a0bfec26d5aa",
+      "bytes": 224
+    }
+  ],
+  "files": {
+    "candidate-manifest.json": {
+      "sha256": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645",
+      "bytes": 234722
+    },
+    "evidence/BB0/lead-sandbox.py": {
+      "sha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272",
+      "bytes": 11167
+    },
+    "evidence/BB0/lead-baseline.py": {
+      "sha256": "caa6c1e6af5cd7635ffa1086af0544e26bfc114e77751ead00d8bc831e4f3173",
+      "bytes": 6492
+    },
+    "evidence/BB0/lead-baseline-inputs.py": {
+      "sha256": "7abf6128684fec840fa3e9606f626791042c57f0ff7606317625b9ea40b79b8d",
+      "bytes": 2293
+    },
+    "evidence/BB0/lead-audit-inputs.py": {
+      "sha256": "7519f31388ac765c1deb3dd4a4018c9c96258b21c9bacb480087013356a52195",
+      "bytes": 3021
+    },
+    "evidence/BB0/lead-baseline-unit-result.json": {
+      "sha256": "c18016e4eaed95b2d1b7f287c87c200ee95a3341c6ea4c1e4a1e896b1e084fe6",
+      "bytes": 6829
+    },
+    "evidence/BB0/lead-baseline-unit-tests.xml": {
+      "sha256": "748eaedcc97d2470cd6f36a78511496b7faea0f36acaaca5a18692c8f6787ddd",
+      "bytes": 28406
+    },
+    "evidence/BB0/lead-baseline-unit-execution-004.log": {
+      "sha256": "00f07a1d9a52abb28a1ffd55ec0ed8a79c4ede7036dc0ab92fded8cc47ac9c40",
+      "bytes": 17947
+    },
+    "evidence/BB0/lead-baseline-boundaries-005.log": {
+      "sha256": "17a0db0edc075f723d877af91ca75cec84a70fd4ad3ff3bc3032b78365f97930",
+      "bytes": 14182
+    },
+    "evidence/BB0/lead-baseline-donor-after-004.log": {
+      "sha256": "0e711e855430bc37d117615b3e4e426a9a0620eb124f58dce13788c2c2d0e8c2",
+      "bytes": 170
+    },
+    "evidence/BB0/lead-baseline-extra-after-004.log": {
+      "sha256": "9efac16dd1a34fe768270049773fd54d7720684038c383c2dc55309528411fb5",
+      "bytes": 152
+    },
+    "evidence/BB0/lead-baseline-inputs-before.json": {
+      "sha256": "c8bf2649be33af83eae216f94758d01950a7f7e6d3ef55d45bf7511e46bcea4b",
+      "bytes": 3427564
+    },
+    "evidence/BB0/lead-baseline-inputs-after.json": {
+      "sha256": "c8bf2649be33af83eae216f94758d01950a7f7e6d3ef55d45bf7511e46bcea4b",
+      "bytes": 3427564
+    }
+  },
+  "preservedFailures": [
+    "run-t9psf89a: npmtest-before-build failure and actual CLI mkdir BB_DATA_DIR failure; complete original stdout retained",
+    "run-171slfgq: corrected runner-before-test; full plugin build still BLOCKED, not counted PASS"
+  ],
+  "excludedWIP": [
+    "evidence/BB0/lead-baseline-live.py",
+    "full ten lanes / live / perf / BB UI PNG acceptance"
+  ],
+  "installGate": "No installation until parent independent checks + actual BB worker private-root propagation proof. No threads/catalog/diagnostics/inference on test BB."
+}

@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuite name="BB0-real-command-gates" tests="5" skipped="0" failures="0">
+  <testcase name="provider-npm-build" time="4.079">
+    <system-out>
+&gt; bb-plugin-provider-pi-durable@0.2.29 build
+&gt; node scripts/build-runner.mjs &amp;&amp; bb plugin build
+
+Building Pi Durable internal runner...
+Built dist/runner/index.js successfully!
+This plugin pins @get-bb/plugin-sdk 0.6.15; this bb's SDK is 0.6.37 — `bb plugin types` updates the pin.
+dist/server.js
+dist/server.js.map
+dist/server.meta.json
+dist/host.js
+dist/host.js.map
+dist/host.meta.json
+</system-out>
+  </testcase>
+  <testcase name="provider-npm-test" time="9.114">
+    <system-out>
+&gt; bb-plugin-provider-pi-durable@0.2.29 test
+&gt; node --test tests/*.test.ts
+
+✔ sanitizeToolResultForAnthropic replaces images with text note when isError is true (1.624497ms)
+✔ sanitizeToolResultForAnthropic preserves images when isError is false (0.382288ms)
+✔ sanitizeToolResultForAnthropic is a no-op for non-array input (1.427397ms)
+✔ BBEventAdapter handles native AgentEvent stream correctly (10.570855ms)
+✔ DeltaTranslator translates compaction and context window deltas (0.770205ms)
+✔ BBEventAdapter emits thinking_end when transitioning from thinking_delta to text_delta (1.33282ms)
+✔ BBEventAdapter emits thinking_end on message_end and tool_execution_start (0.590091ms)
+[ProviderBridge] Invalid JSON received from daemon: this is not valid json SyntaxError: Unexpected token 'h', "this is not"... is not valid JSON
+    at JSON.parse (&lt;anonymous&gt;)
+    at ProviderBridge.handleLine (file:///bb0-state/provider/src/host/bridge.ts:58:15)
+    at TestContext.&lt;anonymous&gt; (file:///bb0-state/provider/tests/bridge-error-handling.test.ts:12:15)
+    at Test.runInAsyncScope (node:async_hooks:227:14)
+    at Test.run (node:internal/test_runner/test:1382:25)
+    at Test.start (node:internal/test_runner/test:1242:17)
+    at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+✔ ProviderBridge returns -32700 Parse error on malformed JSON without throwing (3.557774ms)
+✔ ProviderBridge handles empty and whitespace lines as no-op (0.326375ms)
+✔ ProviderBridge returns error when steering without active session (4.334312ms)
+✔ ProviderBridge thread/stop with intent 'interrupt' emits session.ended, aborts session, and does not stop registry (1.855884ms)
+✔ ProviderBridge turn/steer emits input.accepted without providerTurnId (8.340902ms)
+✔ SessionRegistry purges dead runner from registry on get (0.364844ms)
+✔ BBEventAdapter: turn_end and run_end extract providerCheckpointId from conversation tail entry (2.825607ms)
+✔ BBEventAdapter: snapshot initializes lastCheckpointId across entries and view shapes (0.488152ms)
+✔ BBEventAdapter: auto_retry_start and auto_retry_end wire event translations (0.624055ms)
+✔ translateAgentEnd: attaches providerCheckpointId to turn.boundary and validates with threadDeltaSchema (14.189656ms)
+✔ DeltaTranslator: end-to-end integration preserves providerCheckpointId on turn.boundary (1.059653ms)
+▶ Codemode Full Coverage: end-to-end capabilities suite
+  ✔ a. Pure JS execution: loops, math, promises, return values (439.77017ms)
+  ✔ b. text() global and multiple formatted text entries (167.312959ms)
+  ✔ c. console.log, console.warn, and console.error output capture (154.524279ms)
+  ✔ d. store(key, value) and load(key) cross-script persistence (535.802044ms)
+  ✔ e. searchTools() by keyword and namespace (253.314284ms)
+  ✔ f. describeTool() and describeNamespace() reflections (235.91324ms)
+  ✔ g. Calling MCP tools via tools.mcp__* (145.405641ms)
+  ✔ h. Calling local system tools via nested executor (bash, write, read, edit) (412.528451ms)
+  ✔ i. Error handling: syntax errors, thrown errors, and tool failures (791.574281ms)
+✔ Codemode Full Coverage: end-to-end capabilities suite (3177.113768ms)
+✔ Parity: adaptExtensionTool maps exposure to durable callers (2.660849ms)
+✔ Parity: setupExtensionRunner binds setActiveTools and comprehensive contextActions without crash (169.377544ms)
+✔ Parity: codemode discovers and calls registered MCP tools via searchTools and describeNamespace (817.155102ms)
+✔ Cycle 85: createNestedToolExecutor passes execution environment to CodingTools (60.662735ms)
+✔ Cycle 85: codemode script successfully executes tools.bash and tools.read via nested executor (774.832682ms)
+✔ createHarnessSettings resolves model-specific compaction override for 300k max window from settings (2.344244ms)
+✔ createHarnessSettings uses standard settings when model has no explicit override (0.342129ms)
+✔ createHarnessSettings uses default model from settingsManager when no active model provided (7.150982ms)
+✔ parseProviderThreadId correctly distinguishes root session and composite child conversations (1.56865ms)
+✔ SessionRegistry shares active session across composite child threadIds (2.972935ms)
+✔ bridge-router propagates conversationId to session prompt, steer, and abort (18.912771ms)
+✔ handleActiveSessionCommand targets child conversation when conversationId is provided (798.68829ms)
+▶ Context Window Telemetry &amp; Usage Synchronization (Cycle 57)
+  ✔ RunnerProcess.requestOk unwraps data payload and rejects on success: false (15.68251ms)
+  ✔ PiThreadSession.getSessionStats extracts contextUsage from wrapped or unwrapped responses (10.959513ms)
+  ✔ PiThreadSession.refreshContextUsage sends contextWindow delta with correct tokens and size (10.290625ms)
+  ✔ handleRunnerEvent('agent_end') refreshes context usage before finalizing the turn (5.906552ms)
+  ✔ BBEventAdapter propagates contextWindow on turn_end and run_end when resolver is provided (8.267537ms)
+  ✔ DeltaTranslator maps event.contextWindow into usage deltas (1.498521ms)
+✔ Context Window Telemetry &amp; Usage Synchronization (Cycle 57) (55.556596ms)
+✔ parseConversationId accepts valid numeric and string IDs (2.679041ms)
+✔ parseConversationId throws on invalid or non-positive IDs (0.992129ms)
+▶ Cumulative Token Usage Monotonicity &amp; pi.usage Sync (Cycle 70, D-7)
+  ✔ extractCumulativeUsage aggregates multiple models and tool usage from pi.usage (2.683571ms)
+  ✔ BBEventAdapter emits cumulativeUsage on turn_end and run_end (3.092575ms)
+  ✔ translateAgentEndUsage populates total from cumulativeUsage while preserving last (0.737658ms)
+  ✔ validates deltas against threadDeltaSchema for both cumulative and fallback modes (10.346615ms)
+  ✔ monotonicity: delta.total.totalTokens grows strictly across multiple turns (0.52995ms)
+✔ Cumulative Token Usage Monotonicity &amp; pi.usage Sync (Cycle 70, D-7) (20.603264ms)
+▶ CWD Isolation and CLI Argument Parsing (Issue #1)
+  ✔ PiThreadSession does not pass unsupported --session-dir to runner (12.423899ms)
+  ✔ parseCliArgs parses --session-dir without overriding cwd (0.341511ms)
+  ✔ parseCliArgs parses explicit --cwd flag (0.268841ms)
+  ✔ parseCliArgs does not let boolean flag --no-session consume positional cwd (0.281758ms)
+  ✔ parseCliArgs does not let unknown options with values become positional cwd (0.275748ms)
+  ✔ parseCliArgs honors deliberate positional cwd (0.248785ms)
+  ✔ parseCliArgs supports paths with spaces (0.259852ms)
+  ✔ resolveSessionFilePath does not append false .jsonl suffix for directory sessions (0.737233ms)
+  ✔ selectSession resolves target directory and strips .sqlite file suffix from target session path (92.660462ms)
+✔ CWD Isolation and CLI Argument Parsing (Issue #1) (110.742733ms)
+✔ P1-1: notice unpacking distinguishes notice records from errors and forwards live (8.17412ms)
+✔ P2-1: adaptExtensionTool emits tool_result with isError: true when execute throws (1.058799ms)
+✔ P2-1: createNestedToolExecutor emits tool_result with isError: true on target execution exception (1.436273ms)
+✔ P2-2 &amp; P3: dynamic prompt sections filter whitespace and replace removed keys (2.339247ms)
+✔ P2-3: session-commands handles instructions, guards thinking level, and falls back on unknown type (13.090777ms)
+✔ Pi Diagnostics: inspectPiEnvironment returns well-formed report (171.716587ms)
+✔ Pi Diagnostics: correctly classifies supported vs unsupported extension hooks (0.519062ms)
+✔ createCodingRegistry installs native Subagent tool (11.952957ms)
+▶ Extension Bridge (Cycle 60)
+  ✔ createStandardExtensionFactories returns 1 built-in factory (MCP) (1.524512ms)
+  ✔ adaptExtensionTool maps ToolDefinition to Durable ToolRegistration (5.185075ms)
+  ✔ adaptExtensionTool preserves isError and error details (0.456692ms)
+  ✔ setupExtensionRunner supports lifecycle startup and shutdown (197.662226ms)
+  ✔ hasOutput accurately identifies objects with output method (AP-029) (0.470417ms)
+  ✔ streams output to api.output when present and ignores when absent (0.594984ms)
+✔ Extension Bridge (Cycle 60) (212.646451ms)
+▶ Extension UI Context Safety (Issue #14 Defect 1)
+  ✔ provides a full SDK-shaped no-op context that prevents TypeError when extensions access ui members (4.348374ms)
+✔ Extension UI Context Safety (Issue #14 Defect 1) (6.022779ms)
+✔ buildSpawnArgs respects explicit projectId (4.69405ms)
+✔ spawnSubthreadInBb executes command and links registered thread (0.706858ms)
+✔ buildSpawnArgs includes required project, parent-thread, provider, and title (2.376973ms)
+✔ spawnSubthreadInBb registers thread when CLI returns thread JSON (0.539009ms)
+✔ translateAgentEnd: translates aborted turn to status 'interrupted' in turn.boundary (19.038631ms)
+✔ threadDeltaSchema: validates session.ended delta strictly (0.65001ms)
+✔ BBEventAdapter: propagates stopReason 'aborted' into turn_end and agent_end wire events (2.267209ms)
+✔ BBEventAdapter: multi-turn isolation prevents aborted Turn 1 from contaminating completed Turn 2 (P1 fix) (0.400726ms)
+✔ handleThreadStop: intent 'interrupt' emits session.ended, aborts session, returns providerCheckpointId (14.581003ms)
+✔ handleThreadStop: intent 'interrupt' without active session returns null checkpointId (0.408933ms)
+✔ handleThreadStop: intent 'release' stops session in registry and returns ok: true (4.223195ms)
+✔ PiThreadSession: retains lastCheckpointId from incoming runner events (2564.358472ms)
+✔ D-1, D-2, D-3, D-4: Thinking presentation, reasoning lifecycle &amp; settings schema parity (8.99648ms)
+✔ D-5, D-6, D-9: Tool fault integrity, diff metadata &amp; trimStart output streaming (13.725669ms)
+✔ D-7, D-8: Cumulative usage monotonicity &amp; checkpoint boundary extraction (4.903616ms)
+✔ D-10: Thread fork via checkpoint ACID SQLite pruning (17.798353ms)
+✔ D-11, D-12, D-13: Turn interruption, abort isolation &amp; stop release handling (1.012684ms)
+✔ D-14, D-15: Subagent delegation visual cards &amp; conversationId extraction (2.739098ms)
+✔ D-16, D-17, D-18: Dynamic prompt sections, direct MCP &amp; tool lifecycle hooks (2.590821ms)
+✔ D-19, D-20: Diagnostics notices &amp; session ownership tracking (0.547074ms)
+✔ D-17: Dynamic System Prompt renders mcp_servers and dynamic sections from before_agent_start (7.199309ms)
+✔ D-16: mountExtensionBridge synchronizes direct MCP servers and dynamic sections at boot (225.223119ms)
+✔ D-18: adaptExtensionTool invokes tool_call and tool_result extension hooks (5.442162ms)
+✔ D-18: createNestedToolExecutor invokes tool_call and tool_result on nested calls (1.93378ms)
+✔ D-19: setupExtensionRunner forwards notify notices via onNotice callback (166.188353ms)
+✔ PiThreadSession routes deltas to child threadId when conversation is registered (10.353953ms)
+✔ package.json integrity: dependencies and devDependencies are strictly disjoint (AP-010, AP-026) (2.23843ms)
+✔ package.json integrity: @get-bb/plugin-sdk is strictly in dependencies (SawyerHood review blocker) (0.444287ms)
+✔ package.json integrity: manifest entries point to canonical source paths (0.391084ms)
+✔ package.json integrity: runtime dependencies contain all modules imported by host and runner (0.350115ms)
+▶ Prompt Adapter (Cycle 61 - AP-010, AP-018)
+  ✔ derives tool snippets directly from canonical tool definitions (3.429487ms)
+  ✔ maps canonical tool guidelines into rules section (0.74473ms)
+  ✔ injects context files provided via resourceLoader.getAgentsFiles() (0.500517ms)
+  ✔ injects context files provided directly via promptOptions.contextFiles (0.369437ms)
+  ✔ formats skills when resourceLoader provides skills (11.464034ms)
+  ✔ renders prompt guidelines for extension tools registered on input.agent.tools (0.549929ms)
+✔ Prompt Adapter (Cycle 61 - AP-010, AP-018) (39.723026ms)
+▶ Native Provider Installation Lifecycle (Cycle 76)
+  ✔ resolves the dynamic plugin version without hardcoded fallbacks (1.840045ms)
+[InstallationManager] Request to https://api.github.com/repos/VanDalkvist/bb-plugin-provider-pi-durable/tags failed: Offline network
+[InstallationManager] Request to https://registry.npmjs.org/bb-plugin-provider-pi-durable failed: Offline network
+  ✔ resolves the plugin version from bb's deployed host-artifact layout (no package.json nearby) (258.368691ms)
+  ✔ correctly compares semver strings (0.783456ms)
+  ✔ provider/installation/status conforms strictly to BB wire schema (checkUpdates: false) (16.02832ms)
+  ✔ provider/installation/run returns valid discriminated union for update action (12.851957ms)
+  ✔ discovery-handler routes provider/installation/status and provider/installation/run via typed params (0.836076ms)
+  ✔ getProviderInstallationStatus sets needsUpdate: true when remote version is higher (85.694695ms)
+  ✔ getProviderInstallationStatus returns currentVersion and needsUpdate: false when remote is older or equal (0.940409ms)
+  ✔ getProviderInstallationStatus falls back to currentVersion when offline or remote fails (1.034366ms)
+✔ Native Provider Installation Lifecycle (Cycle 76) (387.142009ms)
+✔ CodingTools with createNodePhotonImages registers read tool capable of image processing (1.511194ms)
+▶ Runner Path Discovery &amp; Portability (Issue #2)
+  ✔ honors BB_PI_DURABLE_BRIDGE_COMMAND explicit override (2.579348ms)
+  ✔ honors PI_DURABLE_RUNNER_PATH explicit override (3.068034ms)
+  ✔ resolves runner via BB SQLite database plugins table (23.117294ms)
+  ✔ resolves runner via BB git cache directory structure (11.213555ms)
+  ✔ resolves runner via BB npm cache directory structure (5.439963ms)
+  ✔ resolves runner in paths containing spaces (6.825795ms)
+  ✔ throws actionable error on genuinely missing runner without maintainer path (5.240615ms)
+  ✔ reads the data dir back out of bb's deployed host-artifact layout (0.511191ms)
+  ✔ prefers the data dir this host was deployed under over a foreign install (Issue #18) (26.761782ms)
+  ✔ resolves runner on real BB host artifact path when present (0.453146ms)
+  ✔ resolves getBbDataDir and honors BB_DATA_DIR environment variable (Issue #7) (0.365022ms)
+  ✔ resolves runner via BB_DATA_DIR custom database and cache (Issue #7) (27.725469ms)
+✔ Runner Path Discovery &amp; Portability (Issue #2) (116.553482ms)
+▶ Session Lock Eviction and Ownership Tracking (Cycle 71, D-20)
+  ✔ isProcessAlive correctly checks process liveness (1.295196ms)
+  ✔ writes session.owner.json upon lock acquisition and removes it on release (16.700699ms)
+[SessionStorage] unlock warning for /bb0-state/tmp/pi-dead-lock-test-NHrChe/dead-session: Lock is not acquired/owned by you
+  ✔ forcibly evicts stale lock and session.owner.json left by dead PID (371.408507ms)
+[SessionStorage] unlock warning for /bb0-state/tmp/pi-orphan-takeover-test-xaYBLQ/orphan-session: Lock is not acquired/owned by you
+  ✔ sends SIGTERM to live orphan runner and successfully takes over session (482.671862ms)
+  ✔ fails with actionable error containing holding PID if process refuses to exit (3482.867947ms)
+✔ Session Lock Eviction and Ownership Tracking (Cycle 71, D-20) (4362.339268ms)
+✔ isProcessAlive accurately identifies process liveness and handles invalid pids (1.214767ms)
+✔ shared binding is opt-in and rejects public or malformed pointers (12.074894ms)
+﹣ real SQLite host: two BB clients share work, disconnect safely and fail closed (0.493445ms) # Set PI_DURABLE_SHARED_HOST_MODULE to run the real native-host integration (see command above)
+▶ Startup Readiness &amp; Fail-Fast Handshake (Issue #3)
+  ✔ PiThreadSession.start() rejects immediately and kills runner when runner exits before ready (11.772125ms)
+  ✔ PiThreadSession.start() rejects and kills runner when initial context refresh RPC fails (5.934095ms)
+  ✔ PiThreadSession.start() clears timeout timer upon successful ready (4.974569ms)
+  ✔ ModelCatalog.start() rejects immediately and cleans up when runner exits before ready (5.791175ms)
+  ✔ ModelCatalog.start() clears timeout timer on successful ready (5.726829ms)
+  ✔ Runner announces ready in catalogue probe mode (--no-session) (1566.23699ms)
+✔ Startup Readiness &amp; Fail-Fast Handshake (Issue #3) (1604.358267ms)
+✔ buildRoleEnvelope creates a focused, non-meta instruction envelope (1.423042ms)
+✔ Subagent tool parameters accept task and optional background flag (0.279091ms)
+✔ Subagent tool in background mode returns immediately without waiting for completion (4.340217ms)
+✔ Subagent tool in foreground mode (background: false) waits for child completion (0.890828ms)
+✔ Subagent tool execution returns output property according to Durable 1.2.0 contract (0.697038ms)
+✔ Subagent tool announces conversationId and task for BB subthread mirror (8.012175ms)
+✔ Subagent tool definition safely handles missing BB_THREAD_ID without crashing (6.617841ms)
+✔ buildToolItemShape sets background: true for delegation by default (1.79618ms)
+✔ buildToolItemShape respects explicit background: false (0.322113ms)
+✔ translateToolStart and translateToolEnd preserve background flag (0.72963ms)
+✔ buildToolItemShape maps 'subagent' tool to BB compliant delegation shape (1.959786ms)
+✔ buildToolItemShape maps 'agent_spawn' tool to BB compliant delegation shape (0.278729ms)
+✔ buildToolItemShape maps 'agent_spawn_graph' tool to BB compliant delegation shape (0.262332ms)
+✔ translateToolStart emits item.open with delegation shape and Bot icon presentation (19.008948ms)
+✔ translateToolEnd updates childRef from event.details.conversationId and completes delegation (2.767232ms)
+✔ translateToolEnd handles subagent execution failure (0.541164ms)
+✔ preserves existing tool contracts for bash, write, and edit (6.211569ms)
+✔ PiThreadSession broadcasts subagent events to BOTH parent (delegation card) and child (root thread) (25.136638ms)
+[RunnerProcess:stderr] Runner fatal error: Error: Session is already open in another process: /tmp
+    at acquireSessionLock (file:///bb0-state/provider/dist/runner/index.js:543:13)
+    at async selectSession (file:///bb0-state/provider/dist/runner/index.js:619:19)
+    at async openDurable (file:///bb0-state/provider/dist/runner/index.js:1388:20)
+    at async main (file:///bb0-state/provider/dist/runner/index.js:2681:19)
+
+[PiThreadSession] Context refresh failed before agent_end: Error: Runner process exited (code 1, signal null)
+✔ PiThreadSession completes child thread when subagent finishes (2778.291219ms)
+✔ BBChildEventAdapter decorates all events with conversationId and emits agent_end on run_end (5.657646ms)
+✔ Subagent module is exported and valid (1.251249ms)
+▶ Native Subagent In-Place Streaming (Cycle 80)
+  ✔ BBChildEventAdapter decorates child events with parentRef and prefixes toolCallId (5.681929ms)
+  ✔ DeltaTranslator emits BB schema-valid thread deltas for child tool and reasoning events (28.694554ms)
+  ✔ DeltaTranslator recognizes native parentToolCallId directly (4.882719ms)
+✔ Native Subagent In-Place Streaming (Cycle 80) (44.498108ms)
+✔ handleTurnStart intercepts running subagent turn and suppresses duplicate session.prompt (6.740548ms)
+✔ handleTurnStart handles completed subagent race condition and emits turn.boundary (0.839189ms)
+✔ PiThreadSession tracks subagent mirror lifecycle (active -&gt; completed) (10.261609ms)
+✔ VERIFICATION 1: Without mirror guard, spawning a subthread triggers a duplicate session.prompt (12.045306ms)
+✔ VERIFICATION 2: With Active Subagent Deduplication Pattern, prompt is NOT called twice (0.470976ms)
+✔ Subagent delegation item carries task in label and summary (1.672192ms)
+✔ BBChildEventAdapter does NOT duplicate user task prompt into card stream (0.50048ms)
+✔ Child tool execution deltas strictly carry parentRef and parentToolCallId matching delegation callId (0.530609ms)
+✔ buildToolExecutionEnd recovers buffered conversationId from tool_execution_update (5.715593ms)
+✔ DeltaTranslator propagates buffered conversationId to delegation item.close childRef (36.160756ms)
+✔ User can continue conversation in subthread after subagent initial run completes (5.636531ms)
+✔ taskSteps: creation order with children nested under their owner (3.852955ms)
+✔ taskSteps: waiting and completing states map onto the panel's four statuses (0.394292ms)
+✔ taskSteps: keeps a live child whose owner already left the graph (0.312338ms)
+✔ taskSteps: an empty graph yields no rows (0.234982ms)
+✔ tasks_snapshot translates into a planSteps item that BB's schema accepts (14.337469ms)
+✔ tasks_snapshot without steps emits nothing (0.251074ms)
+✔ startTaskGraphBridge publishes on change only (0.746233ms)
+✔ taskNames: a tool task is named from the call the harness runs in it (1.532928ms)
+✔ taskNames: a nested call names itself, a slot without a task names nothing, a learned name outlives its slot (0.533331ms)
+✔ taskNames: a name is one bounded line, and no registry changes nothing (0.684177ms)
+✔ DeltaTranslator: thinking_delta emits item.open with Brain icon presentation on first chunk and item.textDelta (3.215898ms)
+✔ DeltaTranslator: subsequent thinking_delta chunks do not re-emit item.open (0.347817ms)
+✔ DeltaTranslator: thinking_end closes channel with item.textClose and cleans up (0.330982ms)
+✔ DeltaTranslator: hideThinking: true injects suppress: true into item.open presentation (0.348599ms)
+✔ server.ts: registers settings and deriveProviderOptions forwards settings correctly (0.71316ms)
+✔ DeltaTranslator: fallback closure closes unclosed thinking channel when text_delta arrives (0.339763ms)
+✔ DeltaTranslator: fallback closure closes unclosed thinking channel when message_end arrives (0.526556ms)
+▶ Thread Fork Service and RPC (Cycle 69 - AP-013, AP-026, AP-028)
+  ✔ forking without checkpoint creates child database preserving all parent entries (16.580724ms)
+  ✔ forking with checkpointId removes entries with id &gt; checkpointId from child database (12.707269ms)
+  ✔ forking from non-existent parent throws descriptive error (10.032007ms)
+  ✔ forking resolves source session located in custom absolute directory path (19.384809ms)
+  ✔ Bridge RPC thread/fork handles fork request and returns new providerThreadId (14.339137ms)
+  ✔ Bridge RPC thread/fork returns -32000 error when source thread does not exist (9.881521ms)
+✔ Thread Fork Service and RPC (Cycle 69 - AP-013, AP-026, AP-028) (85.25887ms)
+✔ buildToolItemShape maps 'write' tool to BB compliant fileChange with kind: 'add' (1.80488ms)
+✔ buildToolItemShape maps 'edit' tool to BB compliant fileChange with kind: 'update' and granular edits (0.4475ms)
+✔ translateToolStart and translateToolEnd retain valid fileChange item (0.767927ms)
+✔ D-21: normalizeFilePath strips spurious b/ and a/ prefixes and relative dots (0.353191ms)
+✔ D-21: synthesizeAddDiff generates canonical git unified diff with exact line counts (0.549233ms)
+✔ D-21: translateToolEnd synthesizes canonical unified git diff for write tool and validates schema (8.47722ms)
+✔ D-21: normalizeGitPatch standardizes patch headers for edit tool with clean paths (0.39503ms)
+✔ BBEventAdapter: tool_execution_end with event.entry === undefined emits isError: true with fault result (D-5) (1.785295ms)
+✔ BBEventAdapter: tool_execution_end with valid entry and isError: false emits clean result (0.413022ms)
+✔ BBEventAdapter: tool_execution_end with explicit error preserves isError: true (0.266927ms)
+✔ BBEventAdapter: tool_execution_update forwards trimStart when present (D-9) (0.403541ms)
+✔ BBEventAdapter: tool_execution_end forwards details metadata from event or entry (D-6) (0.681044ms)
+✔ tool-delta-translator: maps faulted tool end to failed item status with error message (D-5) (8.366701ms)
+✔ tool-delta-translator: enriches fileChange item with diff metadata and validates with threadDeltaSchema (D-6) (2.7529ms)
+▶ Worker Teardown and Graceful Termination (Cycle 71, AP-027)
+  ✔ sends SIGTERM upon RunnerProcess.kill() allowing graceful exit (261.718544ms)
+  ✔ escalates to SIGKILL if child process does not exit on SIGTERM within 500ms (553.59835ms)
+  ✔ RunnerProcess.kill() is idempotent and does not throw on multiple calls (174.082475ms)
+✔ Worker Teardown and Graceful Termination (Cycle 71, AP-027) (991.74134ms)
+ℹ tests 224
+ℹ suites 13
+ℹ pass 223
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 8849.37166
+</system-out>
+  </testcase>
+  <testcase name="provider-npm-doctor" time="1.671">
+    <system-out>
+&gt; bb-plugin-provider-pi-durable@0.2.29 doctor
+&gt; node scripts/doctor.mjs
+
+
+========================================================
+       Pi Durable Doctor &amp; Environment Inspector        
+========================================================
+
+Plugin Version:  v0.2.29
+Durable Version: v1.2.0
+Health Status:   HEALTHY
+Summary:         Pi environment ready with warnings: Some extensions use lifecycle hooks not wired in Durable Harness.
+
+--- 1. Pi Environment &amp; Paths ---
+  agentDir: /bb0-state/agent (FOUND)
+  settings.json     : FOUND (/bb0-state/agent/settings.json)
+  mcp.json          : optional missing (/bb0-state/agent/mcp.json)
+  auth.json         : FOUND (/bb0-state/agent/auth.json)
+  models-store.json : FOUND (/bb0-state/agent/models-store.json)
+  extensions        : optional missing (/bb0-state/agent/extensions)
+  skills            : optional missing (/bb0-state/agent/skills)
+
+--- 2. Models &amp; Settings Parity ---
+  Default Provider:  bb0-offline
+  Default Model:     boot-only (available: true)
+  Default Thinking:  none
+  Active Packages:   none
+  Available Models:  1555
+
+--- 3. Extensions &amp; Compatibility Matrix (1 loaded) ---
+
+  • Extension: &lt;inline:1&gt;
+    Commands: mcp
+    ✅ Supported Hooks in Durable:   session_start, before_agent_start, tool_call, session_shutdown
+    ⚠️  UNSUPPORTED Hooks in Durable: turn_start, mcp_servers_change
+
+--- 4. Tools &amp; Skills ---
+  System Tools (7):    read, write, edit, bash, subagent, codemode, tool_search
+  MCP Tools (0):       
+  Extension Tools (0): none
+  Skills Discovered:           0
+
+========================================================
+Verdict: PASSED (Healthy)
+========================================================
+
+</system-out>
+  </testcase>
+  <testcase name="archived-regressions" time="1.569">
+    <system-out>✔ old background:true returns from execute but retains a non-background ownership barrier (94.318144ms)
+✔ upstream original anchor lets parent finish and delivers the child answer once (44.004257ms)
+✔ upstream canonical anchor lets parent finish and delivers the child answer once (37.373399ms)
+✔ published Pi 1.2 SDK loads ordinary project and user factories without the local 1.0.2 core (248.378629ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1471.598976
+</system-out>
+  </testcase>
+  <testcase name="shared-host-integration" time="4.729">
+    <system-out>✔ shared binding is opt-in and rejects public or malformed pointers (14.116083ms)
+✔ real SQLite host: two BB clients share work, disconnect safely and fail closed (4455.946753ms)
+ℹ ✔ real SQLite host: two BB clients share work, disconnect safely and fail closed (4129.172923ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4375.910783
+
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4660.678619
+</system-out>
+  </testcase>
+</testsuite>
