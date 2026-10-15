@@ -1,0 +1,46 @@
+{
+  "task": "bbup-0-boot",
+  "recordedBy": "RusticCanyon",
+  "qaActor": "qa-bb0-inventory",
+  "evidenceOrigin": "Independent native subagent behavioral QA report; parent subsequently inspected its fresh boot log and private boot-result.json",
+  "verdict": "PASS",
+  "scope": "Offline zero-submission exact existing Durable main.ts boot only",
+  "candidate": {
+    "runner": "4c1ab2757b78f0bf9c866a9d8c7ad18a58c6936d08d7a4c911e904f7521ee47b",
+    "driver": "0e69c9d2925151f85cb4c80d64ea3fb10dca98a9b6740a80639b9c1213499e45",
+    "leadResult": "281277e2fbc7c0281ec25da7a0f4e14367ba36fb3da13b15541b322ae77fb4b2",
+    "leadCheckpoint": "4ececc18bb24356cefc510f0735f4f422e9a37df9cad068df2bb578ac0041fde",
+    "manifest": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645",
+    "sourceEntriesVerifiedByQa": 727,
+    "qaBeforeAfterFingerprintParity": true
+  },
+  "commands": [
+    {"command": "python3 evidence/BB0/lead-sandbox.py --probe", "exitCode": 0, "log": "/tmp/bb0-boot-qa.a10ZFP/probe.log", "sha256": "56819cdd8f07b45f8718986161e57332f713b4884da07190fecaa4924b5dfda6"},
+    {"command": "python3 evidence/BB0/lead-sandbox.py --allow-test-bb-network --probe", "exitCode": 2, "expectedExitCode": 2, "log": "/tmp/bb0-boot-qa.a10ZFP/host-network-optin.log", "sha256": "c8cd8cb39f55d16f7ffc92effb4b196e975e3e9a71e7b609db536fb664185e12"},
+    {"command": "python3 evidence/BB0/lead-sandbox.py --boot", "exitCode": 0, "childExitCode": 0, "log": "/tmp/bb0-boot-qa.a10ZFP/boot.log", "sha256": "88025b953340ff9df3d1d62d308076d1fd47cd9b3a923ef0f4548cd4e89bea48"}
+  ],
+  "freshRun": {
+    "privateState": "evidence/BB0/lead-private/.cache/boot-48xwapud",
+    "privateResultSha256": "1df1167cbc7b0592a73e8de0bcfb93072047558bb591c201809990932cba9bf5",
+    "transcriptSha256": "8fe1e3fec568b39c64302f1f224383e65b9386a9b9da76fb40d4dd69defcbca9",
+    "distinctFromLeadState": "Lead used boot-p8ui177f; QA used boot-48xwapud",
+    "effectiveHostAndProviderSdkConfiguration": "PASS",
+    "freshPrivateConfiguration": "PASS",
+    "isolatedNetworkNamespace": "PASS",
+    "approvedOfflineModelSelected": "PASS bb0-offline/boot-only",
+    "ownedSharedSocketAttach": "PASS",
+    "actualTuiPainted": "PASS",
+    "ownedOrderlyShutdown": "PASS Ctrl-D exit0",
+    "freshSqliteClosedAndIntegrity": "PASS one private store, integrity_check ok, socket and session locks absent",
+    "readySeconds": 3.727,
+    "elapsedSeconds": 3.866,
+    "timingLimit": "Observed boot-run timings only, NOT BB0 perf-baseline acceptance"
+  },
+  "boundaryProbes": "PASS hidden sentinel and real private roots inaccessible; EROFS fixture; readonly donor mounts; private writes; loopback-only independent network namespace",
+  "qaMutations": "Unique private fixture trees and /tmp logs only; no product, harness, shared report, tracker, Git or installed code writes",
+  "limits": [
+    "Driver submittedPrompts=0 is an input fact, NOT a measured global model-invocation count",
+    "Not native faux generation, SDK alignment, generic-root support, or full BB0 baseline acceptance",
+    "Fresh private SQLite inspection only; no live store accessed"
+  ]
+}
