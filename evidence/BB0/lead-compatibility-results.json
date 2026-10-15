@@ -1,0 +1,123 @@
+[
+  {
+    "kind": "provider",
+    "exitCode": 0,
+    "log": "evidence/BB0/lead-compatibility-provider.log",
+    "probe": {
+      "kind": "provider",
+      "packageVersion": "0.2.29",
+      "result": "PASS",
+      "results": [
+        {
+          "specifier": "@earendil-works/pi-durable",
+          "exports": {
+            "Harness.open": "function",
+            "createRegistry": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/pi-ai/providers/faux",
+          "exports": {
+            "fauxProvider": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/chord/context",
+          "exports": {
+            "BACKGROUND_CONTEXT": "object"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/pi-codemode",
+          "exports": {
+            "CodemodeSandbox": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/provider/src/runner/shared-host.ts",
+          "exports": {
+            "runSharedHost": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/pi-coding-agent",
+          "exports": {
+            "ModelRuntime": "function",
+            "SettingsManager": "function",
+            "DefaultResourceLoader": "function"
+          },
+          "result": "PASS"
+        }
+      ],
+      "boundary": "Import/binding availability only. No runtime construction, SQLite, model invocation, settings load, socket, or behavior parity assertion.",
+      "limitation": "Provider uses installed SDK1.2.0 dependency graph; behavior tests remain pending."
+    }
+  },
+  {
+    "kind": "host",
+    "exitCode": 1,
+    "log": "evidence/BB0/lead-compatibility-host.log",
+    "probe": {
+      "kind": "host",
+      "packageVersion": "1.0.2",
+      "result": "FAIL",
+      "results": [
+        {
+          "specifier": "@earendil-works/pi-durable",
+          "exports": {
+            "Harness.open": "function",
+            "createRegistry": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/pi-ai/providers/faux",
+          "exports": {
+            "fauxProvider": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/chord/context",
+          "exports": {
+            "BACKGROUND_CONTEXT": "object"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/pi-codemode",
+          "exports": {
+            "CodemodeSandbox": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/packages/coding-agent/src/experimental/durable/shared-server.ts",
+          "exports": {
+            "listenSharedHost": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/packages/durable/src/mcp-codemode.ts",
+          "exports": {
+            "createMcpCodemodeExtension": "function"
+          },
+          "result": "PASS"
+        },
+        {
+          "specifier": "@earendil-works/pi-coding-agent",
+          "result": "FAIL",
+          "error": "file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/packages/coding-agent/src/extensions/codemode/tool.ts:28\n\tMCP_TYPESCRIPT_PREAMBLE,\n\t^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: The requested module '@earendil-works/pi-codemode/declarations' does not provide an export named 'MCP_TYPESCRIPT_PREAMBLE'\n    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)\n    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)\n    at async node:internal/modules/esm/loader:643:26\n    at async file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/[eval1]:22:20"
+        }
+      ],
+      "boundary": "Import/binding availability only. No runtime construction, SQLite, model invocation, settings load, socket, or behavior parity assertion.",
+      "limitation": "Local coding-agent support source 1.0.2 with global SDK1.2.0 overlay remains a mixed baseline. Not SDK-aligned or behavior-certified."
+    }
+  }
+]

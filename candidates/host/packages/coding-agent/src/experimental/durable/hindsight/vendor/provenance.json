@@ -1,0 +1,102 @@
+{
+  "package": "@vectorize-io/hindsight-coding-agents",
+  "version": "0.8.0",
+  "repository": "https://github.com/vectorize-io/hindsight.git",
+  "repositoryDirectory": "hindsight-integrations/coding-agents",
+  "source": "/home/ubuntu/.hindsight/coding-agents/dist/pi.js",
+  "sourceSha256": "a29f38a67d84ecf375bccb7fd5e3560e2bb04baa8e50911ee5b0539d1f0e41c7",
+  "modification": "Exact installed 0.8.0 source with recorded reversible dependency patches and 32 helper exports. Installed files unchanged.",
+  "sourceBytes": 719924,
+  "patchedPrefixBytes": 721643,
+  "patchedPrefixSha256": "acb8ea307c17a3db2b39296f218445a5815be4d590b74873e1de05a073cd895b",
+  "vendoredSha256": "d43200e61a96293d493e45584f2ee3b7832d6f685b19a1e6475f1a7a47bc304d",
+  "localPatches": [
+    {
+      "scope": "daemon dependencies",
+      "from": "async function ensureDaemon(cfg, harness, opts = {}) {\n  if (cfg.serverMode !== \"daemon\") return;\n  if (await isServerHealthy(cfg.apiUrl)) return;\n  if (!preflightDaemon(cfg, harness)) return;\n  const waitMs = opts.waitMs ?? 0;\n  const running = coldStarts.get(cfg.apiUrl);\n  if (running) {\n    const startedAt = Date.now();\n    await waitBounded(\n      running.catch(() => void 0),\n      waitMs\n    );\n    const remaining = waitMs - (Date.now() - startedAt);\n    if (remaining > 0) await waitForHealth(cfg.apiUrl, remaining);\n    return;\n  }\n  const attempt = (async () => {\n    startDaemonDetached(cfg, harness, opts.spawnFn);\n    await waitForHealth(cfg.apiUrl, waitMs);\n  })();\n  coldStarts.set(cfg.apiUrl, attempt);\n  try {\n    await attempt;\n  } finally {\n    if (coldStarts.get(cfg.apiUrl) === attempt) coldStarts.delete(cfg.apiUrl);\n  }\n}\n",
+      "to": "async function ensureDaemon(cfg, harness, opts = {}) {\n  if (cfg.serverMode !== \"daemon\") return;\n  if (await (opts.health ?? isServerHealthy)(cfg.apiUrl)) return;\n  if (!(opts.preflight ?? preflightDaemon)(cfg, harness)) return;\n  const waitMs = opts.waitMs ?? 0;\n  const running = coldStarts.get(cfg.apiUrl);\n  if (running) {\n    const startedAt = Date.now();\n    await waitBounded(\n      running.catch(() => void 0),\n      waitMs\n    );\n    const remaining = waitMs - (Date.now() - startedAt);\n    if (remaining > 0) await (opts.waitForHealth ?? waitForHealth)(cfg.apiUrl, remaining);\n    return;\n  }\n  const attempt = (async () => {\n    (opts.launch ?? startDaemonDetached)(cfg, harness, opts.spawnFn);\n    await (opts.waitForHealth ?? waitForHealth)(cfg.apiUrl, waitMs);\n  })();\n  coldStarts.set(cfg.apiUrl, attempt);\n  try {\n    await attempt;\n  } finally {\n    if (coldStarts.get(cfg.apiUrl) === attempt) coldStarts.delete(cfg.apiUrl);\n  }\n}\n"
+    },
+    {
+      "scope": "fixed Pi config in isolated MCP child; no credential file",
+      "from": "];\nfunction buildSurveyPlan(harness, bin, repoDir, opts) {\n  const env = {\n    ...process.env,\n    // Anti-recursion: the survey's own agent session must not fire our hooks (session-start,\n    // UserPromptSubmit/BeforeAgent, Stop/SessionEnd) or re-seed — see the HINDSIGHT_DISABLE_HOOKS\n",
+      "to": "];\nfunction buildSurveyPlan(harness, bin, repoDir, opts) {\n  const fixedEnv = opts.fixedMemory ? {\n    HINDSIGHT_CONFIG: '/__hindsight_fixed_config__',\n    HINDSIGHT_FIXED_CONFIG: JSON.stringify({ ...opts.fixedMemory.cfg, bankId: opts.fixedMemory.bankId, banks: {}, mapPathToBank: {}, dynamicBankId: false, optInOnly: false }),\n    HINDSIGHT_DISABLED: 'false',\n    HINDSIGHT_OPT_IN_ONLY: 'false',\n    HINDSIGHT_API_URL: opts.fixedMemory.cfg.apiUrl,\n    HINDSIGHT_API_TOKEN: opts.fixedMemory.cfg.apiToken ?? '',\n    HINDSIGHT_BANK_ID: opts.fixedMemory.bankId\n  } : {};\n  const mcpArgs = opts.fixedMemory ? ['--import', 'data:text/javascript,' + encodeURIComponent(`import fs from 'node:fs'; import { syncBuiltinESMExports } from 'node:module'; const read = fs.readFileSync; const config = process.env.HINDSIGHT_FIXED_CONFIG; delete process.env.HINDSIGHT_FIXED_CONFIG; fs.readFileSync = (path, ...args) => String(path) === '/__hindsight_fixed_config__' ? config : read(path, ...args); syncBuiltinESMExports();`), opts.mcpServerPath] : [opts.mcpServerPath];\n  const env = {\n    ...process.env,\n    ...fixedEnv,\n    // Anti-recursion: the survey's own agent session must not fire our hooks (session-start,\n    // UserPromptSubmit/BeforeAgent, Stop/SessionEnd) or re-seed — see the HINDSIGHT_DISABLE_HOOKS\n"
+    },
+    {
+      "scope": "Claude fallback MCP arguments",
+      "from": "          hindsight: {\n            command: \"node\",\n            args: [opts.mcpServerPath],\n            // HINDSIGHT_MCP_HARNESS names the agent whose CLI this recipe drives — the survey's\n            // ingests are its writes. mcp-server.js REQUIRES it (it used to default to\n            // \"claude-code\", which is how the codex recipe below silently stamped its findings\n            // harness:claude-code and wrote them to Claude Code's bank — #3603).\n            env: { HINDSIGHT_MCP_PROJECT_CWD: repoDir, HINDSIGHT_MCP_HARNESS: \"claude-code\" }\n          }\n        }\n",
+      "to": "          hindsight: {\n            command: \"node\",\n            args: mcpArgs,\n            // HINDSIGHT_MCP_HARNESS names the agent whose CLI this recipe drives — the survey's\n            // ingests are its writes. mcp-server.js REQUIRES it (it used to default to\n            // \"claude-code\", which is how the codex recipe below silently stamped its findings\n            // harness:claude-code and wrote them to Claude Code's bank — #3603).\n            env: { ...fixedEnv, HINDSIGHT_MCP_PROJECT_CWD: repoDir, HINDSIGHT_MCP_HARNESS: opts.fixedMemory ? 'pi' : \"claude-code\" }\n          }\n        }\n"
+    },
+    {
+      "scope": "Codex fallback MCP arguments",
+      "from": "          `mcp_servers.hindsight.command=\"node\"`,\n          \"-c\",\n          `mcp_servers.hindsight.args=[\"${opts.mcpServerPath}\"]`,\n          \"-c\",\n          `mcp_servers.hindsight.env.HINDSIGHT_MCP_PROJECT_CWD=\"${repoDir}\"`,\n          \"-c\",\n          `mcp_servers.hindsight.env.HINDSIGHT_MCP_HARNESS=\"codex\"`,\n          SURVEY_PROMPT\n        ],\n",
+      "to": "          `mcp_servers.hindsight.command=\"node\"`,\n          \"-c\",\n          `mcp_servers.hindsight.args=${JSON.stringify(mcpArgs)}`, \n          \"-c\",\n          `mcp_servers.hindsight.env.HINDSIGHT_MCP_PROJECT_CWD=\"${repoDir}\"`,\n          \"-c\",\n          `mcp_servers.hindsight.env.HINDSIGHT_MCP_HARNESS=${JSON.stringify(opts.fixedMemory ? 'pi' : 'codex')}`, \n          ...Object.entries(fixedEnv).flatMap(([key, value]) => ['-c', `mcp_servers.hindsight.env.${key}=${JSON.stringify(value)}`]),\n          SURVEY_PROMPT\n        ],\n"
+    },
+    {
+      "scope": "survey independent of execution harness",
+      "from": "      const bin = resolveAgentBin(harness, opts.claudeBin);\n      if (!exists(bin)) continue;\n      const plan = buildSurveyPlan(harness, bin, repoDir, {\n        model: opts.model,\n        budgetUsd: opts.budgetUsd,\n        mcpServerPath\n      });\n      const { cfg, bankId } = resolveHostConfig(harness, repoDir);\n      if (cfg.disabled) return false;\n      const key = createHash2(\"sha256\").update(JSON.stringify([cfg.apiUrl.replace(/\\/+$/, \"\"), cfg.apiToken ?? \"\", bankId])).digest(\"hex\");\n",
+      "to": "      const bin = resolveAgentBin(harness, opts.claudeBin);\n      if (!exists(bin)) continue;\n      const { cfg, bankId } = opts.cfg ? { cfg: opts.cfg, bankId: opts.bankId } : resolveHostConfig(harness, repoDir);\n      const plan = buildSurveyPlan(harness, bin, repoDir, {\n        model: opts.model,\n        budgetUsd: opts.budgetUsd,\n        mcpServerPath,\n        fixedMemory: opts.cfg ? { cfg, bankId } : undefined\n      });\n      if (cfg.disabled) return false;\n      const key = createHash2(\"sha256\").update(JSON.stringify([cfg.apiUrl.replace(/\\/+$/, \"\"), cfg.apiToken ?? \"\", bankId])).digest(\"hex\");\n"
+    },
+    {
+      "scope": "diagnose loader (U1)",
+      "from": "          loadConfig({ harness: opts.harness }),",
+      "to": "          (opts.loadConfig ?? loadConfig)({ harness: opts.harness }),"
+    },
+    {
+      "scope": "usage timestamp",
+      "from": "  const ts = (/* @__PURE__ */ new Date()).toISOString();\n  const lines = finished.slice(from).map(\n",
+      "to": "  const ts = args.now ? args.now() : (/* @__PURE__ */ new Date()).toISOString();\n  const lines = finished.slice(from).map(\n"
+    },
+    {
+      "scope": "usage append/path",
+      "from": "  ).join(\"\");\n  try {\n    appendLogLine(usageFilePath(), lines);\n    args.cursors.write(args.sessionId, finished.length);\n  } catch {\n",
+      "to": "  ).join(\"\");\n  try {\n    (args.append ?? appendLogLine)(args.path ?? usageFilePath(), lines);\n    args.cursors.write(args.sessionId, finished.length);\n  } catch {\n"
+    },
+    {
+      "scope": "startup diagnostic binding",
+      "from": "${details}`;\n}\nasync function gitSyncNote(args) {\n  const { client, cwd, gitIds, mode, cold } = args;\n",
+      "to": "${details}`;\n}\nconst startupDiagnostic = diag;\nasync function gitSyncNote(args) {\n  const { client, cwd, gitIds, mode, cold } = args;\n"
+    },
+    {
+      "scope": "startup diagnostic injection",
+      "from": "}\nasync function buildSessionStartContext(args) {\n  const { cwd, bankId, cfg, client, stateDir } = args;\n  const t0 = Date.now();\n",
+      "to": "}\nasync function buildSessionStartContext(args) {\n  const diag = args.diagnostic ?? startupDiagnostic;\n  const { cwd, bankId, cfg, client, stateDir } = args;\n  const t0 = Date.now();\n"
+    },
+    {
+      "scope": "await durable seed intent",
+      "from": "          startSeed(cwd, { limit: cfg.seedLimit, harness });",
+      "to": "          await startSeed(cwd, { limit: cfg.seedLimit, harness });"
+    },
+    {
+      "scope": "cold survey binding",
+      "from": "                harness,\n                model: cfg.surveyModel,\n                budgetUsd: cfg.surveyBudgetUsd\n              });\n              const sha = resolveHeadSha(cwd);\n",
+      "to": "                harness,\n                model: cfg.surveyModel,\n                budgetUsd: cfg.surveyBudgetUsd,\n                cfg, bankId\n              });\n              const sha = resolveHeadSha(cwd);\n"
+    },
+    {
+      "scope": "warm survey binding",
+      "from": "                  harness,\n                  model: cfg.surveyModel,\n                  budgetUsd: cfg.surveyBudgetUsd\n                });\n                if (started) {\n",
+      "to": "                  harness,\n                  model: cfg.surveyModel,\n                  budgetUsd: cfg.surveyBudgetUsd,\n                  cfg, bankId\n                });\n                if (started) {\n"
+    },
+    {
+      "scope": "Claude fixed survey environment names only; no credential argv",
+      "from": "env: { ...fixedEnv, HINDSIGHT_MCP_PROJECT_CWD: repoDir, HINDSIGHT_MCP_HARNESS: opts.fixedMemory ? 'pi' : \"claude-code\" }",
+      "to": "env: { ...Object.fromEntries(Object.keys(fixedEnv).map(key => [key, '${' + key + '}'])), HINDSIGHT_MCP_PROJECT_CWD: repoDir, HINDSIGHT_MCP_HARNESS: opts.fixedMemory ? 'pi' : \"claude-code\" }"
+    },
+    {
+      "scope": "Codex fixed survey environment names only; no credential argv",
+      "from": "...Object.entries(fixedEnv).flatMap(([key, value]) => ['-c', `mcp_servers.hindsight.env.${key}=${JSON.stringify(value)}`]),",
+      "to": "...(opts.fixedMemory ? ['-c', `mcp_servers.hindsight.env_vars=${JSON.stringify(Object.keys(fixedEnv))}`] : []),"
+    }
+  ],
+  "license": "MIT",
+  "licenseSource": "/tmp/compound-engineering-1000/ce-brainstorm/hindsight-durable-20261005/upstream-LICENSE",
+  "companions": {
+    "deepen.js": "8083e9fa5ff607c0b18bdb5da1b01074fe12b6692119b7a617c6112989a15853",
+    "daemon-start.js": "ce3ac6e1c4a972edb1496ea7b75e5bd5e3947ae95632d2bcdc1e682e91152ba1",
+    "mcp-server.js": "c1adb47de2972bbb4a708fc209dc4e1dbfc7fa53afc6666b133865f24ac9f03d",
+    "survey-supervisor.js": "0f043f761dc8fc5112ddf86959a8dc926c8fe32d9b8e8cdbfcddb650537ae587",
+    "package.json": "44bc8ae8d37dac08ae9e60799be44f10fb99dd07b675f225da8ef0e9a23c7da2",
+    "LICENSE": "01fde0bedf83bdc185065d7af524a61690efe576a67f922eaff3a1280c17b63a"
+  },
+  "companionRationale": "Matching installed dist siblings used by bundle launch boundaries; LICENSE preserved.",
+  "limitations": "Live extraction and detached launches not exercised; no upstream revision inferred."
+}

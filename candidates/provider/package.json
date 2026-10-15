@@ -1,0 +1,45 @@
+{
+  "name": "bb-plugin-provider-pi-durable",
+  "version": "0.2.29",
+  "type": "module",
+  "engines": {
+    "bb": ">=0.45",
+    "bbPluginSdk": ">=0.5.22"
+  },
+  "bb": {
+    "name": "Pi Durable",
+    "description": "Run BB threads with Pi Durable ACID SQLite runtime.",
+    "branding": {
+      "icon": "./icons/pi-durable.svg"
+    },
+    "experimental_providers": [
+      {
+        "kind": "agent",
+        "id": "pi-durable",
+        "displayName": "Pi Durable"
+      }
+    ],
+    "server": "./server.ts",
+    "host": "./src/host/index.ts"
+  },
+  "dependencies": {
+    "@earendil-works/pi-coding-agent": "^1.2.0",
+    "@earendil-works/pi-codemode": "^1.2.0",
+    "@earendil-works/pi-durable": "^1.2.0",
+    "@get-bb/plugin-sdk": "0.6.15",
+    "@types/proper-lockfile": "^4.1.4",
+    "proper-lockfile": "^4.1.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^5.7.0"
+  },
+  "scripts": {
+    "build:runner": "node scripts/build-runner.mjs",
+    "build:host": "bb plugin build",
+    "build": "node scripts/build-runner.mjs && bb plugin build",
+    "test": "node --test tests/*.test.ts",
+    "doctor": "node scripts/doctor.mjs"
+  }
+}

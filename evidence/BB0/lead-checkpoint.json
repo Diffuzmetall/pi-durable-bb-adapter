@@ -1,0 +1,23 @@
+{
+  "status": "needs_checks",
+  "task": "bbup-0-inventory",
+  "iteration": "corrected isolation and dependency coverage",
+  "continuationOwner": "Pocket parent orchestrator RusticCanyon",
+  "implementer": "lead-bb0 / Agent Mail IvoryBridge",
+  "candidateManifest": "candidate-manifest.json",
+  "manifestSha256": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645",
+  "sourceParity": {"providerFiles": 191, "hostFiles": 536, "result": "PASS", "sourceAddition": "Copied two statically imported host .pi/extensions source files, no .pi configuration/auth/stores"},
+  "donorInputAudit": {"records": 35488, "symlinks": 17, "beforeAfterParity": true, "sha256": "98478c1f6a9b37e6509c1f8e49e92476911a32c7d45b5f4ad3cdf37995732dfd"},
+  "isolation": {"runner": "evidence/BB0/lead-sandbox.py", "probeExitCode": 0, "proof": "Private EROFS write rejection, private writable-state success, donor mountinfo ro; no donor canary", "configuration": "clearenv, fresh HOME/PI_AGENT_DIR/XDG/config/cache/data/state/TMP/npm roots, masked live Pi/Pocket/BB configuration, isolated PID/network namespaces, all capabilities dropped"},
+  "resolutionExitCode": 0,
+  "compatibility": {"providerExitCode": 0, "hostExitCode": 1, "hostSharedServerImport": "PASS", "hostMcpAdapterImport": "PASS", "hostCodingAgentImport": "FAIL: old support source imports MCP_TYPESCRIPT_PREAMBLE absent from global pi-codemode1.2 declarations", "disposition": "Preserve mixed baseline; do not claim coherent SDK1.2 host. Full host coding-agent/CLI boundary blocked until separately assigned migration or narrowed baseline admission."},
+  "evidence": ["evidence/BB0/lead-final-inventory.log", "evidence/BB0/lead-sandbox-probe.log", "evidence/BB0/lead-resolution.log", "evidence/BB0/lead-compatibility-results.json", "evidence/BB0/lead-inputs-before.json", "evidence/BB0/lead-inputs-after.json", "evidence/BB0/lead-managed-fixes.patch"],
+  "method": {"AgentEngineering": "IncrementalImplementation: corrected inventory and isolated import checks only; stopped before full baseline", "potetoMode": "Build the Lever: retained rerunnable sandbox/audit/import/finalizer scripts. Model the Domain: manifest distinguishes resolution, execution compatibility, isolation and missing gates. how/no-comments delegation unavailable under no-nesting; parent reviewer requested.", "ponytail": "Standard Python/Node only. Verified bwrap instead of copying hundreds of MB of dependencies. No adapter feature or compatibility shim."},
+  "remaining": ["Separate parent-arranged review and QA of this exact fingerprint", "Parent disposition of full-host import incompatibility", "Full tests/build/doctor and baseline only after explicit parent checkpoint", "Atomic own-path commit only after accepted inventory and root index handoff"],
+  "baselineStarted": false,
+  "fullTestBuildDoctorStarted": false,
+  "donorWrites": false,
+  "gitOperations": false,
+  "trackerWrites": false,
+  "liveDataOpened": false
+}
