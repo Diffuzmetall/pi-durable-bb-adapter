@@ -1,0 +1,31 @@
+{
+  "schema": "bb0-private-backup-v1",
+  "recordedBy": "RusticCanyon",
+  "scope": "Previously accepted frozen004 UNIT component and coordinator-owned metadata only; not full BB0 acceptance",
+  "repository": "Diffuzmetall/pi-durable-bb-adapter",
+  "remote": "https://github.com/Diffuzmetall/pi-durable-bb-adapter.git",
+  "branch": "work/bb-durable-upgrade",
+  "previousVerifiedRemote": "c8605c4ca09c7823ff2a53d2b0bb3d182628fcb6",
+  "verifiedRemote": "1a6967852d1fa7b1547cdc7306220e84003871c2",
+  "commits": [
+    {
+      "sha": "26b9789a858301ed848d0158dbea8e2572441bdf",
+      "tree": "24f0fa2091f98102c5627f156ad28dade1f81d46",
+      "owner": "IvoryBridge",
+      "paths": 8,
+      "scope": "Accepted byte-exact UNIT scripts, audited input closures, frozen checkpoint, result and XML",
+      "exception": "Two trailing-whitespace lines in captured doctor stdout retained verbatim; no source or assertion change"
+    },
+    {
+      "sha": "1a6967852d1fa7b1547cdc7306220e84003871c2",
+      "owner": "RusticCanyon",
+      "paths": 5,
+      "scope": "Project issue export, decision ledger, exact offline-toolchain receipt, attributed independent unit review and QA receipts"
+    }
+  ],
+  "authorAndCommitter": "Diffuzmetall <208909650+Diffuzmetall@users.noreply.github.com>",
+  "parentInspections": ["Exact contiguous two-commit ancestry and path sets", "All 13 committed blobs scanned for high-confidence credential patterns and excluded runtime paths", "Eight UNIT blob SHA-256 values matched frozen checkpoint and Mail38", "Author and committer emails matched owner on both commits"],
+  "publicationVerification": {"privateBefore": true, "privateAfter": true, "explicitShaPush": true, "lsRemoteExactMatch": true, "force": false},
+  "excluded": ["Live/performance WIP", "Private raw runtime directories", "Dolt/SQLite", "node_modules/dist", "Pi plugin installation", "Production activation/deployment"],
+  "readiness": {"acceptedFullChecklistItems": 0, "fullChecklistItems": 222, "fullBB0Accepted": false}
+}
