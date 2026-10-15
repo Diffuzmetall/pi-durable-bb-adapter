@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "command": [
+    "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+    "--import",
+    "/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/global-runtime.mjs",
+    "/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/packages/coding-agent/src/experimental/durable/main.ts",
+    "--no-mcp",
+    "--listen",
+    "/bb0-state/shared.sock"
+  ],
+  "cwd": "/bb0-state/work",
+  "submittedPrompts": 0,
+  "modelProfile": "OFFLINE ZERO-GENERATION BOOT; NOT native faux generation",
+  "submittedPromptsMeaning": "Fixed driver input fact, not a measured model-invocation counter",
+  "network": "isolated namespace; no BB or model endpoints",
+  "checks": {
+    "effectiveHostAndProviderSdkConfiguration": "PASS",
+    "freshPrivateConfiguration": "PASS",
+    "isolatedNetworkNamespace": "PASS",
+    "approvedOfflineModelSelected": "PASS",
+    "ownedSharedSocketAttach": "PASS",
+    "actualTuiPainted": "PASS",
+    "ownedOrderlyShutdown": "PASS",
+    "freshSqliteClosedAndIntegrity": "PASS"
+  },
+  "effectiveConfiguration": [
+    {
+      "lane": "host-source",
+      "version": "1.0.2",
+      "node": "24.19.0",
+      "agentDir": "/bb0-state/agent",
+      "settingsPath": "/bb0-state/agent/settings.json",
+      "modelsPath": "/bb0-state/agent/models.json",
+      "defaultProvider": "bb0-offline",
+      "defaultModel": "boot-only"
+    },
+    {
+      "lane": "provider-sdk",
+      "version": "1.2.0",
+      "node": "24.19.0",
+      "agentDir": "/bb0-state/agent",
+      "settingsPath": "/bb0-state/agent/settings.json",
+      "modelsPath": "/bb0-state/agent/models.json",
+      "defaultProvider": "bb0-offline",
+      "defaultModel": "boot-only"
+    }
+  ],
+  "profileHashes": {
+    "settings.json": "f49326c8fb33021f236c1531006ceb48528667656a3f355735a142b1d8d7c770",
+    "models.json": "96568d121967f61de8ccacf4b04843050d533df7c6a748937e25abb3621a7c19"
+  },
+  "readyView": {
+    "session": {
+      "id": "1792101057156-5a352afd-adbb-4bb9-b8b1-06ca6bcba9fc",
+      "directory": "/bb0-state/agent/experimental/durable-sessions/24c2fe69772611ed8bf112d1/1792101057156-5a352afd-adbb-4bb9-b8b1-06ca6bcba9fc",
+      "cwd": "/bb0-state/work"
+    },
+    "conversation": {
+      "conversation": {
+        "id": 1
+      },
+      "entries": [],
+      "docs": {
+        "pi.agent": {
+          "model": {
+            "provider": "bb0-offline",
+            "modelId": "boot-only"
+          },
+          "thinkingLevel": "medium",
+          "cwd": "/bb0-state/work"
+        },
+        "pi.live": {},
+        "pi.inbox": {
+          "items": []
+        },
+        "pi.provider": {
+          "sessionId": "01a1418c-0300-71f7-8b3c-2bc1c125d2f6"
+        },
+        "pi.usage": {
+          "models": {},
+          "tools": {}
+        }
+      }
+    },
+    "conversations": [
+      {
+        "id": 1,
+        "label": "main"
+      }
+    ],
+    "models": [
+      {
+        "provider": "bb0-offline",
+        "modelId": "boot-only",
+        "name": "BB0 offline boot only",
+        "contextWindow": 8192
+      }
+    ],
+    "notices": [],
+    "tasks": {
+      "tasks": {}
+    }
+  },
+  "readySeconds": 3.739,
+  "exitCode": 0,
+  "store": "/bb0-state/agent/experimental/durable-sessions/24c2fe69772611ed8bf112d1/1792101057156-5a352afd-adbb-4bb9-b8b1-06ca6bcba9fc/session.sqlite",
+  "childExitCode": 0,
+  "elapsedSeconds": 3.851,
+  "transcriptSha256": "8fe1e3fec568b39c64302f1f224383e65b9386a9b9da76fb40d4dd69defcbca9"
+}

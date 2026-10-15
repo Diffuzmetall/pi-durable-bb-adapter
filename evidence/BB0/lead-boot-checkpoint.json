@@ -1,0 +1,92 @@
+{
+  "task": "bbup-0-boot",
+  "owner": "IvoryBridge",
+  "status": "needs_checks",
+  "claim": "OFFLINE ZERO-GENERATION BOOT of exact existing main.ts only; NOT native faux generation, SDK alignment, or full BB0 baseline PASS",
+  "independentReview": "PENDING parent-arranged distinct reviewer and behavioral QA",
+  "preservedInventoryCommit": "a3f085ccadac97f295e814565769aac91ab79116",
+  "parentBackupCommit": "bab9b86da8b2d0e1b99021c10e364f249e6a1204",
+  "candidateSourceChanges": false,
+  "bootFiles": {
+    "evidence/BB0/lead-sandbox.py": "4c1ab2757b78f0bf9c866a9d8c7ad18a58c6936d08d7a4c911e904f7521ee47b",
+    "evidence/BB0/lead-boot.py": "0e69c9d2925151f85cb4c80d64ea3fb10dca98a9b6740a80639b9c1213499e45",
+    "evidence/BB0/lead-boot-result.json": "281277e2fbc7c0281ec25da7a0f4e14367ba36fb3da13b15541b322ae77fb4b2",
+    "evidence/BB0/lead-boot-failed-001.json": "f56883da89084bd0f6e7fda52eb960a80c1741fce92d319fba7ae3d9d9443f61"
+  },
+  "checks": [
+    {
+      "command": "python3 evidence/BB0/lead-sandbox.py --probe",
+      "exitCode": 0,
+      "evidence": "evidence/BB0/lead-boot-boundaries-003.log",
+      "sha256": "bcc542897600daba2ff422638b48e2b824f04cba61d7fa9370a5746c06a2ecd3",
+      "result": "PASS: concealed private sentinel absent/ENOENT; real private roots absent; private fixture EROFS; private state writable; donor dependency mounts readonly; separate network namespace with loopback only; both aliases and actual host/provider-SDK/provider-session-storage configuration roots agree"
+    },
+    {
+      "command": "python3 evidence/BB0/lead-sandbox.py --boot",
+      "exitCode": 0,
+      "childExitCode": 0,
+      "evidence": "evidence/BB0/lead-boot-rerun-003.log",
+      "sha256": "d8a6b97a892f5663008a6ab3c9616b529d04b8522548906ab50de67150465cab",
+      "result": "PASS: effective configuration via actual host-source and provider-SDK SettingsManager; exact main starts; authoritative shared-socket view selects bb0-offline/boot-only in intended private store; actual TUI paints boot-only; Ctrl-D normal exit0; owned socket removed; actual session-directory lock absent; sole private SQLite integrity_check ok after closure",
+      "forcedCleanup": false
+    },
+    {
+      "command": "python3 evidence/BB0/lead-audit-inputs.py after",
+      "exitCode": 0,
+      "evidence": "evidence/BB0/lead-boot-audit-after-003.log",
+      "sha256": "0e711e855430bc37d117615b3e4e426a9a0620eb124f58dce13788c2c2d0e8c2",
+      "result": "PASS: all35488 records/17 links still match accepted before snapshot",
+      "dependencySnapshotSha256": "98478c1f6a9b37e6509c1f8e49e92476911a32c7d45b5f4ad3cdf37995732dfd"
+    }
+  ],
+  "execution": {
+    "privateState": "evidence/BB0/lead-private/.cache/boot-p8ui177f",
+    "cwd": "/bb0-state/work",
+    "agentDirAliases": {"PI_AGENT_DIR":"/bb0-state/agent", "PI_CODING_AGENT_DIR":"/bb0-state/agent"},
+    "exactCommand": ["/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node", "--import", "/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/global-runtime.mjs", "/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/host/packages/coding-agent/src/experimental/durable/main.ts", "--no-mcp", "--listen", "/bb0-state/shared.sock"],
+    "effectiveConfiguration": "Actual getAgentDir/getSettingsPath/getModelsPath/getAuthPath and actual SettingsManager consumers checked before main; authoritative ready view independently proves selected model and session directory",
+    "versions": {"node":"24.19.0", "hostSource":"1.0.2", "providerSdk":"1.2.0"},
+    "fixture": {"provider":"bb0-offline", "model":"boot-only", "endpoint":"http://127.0.0.1:9/never-call", "key":"synthetic-offline-not-a-secret", "extensions":[], "packages":[]},
+    "profileHashes": {"settings.json":"f49326c8fb33021f236c1531006ceb48528667656a3f355735a142b1d8d7c770", "models.json":"96568d121967f61de8ccacf4b04843050d533df7c6a748937e25abb3621a7c19"},
+    "terminalTranscriptSha256": "8fe1e3fec568b39c64302f1f224383e65b9386a9b9da76fb40d4dd69defcbca9",
+    "submittedPrompts": 0,
+    "modelEvidenceLimit": "0 is a fixed driver-input fact, NOT a measured invocation counter. No prompt/submit/Steer/Follow-up sent; no model attempt observed; ready snapshot entries[] and model usage{} are retained, but no global zero-invocation-counter claim is made.",
+    "network": "Empty-root bubblewrap allowlist; isolated network namespace; host-network opt-in rejected; Hindsight disabled and --no-mcp"
+  },
+  "dependencyAudit": {
+    "coverage": "All files/symlinks transitively reachable from donor dependency roots and global @earendil-works root, plus exact donor source/loader inputs; escaping symlinks fail closed",
+    "records": 35488,
+    "symlinks": 17,
+    "beforeFile": "evidence/BB0/lead-inputs-before.json",
+    "afterFile": "evidence/BB0/lead-inputs-after.json",
+    "beforeAfterSha256": "98478c1f6a9b37e6509c1f8e49e92476911a32c7d45b5f4ad3cdf37995732dfd",
+    "parity": true
+  },
+  "pinnedInputs": {
+    "candidate-manifest.json": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645",
+    "candidates/host/global-runtime.mjs": "b732231933656b6801ceb4aa8fa19c5f2237f2976ec28eba0a28d4df89848bcf",
+    "candidates/host/packages/coding-agent/src/experimental/durable/main.ts": "a18b7f56dc7c8499291f7dc74628a67937884c9e94d03a2c5d5ec7adf41b7897",
+    "candidates/host/packages/coding-agent/src/config.ts": "b3b77644910d3fac28a06625e90f993a8c1bc6c9458f148c723e64e0c99eb23e",
+    "candidates/host/packages/coding-agent/src/core/settings-manager.ts": "535c679f41f769d9129ffec5521508241162c9dfe0a9c7782157b193eb0e5664",
+    "candidates/host/packages/coding-agent/src/core/model-runtime.ts": "de28a51492788e7f5f4d6f20a57fa8b08e32fd9e766a365211b54a3f3959a177",
+    "candidates/provider/src/runner/session-storage.ts": "8e1b3cdb43f6244da76f2852749ca46460e3d6899a45341116a6e7b329bd8e94",
+    "candidates/provider/src/runner/model-setup.ts": "7b8a192d53abee4cad5511fc7a76d528ad5c9476ff50348ff1ceda82f41d9c54",
+    "candidates/provider/node_modules/@earendil-works/pi-coding-agent/dist/config.js": "b53418ca3bc54b70e18ccb192eb471696f5211c5aa2e80d68fe6fe3851ff23ae",
+    "candidates/provider/node_modules/@earendil-works/pi-coding-agent/dist/core/settings-manager.js": "4c6c9023a6178588e29545f3bc8d52ceb65ed44b58ce8dd72c9ef38f040e745f",
+    "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+    "/usr/bin/bwrap": "7bbffeb19f312d5503232e1502f0f97f2ac4ffcb51dec47d9a58bffbad1f12d5",
+    "/usr/bin/python3": "efb29ce53d36ebaeee80e3aa44fd6c7f9d71bbded5fe1665240b2ed8ecaeee0e"
+  },
+  "preservedRuns": [
+    {"run":"001", "status":"FAIL", "log":"evidence/BB0/lead-boot-execution.log", "result":"evidence/BB0/lead-boot-failed-001.json", "state":"evidence/BB0/lead-private/.cache/boot-tidxj4mg", "cause":"Harness set PI_AGENT_DIR only; host ignored it and used default private HOME agent path. Approved fixture was not loaded. Timeout/SIGTERM childexit-15 is NOT orderly shutdown PASS; Ctrl-D and SQLite integrity gates NOT_REACHED for this failed run."},
+    {"run":"002", "status":"PASS intermediate", "log":"evidence/BB0/lead-boot-rerun-002.log", "state":"evidence/BB0/lead-private/.cache/boot-h8g4549s", "note":"Superseded only to strengthen session-directory sibling .lock assertion to match actual proper-lockfile target; final run003 above uses final driver bytes."}
+  ],
+  "scopeNotes": [
+    "Only five owned harness/evidence files changed or added: runner, driver, final result, preserved failed result, checkpoint. No candidate source or accepted inventory manifest changes.",
+    "Runner uses empty-root allowlist and readonly audited code/dependencies, not whole-host readonly bind. Real home/Pocket/live credentials and production stores absent; fresh private HOME/agent/XDG/tmp/npm roots only.",
+    "Managed-donor cwd modes and writable candidate build roots are intentionally not exposed in this boot-only runner. A future baseline must explicitly admit its needed paths.",
+    "Generic coding-agent root remains unsupported (missing MCP_TYPESCRIPT_PREAMBLE export). Direct existing Durable entrypoint works without generic-root shim or SDK-alignment claim.",
+    "No full tests/build/doctor/perf/plugin install/native faux registration/model generation feature/deployment/production restart/live DB access. No push; parent owns tracker acceptance and independent checks.",
+    "Boundary and exact-main gates PASS for final bytes; this checkpoint requests independent checks, not task closure or baseline acceptance."
+  ]
+}
