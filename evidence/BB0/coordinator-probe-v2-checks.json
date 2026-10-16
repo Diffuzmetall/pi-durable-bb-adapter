@@ -1,0 +1,41 @@
+{
+  "schema": "bb0-nonpi-probe-v2-source-unit-checks-v1",
+  "recordedBy": "RusticCanyon",
+  "task": "bbup-test-bb",
+  "lead": "lead-test-bb / AzureSpring",
+  "scope": "NON-Pi probe affected V2 source/unit gate only; not build or native-worker root proof",
+  "sourceManifest": "evidence/BB0/test-bb-env-probe/source-v2-manifest.sha256",
+  "sourceManifestSha256": "00ac4863677e3bb1bbd2eea3d6bdf9f130913b51bb617be4569a3711fe1fcdeb",
+  "provenanceManifestSha256": "2078a7ac8958d34331696b0541afa1e59318da658a05c05c73199ced127970b6",
+  "packageSha256": "6421af662670fe8a252ee9dbfabe0a3cbdc202e90669586389a81b99a453c69b",
+  "change": "Only bb.branding.icon=Terminal added to package.json; all nine non-package source files unchanged",
+  "sourceReview": {
+    "actor": "review-bb0-inventory",
+    "verdict": "V2 SOURCE PASS; V2 build HOLD/not demonstrated",
+    "source": "Native child V2 source-review result",
+    "verified": "Exact manifest/package/diff/parity/light/failure artifacts; installed CLI branding schema and existing Terminal glyph; no new asset URL, dependency or behavioral code"
+  },
+  "affectedUnitQA": {
+    "actor": "qa-bb0-inventory",
+    "verdict": "Affected V2 source/unit PASS",
+    "receipt": "/tmp/bb0-v2-unit-qa-20261015T2359Z-4joSKh/v2-attributed-receipt.md",
+    "receiptSha256": "394a49a65c1cc169b134c59ca18d050248eddd07c123ba912aa29e37821c3171",
+    "captureLogSha256": "ca339e4b367f87d1eeeb29b4ad1e3bb933b82c9ee724d88e903eb58b2c816f1f",
+    "beforeAndAfterHashesSha256": "0cde4922f3efee84d5993216118174e81f7eb0baa40d6f3bbaf377cdce96558a",
+    "freshSelfcheckUTC": "2026-10-16T00:00:01Z",
+    "freshSelfcheck": "Node24.19.0 selfcheck.mjs exit0; no native call",
+    "verified": "V2 manifests and all10source/9provenance entries, exact branding-only semantic diff, all9non-package V1/V2/current byte parity and pinned before/after equality",
+    "negativeCaseCarryForward": "Ten rejected synthetic verifier negatives are from V1 receipt6cd4dd1966922087971f961079e636f2bad7f3c511e98b48dd1516c6d177385b at23:25UTC. They were NOT replayed or claimed fresh V2; unchanged verifier and all nine behavior files justify carry-forward for branding-only metadata change.",
+    "correction": "Initial QA result mistakenly called old V1 receipt completed V2. Parent rejected that attribution and obtained this distinct new V2 receipt before runtime GO.",
+    "routing": "Disclosed Luna-high fallback because Gemini unavailable; effective model telemetry unknown"
+  },
+  "parentVerification": "Rehashed all10source and9provenance entries; read actual new affected V2 receipt and rehashed receipt/capture log/before-after hashes",
+  "sourceUnitGateAccepted": true,
+  "authorizedContinuation": "Same AzureSpring must reacquire own narrow writer and CPU leases, reverify current private instance, then actual supported NON-Pi plugin build/install/explicit-host path report and verifier. No restart if healthy. Preserve initial branding build failure.",
+  "requiredTarget": {"server": "http://127.0.0.1:40886", "daemonPort": 40887, "dataDir": ".test-bb", "node": "24.19.0"},
+  "openGates": ["Actual V2 native build", "Actual private-worker root report", "Independent behavioral runtime QA on stable same instance"],
+  "forbiddenUntilFurtherGO": ["Pi candidate installation", "Model/catalog/diagnostics calls", "Threads or model generation", "Production/installed-source/Pocket/live SQLite changes"],
+  "nativeRootProofAccepted": false,
+  "osOrNetworkIsolationClaimed": false,
+  "fullBB0Accepted": false
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "bb0-derived-component-checks-v1",
+  "recordedBy": "RusticCanyon",
+  "task": "bbup-0-baseline",
+  "scope": "Derived semantics and recorded-data accounting ONLY; not live harness, native runtime, comparative performance, visuals or full BB0 acceptance",
+  "checkpoint": "evidence/BB0/lead-baseline-derived-checkpoint.json",
+  "checkpointSha256": "69d8ea8fc30728c4b38b61471d2afc75ad8d17168e8fc53466fab58b9e7c12b0",
+  "lead": "lead-bb0 / IvoryBridge",
+  "semanticReview": {
+    "actor": "review-dag",
+    "source": "Native child result: derived-semantics component review",
+    "verdict": "Content semantics PASS; own byte hashing and full response recount unavailable on read-only tool surface",
+    "limits": "No command execution; large JSONL lines truncated. These gaps were not silently passed; separate execution-capable supplement resolves them. Root-relative baseline.json and empty self-functional XML cases remain disclosed limitations."
+  },
+  "technicalSupplement": {
+    "actor": "review-bb0-inventory",
+    "source": "Native child result: bounded fingerprints/protocol supplement",
+    "verified": ["Checkpoint and all five pinned files", "Unchanged driver, raw result, raw samples and accepted unit checkpoint", "Actual three recorded JSONL response counts and wrong-CWD failure frame"],
+    "frameLogSha256": {
+      "reference": "41b101a99f78a0dca3a2fd8ff4faa55cb0517a3400791fe4d7e917c59a95e11f",
+      "candidate": "6a74c0cc048e673d4bd8b5b3d711259ebfda96e3b2a36e83d263de668e927e18",
+      "reopened": "3cabc2840100287902ec8df7e6c15506d53748141b20d7f21a106f33e1dad361"
+    },
+    "responses": {"reference": 63, "candidate": 66, "reopened": 1, "total": 130, "success": 129, "expectedWrongCwdFailure": 1},
+    "denial": "candidate-frames.jsonl line374/client32: response/attach/success=false; Shared host belongs to a different working directory; no errorName or per-frame actor/timestamp",
+    "limit": "Recorded run status and existing before/after receipts are not a fresh runtime execution or new post-live input audit"
+  },
+  "behavioralDataQA": {
+    "actor": "qa-bb0-inventory",
+    "verdict": "PASS, derived-data component only",
+    "startUTC": "2026-10-15T23:54:58.308632Z",
+    "endUTC": "2026-10-15T23:55:07.102485Z",
+    "summary": "/tmp/bb0-derived-semantics-qa-uwav2usk/qa-summary.json",
+    "summarySha256": "54c8b41bfe28fc8dcbffcb123385f4e2bff3ddfb5d0a340a86dae0c0643f03cd",
+    "checkerSha256": "73f872041f7ef7474f19cc398dedb54762d3ac5fe3769696533596a2215c0da2",
+    "recalculatedRowsSha256": "6103a797740957362f99f6acb0c6de7c259e457f5a4c98b52d189ada861a0e77",
+    "validLogSha256": "f695ba2f424e3423f8ac158b192b51429fa60a31a1bebf3cf8b015b10d10476f",
+    "actualExitCodes": {"validArtifacts": 0, "alteredValue": 1, "missingRow": 1, "forgedPaint": 1, "forgedFirstVisiblePass": 1},
+    "verified": "All62 renamed rows, joins and raw warm summaries; 63 requests; recorded frame/PTY data; 26 JUnit cases and11explicit skips; all10lanes unaccepted",
+    "routing": "Disclosed Luna-high fallback because Gemini unavailable; effective model telemetry unknown"
+  },
+  "parentVerification": "Read actual QA summary; rehashed checker/summary/recalculated rows/all five QA logs/checkpoint/all five pinned files. No test replay. Reviewer gaps resolved by separately attributed supplement, not invented tool capability.",
+  "acceptedComponent": true,
+  "remaining": ["Actual first-visible-text observation", "Ten canonical visuals", "Independent limiter profile", "Final live/performance/runtime QA", "Final coordinated input audit"],
+  "comparativeVerdict": "INCONCLUSIVE",
+  "fullBB0Accepted": false,
+  "acceptedFullChecklistItems": 0
+}
