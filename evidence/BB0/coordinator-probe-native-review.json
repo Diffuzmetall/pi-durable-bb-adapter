@@ -1,0 +1,43 @@
+{
+  "schema": "bb0-nonpi-recorded-artifact-review-v1",
+  "actor": "RusticCanyon",
+  "task": "bbup-test-bb",
+  "scope": "Recorded NON-Pi artifact and invocation only; NOT current worker liveness, installed Pi provider, OS/network isolation or full BB0",
+  "independentReview": {
+    "actor": "review-bb0-inventory",
+    "source": "Native child bounded component report received 2026-10-16",
+    "verdict": "PASS for recorded artifact and invocation only",
+    "verified": {"runtimePins": "20/20", "sourcePins": "10/10", "provenancePins": "9/9"},
+    "runtimeManifestSha256": "1ff4c7d603fffef09c8f40f8b97efc219b6c4d773ad0923f663937ed132dce72",
+    "sourceManifestSha256": "00ac4863677e3bb1bbd2eea3d6bdf9f130913b51bb617be4569a3711fe1fcdeb",
+    "provenanceManifestSha256": "2078a7ac8958d34331696b0541afa1e59318da658a05c05c73199ced127970b6",
+    "hostArtifactSha256": "be4b5b16a94856fdbe46c9ae1b03e1d52dd9e38138725ab7cd6b4af4ff69926b",
+    "hostArtifact": "Actual dist/host.js and downloaded host.mjs identical 2479 bytes; metadata SDK0.6.37/BB0.46.0/private-env-probe0.0.1",
+    "checks": "Exactly11allowlisted environment fields/9effective-path fields; all nonnull path defaults under fresh nested private root, both BB overrides null. Handler only reads named environment/os/PID data, no filesystem/config or Pi imports. Explicit-host report API supported in captured run. Registry34->35 adds only probe/providerIds empty; no Pi Durable entry; initial branding failure retained separately.",
+    "recordedExitClaimAttribution": "All zero exits are AzureSpring-authored pinned receipt values, NOT commands rerun by reviewer. Literal historical builder/install/probe argv unavailable in pinned result; not reconstructed.",
+    "liveObservation": "2026-10-16T00:22:36Z oldworker836621 absent; main750060/750076/750157 present with cwd under private home; no full process environment read",
+    "limits": "BB-managed plugin host-data is under .test-bb/plugins/private-env-probe/host-data, outside nested tmp-private.D64Tubla but still owned .test-bb. This probe does not confine every BB-managed file to nested root. 372-file toolchain parity remains attributed to pinned audit, not rescanned by reviewer. Effective-model telemetry UNKNOWN; no model query."
+  },
+  "initialIndependentBehavioralQA": {
+    "actor": "qa-bb0-inventory",
+    "verdict": "HOLD before actual report/verifier",
+    "utc": "2026-10-16T00:16:20Z–00:16:21Z",
+    "receipt": "/tmp/bbup-test-bb-actualqa-20261016T0014Z-2A9RPB/hold-receipt.md",
+    "receiptSha256": "d6d0adcf08413af6c07af1436374fbf533cfc7d926de39a21231d594daec83a4",
+    "actual": "Explicit private bb status0 and main PIDs/ports matched; historical worker PID absent, process guard1, stopped. Fresh report/verifier/negative and beforeafter fingerprints NOT_RUN. Parent read receipt and rehashed all7captures."
+  },
+  "lifecycleResolutionForResumeOnly": {
+    "owner": "AzureSpring",
+    "privateLog": ".test-bb/logs/host-daemon.2.log",
+    "ready": "line16 2026-10-16T00:06:37.674Z",
+    "stop": "line18 2026-10-16T00:11:37.691Z, plugin private-env-probe, host plugin worker became idle, uptime300096ms, exit0, signal null, forceKilled false",
+    "correlationLimit": "Stop record names plugin, not PID; sole ready event plus captured report/process receipt and daemon single-worker-per-plugin map correlate identity",
+    "source": "/home/ubuntu/.bb-server/app/node_modules/bb-app/host-daemon/dist/daemon-bundle.mjs line245 minified, AZe=5*6e4 offset1285111; idle stop reason at1298056; ensureWorker lazy-forks absent worker. Host worker disposal exits0.",
+    "parentDirectChecks": "Read actual private log16/18 and source timeout/idle branch; rehashed actual cached artifact be4b... MATCH. No call/restart/write by parent.",
+    "decision": "Normal five-minute idle disposal, not crash. Stable instance is main launcher/server/daemon plus hostId and exact artifact; historical ephemeral worker PID need not persist. No source fix or keepalive needed."
+  },
+  "freshQAResume": "Separate GO to same independent QA under parent CPU arbitration lease219, expires00:42:23Z. Reverify main instance and exact pins, fresh existing explicit-host NON-Pi report may naturally lazy-fork NEW worker under same daemon; immediately correlate new reported PID/PPID and actual verifier. Preserve previous HOLD unchanged and return new attributable receipt. No server restart/reinstall/source change/Pi call.",
+  "runtimeGateAccepted": false,
+  "fullBB0Accepted": false,
+  "modelRouting": "Disclosed Luna-high QA fallback because Gemini unavailable; effective-model telemetry UNKNOWN"
+}
