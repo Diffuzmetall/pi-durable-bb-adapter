@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "phase": "BB0-derived-semantics-correction-001",
+  "actor": "IvoryBridge",
+  "status": "FROZEN_FOR_DISTINCT_REVIEW_QA_NOT_ACCEPTED",
+  "createdUTC": "2026-10-15T23:38:48.484825+00:00",
+  "attribution": "Parent handoff of bounded independent scout-port readonly audit, plus Lead bounded decoding of recorded frame metadata; scout audit is NOT final review or QA.",
+  "noNewTimedMeasurements": true,
+  "noHeavyInputHashScan": true,
+  "noCommitPushOrTestBbWrites": true,
+  "files": {
+    "baseline.json": {
+      "sha256": "9fb7e3ed2a2775d7fdc428ef3f4b85bf80fc48abeecb2a7374b61feb0f5d0a61",
+      "bytes": 20175
+    },
+    "evidence/BB0/outcome.json": {
+      "sha256": "f6b6c6bf4293cd3cd20b14ae6fde6c57c3eab103c921beabb189922f8f4d8e72",
+      "bytes": 11264
+    },
+    "evidence/BB0/tests.xml": {
+      "sha256": "93fa847b0efbf6dc3440d1b669725def11f97444be8ebe55fd4d0d8c4e3ee1b1",
+      "bytes": 33887
+    },
+    "evidence/BB0/lead-baseline-benchmark.md": {
+      "sha256": "e5072244fcdc8c34a56b9d22988bffc7fb81692091579b321ba7edeea77f5b71",
+      "bytes": 5556
+    },
+    "evidence/BB0/lead-baseline-derived-metrics.json": {
+      "sha256": "a0cd4a4228a7cf175c2ad9fb9c047336d0fd68b65616dd3cc750e245dd0d32fc",
+      "bytes": 76812
+    }
+  },
+  "unchangedRawAndUnit": {
+    "driverSha256": "f7b7f0b67f7508f67e5f529b2bdbef72b3f6f1a6911d2bb826f2daafa9a7e924",
+    "rawResultSha256": "675d51b65b00cd2332a31bcae1ed7caf0aa0c1b5047d518506a814606e765c72",
+    "rawSamplesSha256": "7df8c23c2d9a85ba4b56b8013a83512b0c107841880dddb4761f67edf83722c7",
+    "acceptedUnitCheckpointSha256": "4fab67577dca0db6c78e7e5ccf3b46518b95210f7a277803c7defea0457be6ba"
+  },
+  "preservedPreviousAggregation": {
+    "path": "evidence/BB0/lead-private/.cache/run-9nukeo2a/aggregation-before-scout-correction",
+    "sha256s": {
+      "baseline.json": "f3e09c875d1ec67cd5b8a47098d22ad8c20a77c8602241aa011c78452376289b",
+      "outcome.json": "dd756d585ef1ecdc71f54491f52c6fb763b102fa1f567ddc271b35e2e2b7fa68",
+      "tests.xml": "62bccdb6ebcd2270a1a4fc5b47f176f5c851ac8b3b915a5722f6a92c8c8fdc68",
+      "lead-baseline-benchmark.md": "ed4addca0e54fdf3075314d7aa6405ebedc092f1a15d33bf05efa1e8d2b4ebcd"
+    }
+  },
+  "boundedRecordedFrameAudit": {
+    "sourceState": "evidence/BB0/lead-private/.cache/run-9nukeo2a",
+    "recordedResponses": 130,
+    "success": 129,
+    "expectedWrongCwdFailure": 1,
+    "unexpectedFailedResponsesObserved": 0,
+    "sourceLogResponses": {
+      "reference-frames.jsonl": 63,
+      "candidate-frames.jsonl": 66,
+      "reopened-frames.jsonl": 1
+    },
+    "all62TimedFrameEventTypes": [
+      "message_start",
+      "message_end",
+      "turn_end",
+      "run_end",
+      "submission",
+      "usage_changed"
+    ],
+    "logsNotHashedByThisCorrection": true,
+    "scope": "Readonly bounded parse of recorded JSONL, not runtime probing, a heavy dependency scan or final QA"
+  },
+  "verification": {
+    "derivedNumbersEqualRawUnderExplicitRenameMap": true,
+    "sampleCount": 62,
+    "requestCount": 63,
+    "runLocalMessageJoinsChecked": true,
+    "junitCases": 26,
+    "junitExplicitSkips": 11,
+    "allCanonicalLanesNotAccepted": true,
+    "rawResultCopyEqualsOriginalRun": true
+  },
+  "remaining": "First-visible-text/paint measurement unavailable; canonical visuals/final independent live-perf review+QA/profile/audit pending; AzureSpring ops/native-probe priority unchanged"
+}

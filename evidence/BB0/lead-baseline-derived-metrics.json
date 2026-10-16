@@ -1,0 +1,1982 @@
+{
+  "schemaVersion": 1,
+  "status": "CORRECTED_DERIVED_SELF_EVIDENCE_NOT_FINAL_REVIEW_QA",
+  "correction": {
+    "revision": "derived-semantics-correction-001",
+    "actor": "IvoryBridge",
+    "correctedUTC": "2026-10-15T23:37:01.697782+00:00",
+    "attribution": "Parent handoff of bounded independent scout-port readonly audit, plus Lead bounded decoding of recorded frame metadata; scout audit is NOT final review or QA.",
+    "raw003Unchanged": true,
+    "rawResultSha256": "675d51b65b00cd2332a31bcae1ed7caf0aa0c1b5047d518506a814606e765c72",
+    "rawSamplesSha256": "7df8c23c2d9a85ba4b56b8013a83512b0c107841880dddb4761f67edf83722c7",
+    "rawLabelsInvalidForIncrementalTextOrPaint": [
+      "wireFirstTextMs",
+      "terminalFirstVisibleTextMs",
+      "fixtureFirstChunkToWireMs",
+      "fixtureFirstChunkToTerminalMs"
+    ],
+    "observed": "All62 timed marker frames are agent_events batches with message_start containing complete ALPHA_OMEGA, message_end, turn_end, run_end, submission, usage_changed. PTY observations are complete-answer bytes, not parsed terminal/render/paint or true first-token measurements.",
+    "includesDeclared10msDelay": true,
+    "incrementalFirstTextMeasured": false,
+    "trueFirstTokenMeasured": false,
+    "parsedTerminalRenderMeasured": false,
+    "visiblePaintMeasured": false,
+    "order": "Always reference FIRST within every warm pair; fixed AB order is NOT counterbalanced or randomized and confounds comparison.",
+    "cold": "Fresh process/session only; OS page cache was NOT flushed. Attach is observed after socket readiness, not full process startup.",
+    "implementation": "BOTH sides execute SAME candidates/host source. Reference original-parent managed loader versus candidate adjusted-location managed loader; no distinct new implementation, SDK migration or speedup proved.",
+    "workloadBinding": "62 timed rows/63 observed HTTP requests; extra candidate index31 held diagnostic is untimed. Message hashes joined by (side,index) within this run; NOT self-contained authenticated row/request receipts.",
+    "guardScope": "Real adaptExtensionTool with synthetic Boolean policy only. Counter0 on denied fixture/control1 does NOT prove actual MCP or Agent Mail authorization.",
+    "comparison": "INCONCLUSIVE: no independent limiter profile, fixed-order confound, same host implementation, run-local workload joins; no first-incremental-text or paint metric."
+  },
+  "rawToDerivedLabelMap": {
+    "attachMs": "attachResponseObservedMs",
+    "wireFirstTextMs": "completedTurnMarkerFrameObservedMs",
+    "terminalFirstVisibleTextMs": "completeAnswerBytesObservedOnPtyMs",
+    "submitToFixtureRequestMs": "submitToFixtureValidatedRequestRecordMs",
+    "fixtureTraceDurationMs": "fixtureTraceFirstToLastFlushMs",
+    "fixtureFirstChunkToWireMs": "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs",
+    "fixtureFirstChunkToTerminalMs": "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs",
+    "wireVisibilityEvidence": "completedTurnFrameEvidence"
+  },
+  "measurementWindowUTC": {
+    "start": "2026-10-15T23:12:59.682514+00:00",
+    "end": "2026-10-15T23:13:08.234356+00:00"
+  },
+  "errorAccounting": {
+    "fixtureExceptions": {
+      "count": 0,
+      "source": "raw result errors[]",
+      "scope": "HTTP fixture exceptions ONLY, NOT all protocol/runtime errors"
+    },
+    "recordedProtocolResponses": {
+      "count": 130,
+      "success": 129,
+      "failed": 1,
+      "expectedWrongCwdAttachDenials": 1,
+      "unexpectedFailuresObserved": 0,
+      "sourceCounts": {
+        "reference": 63,
+        "candidate": 66,
+        "reopened": 1
+      },
+      "expectedFailure": "Shared host belongs to a different working directory",
+      "scope": "Counts of recorded JSONL response frames only; no universal zero-error assertion"
+    },
+    "expectedOtherNegativeProbes": {
+      "secondOwnerProcessExit1": 1,
+      "missingSocketENOENT": 1,
+      "syntheticBooleanPolicyDenial": 1
+    },
+    "authorizationCoverage": "Actual MCP/Agent Mail authorization NOT tested"
+  },
+  "samples": [
+    {
+      "phase": "cold",
+      "side": "reference",
+      "index": 0,
+      "attachResponseObservedMs": 24.90391000173986,
+      "completedTurnMarkerFrameObservedMs": 295.40031097712927,
+      "completeAnswerBytesObservedOnPtyMs": 305.60576598509215,
+      "submitToFixtureValidatedRequestRecordMs": 252.30048299999908,
+      "fixtureTraceFirstToLastFlushMs": 10.414240008685738,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 42.81650998746045,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 53.02196499542333,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 0,
+        "messagesSha256": "f94a9a28ea080c5940f3004809f754ed21fe9f591b2ff0967ae35501534d046c",
+        "messageCount": 2,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "cold",
+      "side": "candidate",
+      "index": 0,
+      "attachResponseObservedMs": 29.327105003176257,
+      "completedTurnMarkerFrameObservedMs": 332.7584229991771,
+      "completeAnswerBytesObservedOnPtyMs": 347.138053009985,
+      "submitToFixtureValidatedRequestRecordMs": 293.3639519906137,
+      "fixtureTraceFirstToLastFlushMs": 10.325504990760237,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 39.147481991676614,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 53.5271120024845,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 0,
+        "messagesSha256": "f94a9a28ea080c5940f3004809f754ed21fe9f591b2ff0967ae35501534d046c",
+        "messageCount": 2,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 1,
+      "attachResponseObservedMs": 4.1691529913805425,
+      "completedTurnMarkerFrameObservedMs": 33.472290000645444,
+      "completeAnswerBytesObservedOnPtyMs": 41.15609999280423,
+      "submitToFixtureValidatedRequestRecordMs": 17.31510800891556,
+      "fixtureTraceFirstToLastFlushMs": 10.27327700285241,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.902955987257883,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 23.58676597941667,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 1,
+        "messagesSha256": "34ebbe6860588c3ac6ba79230d56e937b02ab0d8170d6cf5f0cff78b981ae68c",
+        "messageCount": 4,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 1,
+      "attachResponseObservedMs": 3.785003995290026,
+      "completedTurnMarkerFrameObservedMs": 32.5818829878699,
+      "completeAnswerBytesObservedOnPtyMs": 35.918890993343666,
+      "submitToFixtureValidatedRequestRecordMs": 16.09485800145194,
+      "fixtureTraceFirstToLastFlushMs": 10.287340002832934,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.21387299383059,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.550880999304354,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 1,
+        "messagesSha256": "34ebbe6860588c3ac6ba79230d56e937b02ab0d8170d6cf5f0cff78b981ae68c",
+        "messageCount": 4,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 2,
+      "attachResponseObservedMs": 3.579498006729409,
+      "completedTurnMarkerFrameObservedMs": 30.318167991936207,
+      "completeAnswerBytesObservedOnPtyMs": 33.81875398918055,
+      "submitToFixtureValidatedRequestRecordMs": 14.177015982568264,
+      "fixtureTraceFirstToLastFlushMs": 10.295500018401071,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.810717013664544,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.311303010908887,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 2,
+        "messagesSha256": "112566a6fe5dee23c6e74fadb1c15f2bb7b4ba1e0cf3c913da3bad636fc4be9b",
+        "messageCount": 6,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 2,
+      "attachResponseObservedMs": 3.734857978997752,
+      "completedTurnMarkerFrameObservedMs": 30.18800899735652,
+      "completeAnswerBytesObservedOnPtyMs": 35.48859601141885,
+      "submitToFixtureValidatedRequestRecordMs": 13.867466012015939,
+      "fixtureTraceFirstToLastFlushMs": 10.306010022759438,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.102746012620628,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.403333026682958,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 2,
+        "messagesSha256": "112566a6fe5dee23c6e74fadb1c15f2bb7b4ba1e0cf3c913da3bad636fc4be9b",
+        "messageCount": 6,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 3,
+      "attachResponseObservedMs": 3.827294975053519,
+      "completedTurnMarkerFrameObservedMs": 31.54530399478972,
+      "completeAnswerBytesObservedOnPtyMs": 36.77613000036217,
+      "submitToFixtureValidatedRequestRecordMs": 13.473439001245424,
+      "fixtureTraceFirstToLastFlushMs": 10.281156981363893,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.85167198977433,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 23.082497995346785,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 3,
+        "messagesSha256": "0c14da92cc81bdbbf269eee64efe6a7783a1b915d22a2d1de15614e9c3b31af3",
+        "messageCount": 8,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 3,
+      "attachResponseObservedMs": 4.633037984604016,
+      "completedTurnMarkerFrameObservedMs": 31.26778398291208,
+      "completeAnswerBytesObservedOnPtyMs": 36.694281006930396,
+      "submitToFixtureValidatedRequestRecordMs": 13.87258298927918,
+      "fixtureTraceFirstToLastFlushMs": 10.279123991494998,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.1866949822288,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 22.613192006247118,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 3,
+        "messagesSha256": "0c14da92cc81bdbbf269eee64efe6a7783a1b915d22a2d1de15614e9c3b31af3",
+        "messageCount": 8,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 4,
+      "attachResponseObservedMs": 4.459424002561718,
+      "completedTurnMarkerFrameObservedMs": 31.638597982237116,
+      "completeAnswerBytesObservedOnPtyMs": 36.10109200235456,
+      "submitToFixtureValidatedRequestRecordMs": 15.262760978657752,
+      "fixtureTraceFirstToLastFlushMs": 10.315013001672924,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.05835498776287,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.520849007880315,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 4,
+        "messagesSha256": "c678438cc9e2eaf75a3ac28bbeb4fc45f2979aaf850a419a0270d428656d610a",
+        "messageCount": 10,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 4,
+      "attachResponseObservedMs": 4.6309870085678995,
+      "completedTurnMarkerFrameObservedMs": 33.921869995538145,
+      "completeAnswerBytesObservedOnPtyMs": 38.467374979518354,
+      "submitToFixtureValidatedRequestRecordMs": 18.02090197452344,
+      "fixtureTraceFirstToLastFlushMs": 10.369925992563367,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.61415201285854,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.15965699683875,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 4,
+        "messagesSha256": "c678438cc9e2eaf75a3ac28bbeb4fc45f2979aaf850a419a0270d428656d610a",
+        "messageCount": 10,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 5,
+      "attachResponseObservedMs": 4.065251996507868,
+      "completedTurnMarkerFrameObservedMs": 36.70285700354725,
+      "completeAnswerBytesObservedOnPtyMs": 39.481266983784735,
+      "submitToFixtureValidatedRequestRecordMs": 18.58588500181213,
+      "fixtureTraceFirstToLastFlushMs": 10.365161986555904,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.872571013867855,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.65098099410534,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 5,
+        "messagesSha256": "443fc915a92d1cc91443b81ac5a759434c8939d37d808260626c8181a9eeb9ba",
+        "messageCount": 12,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 5,
+      "attachResponseObservedMs": 3.8578580133616924,
+      "completedTurnMarkerFrameObservedMs": 29.074774007312953,
+      "completeAnswerBytesObservedOnPtyMs": 31.97250998346135,
+      "submitToFixtureValidatedRequestRecordMs": 12.770422996254638,
+      "fixtureTraceFirstToLastFlushMs": 10.364857997046784,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.003134020138532,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 18.90086999628693,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 5,
+        "messagesSha256": "443fc915a92d1cc91443b81ac5a759434c8939d37d808260626c8181a9eeb9ba",
+        "messageCount": 12,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 6,
+      "attachResponseObservedMs": 5.916597001487389,
+      "completedTurnMarkerFrameObservedMs": 29.315484018297866,
+      "completeAnswerBytesObservedOnPtyMs": 35.791252012131736,
+      "submitToFixtureValidatedRequestRecordMs": 12.31071399524808,
+      "fixtureTraceFirstToLastFlushMs": 10.281914001097903,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.690652002580464,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 23.166419996414334,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 6,
+        "messagesSha256": "9539abbbd4cab02b3121088e67faa4ebbded80121eebcddd9c4b3a220d8d6708",
+        "messageCount": 14,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 6,
+      "attachResponseObservedMs": 5.713419988751411,
+      "completedTurnMarkerFrameObservedMs": 42.42325501400046,
+      "completeAnswerBytesObservedOnPtyMs": 48.218798998277634,
+      "submitToFixtureValidatedRequestRecordMs": 25.709081994136795,
+      "fixtureTraceFirstToLastFlushMs": 10.586989985313267,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.444754000985995,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 22.24029798526317,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 6,
+        "messagesSha256": "9539abbbd4cab02b3121088e67faa4ebbded80121eebcddd9c4b3a220d8d6708",
+        "messageCount": 14,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 7,
+      "attachResponseObservedMs": 4.295616992749274,
+      "completedTurnMarkerFrameObservedMs": 31.197648990200832,
+      "completeAnswerBytesObservedOnPtyMs": 33.396365004591644,
+      "submitToFixtureValidatedRequestRecordMs": 15.185349999228492,
+      "fixtureTraceFirstToLastFlushMs": 10.339837986975908,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.778495988342911,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 17.977212002733722,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 7,
+        "messagesSha256": "594a0664f6ed7e122a9d27b7edb915c98ad441e99b2a58f21efc6d15ee444b9e",
+        "messageCount": 16,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 7,
+      "attachResponseObservedMs": 5.081778013845906,
+      "completedTurnMarkerFrameObservedMs": 34.36694201081991,
+      "completeAnswerBytesObservedOnPtyMs": 38.095707015600055,
+      "submitToFixtureValidatedRequestRecordMs": 17.58569001685828,
+      "fixtureTraceFirstToLastFlushMs": 10.29137399746105,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.434241988463327,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.16300699324347,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 7,
+        "messagesSha256": "594a0664f6ed7e122a9d27b7edb915c98ad441e99b2a58f21efc6d15ee444b9e",
+        "messageCount": 16,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 8,
+      "attachResponseObservedMs": 4.574057995341718,
+      "completedTurnMarkerFrameObservedMs": 33.45771098975092,
+      "completeAnswerBytesObservedOnPtyMs": 36.582976987119764,
+      "submitToFixtureValidatedRequestRecordMs": 17.37074099946767,
+      "fixtureTraceFirstToLastFlushMs": 10.348493990022689,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.861055988352746,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 18.986321985721588,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 8,
+        "messagesSha256": "3b740a356b4a25aca61806cd16da7f3a495e9b39093708c75f60b39d296b05a3",
+        "messageCount": 18,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 8,
+      "attachResponseObservedMs": 5.890972999623045,
+      "completedTurnMarkerFrameObservedMs": 37.269352993462235,
+      "completeAnswerBytesObservedOnPtyMs": 41.36677799397148,
+      "submitToFixtureValidatedRequestRecordMs": 19.77421299670823,
+      "fixtureTraceFirstToLastFlushMs": 10.28846699045971,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.194533982547,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.291958983056247,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 8,
+        "messagesSha256": "3b740a356b4a25aca61806cd16da7f3a495e9b39093708c75f60b39d296b05a3",
+        "messageCount": 18,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 9,
+      "attachResponseObservedMs": 4.7682690201327205,
+      "completedTurnMarkerFrameObservedMs": 31.03880799608305,
+      "completeAnswerBytesObservedOnPtyMs": 36.12167699611746,
+      "submitToFixtureValidatedRequestRecordMs": 13.912541005993262,
+      "fixtureTraceFirstToLastFlushMs": 10.26713801547885,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.808507003588602,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.89137600362301,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 9,
+        "messagesSha256": "2c537c4cffec4333cb6a6e27da3c3145eb0847efb9830fea819ba7f07126e0e3",
+        "messageCount": 20,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 9,
+      "attachResponseObservedMs": 4.161838005529717,
+      "completedTurnMarkerFrameObservedMs": 33.91764801926911,
+      "completeAnswerBytesObservedOnPtyMs": 38.264650997007266,
+      "submitToFixtureValidatedRequestRecordMs": 16.844935016706586,
+      "fixtureTraceFirstToLastFlushMs": 10.262766998494044,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.790758003480732,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.13776098121889,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 9,
+        "messagesSha256": "2c537c4cffec4333cb6a6e27da3c3145eb0847efb9830fea819ba7f07126e0e3",
+        "messageCount": 20,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 10,
+      "attachResponseObservedMs": 5.2308859885670245,
+      "completedTurnMarkerFrameObservedMs": 32.40174299571663,
+      "completeAnswerBytesObservedOnPtyMs": 37.17815599520691,
+      "submitToFixtureValidatedRequestRecordMs": 15.723905002232641,
+      "fixtureTraceFirstToLastFlushMs": 10.308070020982996,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.428717004600912,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.20513000409119,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 10,
+        "messagesSha256": "bc83ea966fdf1bfa7674798a931b71744fa999adc71f33a24889c2c63f97ad85",
+        "messageCount": 22,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 10,
+      "attachResponseObservedMs": 4.688818997237831,
+      "completedTurnMarkerFrameObservedMs": 29.79702499578707,
+      "completeAnswerBytesObservedOnPtyMs": 34.30525099975057,
+      "submitToFixtureValidatedRequestRecordMs": 13.497430016286671,
+      "fixtureTraceFirstToLastFlushMs": 10.290728998370469,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.05091500096023,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.55914100492373,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 10,
+        "messagesSha256": "bc83ea966fdf1bfa7674798a931b71744fa999adc71f33a24889c2c63f97ad85",
+        "messageCount": 22,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 11,
+      "attachResponseObservedMs": 4.8915380029939115,
+      "completedTurnMarkerFrameObservedMs": 32.601654005702585,
+      "completeAnswerBytesObservedOnPtyMs": 36.03089301032014,
+      "submitToFixtureValidatedRequestRecordMs": 15.911802998743951,
+      "fixtureTraceFirstToLastFlushMs": 10.317018022760749,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.45689201541245,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.886131020030007,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 11,
+        "messagesSha256": "cf2fd2e5435d484aeccaef8cb6539975c91d1d67197e020170c543bd0838b38a",
+        "messageCount": 24,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 11,
+      "attachResponseObservedMs": 5.172325007151812,
+      "completedTurnMarkerFrameObservedMs": 30.892823997419327,
+      "completeAnswerBytesObservedOnPtyMs": 34.79177600820549,
+      "submitToFixtureValidatedRequestRecordMs": 14.757140015717596,
+      "fixtureTraceFirstToLastFlushMs": 10.296504013240337,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.912953997030854,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.811906007817015,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 11,
+        "messagesSha256": "cf2fd2e5435d484aeccaef8cb6539975c91d1d67197e020170c543bd0838b38a",
+        "messageCount": 24,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 12,
+      "attachResponseObservedMs": 4.514300002483651,
+      "completedTurnMarkerFrameObservedMs": 33.950406999792904,
+      "completeAnswerBytesObservedOnPtyMs": 37.71546299685724,
+      "submitToFixtureValidatedRequestRecordMs": 14.121109998086467,
+      "fixtureTraceFirstToLastFlushMs": 10.312847007298842,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 19.494464999297634,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 23.25952099636197,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 12,
+        "messagesSha256": "b340aca905179478d99de804a070fc5cbf89565797b587edca98a13242197053",
+        "messageCount": 26,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 12,
+      "attachResponseObservedMs": 6.738324998877943,
+      "completedTurnMarkerFrameObservedMs": 35.81346198916435,
+      "completeAnswerBytesObservedOnPtyMs": 38.33623099490069,
+      "submitToFixtureValidatedRequestRecordMs": 15.76130700414069,
+      "fixtureTraceFirstToLastFlushMs": 10.33835401176475,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.644203995587304,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.16697300132364,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 12,
+        "messagesSha256": "b340aca905179478d99de804a070fc5cbf89565797b587edca98a13242197053",
+        "messageCount": 26,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 13,
+      "attachResponseObservedMs": 7.416648993967101,
+      "completedTurnMarkerFrameObservedMs": 32.19518801779486,
+      "completeAnswerBytesObservedOnPtyMs": 37.058101006550714,
+      "submitToFixtureValidatedRequestRecordMs": 15.586980996886268,
+      "fixtureTraceFirstToLastFlushMs": 10.274201020365581,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.263181023532525,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.126094012288377,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 13,
+        "messagesSha256": "83bafa88beafe19acdeaecddd40b2b97b116ad3ebf6b19de1787ae6882cb3caa",
+        "messageCount": 28,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 13,
+      "attachResponseObservedMs": 4.762312019011006,
+      "completedTurnMarkerFrameObservedMs": 32.04884298611432,
+      "completeAnswerBytesObservedOnPtyMs": 35.75732000172138,
+      "submitToFixtureValidatedRequestRecordMs": 14.377463987329975,
+      "fixtureTraceFirstToLastFlushMs": 10.391103016445413,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.272625002078712,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.98110201768577,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 13,
+        "messagesSha256": "83bafa88beafe19acdeaecddd40b2b97b116ad3ebf6b19de1787ae6882cb3caa",
+        "messageCount": 28,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 14,
+      "attachResponseObservedMs": 5.310298001859337,
+      "completedTurnMarkerFrameObservedMs": 37.00995398685336,
+      "completeAnswerBytesObservedOnPtyMs": 47.143488976871595,
+      "submitToFixtureValidatedRequestRecordMs": 19.03019699966535,
+      "fixtureTraceFirstToLastFlushMs": 10.720104997744784,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.738344002282247,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 27.87187899230048,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 14,
+        "messagesSha256": "12bbedb33a1d8b736564f472d9552a92efc3a6ddfba6b13710d0401be6d55d08",
+        "messageCount": 30,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 14,
+      "attachResponseObservedMs": 5.392405000748113,
+      "completedTurnMarkerFrameObservedMs": 35.16784799285233,
+      "completeAnswerBytesObservedOnPtyMs": 46.50652100099251,
+      "submitToFixtureValidatedRequestRecordMs": 13.973703986266628,
+      "fixtureTraceFirstToLastFlushMs": 10.28944700374268,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 20.6003490020521,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 31.939022010192275,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 14,
+        "messagesSha256": "12bbedb33a1d8b736564f472d9552a92efc3a6ddfba6b13710d0401be6d55d08",
+        "messageCount": 30,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 15,
+      "attachResponseObservedMs": 6.064982997486368,
+      "completedTurnMarkerFrameObservedMs": 42.32254301314242,
+      "completeAnswerBytesObservedOnPtyMs": 47.94873300124891,
+      "submitToFixtureValidatedRequestRecordMs": 26.666268007829785,
+      "fixtureTraceFirstToLastFlushMs": 10.353844001656398,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.427035017637536,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.053225005744025,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 15,
+        "messagesSha256": "f14d8f1fe9c1ca77b4ea84aac156ccd2ed5b697354970dddb344e1104b20c341",
+        "messageCount": 32,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 15,
+      "attachResponseObservedMs": 5.321187985828146,
+      "completedTurnMarkerFrameObservedMs": 39.97715300647542,
+      "completeAnswerBytesObservedOnPtyMs": 42.63223902671598,
+      "submitToFixtureValidatedRequestRecordMs": 23.675774020375684,
+      "fixtureTraceFirstToLastFlushMs": 10.35649998812005,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.943741978844628,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 18.598827999085188,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 15,
+        "messagesSha256": "f14d8f1fe9c1ca77b4ea84aac156ccd2ed5b697354970dddb344e1104b20c341",
+        "messageCount": 32,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 16,
+      "attachResponseObservedMs": 5.051304993685335,
+      "completedTurnMarkerFrameObservedMs": 29.860599985113367,
+      "completeAnswerBytesObservedOnPtyMs": 32.52106098807417,
+      "submitToFixtureValidatedRequestRecordMs": 11.28944699303247,
+      "fixtureTraceFirstToLastFlushMs": 10.349618998588994,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 18.33595597418025,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.996416977141052,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 16,
+        "messagesSha256": "2b73c75fd96db65eb976802059a514ad75d156100158621522e8133e8c4621b7",
+        "messageCount": 34,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 16,
+      "attachResponseObservedMs": 5.084275006083772,
+      "completedTurnMarkerFrameObservedMs": 28.977982001379132,
+      "completeAnswerBytesObservedOnPtyMs": 33.721034007612616,
+      "submitToFixtureValidatedRequestRecordMs": 12.473507027607411,
+      "fixtureTraceFirstToLastFlushMs": 10.378206992754713,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.155010991496965,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.89806299773045,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 16,
+        "messagesSha256": "2b73c75fd96db65eb976802059a514ad75d156100158621522e8133e8c4621b7",
+        "messageCount": 34,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 17,
+      "attachResponseObservedMs": 4.930373979732394,
+      "completedTurnMarkerFrameObservedMs": 29.52332401764579,
+      "completeAnswerBytesObservedOnPtyMs": 32.43249500519596,
+      "submitToFixtureValidatedRequestRecordMs": 12.797308008885011,
+      "fixtureTraceFirstToLastFlushMs": 10.300262016244233,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.34825801011175,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.25742899766192,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 17,
+        "messagesSha256": "480e4c5c05762694ee64fbb6a2f95a1928b23cf61fbc57e0f860117c3a6d4cbc",
+        "messageCount": 36,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 17,
+      "attachResponseObservedMs": 4.268741991836578,
+      "completedTurnMarkerFrameObservedMs": 28.22865601046942,
+      "completeAnswerBytesObservedOnPtyMs": 32.428814010927454,
+      "submitToFixtureValidatedRequestRecordMs": 11.876338016008958,
+      "fixtureTraceFirstToLastFlushMs": 10.25629197829403,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.11552998656407,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.315687987022102,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 17,
+        "messagesSha256": "480e4c5c05762694ee64fbb6a2f95a1928b23cf61fbc57e0f860117c3a6d4cbc",
+        "messageCount": 36,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 18,
+      "attachResponseObservedMs": 4.792471998371184,
+      "completedTurnMarkerFrameObservedMs": 28.55307998834178,
+      "completeAnswerBytesObservedOnPtyMs": 32.978842995362356,
+      "submitToFixtureValidatedRequestRecordMs": 12.834416993428022,
+      "fixtureTraceFirstToLastFlushMs": 10.299569985363632,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.48908298718743,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.914845994208008,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 18,
+        "messagesSha256": "0099ebe6f4dc9a3b68382365b2deb8bd6ad92c36fe6656b4b9e972c506219f1f",
+        "messageCount": 38,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 18,
+      "attachResponseObservedMs": 5.552680988330394,
+      "completedTurnMarkerFrameObservedMs": 34.222965012304485,
+      "completeAnswerBytesObservedOnPtyMs": 38.57434800011106,
+      "submitToFixtureValidatedRequestRecordMs": 17.954012990230694,
+      "fixtureTraceFirstToLastFlushMs": 10.386980982730165,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.893789997790009,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.245172985596582,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 18,
+        "messagesSha256": "0099ebe6f4dc9a3b68382365b2deb8bd6ad92c36fe6656b4b9e972c506219f1f",
+        "messageCount": 38,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 19,
+      "attachResponseObservedMs": 4.809658013982698,
+      "completedTurnMarkerFrameObservedMs": 30.79838599660434,
+      "completeAnswerBytesObservedOnPtyMs": 34.53496299334802,
+      "submitToFixtureValidatedRequestRecordMs": 13.696025998797268,
+      "fixtureTraceFirstToLastFlushMs": 10.39019098971039,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.756736993556842,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.49331399030052,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 19,
+        "messagesSha256": "2c6a22981e627ff990140f9af2608e25c06b8f78267c957231e777bf2314751e",
+        "messageCount": 40,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 19,
+      "attachResponseObservedMs": 4.427669016877189,
+      "completedTurnMarkerFrameObservedMs": 32.61175300576724,
+      "completeAnswerBytesObservedOnPtyMs": 37.60946399415843,
+      "submitToFixtureValidatedRequestRecordMs": 15.516423009103164,
+      "fixtureTraceFirstToLastFlushMs": 10.256231995299459,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.833953006425872,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.831663994817063,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 19,
+        "messagesSha256": "2c6a22981e627ff990140f9af2608e25c06b8f78267c957231e777bf2314751e",
+        "messageCount": 40,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 20,
+      "attachResponseObservedMs": 4.539985995506868,
+      "completedTurnMarkerFrameObservedMs": 29.120337014319375,
+      "completeAnswerBytesObservedOnPtyMs": 33.84276700671762,
+      "submitToFixtureValidatedRequestRecordMs": 12.950442003784701,
+      "fixtureTraceFirstToLastFlushMs": 10.256076988298446,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 15.932278998661786,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.654708991060033,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 20,
+        "messagesSha256": "14a14c96199d020adb46d7407542b3b0414de25bca9833c40fd7ab770ab4f8d4",
+        "messageCount": 42,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 20,
+      "attachResponseObservedMs": 5.073245003586635,
+      "completedTurnMarkerFrameObservedMs": 30.9890539792832,
+      "completeAnswerBytesObservedOnPtyMs": 34.56146098324098,
+      "submitToFixtureValidatedRequestRecordMs": 14.141452993499115,
+      "fixtureTraceFirstToLastFlushMs": 10.288135992595926,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.60966099007055,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.18206799402833,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 20,
+        "messagesSha256": "14a14c96199d020adb46d7407542b3b0414de25bca9833c40fd7ab770ab4f8d4",
+        "messageCount": 42,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 21,
+      "attachResponseObservedMs": 4.92279400350526,
+      "completedTurnMarkerFrameObservedMs": 28.35168401361443,
+      "completeAnswerBytesObservedOnPtyMs": 30.37882302305661,
+      "submitToFixtureValidatedRequestRecordMs": 10.551131010288373,
+      "fixtureTraceFirstToLastFlushMs": 10.297182016074657,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.539290012791753,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.566429022233933,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 21,
+        "messagesSha256": "c88ceacb981a7f6765eec4df121954ff2beb2e5d92413fb7f113afbeeaeda9d8",
+        "messageCount": 44,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 21,
+      "attachResponseObservedMs": 6.756449991371483,
+      "completedTurnMarkerFrameObservedMs": 32.785439980216324,
+      "completeAnswerBytesObservedOnPtyMs": 34.320938983000815,
+      "submitToFixtureValidatedRequestRecordMs": 11.762644979171455,
+      "fixtureTraceFirstToLastFlushMs": 10.303198010660708,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 20.780722989002243,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 22.316221991786733,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 21,
+        "messagesSha256": "c88ceacb981a7f6765eec4df121954ff2beb2e5d92413fb7f113afbeeaeda9d8",
+        "messageCount": 44,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 22,
+      "attachResponseObservedMs": 6.34133699350059,
+      "completedTurnMarkerFrameObservedMs": 31.046062998939306,
+      "completeAnswerBytesObservedOnPtyMs": 34.13623900269158,
+      "submitToFixtureValidatedRequestRecordMs": 13.535630976548418,
+      "fixtureTraceFirstToLastFlushMs": 10.285740019753575,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.18041201820597,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.270588021958247,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 22,
+        "messagesSha256": "d9d0c745037a0dfe393fb52feb2fab674c9afe053cbf684c9667012c3431a9eb",
+        "messageCount": 46,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 22,
+      "attachResponseObservedMs": 5.441622022772208,
+      "completedTurnMarkerFrameObservedMs": 31.616371008567512,
+      "completeAnswerBytesObservedOnPtyMs": 35.39162699598819,
+      "submitToFixtureValidatedRequestRecordMs": 13.800829998217523,
+      "fixtureTraceFirstToLastFlushMs": 10.288160992786288,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.546343005960807,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.321598993381485,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 22,
+        "messagesSha256": "d9d0c745037a0dfe393fb52feb2fab674c9afe053cbf684c9667012c3431a9eb",
+        "messageCount": 46,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 23,
+      "attachResponseObservedMs": 6.143433973193169,
+      "completedTurnMarkerFrameObservedMs": 34.41360598662868,
+      "completeAnswerBytesObservedOnPtyMs": 36.07804799685255,
+      "submitToFixtureValidatedRequestRecordMs": 14.972261997172609,
+      "fixtureTraceFirstToLastFlushMs": 10.278984002070501,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 19.052579009439796,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.71702101966366,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 23,
+        "messagesSha256": "45789131412f9f482bab9a9806964978f7dccc4e577a86ac0d2afd0d7794d4f2",
+        "messageCount": 48,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 23,
+      "attachResponseObservedMs": 7.230987015645951,
+      "completedTurnMarkerFrameObservedMs": 32.351549016311765,
+      "completeAnswerBytesObservedOnPtyMs": 36.053684016224,
+      "submitToFixtureValidatedRequestRecordMs": 14.511360001051798,
+      "fixtureTraceFirstToLastFlushMs": 10.305873991455883,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.574046010849997,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.27618101076223,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 23,
+        "messagesSha256": "45789131412f9f482bab9a9806964978f7dccc4e577a86ac0d2afd0d7794d4f2",
+        "messageCount": 48,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 24,
+      "attachResponseObservedMs": 5.613263987470418,
+      "completedTurnMarkerFrameObservedMs": 34.66834398568608,
+      "completeAnswerBytesObservedOnPtyMs": 38.786199991591275,
+      "submitToFixtureValidatedRequestRecordMs": 16.72486198367551,
+      "fixtureTraceFirstToLastFlushMs": 10.272004001308233,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 17.69012599834241,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.807982004247606,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 24,
+        "messagesSha256": "86271b0afbaf4ad4b5b81dc6308d53b5c43d8af58b068afbd4dc1b44f5cdcbea",
+        "messageCount": 50,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 24,
+      "attachResponseObservedMs": 5.27804798912257,
+      "completedTurnMarkerFrameObservedMs": 33.661905996268615,
+      "completeAnswerBytesObservedOnPtyMs": 37.04702900722623,
+      "submitToFixtureValidatedRequestRecordMs": 13.987204001750797,
+      "fixtureTraceFirstToLastFlushMs": 10.263882984872907,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 19.402120989980176,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 22.78724400093779,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 24,
+        "messagesSha256": "86271b0afbaf4ad4b5b81dc6308d53b5c43d8af58b068afbd4dc1b44f5cdcbea",
+        "messageCount": 50,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 25,
+      "attachResponseObservedMs": 5.321566015481949,
+      "completedTurnMarkerFrameObservedMs": 39.07337298733182,
+      "completeAnswerBytesObservedOnPtyMs": 40.548730990849435,
+      "submitToFixtureValidatedRequestRecordMs": 18.160503008402884,
+      "fixtureTraceFirstToLastFlushMs": 10.246277000987902,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 20.515205978881568,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.99056398239918,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 25,
+        "messagesSha256": "50a9cc73d739c3494aae19b1a7d6ae7d7961aba76b0b127f93ec5bf0f007d3dc",
+        "messageCount": 52,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 25,
+      "attachResponseObservedMs": 26.726419979240745,
+      "completedTurnMarkerFrameObservedMs": 40.24760800530203,
+      "completeAnswerBytesObservedOnPtyMs": 44.548178993863985,
+      "submitToFixtureValidatedRequestRecordMs": 23.19311597966589,
+      "fixtureTraceFirstToLastFlushMs": 10.236233996693045,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.795608011307195,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.096178999869153,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 25,
+        "messagesSha256": "50a9cc73d739c3494aae19b1a7d6ae7d7961aba76b0b127f93ec5bf0f007d3dc",
+        "messageCount": 52,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 26,
+      "attachResponseObservedMs": 5.509430979145691,
+      "completedTurnMarkerFrameObservedMs": 31.00963999168016,
+      "completeAnswerBytesObservedOnPtyMs": 33.65972198662348,
+      "submitToFixtureValidatedRequestRecordMs": 12.659416999667883,
+      "fixtureTraceFirstToLastFlushMs": 10.356206999858841,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 18.06511401082389,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.71519600576721,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 26,
+        "messagesSha256": "fc5fe92f68a5d74827427b16e1d987fb858a64ef673b26b659e448044ac81392",
+        "messageCount": 54,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 26,
+      "attachResponseObservedMs": 5.636913003399968,
+      "completedTurnMarkerFrameObservedMs": 32.10936899995431,
+      "completeAnswerBytesObservedOnPtyMs": 34.45222199661657,
+      "submitToFixtureValidatedRequestRecordMs": 13.843989989254624,
+      "fixtureTraceFirstToLastFlushMs": 10.269276011968032,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 18.010558997048065,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.353411993710324,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 26,
+        "messagesSha256": "fc5fe92f68a5d74827427b16e1d987fb858a64ef673b26b659e448044ac81392",
+        "messageCount": 54,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 27,
+      "attachResponseObservedMs": 8.529968006769195,
+      "completedTurnMarkerFrameObservedMs": 32.376188988564536,
+      "completeAnswerBytesObservedOnPtyMs": 39.558785007102415,
+      "submitToFixtureValidatedRequestRecordMs": 13.483249000273645,
+      "fixtureTraceFirstToLastFlushMs": 10.268571990309283,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 18.629733996931463,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 25.812330015469342,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 27,
+        "messagesSha256": "0c5f252e8cf845e18d7533694f95a21a34ff13ca8931671cbfa0078f570a1517",
+        "messageCount": 56,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 27,
+      "attachResponseObservedMs": 7.780600019032136,
+      "completedTurnMarkerFrameObservedMs": 31.739041005494073,
+      "completeAnswerBytesObservedOnPtyMs": 31.83598301257007,
+      "submitToFixtureValidatedRequestRecordMs": 10.949979012366384,
+      "fixtureTraceFirstToLastFlushMs": 10.355940990848467,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 20.396042003994808,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.492984011070803,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 27,
+        "messagesSha256": "0c5f252e8cf845e18d7533694f95a21a34ff13ca8931671cbfa0078f570a1517",
+        "messageCount": 56,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 28,
+      "attachResponseObservedMs": 7.462645007763058,
+      "completedTurnMarkerFrameObservedMs": 31.132197007536888,
+      "completeAnswerBytesObservedOnPtyMs": 33.13204299774952,
+      "submitToFixtureValidatedRequestRecordMs": 12.24625000031665,
+      "fixtureTraceFirstToLastFlushMs": 10.31795798917301,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 18.51360299042426,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.513448980636895,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 28,
+        "messagesSha256": "350667bd095d719cb101524c4196d59c9414798390a89136a14469eb7335a0e8",
+        "messageCount": 58,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 28,
+      "attachResponseObservedMs": 6.779458024539053,
+      "completedTurnMarkerFrameObservedMs": 28.582881001057103,
+      "completeAnswerBytesObservedOnPtyMs": 32.55294499103911,
+      "submitToFixtureValidatedRequestRecordMs": 11.70375497895293,
+      "fixtureTraceFirstToLastFlushMs": 10.273822001181543,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.491242015035823,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.461306005017832,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 28,
+        "messagesSha256": "350667bd095d719cb101524c4196d59c9414798390a89136a14469eb7335a0e8",
+        "messageCount": 58,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 29,
+      "attachResponseObservedMs": 5.823422980029136,
+      "completedTurnMarkerFrameObservedMs": 27.93961498537101,
+      "completeAnswerBytesObservedOnPtyMs": 30.314092990010977,
+      "submitToFixtureValidatedRequestRecordMs": 11.043797974707559,
+      "fixtureTraceFirstToLastFlushMs": 10.24227900779806,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.648457996780053,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 19.02293600142002,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 29,
+        "messagesSha256": "6870f8f9ff42a89d978d93fa2c5ed36f2538bc4adc7d0a55b92ead9462200544",
+        "messageCount": 60,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 29,
+      "attachResponseObservedMs": 5.660744005581364,
+      "completedTurnMarkerFrameObservedMs": 31.065449002198875,
+      "completeAnswerBytesObservedOnPtyMs": 35.07907601306215,
+      "submitToFixtureValidatedRequestRecordMs": 14.162683015456423,
+      "fixtureTraceFirstToLastFlushMs": 10.222313983831555,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.65147498715669,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.665101998019964,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 29,
+        "messagesSha256": "6870f8f9ff42a89d978d93fa2c5ed36f2538bc4adc7d0a55b92ead9462200544",
+        "messageCount": 60,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "reference",
+      "index": 30,
+      "attachResponseObservedMs": 6.521743023768067,
+      "completedTurnMarkerFrameObservedMs": 32.514824997633696,
+      "completeAnswerBytesObservedOnPtyMs": 36.33418201934546,
+      "submitToFixtureValidatedRequestRecordMs": 15.701293013989925,
+      "fixtureTraceFirstToLastFlushMs": 10.244806995615363,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 16.562603996135294,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 20.38196101784706,
+      "runLocalRequestJoin": {
+        "side": "reference",
+        "index": 30,
+        "messagesSha256": "2d16c016e5812693e111c7409a9a5005d904f81fa113e89f42109a24a28541e6",
+        "messageCount": 62,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    },
+    {
+      "phase": "warm",
+      "side": "candidate",
+      "index": 30,
+      "attachResponseObservedMs": 6.188726023538038,
+      "completedTurnMarkerFrameObservedMs": 36.05135399266146,
+      "completeAnswerBytesObservedOnPtyMs": 38.725325983250514,
+      "submitToFixtureValidatedRequestRecordMs": 16.502529993886128,
+      "fixtureTraceFirstToLastFlushMs": 10.33676601946354,
+      "fixtureFirstChunkFlushToCompletedTurnFrameObservedMs": 19.27598300972022,
+      "fixtureFirstChunkFlushToCompleteAnswerPtyBytesObservedMs": 21.949955000309274,
+      "runLocalRequestJoin": {
+        "side": "candidate",
+        "index": 30,
+        "messagesSha256": "2d16c016e5812693e111c7409a9a5005d904f81fa113e89f42109a24a28541e6",
+        "messageCount": 62,
+        "scope": "Derived (side,index) join inside run003 only, not an instrumented self-contained row/request receipt"
+      },
+      "completedTurnFrameEvidence": {
+        "frameType": "agent_events",
+        "eventTypes": [
+          "message_start",
+          "message_end",
+          "turn_end",
+          "run_end",
+          "submission",
+          "usage_changed"
+        ]
+      }
+    }
+  ],
+  "summaryMs": {
+    "reference": {
+      "attachResponseObservedMs": {
+        "count": 30,
+        "median": 4.990839486708865,
+        "min": 3.579498006729409,
+        "max": 8.529968006769195,
+        "p95NearestRank": 7.462645007763058
+      },
+      "completedTurnMarkerFrameObservedMs": {
+        "count": 30,
+        "median": 31.591950988513418,
+        "min": 27.93961498537101,
+        "max": 42.32254301314242,
+        "p95NearestRank": 39.07337298733182
+      },
+      "completeAnswerBytesObservedOnPtyMs": {
+        "count": 30,
+        "median": 36.089569999603555,
+        "min": 30.314092990010977,
+        "max": 47.94873300124891,
+        "p95NearestRank": 47.143488976871595
+      }
+    },
+    "candidate": {
+      "attachResponseObservedMs": {
+        "count": 30,
+        "median": 5.299617987475358,
+        "min": 3.734857978997752,
+        "max": 26.726419979240745,
+        "p95NearestRank": 7.780600019032136
+      },
+      "completedTurnMarkerFrameObservedMs": {
+        "count": 30,
+        "median": 32.466716002090834,
+        "min": 28.22865601046942,
+        "max": 42.42325501400046,
+        "p95NearestRank": 40.24760800530203
+      },
+      "completeAnswerBytesObservedOnPtyMs": {
+        "count": 30,
+        "median": 35.98628750478383,
+        "min": 31.83598301257007,
+        "max": 48.218798998277634,
+        "p95NearestRank": 46.50652100099251
+      }
+    }
+  }
+}

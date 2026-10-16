@@ -1,0 +1,216 @@
+{
+  "phase": "BB0",
+  "status": "PARTIAL_NOT_ACCEPTED",
+  "unitComponent": "PARENT_ACCEPTED_FROZEN004",
+  "privateRuntime": "SELF_FUNCTIONAL_ONLY_PENDING_FINAL_INDEPENDENT_REVIEW_QA",
+  "performance": "COMPLETED_TURN_FRAME_AND_PTY_BYTES_ONLY_INCONCLUSIVE",
+  "requiredVisuals": "UNAVAILABLE_10_OF_10",
+  "baseline": "baseline.json",
+  "lanes": [
+    {
+      "lane": 1,
+      "name": "Existing common transport",
+      "functionalStatus": "SELF_CHECK_PASS",
+      "check": "candidateReopensExactBaselineSyntheticSessionAndHistory",
+      "evidence": "Original managed loader/reference and candidate reopen exact same private native session ID/history; root conversation1 and existing prompt/get_state; benchmark A/B stores intentionally separate; both use SAME candidates/host source with different managed loader locations, not different implementations",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-1.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 2,
+      "name": "Build source traceability",
+      "functionalStatus": "UNIT_ACCEPTED",
+      "check": "acceptedUnitCheckpoint",
+      "evidence": "All191 provider and536 host accepted source hashes; full npm build outputs9 +SDK0.6.37 stamp; known managed fixes retained; unit independent acceptance only",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-2.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 3,
+      "name": "Single storage owner",
+      "functionalStatus": "SELF_CHECK_PASS",
+      "check": "secondNativeOwnerDeniedByExistingSessionLock",
+      "evidence": "Two socket observers; actual second main on same store refused with existing session-lock error exit1; owner remains alive; no second SQLite",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-3.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 4,
+      "name": "Existing terminal contract",
+      "functionalStatus": "SELF_BYTE_AND_IDENTITY_OBSERVATION_ONLY",
+      "check": "nativeConversationIdentityStable",
+      "evidence": "Native main/TUI process emitted completed-answer PTY bytes and preserved root1/model; no parsed terminal/render/visible paint or incremental first-text measurement",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-4.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 5,
+      "name": "Detach",
+      "functionalStatus": "SELF_CHECK_PASS",
+      "check": "detachDoesNotAbortOtherObserverOrRuntime",
+      "evidence": "Detach one observer during held actual HTTP/SSE generation; other receives final unique text; generation continues once",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-5.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 6,
+      "name": "Late attach",
+      "functionalStatus": "SELF_CHECK_PASS",
+      "check": "lateAttachSnapshotNoResubmit",
+      "evidence": "Late observer sees actual in-flight prefix/snapshot, no resubmit; actual HTTP counter remains32 through completion",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-6.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 7,
+      "name": "Current session boundary",
+      "functionalStatus": "SELF_CHECK_PASS",
+      "check": "wrongCwdAttachDeniedBeforeHistory",
+      "evidence": "Different synthetic cwd scope rejected before history; stronger future identity tuple/requester authorization is not claimed",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-7.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 8,
+      "name": "Missing socket configuration",
+      "functionalStatus": "SELF_CHECK_PASS",
+      "check": "candidateMissingSocketFailsExplicitlyWithoutLocalHarness",
+      "evidence": "Actual candidate runSharedHost returns ENOENT, emits0frames, creates no fallback SQLite",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-8.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 9,
+      "name": "Synthetic Boolean adapter-policy fixture ONLY",
+      "functionalStatus": "SYNTHETIC_POLICY_ONLY_NOT_MCP_AGENTMAIL_AUTHORIZATION",
+      "check": "realAdapterSyntheticBooleanPolicyBlocksCounterIncrement_NOT_Authorization",
+      "evidence": "Real adaptExtensionTool with synthetic Boolean policy only. Counter0 on denied fixture/control1 does NOT prove actual MCP or Agent Mail authorization.",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-9.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    },
+    {
+      "lane": 10,
+      "name": "Known baseline capabilities",
+      "functionalStatus": "KNOWN_GAPS_RECORDED",
+      "check": "knownBaselineGaps",
+      "evidence": "Native BB child projection absent/N/A, no native-child PASS; mixed old host source/globalSDK and generic coding-agent MCP_TYPESCRIPT_PREAMBLE import failure retained; archived evidence unchanged",
+      "visual": {
+        "required": true,
+        "path": "evidence/BB0/lane-10.png",
+        "status": "UNAVAILABLE",
+        "reason": "Actual BB visual evidence pending parent privacy/native installation gates; no fabricated screenshot"
+      },
+      "acceptanceStatus": "NOT_ACCEPTED_PENDING_CANONICAL_VISUAL_AND_FINAL_INDEPENDENT_QA"
+    }
+  ],
+  "blockers": [
+    "Actual canonical lane1..10 PNG/visual evidence",
+    "Independent live/perf review and behavioral QA",
+    "Independent untimed limiter evidence before any comparative performance claim",
+    "Final after-live input audit in coordinated nonoverlapping window",
+    "Valid submit-to-first-visible-text observation; completed-turn frame/PTY byte proxy is not that metric"
+  ],
+  "selfCheckResultSha256": "675d51b65b00cd2332a31bcae1ed7caf0aa0c1b5047d518506a814606e765c72",
+  "fullBB0Accepted": false,
+  "derivedSemanticsCorrection": {
+    "revision": "derived-semantics-correction-001",
+    "actor": "IvoryBridge",
+    "correctedUTC": "2026-10-15T23:37:01.697782+00:00",
+    "attribution": "Parent handoff of bounded independent scout-port readonly audit, plus Lead bounded decoding of recorded frame metadata; scout audit is NOT final review or QA.",
+    "raw003Unchanged": true,
+    "rawResultSha256": "675d51b65b00cd2332a31bcae1ed7caf0aa0c1b5047d518506a814606e765c72",
+    "rawSamplesSha256": "7df8c23c2d9a85ba4b56b8013a83512b0c107841880dddb4761f67edf83722c7",
+    "rawLabelsInvalidForIncrementalTextOrPaint": [
+      "wireFirstTextMs",
+      "terminalFirstVisibleTextMs",
+      "fixtureFirstChunkToWireMs",
+      "fixtureFirstChunkToTerminalMs"
+    ],
+    "observed": "All62 timed marker frames are agent_events batches with message_start containing complete ALPHA_OMEGA, message_end, turn_end, run_end, submission, usage_changed. PTY observations are complete-answer bytes, not parsed terminal/render/paint or true first-token measurements.",
+    "includesDeclared10msDelay": true,
+    "incrementalFirstTextMeasured": false,
+    "trueFirstTokenMeasured": false,
+    "parsedTerminalRenderMeasured": false,
+    "visiblePaintMeasured": false,
+    "order": "Always reference FIRST within every warm pair; fixed AB order is NOT counterbalanced or randomized and confounds comparison.",
+    "cold": "Fresh process/session only; OS page cache was NOT flushed. Attach is observed after socket readiness, not full process startup.",
+    "implementation": "BOTH sides execute SAME candidates/host source. Reference original-parent managed loader versus candidate adjusted-location managed loader; no distinct new implementation, SDK migration or speedup proved.",
+    "workloadBinding": "62 timed rows/63 observed HTTP requests; extra candidate index31 held diagnostic is untimed. Message hashes joined by (side,index) within this run; NOT self-contained authenticated row/request receipts.",
+    "guardScope": "Real adaptExtensionTool with synthetic Boolean policy only. Counter0 on denied fixture/control1 does NOT prove actual MCP or Agent Mail authorization.",
+    "comparison": "INCONCLUSIVE: no independent limiter profile, fixed-order confound, same host implementation, run-local workload joins; no first-incremental-text or paint metric."
+  },
+  "errorAccounting": {
+    "fixtureExceptions": {
+      "count": 0,
+      "source": "raw result errors[]",
+      "scope": "HTTP fixture exceptions ONLY, NOT all protocol/runtime errors"
+    },
+    "recordedProtocolResponses": {
+      "count": 130,
+      "success": 129,
+      "failed": 1,
+      "expectedWrongCwdAttachDenials": 1,
+      "unexpectedFailuresObserved": 0,
+      "sourceCounts": {
+        "reference": 63,
+        "candidate": 66,
+        "reopened": 1
+      },
+      "expectedFailure": "Shared host belongs to a different working directory",
+      "scope": "Counts of recorded JSONL response frames only; no universal zero-error assertion"
+    },
+    "expectedOtherNegativeProbes": {
+      "secondOwnerProcessExit1": 1,
+      "missingSocketENOENT": 1,
+      "syntheticBooleanPolicyDenial": 1
+    },
+    "authorizationCoverage": "Actual MCP/Agent Mail authorization NOT tested"
+  },
+  "derivedMetrics": "evidence/BB0/lead-baseline-derived-metrics.json",
+  "scoutAudit": "Bounded readonly input to correction; NOT final review/QA"
+}
