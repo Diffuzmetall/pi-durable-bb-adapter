@@ -1,0 +1,9 @@
+COMMAND /usr/bin/python3 -I -B launcher.py verify-public
+HOME/TMPDIR/cwd=fresh leased private temp; close_fds=True
+{
+  "publicPins": "PASS",
+  "publicPinsSha256": "7ef4254c10b4d941d69b453a656f2ec0980a4b706f3c463d2d8b58f8f2ecc826",
+  "runtimeCapability": "UNAVAILABLE"
+}
+
+EXIT=0

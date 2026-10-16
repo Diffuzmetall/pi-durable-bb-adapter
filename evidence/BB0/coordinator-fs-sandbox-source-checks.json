@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "coordinator": "RusticCanyon",
+  "task": "bbup-test-bb",
+  "acceptedScope": "NON-Pi filesystem-confinement SOURCE/PLAN/PURE-UNIT component only",
+  "sourceComponentAccepted": true,
+  "runtimeAccepted": false,
+  "namespaceExecutionAuthorizedByThisReceipt": false,
+  "oldInstanceRetirementAuthorized": false,
+  "piInstallationAuthorized": false,
+  "fullBB0Accepted": false,
+  "candidate": {
+    "lead": "AzureSpring",
+    "path": "evidence/BB0/test-bb-fs-sandbox/",
+    "manifest": "final-manifest.sha256",
+    "sha256": "a75832c2b09a08d2a01fd6845024f02fb06c67a62ab88fe12534008168fc9fab",
+    "launcherSha256": "a156d4d7cc79f77110d195a9786bb8801028f1159ab3993c94c4a4bf311d965f",
+    "mountManifestSha256": "ebc6e916b397bdd10c28a2fcbc0cfeb9789cab2147e28748de4ed1982c0a3c86",
+    "handoff": "Agent Mail46; frozen historical needs_checks bytes remain unchanged"
+  },
+  "technicalReview": {
+    "actor": "review-bb0-inventory",
+    "verdict": "PASS narrow NON-Pi confinement source; HOLD runtime/fullBB",
+    "actualChecks": "18 handoff files, 11943 public app entries, 21 individual file mounts, outer bwrap and 10 baseline sources verified; actual guarded launcher/ELF/mount/installed-child-launch sources inspected; retained logs inspected NOT rerun",
+    "mounts": 23,
+    "network": "HOST-SHARED, explicitly NOT isolation; fixed40886/40887; bind-check/launch interval not atomic"
+  },
+  "priorBehavioralAttempt": {
+    "disposition": "HOLD under explicit strict run protocol; component checks passed",
+    "receipt": "/tmp/bbup-fs-sandbox-qa-1792115853-1104426/actual-behavioral-qa-receipt.md",
+    "sha256": "7d72cf4ec63a1ad3d57c5be0c5e86c4dbc4a22ff1f9968cb545ec33cc5d8687d",
+    "deviation": "Initial before-hash audit used plain python3 rather than required isolated env-i Python-I-B; no retroactive PASS",
+    "preservedCaptures": 32
+  },
+  "freshStrictBehavioralQA": {
+    "actor": "qa-bb0-inventory",
+    "disposition": "PASS fresh component-only attempt; supersedes behavioral gate ONLY",
+    "receipt": "/tmp/bbup-fs-sandbox-qa-strict-1792116703-1138950/actual-behavioral-qa-receipt.md",
+    "sha256": "df25fa4159e536659cfbb0f4c5df0c181dc0b245420a45d1decae9cb9a268b26",
+    "captureManifestSha256": "834f58fff0dd535e44ea79126870eaec07dfbc2ff656e8b08be60f82676f5678",
+    "python": "3.13.7 /usr/bin/python3; env-i, -I -B, private HOME/TMP/XDG, explicit PATH; actual isolated=1 ignore_environment=1 before/after audit",
+    "windowUTC": ["2026-10-16T02:12:20.278957137Z", "2026-10-16T02:16:26.348131243Z"],
+    "tests": {"methods": 6, "pass": 6, "errors": 0, "fail": 0, "skip": 0, "retainedNewCaseDirectories": 40, "launcherChildInvocations": 39},
+    "adaptations": [
+      "Exact frozen test module/assertions/HERE/LAUNCHER retained; only module.tempfile redirected new TemporaryDirectory allocations under QA/cases with no cleanup",
+      "Module.sys.executable replaced by disclosed private shell trampoline; every actual child runs env-i /usr/bin/python3 -I -B with fresh per-case HOME/TMP/XDG; explicit close_fds preserved; no source changes"
+    ],
+    "actualResults": "Repeated plans byte-identical to retained manifest; validate exit0; actual launcher.py verify-public exit0; pin_public.py11943app/21file/outerbwrap inventory matches pinned JSON; missing-hash launch refused exit2 before runtime effects",
+    "preservation": "18 handoff files, 5 needs_checks pins, 10 baseline pins match before/after; all32 original capture files preserved; no frozen source/logs, old profile, private auth/config/store reads or writes",
+    "model": "Gemini unavailable; Luna-high fallback disclosed; effective-model telemetry UNKNOWN"
+  },
+  "parentActualVerification": {
+    "strictReceiptAndManifestReadAndRehashed": true,
+    "listedCaptureHashesCheckedWithoutFollowingOutsideSymlinks": 40,
+    "commandMetadataExitsAndSixTestOutputInspected": true,
+    "driverAndTrampolineSourceInspected": true,
+    "childCommandTraceAndAuditInspected": true,
+    "originalReceiptUnchangedHashChecked": true,
+    "frozenHandoff18PinsVerified": true,
+    "cpuLease254ReleasedUTC": "2026-10-16T02:27:07.121311Z"
+  },
+  "explicitOpenGates": [
+    "Actual namespace capability, OS/LSM compatibility, effective mounts/private proc/devpts and filesystem sentinels NOT_RUN",
+    "Full dynamic/BB/Node dependency closure NOT_PROVEN; no automatic widening/downloads",
+    "No BB boot, new profile, workerENV, preshell/PTY/resize/input/cleanup runtime proof; old stack unchanged",
+    "Future canonical C is owner-only metadata and not BB-mounted; Stage1 C metadata reachability/integration NOT_SOLVED; never expose native SQLite directory",
+    "No actual shared socket/binding/peer or trusted BB initial/reopen/second-thread identity proof",
+    "No positive native catalog, Pi import/build/install, actual displayed pixels/canonical PNG/first-visible or full checklist acceptance"
+  ],
+  "nextOperationalProposal": "Separately reviewed capability-only invocation may reuse exact namespace/mount/env prefix with pinned /usr/bin/env and NEW cap1-20261016 root, preserving source-v1 for repeatable units. No Node/BB/ports/old retirement; exact bytes, narrow lease, serialized CPU and explicit parent GO still required. This receipt does NOT authorize execution."
+}

@@ -1,0 +1,45 @@
+{
+  "attempt": "001",
+  "cap1RootPresentAfter": true,
+  "capabilityLog": {
+    "bytes": 1584,
+    "present": true,
+    "sha256": "7e4c5733791b66058d3858b4ad4f2166d68088520b5d7e490fad446c3a6b3b91",
+    "source": "/home/ubuntu/Projects/pi-durable-bb-adapter/.test-bb/fs-private.cap1-20261016/capability.log"
+  },
+  "command": [
+    "/usr/bin/env",
+    "-i",
+    "HOME=/tmp/bbup-capability-plan-4w6soqu2/home",
+    "TMPDIR=/tmp/bbup-capability-plan-4w6soqu2/home",
+    "PATH=/usr/bin:/bin",
+    "LANG=C.UTF-8",
+    "BBUP_PARENT_GO=cap1-20261016:6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179",
+    "BBUP_OWN_CHILD_TIMEOUT_GO=cap1-20261016:kill-owned-child-and-wait5-on-timeout",
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "/tmp/bbup-capability-plan-4w6soqu2/operator-v2.py"
+  ],
+  "endUTC": "2026-10-16T02:52:59.259747+00:00",
+  "exitCode": 0,
+  "handoff18Parity": true,
+  "inputParity": true,
+  "inputPinsAfter": {
+    "argv.json": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b",
+    "operator-v2.py": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2",
+    "plan.json": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179"
+  },
+  "inputPinsBefore": {
+    "argv.json": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b",
+    "operator-v2.py": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2",
+    "plan.json": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179"
+  },
+  "leaseOwner": "parent:276-279",
+  "namespacePayloadCleanup": "NOT_ESTABLISHED",
+  "noRetry": true,
+  "protected10Parity": true,
+  "runtimeClaim": "env executed/exited0 under requested argv ONLY",
+  "sourceV1AbsentAfter": true,
+  "startUTC": "2026-10-16T02:52:55.776307+00:00"
+}

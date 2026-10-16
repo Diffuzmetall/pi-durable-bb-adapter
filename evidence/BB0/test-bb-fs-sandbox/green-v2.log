@@ -1,0 +1,15 @@
+COMMAND /usr/bin/python3 -I -B test_launcher.py
+HOME/TMPDIR/cwd=fresh leased private temp; close_fds=True
+test_bad_json_and_unknown_fields (__main__.Plans.test_bad_json_and_unknown_fields) ... ok
+test_pre_execution_refusal_gates (__main__.Plans.test_pre_execution_refusal_gates) ... ok
+test_refuse_bad_ids_and_launch (__main__.Plans.test_refuse_bad_ids_and_launch) ... ok
+test_refuse_tampering (__main__.Plans.test_refuse_tampering) ... ok
+test_symlink_missing_and_overlapping_mount_refusal (__main__.Plans.test_symlink_missing_and_overlapping_mount_refusal) ... ok
+test_valid_plan_and_determinism (__main__.Plans.test_valid_plan_and_determinism) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.169s
+
+OK
+
+EXIT=0

@@ -1,0 +1,12 @@
+COMMAND /usr/bin/python3 -I -B test_launcher.py (fresh private HOME/cwd; no runtime execution)
+test_bad_json_and_unknown_fields (__main__.Plans.test_bad_json_and_unknown_fields) ... ok
+test_refuse_bad_ids_and_launch (__main__.Plans.test_refuse_bad_ids_and_launch) ... ok
+test_refuse_tampering (__main__.Plans.test_refuse_tampering) ... ok
+test_valid_plan_and_determinism (__main__.Plans.test_valid_plan_and_determinism) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.870s
+
+OK
+
+EXIT=0

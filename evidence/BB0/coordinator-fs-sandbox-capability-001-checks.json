@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "actor": "RusticCanyon",
+  "task": "bbup-test-bb",
+  "scope": "One explicitly authorized, independently source-reviewed env-only operational capability attempt; NOT full isolation, runtime or full-BB acceptance",
+  "envOnlyCommandCompleted": true,
+  "runtimeAccepted": false,
+  "fullBB0Accepted": false,
+  "piInstallationAuthorized": false,
+  "oldInstanceRetirementAuthorized": false,
+  "additionalExecutionAuthorizedByThisReceipt": false,
+  "authority": {
+    "executor": "AzureSpring / lead-test-bb",
+    "parentGO": "cap1-20261016:6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179",
+    "ownChildTimeoutGO": "cap1-20261016:kill-owned-child-and-wait5-on-timeout",
+    "limits": "ONE invocation only; new cap1 root. kill()+bounded wait5 only on own Popen child after10s timeout, no discovery/old PIDs; namespace-payload cleanup UNKNOWN means STOP/separate decision before cleanup or retry. No BB/Node/Pi/shell payload/ports/old-stack retirement/deletion.",
+    "inputFreeze": "Actual project source freeze and coordination token plus sole Azure temporary-input owner freeze; absolute /tmp leases unsupported. Initial absolute-pattern request rejected without grants; no ../ workaround. Then supported project-relative leases276-279 acquired conflict-free.",
+    "leases": [
+      276,
+      277,
+      278,
+      279
+    ],
+    "leasesExpireUTC": "2026-10-16T03:00:56.637095Z",
+    "leasesReleasedUTC": "2026-10-16T02:56:28.204321Z"
+  },
+  "inputs": {
+    "directory": "/tmp/bbup-capability-plan-4w6soqu2/",
+    "planSha256": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179",
+    "argvSha256": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b",
+    "operatorV2Sha256": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2",
+    "operatorV2Bytes": 3480,
+    "launcherSha256": "a156d4d7cc79f77110d195a9786bb8801028f1159ab3993c94c4a4bf311d965f",
+    "payload": "Exact original169 namespace/mount/env prefix elements through first --, plus ONLY /usr/bin/env; 170 argv elements",
+    "priorOperatorV1": "f6ea233a888e4b2d4630919fb40a0cf3f9724f25fff56724193dce94f8233798 preserved HOLD; timeout did not explicitly kill/reap; never executed"
+  },
+  "review": {
+    "actor": "review-bb0-inventory",
+    "kind": "Read-only exact operational source/plan review, NOT behavioral QA",
+    "verdict": "PASS narrowly one-shot v2 attempt with GO/sourcefreeze/CPU gates; no namespace/runtime capability PASS",
+    "actualHashesAndAST": "Plan/argv/operator-v2 actual bytes hashed and Python AST parsed; parent separately read entire v2 source; no test execution by reviewer",
+    "limitations": "Exit0 supports only env executed/exited0; no observed-env-value, private-proc/devpts, sentinel, effective-namespace, SDK or fullBB claim. Timeout namespace payload cleanup remains UNKNOWN."
+  },
+  "result": {
+    "directory": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/",
+    "startUTC": "2026-10-16T02:52:55.776307Z",
+    "endUTC": "2026-10-16T02:52:59.259747Z",
+    "exitCode": 0,
+    "stderrBytes": 0,
+    "timeoutOccurred": false,
+    "killReapPathExercised": false,
+    "receiptSha256": "75ee30dc059ebf6ec10dc203e393431dddc6db2d41969bf7a83bb48bab3219f0",
+    "captureManifestSha256": "5b07d12e561e1b52f8b3ff9f03ecac3c67395cfa4526e95d4918bdf640e246ca",
+    "capabilityLogSha256": "7e4c5733791b66058d3858b4ad4f2166d68088520b5d7e490fad446c3a6b3b91",
+    "capabilityLogBytes": 1584,
+    "claim": "env executed/exited0 under requested argv ONLY",
+    "retainedResources": ".test-bb/fs-private.cap1-20261016; no cleanup/retry; namespace-payload cleanup NOT_ESTABLISHED",
+    "sourceV1": "Remains absent/reusable; did not consume unchanged pure-unit fixture identity"
+  },
+  "parentActualVerification": {
+    "captureManifestAndAll8ListedFilesRehashed": true,
+    "receiptCommandExitStdoutStderrAndPinsRead": true,
+    "beforeAfterPinsByteIdentical": true,
+    "frozen3InputsParity": true,
+    "frozen18HandoffParity": true,
+    "protected10SourceParity": true,
+    "rawCapabilityLogRead": "Only synthetic fixture paths/settings and declared local endpoints; no credential content. Root does NOT promote this read to accepted ENV/PTY proof.",
+    "envSurfaceDistinction": "Whole-BB approved env contains controlled BB_DATA_DIR/ports/URL/telemetry/disabled marketplace and private PI aliases. Do not confuse with earlier worker-v2 daemon-stripped BB_* null environment."
+  },
+  "docV2": {
+    "scope": "DOC F1 repair ONLY; no implementation/native/socket/API GO",
+    "manifestSha256": "194eb00affe3d2786ed60252814f0ee5b70ceb1172b135afdc54ee826ccbcbf9",
+    "changeRequestSha256": "6ca0931584560d7e1d021b7f7d68771e2156a170080196f34d169d84af2bf7ba",
+    "unitPlanSha256": "0a2dcd0238327b34b8971ce59323eada4d50b7253c9f4eb9e2ab548c6da518a7",
+    "original3": "Byte-exact historical files in review-001; archive manifest unchanged; original document paths rebound via v2 archive map",
+    "parentActualHashMatches": 19,
+    "reviewer": "review-dag; read-only DOC F1 RESOLVED,9/9 literal source quotes independently verified line-exact; no hash tool, hashes verified by parent instead",
+    "F1": "Future P6 and U creation/root/store-write/scan/non-agent record+throw spies plus before/after IDs/count/agent-metadata digest, missing-root stays empty, cancel/close/disposal guarded, transient create/delete and write/rollback mutants; agentMetadataOnly artifacts specified NOT PRODUCED; fake cannot prove real native harness purity",
+    "CPolicy": "Cached current()=>state scalar getter harmless source fact; C-access policy unresolved; NO runtime.ts seam/API approved"
+  },
+  "remaining": "No filesystem sentinel/effective-mount/private-proc/devpts/complete dependency closure, real BB/TUI/ENVPTY/catalog/socket/identity/import-order/visual acceptance. Old test stack untouched, no new BB or Pi install. Full acceptance0/222.",
+  "nextSourceOnly": {
+    "AzureSpring": "Prepare fs2 fresh plan/operator with pinned Node24 stdlib filesystem sentinel/own-proc/env probes, immutable existing prefix; no execution/profile yet; minimal declared whole-BB env EXACT not blanket BB_* rejection",
+    "IvoryBridge": "Prepare finite SDK leaf original-module+realZod95 guarded harness; no actual SDK/Zod import/eval, build or namespace yet; does NOT close authentic BB original-contract loader or compiled ordering; no Stage2 implementation GO"
+  },
+  "postQAParentHomeAddendum": {
+    "path": "evidence/BB0/coordinator-fs-sandbox-parent-home-addendum.json",
+    "sha256": "bc5c23f66b044cd55a4765eb9c9b7b5e3f06f6614d6dc5f7f1164d2053e3a593",
+    "preservation": "Parent later bd metadata caused8newunlisted synthetic-HOME files; original40QA captures/source18 unchanged; no deletion/content reading; no retroactive pristine-workspace claim"
+  }
+}

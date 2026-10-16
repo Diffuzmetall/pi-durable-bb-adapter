@@ -1,0 +1,17 @@
+{
+  "files": {
+    "evidence/BB0/lead-sandbox.py": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272",
+    "evidence/BB0/test-bb-env-probe/README.md": "1917202a382747afac8550019a70d597448a75b429654d15a0de5687e7d38f25",
+    "evidence/BB0/test-bb-env-probe/contract.js": "455ef08849ff36cb3b0e36be3e051801a9aee8f7dc5f449e5ef967efa7b23505",
+    "evidence/BB0/test-bb-env-probe/host.js": "275121c4dfb00f4eba73691b1791f30996a890bcce2635c3bbb87f06a99aa8ff",
+    "evidence/BB0/test-bb-env-probe/package.json": "6421af662670fe8a252ee9dbfabe0a3cbdc202e90669586389a81b99a453c69b",
+    "evidence/BB0/test-bb-env-probe/paths.js": "aacbb265329fe2a85fe4d11234956f082915c3236a7801a57a5c5e346d6adfce",
+    "evidence/BB0/test-bb-env-probe/selfcheck.mjs": "9c80c13e62f82dfa8c5a7a209471a26fd7b33edc49471edc6d43002be729f05e",
+    "evidence/BB0/test-bb-env-probe/server.js": "98b40794f18f787f7939b8992d16d3db8bde376cb65862ca20bf2f8e3938ae9b",
+    "evidence/BB0/test-bb-env-probe/start-private.sh": "b791a767849b76016795204fb9f5b1c30e1600f138790aec14b80c3ef87b0701",
+    "evidence/BB0/test-bb-env-probe/verify-native.mjs": "d852981222968882f300e633e14e747fec3fcaeecc7221554a30aa592ca21a96"
+  },
+  "profile": "NOT_READ_NOT_WRITTEN",
+  "runtimeAcceptance": "NOT_TRANSFERRED",
+  "sourceByteParity": "PASS"
+}

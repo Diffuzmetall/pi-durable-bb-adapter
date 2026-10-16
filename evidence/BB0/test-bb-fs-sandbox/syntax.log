@@ -1,0 +1,6 @@
+COMMAND python3 -I -B inline ast.parse + source/manifest SHA256 correlation (no local imports or bytecode)
+launcher.py a156d4d7cc79f77110d195a9786bb8801028f1159ab3993c94c4a4bf311d965f
+test_launcher.py 0206fe628758de740bc5e200839b7384960f080e6abb2699733cb6851d0a08cf
+pin_public.py 5e9f196f5a1ab0a748b1afb3380f3857bc667e8d255e7197afc73b55d48439f5
+AST PASS; manifest launcher identity PASS; 23 mounts=1 app tree+21 files+1 fresh root
+EXIT=0

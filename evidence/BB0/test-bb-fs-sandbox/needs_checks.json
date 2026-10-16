@@ -1,0 +1,59 @@
+{
+  "status": "needs_checks",
+  "fixtureVersion": "1.0.0-source-only",
+  "owner": "AzureSpring",
+  "scope": "source-only confined TEST BB launcher, deterministic mount plan and light refusal checks",
+  "pins": {
+    "launcher.py": "a156d4d7cc79f77110d195a9786bb8801028f1159ab3993c94c4a4bf311d965f",
+    "test_launcher.py": "0206fe628758de740bc5e200839b7384960f080e6abb2699733cb6851d0a08cf",
+    "pin_public.py": "5e9f196f5a1ab0a748b1afb3380f3857bc667e8d255e7197afc73b55d48439f5",
+    "public-pins.json": "7ef4254c10b4d941d69b453a656f2ec0980a4b706f3c463d2d8b58f8f2ecc826",
+    "mount-manifest.json": "ebc6e916b397bdd10c28a2fcbc0cfeb9789cab2147e28748de4ed1982c0a3c86"
+  },
+  "actualLightCommands": [
+    "/usr/bin/python3 -I -B test_launcher.py",
+    "/usr/bin/python3 -I -B pin_public.py",
+    "/usr/bin/python3 -I -B launcher.py plan --fixture-id source-v1",
+    "/usr/bin/python3 -I -B launcher.py validate < mount-manifest.json",
+    "/usr/bin/python3 -I -B launcher.py verify-public",
+    "python3 -I -B inline AST/pin/baseline comparisons (no imports of candidate Pi)"
+  ],
+  "executionEnvironment": "All child commands used fresh HOME/TMPDIR/cwd under leased evidence directory, literal PATH/LANG, close_fds=True. Tests call the actual launcher with -I -B. No valid fully acknowledged launch was invoked.",
+  "checks": {
+    "red": "retained red.log: four tests failed before launcher existed, exit 1",
+    "units": "green-v2.log: six tests PASS, exit 0; 13 tamper subcases plus six unsafe mount proposals",
+    "plan": "plan.log and plan-repeat.log byte-identical; validate.log PASS, exit 0",
+    "publicPins": "public-verify.log PASS, exit 0: 11943 entries, 21 file mounts, outer bwrap",
+    "syntaxAndCorrelation": "AST parse of all three Python sources PASS; manifest launcher SHA matches source; 23 total bind mounts",
+    "baseline": "baseline-parity.json: all 10 protected source hashes unchanged; old profile NOT_READ_NOT_WRITTEN; receipt NOT_TRANSFERRED"
+  },
+  "runtimeCapability": "UNAVAILABLE",
+  "closure": "UNAVAILABLE: static ELF closure only; no dlopen/NSS/utility/BB boot proof",
+  "network": "host shared, explicitly NOT network isolation; fixed 40886/40887 only",
+  "profile": "/home/ubuntu/Projects/pi-durable-bb-adapter/.test-bb/fs-private.source-v1",
+  "dataDir": "/home/ubuntu/Projects/pi-durable-bb-adapter/.test-bb/fs-private.source-v1/bb-data",
+  "createdRuntimeProfile": false,
+  "requiredDistinctChecks": [
+    "Independent exact source/allowlist review, including static ELF inspector and guarded launch branch",
+    "Independent rerun of pure valid-plan/refusal/public-pin checks; no runtime without root GO"
+  ],
+  "requiredBeforeAnyRuntime": [
+    "Stage1 accepted by parent",
+    "Parent grants separate runtime GO for exact candidate and fixed-port transition",
+    "Narrow .test-bb/fs-private.<fixtureId> lease and own serialized CPU reservation",
+    "Parent separately proves ownership and authorizes retiring ONLY frozen old test PIDs; launcher never kills them",
+    "40886/40887 free; no alternate ports or proxy",
+    "Fresh root and public pins verified immediately before launch; no old-profile reuse/copy"
+  ],
+  "unavailableRuntimeGates": [
+    "user/PID namespace permission, bwrap disable-userns compatibility, private proc/devpts and filesystem sentinel boundary",
+    "complete dynamic dependency closure; no automatic mount widening or downloads",
+    "actual confined Node24/server/daemon boot and environment before terminal shell startup",
+    "fresh native worker ENV and terminal-specific ENV/PTY input/resize/cleanup proof",
+    "host-loopback CLI/API/browser reachability",
+    "separate canonical owner C and shared socket-directory reachability/binding/identity without native SQLite mount",
+    "actual approved Pi/TUI frame, screenshot artifact access/provenance and independent visual QA"
+  ],
+  "preservation": "No Git/index/commit/push/bd writes, old state reads, accepted launcher edits, instance changes, BB CLI/API/browser, namespace execution, actual Pi imports, builds, heavy tests or new children. Existing lead-sandbox.py host-network refusal unchanged.",
+  "handoff": "Parent owns continuation and acceptance; no old receipt is promoted. final-manifest.sha256 pins every handoff file except itself. Runtime acknowledgement flags never constitute authorization."
+}

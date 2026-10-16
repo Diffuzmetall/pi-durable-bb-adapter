@@ -1,0 +1,306 @@
+{
+  "archiveFilesExcludingSelf": {
+    "README.md": {
+      "bytes": 2150,
+      "sha256": "6b4327dac645e55b050f13801f245d0c7ebccdcc8e375ac333e398c692e9d761"
+    },
+    "attempt-001/after-pins.json": {
+      "bytes": 2839,
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f"
+    },
+    "attempt-001/before-pins.json": {
+      "bytes": 2839,
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f"
+    },
+    "attempt-001/capability.log": {
+      "bytes": 1584,
+      "sha256": "7e4c5733791b66058d3858b4ad4f2166d68088520b5d7e490fad446c3a6b3b91"
+    },
+    "attempt-001/capture-manifest.json": {
+      "bytes": 1001,
+      "sha256": "5b07d12e561e1b52f8b3ff9f03ecac3c67395cfa4526e95d4918bdf640e246ca"
+    },
+    "attempt-001/command.json": {
+      "bytes": 448,
+      "sha256": "d9ec6ad137314f6827447d98331db779df4ec86d87e535ec576a6f5a35a366a8"
+    },
+    "attempt-001/command.txt": {
+      "bytes": 385,
+      "sha256": "6f934dc24a2ee7511e81ba3db34590f57b15fed2baba15b20ba3af12877d8f8e"
+    },
+    "attempt-001/receipt.json": {
+      "bytes": 1767,
+      "sha256": "75ee30dc059ebf6ec10dc203e393431dddc6db2d41969bf7a83bb48bab3219f0"
+    },
+    "attempt-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-001/stdout.log": {
+      "bytes": 132,
+      "sha256": "61caf9bdf4c48b787f9448ae097323cd599afefa50aae89268297ce4031029d9"
+    },
+    "inputs/argv.json": {
+      "bytes": 4812,
+      "sha256": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b"
+    },
+    "inputs/operator-v2.py": {
+      "bytes": 3480,
+      "sha256": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2"
+    },
+    "inputs/operator.py": {
+      "bytes": 2702,
+      "sha256": "f6ea233a888e4b2d4630919fb40a0cf3f9724f25fff56724193dce94f8233798"
+    },
+    "inputs/plan.json": {
+      "bytes": 14640,
+      "sha256": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179"
+    }
+  },
+  "classification": "syntheticfixture/no credentials",
+  "createdUTC": "2026-10-16T03:47:21.137034+00:00",
+  "finiteArchiveFiles": [
+    "README.md",
+    "archive-manifest.json",
+    "attempt-001/after-pins.json",
+    "attempt-001/before-pins.json",
+    "attempt-001/capability.log",
+    "attempt-001/capture-manifest.json",
+    "attempt-001/command.json",
+    "attempt-001/command.txt",
+    "attempt-001/receipt.json",
+    "attempt-001/stderr.log",
+    "attempt-001/stdout.log",
+    "inputs/argv.json",
+    "inputs/operator-v2.py",
+    "inputs/operator.py",
+    "inputs/plan.json"
+  ],
+  "fs19Copied": false,
+  "immutableSourceAfter": {
+    "argv.json": {
+      "bytes": 4812,
+      "sha256": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b"
+    },
+    "attempt-001/after-pins.json": {
+      "bytes": 2839,
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f"
+    },
+    "attempt-001/before-pins.json": {
+      "bytes": 2839,
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f"
+    },
+    "attempt-001/capability.log": {
+      "bytes": 1584,
+      "sha256": "7e4c5733791b66058d3858b4ad4f2166d68088520b5d7e490fad446c3a6b3b91"
+    },
+    "attempt-001/capture-manifest.json": {
+      "bytes": 1001,
+      "sha256": "5b07d12e561e1b52f8b3ff9f03ecac3c67395cfa4526e95d4918bdf640e246ca"
+    },
+    "attempt-001/command.json": {
+      "bytes": 448,
+      "sha256": "d9ec6ad137314f6827447d98331db779df4ec86d87e535ec576a6f5a35a366a8"
+    },
+    "attempt-001/command.txt": {
+      "bytes": 385,
+      "sha256": "6f934dc24a2ee7511e81ba3db34590f57b15fed2baba15b20ba3af12877d8f8e"
+    },
+    "attempt-001/receipt.json": {
+      "bytes": 1767,
+      "sha256": "75ee30dc059ebf6ec10dc203e393431dddc6db2d41969bf7a83bb48bab3219f0"
+    },
+    "attempt-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-001/stdout.log": {
+      "bytes": 132,
+      "sha256": "61caf9bdf4c48b787f9448ae097323cd599afefa50aae89268297ce4031029d9"
+    },
+    "operator-v2.py": {
+      "bytes": 3480,
+      "sha256": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2"
+    },
+    "operator.py": {
+      "bytes": 2702,
+      "sha256": "f6ea233a888e4b2d4630919fb40a0cf3f9724f25fff56724193dce94f8233798"
+    },
+    "plan.json": {
+      "bytes": 14640,
+      "sha256": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179"
+    }
+  },
+  "immutableSourceBefore": {
+    "argv.json": {
+      "bytes": 4812,
+      "sha256": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b"
+    },
+    "attempt-001/after-pins.json": {
+      "bytes": 2839,
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f"
+    },
+    "attempt-001/before-pins.json": {
+      "bytes": 2839,
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f"
+    },
+    "attempt-001/capability.log": {
+      "bytes": 1584,
+      "sha256": "7e4c5733791b66058d3858b4ad4f2166d68088520b5d7e490fad446c3a6b3b91"
+    },
+    "attempt-001/capture-manifest.json": {
+      "bytes": 1001,
+      "sha256": "5b07d12e561e1b52f8b3ff9f03ecac3c67395cfa4526e95d4918bdf640e246ca"
+    },
+    "attempt-001/command.json": {
+      "bytes": 448,
+      "sha256": "d9ec6ad137314f6827447d98331db779df4ec86d87e535ec576a6f5a35a366a8"
+    },
+    "attempt-001/command.txt": {
+      "bytes": 385,
+      "sha256": "6f934dc24a2ee7511e81ba3db34590f57b15fed2baba15b20ba3af12877d8f8e"
+    },
+    "attempt-001/receipt.json": {
+      "bytes": 1767,
+      "sha256": "75ee30dc059ebf6ec10dc203e393431dddc6db2d41969bf7a83bb48bab3219f0"
+    },
+    "attempt-001/stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "attempt-001/stdout.log": {
+      "bytes": 132,
+      "sha256": "61caf9bdf4c48b787f9448ae097323cd599afefa50aae89268297ce4031029d9"
+    },
+    "operator-v2.py": {
+      "bytes": 3480,
+      "sha256": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2"
+    },
+    "operator.py": {
+      "bytes": 2702,
+      "sha256": "f6ea233a888e4b2d4630919fb40a0cf3f9724f25fff56724193dce94f8233798"
+    },
+    "plan.json": {
+      "bytes": 14640,
+      "sha256": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179"
+    }
+  },
+  "immutableSourceParity": true,
+  "kind": "finite historical cap1 env-only byte-exact evidence archive",
+  "leaseId": 288,
+  "mapping": [
+    {
+      "archiveFile": "inputs/plan.json",
+      "bytes": 14640,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "6bf024078ff06918ef73c32c06417c9ac5547d181afb06338e3b3f3d958b1179",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/plan.json"
+    },
+    {
+      "archiveFile": "inputs/argv.json",
+      "bytes": 4812,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "d658363778899db5304c679631122b4116824d82f75f1007ef6ffad6caf99c4b",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/argv.json"
+    },
+    {
+      "archiveFile": "inputs/operator.py",
+      "bytes": 2702,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical operator v1 HOLD; never approved/executed",
+      "sha256": "f6ea233a888e4b2d4630919fb40a0cf3f9724f25fff56724193dce94f8233798",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/operator.py"
+    },
+    {
+      "archiveFile": "inputs/operator-v2.py",
+      "bytes": 3480,
+      "classification": "syntheticfixture/no credentials",
+      "role": "approved operator v2 for historical one env-only attempt",
+      "sha256": "3c72063b9aeab02c03d08f0a1b67d4f4caea62eeee358be4c0db1d88d670f8a2",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/operator-v2.py"
+    },
+    {
+      "archiveFile": "attempt-001/capture-manifest.json",
+      "bytes": 1001,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "5b07d12e561e1b52f8b3ff9f03ecac3c67395cfa4526e95d4918bdf640e246ca",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/capture-manifest.json"
+    },
+    {
+      "archiveFile": "attempt-001/after-pins.json",
+      "bytes": 2839,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/after-pins.json"
+    },
+    {
+      "archiveFile": "attempt-001/before-pins.json",
+      "bytes": 2839,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "1c306567a7a7b83e3b55eea173c5bd588cb6dbb7a6232db6fd9aa387d3920e3f",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/before-pins.json"
+    },
+    {
+      "archiveFile": "attempt-001/capability.log",
+      "bytes": 1584,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "7e4c5733791b66058d3858b4ad4f2166d68088520b5d7e490fad446c3a6b3b91",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/capability.log"
+    },
+    {
+      "archiveFile": "attempt-001/command.json",
+      "bytes": 448,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "d9ec6ad137314f6827447d98331db779df4ec86d87e535ec576a6f5a35a366a8",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/command.json"
+    },
+    {
+      "archiveFile": "attempt-001/command.txt",
+      "bytes": 385,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "6f934dc24a2ee7511e81ba3db34590f57b15fed2baba15b20ba3af12877d8f8e",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/command.txt"
+    },
+    {
+      "archiveFile": "attempt-001/receipt.json",
+      "bytes": 1767,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "75ee30dc059ebf6ec10dc203e393431dddc6db2d41969bf7a83bb48bab3219f0",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/receipt.json"
+    },
+    {
+      "archiveFile": "attempt-001/stderr.log",
+      "bytes": 0,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/stderr.log"
+    },
+    {
+      "archiveFile": "attempt-001/stdout.log",
+      "bytes": 132,
+      "classification": "syntheticfixture/no credentials",
+      "role": "historical explicitly authorized cap1 input/capture",
+      "sha256": "61caf9bdf4c48b787f9448ae097323cd599afefa50aae89268297ce4031029d9",
+      "source": "/tmp/bbup-capability-plan-4w6soqu2/attempt-001/stdout.log"
+    }
+  ],
+  "newMetadataFiles": [
+    "README.md",
+    "archive-manifest.json"
+  ],
+  "noNewRuntimeOrAcceptanceClaims": true,
+  "rawFileCount": 13,
+  "runtimeExecutedForArchive": false,
+  "schema": 1,
+  "selfHash": "reported externally in handoff receipt; self excluded from hash map to avoid self-reference"
+}

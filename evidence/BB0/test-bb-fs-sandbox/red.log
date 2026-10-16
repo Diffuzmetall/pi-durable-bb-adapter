@@ -1,0 +1,57 @@
+COMMAND /usr/bin/python3 -I -B test_launcher.py (fresh private HOME/cwd)
+test_bad_json_and_unknown_fields (__main__.Plans.test_bad_json_and_unknown_fields) ... FAIL
+test_refuse_bad_ids_and_launch (__main__.Plans.test_refuse_bad_ids_and_launch) ... FAIL
+test_refuse_tampering (__main__.Plans.test_refuse_tampering) ... FAIL
+test_valid_plan_and_determinism (__main__.Plans.test_valid_plan_and_determinism) ... FAIL
+
+======================================================================
+FAIL: test_bad_json_and_unknown_fields (__main__.Plans.test_bad_json_and_unknown_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 80, in test_bad_json_and_unknown_fields
+    p = self.plan()
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 29, in plan
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : /usr/bin/python3: can't open file '/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/launcher.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_refuse_bad_ids_and_launch (__main__.Plans.test_refuse_bad_ids_and_launch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 76, in test_refuse_bad_ids_and_launch
+    self.assertIn('runtime GO unavailable', result.stderr)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'runtime GO unavailable' not found in "/usr/bin/python3: can't open file '/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/launcher.py': [Errno 2] No such file or directory\n"
+
+======================================================================
+FAIL: test_refuse_tampering (__main__.Plans.test_refuse_tampering)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 49, in test_refuse_tampering
+    p = self.plan()
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 29, in plan
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : /usr/bin/python3: can't open file '/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/launcher.py': [Errno 2] No such file or directory
+
+
+======================================================================
+FAIL: test_valid_plan_and_determinism (__main__.Plans.test_valid_plan_and_determinism)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 33, in test_valid_plan_and_determinism
+    p = self.plan()
+  File "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/test_launcher.py", line 29, in plan
+    self.assertEqual(result.returncode, 0, result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : /usr/bin/python3: can't open file '/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/test-bb-fs-sandbox/launcher.py': [Errno 2] No such file or directory
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.232s
+
+FAILED (failures=4)
+
+EXIT=1
