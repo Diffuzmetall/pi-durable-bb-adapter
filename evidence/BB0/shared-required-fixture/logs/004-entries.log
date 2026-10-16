@@ -1,0 +1,384 @@
+✔ effect probes are live and never perform their forbidden operation (6.261625ms)
+✖ valid private declaration, real socket absent (186.538036ms)
+✖ valid declaration, socket metadata injected only, runtime still unavailable (91.279359ms)
+✖ missing admission (74.794747ms)
+✖ missing binding (77.381662ms)
+✖ malformed JSON (76.364996ms)
+✖ stale declaration (69.413423ms)
+✖ missing S declaration (68.102877ms)
+✖ foreign mode (67.698094ms)
+✖ inconsistent K (67.845285ms)
+✖ unsafe key (66.984166ms)
+✖ inconsistent C (66.296335ms)
+✖ inconsistent S (66.247729ms)
+✖ binding S mismatch (72.053765ms)
+✖ admission symlink (71.31489ms)
+✖ binding symlink (66.573329ms)
+✖ wrong admission mode (67.313304ms)
+✖ wrong B mode (63.618967ms)
+✖ wrong C mode (64.247716ms)
+✖ wrong binding mode (64.563429ms)
+✖ foreign UID metadata injected on admission (63.57322ms)
+✖ foreign UID socket metadata injected (62.46414ms)
+✖ wrong socket mode metadata injected (64.771142ms)
+✖ socket symlink (65.122537ms)
+✖ socket regular file, never accepted as socket (63.60776ms)
+✖ pure private admission succeeds; actual request fields reject foreign thread/key/cwd/env (57.68464ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 1
+ℹ fail 25
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1973.760545
+
+✖ failing tests:
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ valid private declaration, real socket absent (186.538036ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ valid declaration, socket metadata injected only, runtime still unavailable (91.279359ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ missing admission (74.794747ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ missing binding (77.381662ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ malformed JSON (76.364996ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ stale declaration (69.413423ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ missing S declaration (68.102877ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ foreign mode (67.698094ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ inconsistent K (67.845285ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ unsafe key (66.984166ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ inconsistent C (66.296335ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ inconsistent S (66.247729ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ binding S mismatch (72.053765ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ admission symlink (71.31489ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ binding symlink (66.573329ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ wrong admission mode (67.313304ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ wrong B mode (63.618967ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ wrong C mode (64.247716ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ wrong binding mode (64.563429ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ foreign UID metadata injected on admission (63.57322ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ foreign UID socket metadata injected (62.46414ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ wrong socket mode metadata injected (64.771142ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ socket symlink (65.122537ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:58:27
+✖ socket regular file, never accepted as socket (63.60776ms)
+  Error: UNADMITTED_DEPENDENCY:zod
+      at resolve (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/effects.mjs:66:141)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:747:16)
+      at #resolve (node:internal/modules/esm/loader:683:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:253:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:232:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:572:11)
+
+test at evidence/BB0/shared-required-fixture/tests/entries.test.mjs:115:1
+✖ pure private admission succeeds; actual request fields reject foreign thread/key/cwd/env (57.68464ms)
+  Error: BB0_FIXTURE_REFUSED:PATH_MODE
+      at deny (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/6d1/variant/src/fixture-admission.mjs:10:17)
+      at metadata (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/6d1/variant/src/fixture-admission.mjs:34:38)
+      at Module.admitPureFixture (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/6d1/variant/src/fixture-admission.mjs:56:3)
+      at TestContext.<anonymous> (file:///home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/tests/entries.test.mjs:121:26)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'PATH_MODE'
+  }

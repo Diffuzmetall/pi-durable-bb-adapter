@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "status": "needs_checks",
+  "generatedAt": "2026-10-16T01:28:24.671Z",
+  "actor": "IvoryBridge",
+  "task": "bbup-0-baseline",
+  "continuationOwner": "same IvoryBridge Lead session",
+  "candidate": {
+    "manifest": "evidence/BB0/shared-required-fixture/source-test-manifest.json",
+    "sha256": "6edee765d93ebb13117299b276a667b96c65455a0095a73fc4a9801259976ab9"
+  },
+  "implemented": "Versioned eight-file source overlay plus one stdlib admission module; all operational entrypoints refuse before local Pi imports/resources/session/runner construction.",
+  "selfTests": {
+    "command": "bash evidence/BB0/shared-required-fixture/run-units.sh 025-final-units units",
+    "tests": 31,
+    "pass": 31,
+    "fail": 0,
+    "skip": 0,
+    "exit": 0,
+    "effects": "zero in all 29 logged refusal/identity case groups; probes verified live",
+    "processStoreAbsence": "own process children unchanged and zero SQLite/lock files in 28 primary refusal fixtures; separate identity case also has zero effect counters"
+  },
+  "mutationChecks": {
+    "finalTags": [
+      "018-mutant-always-deny",
+      "019-mutant-import-final",
+      "020-mutant-bridge-final",
+      "021-mutant-catalog-final",
+      "022-mutant-registry-final",
+      "023-mutant-diagnostics-final",
+      "024-mutant-runner-final"
+    ],
+    "expectedExit": 1,
+    "killed": 7,
+    "total": 7,
+    "retainedFindings": "009/010 survived redundant downstream gates; tightened origin assertions; 015/016 and final 020/021 reject those mutations."
+  },
+  "parity": {
+    "sourceFiles": 727,
+    "frozenArtifactHashes": 20,
+    "sourceMatchesInventory": true,
+    "beforeAfterEqual": true,
+    "rawPrivateCacheMetadataRecords": 55,
+    "rawByteScan": "NOT_REACHED: private raw configuration/auth/store content deliberately not read; public raw result/samples byte hashed"
+  },
+  "identity": "Legacy providerThreadId/K exist, not trusted identity. NEW expectedThreadId is synthetic-fixture-only. params.threadId equality plus method start/resume do not prove fresh-root/reopen/second-thread general binding. Real trusted provisioning/persistence contract NOT_REACHED.",
+  "nativeSocket": "NOT_REACHED: no socket creation or connection; labelled socket/foreign-UID metadata fault injection only",
+  "runtimeOwner": "NOT_REACHED: no owner/Harness/SQLite allocation; no existing owner contacted/cleaned/aborted",
+  "fullBuild": "NOT_REACHED; later supported build route remains npm run build, but no build/CLI/install was run and Stage3 needs separate GO",
+  "catalog": "UNAVAILABLE; no catalog forwarder/healthy return implemented",
+  "independentReview": "PENDING parent-arranged exact-source review; inspect guard/import ordering, request-field limitations, readonly baseline pins, mutation evidence and syscall checks",
+  "behavioralQA": "PENDING distinct parent-arranged Node24 pure-unit replay on exact frozen source manifest; no runtime/build/namespace/install authority implied",
+  "gatesNotAuthorized": [
+    "Stage2 native socket/catalog/namespace",
+    "Stage3 full supported build/closure",
+    "BB registration/installation/activation",
+    "positive runtime/core identity contract"
+  ],
+  "skillsApplied": {
+    "BoundaryDiscipline": "real bridge/discovery/constructor/CLI boundaries, shared pure declaration parser",
+    "ProveItWorks": "actual materialized entry calls, live effect probes, counterfactual mutations, exact hashes",
+    "SequenceVerifiableUnits": "retained RED, setup failures, unit GREEN, mutation blind spot correction, fresh final units; no advance to Stage2",
+    "ponytail": "stdlib UUID/fs/path and existing protocol source; no dependencies added, new builder, replacement provider or shims",
+    "AgentEngineering": "IncrementalImplementation, TestDrivenDevelopment, manual CodeReviewAndQuality self-review; not independent checking"
+  },
+  "receipts": [
+    {
+      "path": "logs/001-red.receipt",
+      "start": "2026-10-16T00:52:56.455274314Z",
+      "end": "2026-10-16T00:52:56.603459766Z",
+      "exit": "1"
+    },
+    {
+      "path": "logs/002-parity-before.receipt",
+      "start": "2026-10-16T01:04:48.008054850Z",
+      "end": "2026-10-16T01:04:48.210628286Z",
+      "exit": "0"
+    },
+    {
+      "path": "logs/003-declaration-green.receipt",
+      "start": "2026-10-16T01:04:48.215347475Z",
+      "end": "2026-10-16T01:04:48.380985278Z",
+      "exit": "0"
+    },
+    {
+      "path": "logs/004-entries.receipt",
+      "start": "2026-10-16T01:04:48.386722793Z",
+      "end": "2026-10-16T01:04:50.438926420Z",
+      "exit": "1"
+    },
+    {
+      "path": "logs/005-entries.receipt",
+      "start": "2026-10-16T01:07:58.379266301Z",
+      "end": "2026-10-16T01:08:00.770065581Z",
+      "exit": "1"
+    },
+    {
+      "path": "logs/006-units.receipt",
+      "start": "2026-10-16T01:09:58.622155969Z",
+      "end": "2026-10-16T01:10:01.577317641Z",
+      "exit": "0"
+    },
+    {
+      "path": "logs/007-control.receipt",
+      "start": "2026-10-16T01:14:30.153831606Z",
+      "end": "2026-10-16T01:14:30.671761805Z",
+      "exit": "1",
+      "mode": "baseline",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_CONTROL=baseline /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/008-mutant-import.receipt",
+      "start": "2026-10-16T01:14:30.682881846Z",
+      "end": "2026-10-16T01:14:31.205736484Z",
+      "exit": "1",
+      "mode": "runner-eager-import",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=runner-eager-import /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/009-mutant-bridge.receipt",
+      "start": "2026-10-16T01:14:31.218691353Z",
+      "end": "2026-10-16T01:14:31.771924887Z",
+      "exit": "0",
+      "mode": "bridge-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=bridge-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/010-mutant-catalog.receipt",
+      "start": "2026-10-16T01:14:31.782528296Z",
+      "end": "2026-10-16T01:14:32.342398926Z",
+      "exit": "0",
+      "mode": "catalog-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=catalog-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/011-mutant-registry.receipt",
+      "start": "2026-10-16T01:14:32.353902640Z",
+      "end": "2026-10-16T01:14:32.832532802Z",
+      "exit": "1",
+      "mode": "registry-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=registry-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/012-mutant-diagnostics.receipt",
+      "start": "2026-10-16T01:14:32.843488172Z",
+      "end": "2026-10-16T01:14:33.404268651Z",
+      "exit": "1",
+      "mode": "diagnostics-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=diagnostics-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/013-mutant-runner.receipt",
+      "start": "2026-10-16T01:14:33.415865226Z",
+      "end": "2026-10-16T01:14:33.938828084Z",
+      "exit": "1",
+      "mode": "runner-constructor-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=runner-constructor-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/014-final-units.receipt",
+      "start": "2026-10-16T01:14:33.950300792Z",
+      "end": "2026-10-16T01:14:37.163840335Z",
+      "exit": "0",
+      "mode": "units",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test evidence/BB0/shared-required-fixture/tests/declaration.test.mjs evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/015-mutant-bridge-v2.receipt",
+      "start": "2026-10-16T01:20:01.152507649Z",
+      "end": "2026-10-16T01:20:01.666631712Z",
+      "exit": "1",
+      "mode": "bridge-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=bridge-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/016-mutant-catalog-v2.receipt",
+      "start": "2026-10-16T01:20:01.681808783Z",
+      "end": "2026-10-16T01:20:02.297024305Z",
+      "exit": "1",
+      "mode": "catalog-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=catalog-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/017-final-units.receipt",
+      "start": "2026-10-16T01:20:02.312584300Z",
+      "end": "2026-10-16T01:20:05.686687414Z",
+      "exit": "0",
+      "mode": "units",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test evidence/BB0/shared-required-fixture/tests/declaration.test.mjs evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/018-mutant-always-deny.receipt",
+      "start": "2026-10-16T01:23:10.491080983Z",
+      "end": "2026-10-16T01:23:10.974485879Z",
+      "exit": "1",
+      "mode": "pure-admission-always-deny",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=pure-admission-always-deny /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/019-mutant-import-final.receipt",
+      "start": "2026-10-16T01:23:10.987742322Z",
+      "end": "2026-10-16T01:23:11.548355523Z",
+      "exit": "1",
+      "mode": "runner-eager-import",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=runner-eager-import /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/020-mutant-bridge-final.receipt",
+      "start": "2026-10-16T01:23:11.562825508Z",
+      "end": "2026-10-16T01:23:12.049014898Z",
+      "exit": "1",
+      "mode": "bridge-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=bridge-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/021-mutant-catalog-final.receipt",
+      "start": "2026-10-16T01:23:12.059432282Z",
+      "end": "2026-10-16T01:23:12.550912337Z",
+      "exit": "1",
+      "mode": "catalog-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=catalog-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/022-mutant-registry-final.receipt",
+      "start": "2026-10-16T01:23:12.562111223Z",
+      "end": "2026-10-16T01:23:13.065682566Z",
+      "exit": "1",
+      "mode": "registry-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=registry-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/023-mutant-diagnostics-final.receipt",
+      "start": "2026-10-16T01:23:13.079085944Z",
+      "end": "2026-10-16T01:23:13.659464897Z",
+      "exit": "1",
+      "mode": "diagnostics-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=diagnostics-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/024-mutant-runner-final.receipt",
+      "start": "2026-10-16T01:23:13.670127585Z",
+      "end": "2026-10-16T01:23:14.201151822Z",
+      "exit": "1",
+      "mode": "runner-constructor-gate-removed",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp STAGE1_MUTATION=runner-constructor-gate-removed /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test --test-name-pattern=\\^valid\\ declaration\\,\\ socket\\ metadata\\ injected\\ only evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/025-final-units.receipt",
+      "start": "2026-10-16T01:23:14.214367856Z",
+      "end": "2026-10-16T01:23:17.610799774Z",
+      "exit": "0",
+      "mode": "units",
+      "command": "env -i PATH=/usr/bin:/bin HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/home PI_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-agent PI_CODING_AGENT_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/pi-coding-agent XDG_CONFIG_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-config XDG_CACHE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-cache XDG_DATA_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-data XDG_STATE_HOME=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-state XDG_RUNTIME_DIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/xdg-runtime TMPDIR=/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/env/tmp /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --test evidence/BB0/shared-required-fixture/tests/declaration.test.mjs evidence/BB0/shared-required-fixture/tests/entries.test.mjs"
+    },
+    {
+      "path": "logs/026-parity-after.receipt",
+      "start": "2026-10-16T01:23:17.617296537Z",
+      "end": "2026-10-16T01:23:17.834888847Z",
+      "exit": "0"
+    }
+  ],
+  "leaseIds": {
+    "source": [
+      228,
+      229
+    ],
+    "lightUnitsCPU": 232
+  },
+  "forbiddenActions": {
+    "git": false,
+    "beadsWrites": false,
+    "acceptedSourceWrites": false,
+    "testBBWrites": false,
+    "bbCLIAPI": false,
+    "piConfigurationAuthReads": false,
+    "fullBuild": false,
+    "namespaceBinds": false,
+    "socketConnect": false,
+    "modelGeneration": false,
+    "nestedDelegation": false,
+    "cleanupDeletion": false
+  }
+}

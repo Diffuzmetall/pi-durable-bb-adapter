@@ -1,0 +1,37 @@
+{
+  "pure-admission-always-deny": {
+    "path": "src/fixture-admission.mjs",
+    "before": "export function admitPureFixture() {",
+    "after": "export function admitPureFixture() { deny('ALWAYS_DENY_MUTATION');"
+  },
+  "runner-eager-import": {
+    "path": "src/runner/index.ts",
+    "before": "const { setupRunnerModels } = await import(\"./model-setup.ts\");",
+    "after": "import { setupRunnerModels } from \"./model-setup.ts\";"
+  },
+  "bridge-gate-removed": {
+    "path": "src/host/bridge.ts",
+    "before": "\t\t\trefuseFixtureEntry(method, params, \"bridge.request\");",
+    "after": ""
+  },
+  "catalog-gate-removed": {
+    "path": "src/host/catalog.ts",
+    "before": "\t\trefuseFixtureEntry(\"model/list\", { cwd: this.cwd }, \"catalog.start\");",
+    "after": ""
+  },
+  "registry-gate-removed": {
+    "path": "src/host/session-registry.ts",
+    "before": "\t\trefuseFixtureEntry(\"registry.createOrGet\", { ...params, threadId, providerThreadId });",
+    "after": ""
+  },
+  "diagnostics-gate-removed": {
+    "path": "server.ts",
+    "before": "      refuseFixtureEntry(\"diagnostics_get\");",
+    "after": ""
+  },
+  "runner-constructor-gate-removed": {
+    "path": "src/host/runner-process.ts",
+    "before": "\t\trefuseFixtureEntry(\"runner.construct\", { cwd: options.cwd, shellEnvOverrides: options.env });",
+    "after": ""
+  }
+}

@@ -1,0 +1,889 @@
+{
+  "schemaVersion": 1,
+  "stage": "Stage1 refusal component ONLY",
+  "task": "bbup-0-baseline",
+  "actor": "IvoryBridge",
+  "node": {
+    "path": "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+    "version": "v24.19.0"
+  },
+  "baselineManifest": {
+    "path": "candidate-manifest.json",
+    "sha256": "cf4e31a9e48a2286b507f59c7a53b32ce4947e16bc6275c482686873f7a59645"
+  },
+  "sourceBoundary": "Only evidence/BB0/shared-required-fixture/** and lead-private/.cache/shared-required-stage1/**; no Git/deps/rawcache additions",
+  "sources": [
+    {
+      "path": "README.md",
+      "sha256": "584e4e0c85fc825b7af5f630d66d2b0d9d761f058da996699aa200d4c19fad82",
+      "bytes": 10027
+    },
+    {
+      "path": "overlay-v1.json",
+      "sha256": "f11f34a897015113bd4e64e5cacea2da3fcf9078161a80bc13e6ce3d13276238",
+      "bytes": 6689
+    },
+    {
+      "path": "overlay/fixture-admission.mjs",
+      "sha256": "abea22b8f189c841dfda81a9bb27c0f136b3a73072646a79b8e7f1638830d141",
+      "bytes": 5528
+    },
+    {
+      "path": "materialize.mjs",
+      "sha256": "35bf703739a066f48eba23e180716f07de4562b13b0412d66b523e6a733361f2",
+      "bytes": 4388
+    },
+    {
+      "path": "parity.mjs",
+      "sha256": "0a3e35369286eb8552b00c120eab1d4d00fd6dd8811b401cd319f1719d8e062a",
+      "bytes": 2862
+    },
+    {
+      "path": "checkpoint.mjs",
+      "sha256": "ba7934df0e0e27aa7c515422059b0786761dfcf3158e3c8e9e3b814f72c7fdef",
+      "bytes": 7696
+    },
+    {
+      "path": "run-units.sh",
+      "sha256": "97c861605a3d3efbf396028559124550eb2c1790b297eeaadcbe72322b43973a",
+      "bytes": 1677
+    },
+    {
+      "path": "tests/declaration.test.mjs",
+      "sha256": "aeffd9ab1c544e4b5c52ca840b38bb5ab0189342ee919f2bc8f8100d4acbac38",
+      "bytes": 1063
+    },
+    {
+      "path": "tests/entries.test.mjs",
+      "sha256": "861f3b89e799e92f21dab826bd3e9beda70a993b705b6ff7a3ee5f8581081df8",
+      "bytes": 13054
+    },
+    {
+      "path": "tests/effects.mjs",
+      "sha256": "564910c9d73928f6ba675cab2fd4559432a50bb640ecfe3a6c84414015861700",
+      "bytes": 5785
+    },
+    {
+      "path": "tests/mutations.json",
+      "sha256": "fac449f2223f0577ef401af18058b815f7ee3ed73db12fda7177b5802b8a1a49",
+      "bytes": 1345
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "logs/001-red.log",
+      "sha256": "e6432a1c969050764051cab46259ee9e3d3ba64274c2ecf01eb7b3dbff5bfe8e",
+      "bytes": 1650
+    },
+    {
+      "path": "logs/001-red.receipt",
+      "sha256": "ee5d68943f05b87c1cff6008fe588decaef4dd371a5c11ed5a5ac8c03452cb8e",
+      "bytes": 79
+    },
+    {
+      "path": "logs/002-parity-before.log",
+      "sha256": "bfdb0b2695c361de437143fb5254768a3cdc30bbffe507189a7db1c70c179311",
+      "bytes": 99
+    },
+    {
+      "path": "logs/002-parity-before.receipt",
+      "sha256": "7322bf25372467d184228d3948df0e830b7b3de83042da3d2a0465316c720b9c",
+      "bytes": 79
+    },
+    {
+      "path": "logs/003-declaration-green.log",
+      "sha256": "8fa6df6f3fc67c707a3f6fbe3d31c992eef594902a451bb271da27be51d84a66",
+      "bytes": 193
+    },
+    {
+      "path": "logs/003-declaration-green.receipt",
+      "sha256": "fbdcb47cc15c9f0a67f8893d56d4bd206cf75363a30e55eafb340788cdfd1b84",
+      "bytes": 79
+    },
+    {
+      "path": "logs/004-entries.log",
+      "sha256": "9dde4608632d7b5ad6fc1b131f6ca7af4c08ced15074857220ee66818cfcee3a",
+      "bytes": 25176
+    },
+    {
+      "path": "logs/004-entries.receipt",
+      "sha256": "9eb496f2b728e9388f3e9ae92785343a73b74fa062dedd475662aa06ba6b26e2",
+      "bytes": 79
+    },
+    {
+      "path": "logs/005-entries.log",
+      "sha256": "4f5c59ce3ded04a0a56a3d1134dd5fd7bd88258414b2039e77ba2042024a4604",
+      "bytes": 34515
+    },
+    {
+      "path": "logs/005-entries.receipt",
+      "sha256": "59788eec47a594d92a228d3af26695d9826e7b65f4a8c1058acbb54b6df96c72",
+      "bytes": 79
+    },
+    {
+      "path": "logs/006-units.log",
+      "sha256": "23039d6b5009cfafe3d221e30317ffa5dbd80e15056089ca9d57cb1164104703",
+      "bytes": 31806
+    },
+    {
+      "path": "logs/006-units.receipt",
+      "sha256": "609a61ba37df24b3c4309bf126278f830c10cfea0c57e1b61cb344d8df01822c",
+      "bytes": 79
+    },
+    {
+      "path": "logs/007-control.log",
+      "sha256": "62c419fc1684993135433f8ec49b695845f2e0a761c9da3b1402fad753b7bc45",
+      "bytes": 17782
+    },
+    {
+      "path": "logs/007-control.receipt",
+      "sha256": "156de75ceedd9225cd060ede7de0fb65bccc566e3391eb2c9836a1878ef37be6",
+      "bytes": 1489
+    },
+    {
+      "path": "logs/008-mutant-import.log",
+      "sha256": "9f3cfb08be82f1394a5bc3e21c9d2739ef6c568f9137bf0db52cad00f751d705",
+      "bytes": 18333
+    },
+    {
+      "path": "logs/008-mutant-import.receipt",
+      "sha256": "9c1ee95ece22a44a5d92ca45cfb61f68115b2bae077670b6b3d983ec38283025",
+      "bytes": 1512
+    },
+    {
+      "path": "logs/009-mutant-bridge.log",
+      "sha256": "ab481b545dcaef3ae046ae5819cd10089d8ff8fc4fa28d3f58d5af6ea8c0b6cd",
+      "bytes": 17646
+    },
+    {
+      "path": "logs/009-mutant-bridge.receipt",
+      "sha256": "fd3355b43b63e321fe259a5782bf3f95151de243643fefbf8b3ddac3e75e3ce2",
+      "bytes": 1512
+    },
+    {
+      "path": "logs/010-mutant-catalog.log",
+      "sha256": "5905856b6753fa9094f3a8e4f05b9909241a427ac391b564cfb691f9f5418553",
+      "bytes": 17645
+    },
+    {
+      "path": "logs/010-mutant-catalog.receipt",
+      "sha256": "aa73e3590eea573cb05d95441832f6fe5833022e6e3e2bb6b1b4b674a3809568",
+      "bytes": 1514
+    },
+    {
+      "path": "logs/011-mutant-registry.log",
+      "sha256": "ea9767ed4aeb0b3e38630b76965eda6c95db215a45efc63b9b9a828c8c7f7688",
+      "bytes": 17944
+    },
+    {
+      "path": "logs/011-mutant-registry.receipt",
+      "sha256": "2bcc06ed86e5433d83647ffcd646b196ceaf96b9b529d9b6e8ef1d3e445d2967",
+      "bytes": 1516
+    },
+    {
+      "path": "logs/012-mutant-diagnostics.log",
+      "sha256": "ed7d5abd0c56c4ee0b295b5426daefadd9a5668e42d70b4b0ce8f89c71800911",
+      "bytes": 17963
+    },
+    {
+      "path": "logs/012-mutant-diagnostics.receipt",
+      "sha256": "b69d1e2705e59e2a149f6d64c2a1a8190002d728a2351192af3398388304dd96",
+      "bytes": 1522
+    },
+    {
+      "path": "logs/013-mutant-runner.log",
+      "sha256": "a7dedb0db4f3a912615ad835876f498d3c42643e06693d56c3109dc577817307",
+      "bytes": 19453
+    },
+    {
+      "path": "logs/013-mutant-runner.receipt",
+      "sha256": "4bbd3603914fe07e637406b25c4e5f20a144d5e85332fd36cddfe3998f336d9e",
+      "bytes": 1536
+    },
+    {
+      "path": "logs/014-final-units.log",
+      "sha256": "a8efe3ea9172c16380d7362964494f757f3d009df120a39b5f855837a4d8d3c5",
+      "bytes": 34130
+    },
+    {
+      "path": "logs/014-final-units.receipt",
+      "sha256": "4552a45c2f51db8d42bb97ee68e441029f1f4ec341ead340e30ee36f2905855d",
+      "bytes": 1449
+    },
+    {
+      "path": "logs/015-mutant-bridge-v2.log",
+      "sha256": "9e9183e8ab14b9a44390fb7ad3042bae8f65d2cc82ab9c1e5f11436fd1cec7f3",
+      "bytes": 17764
+    },
+    {
+      "path": "logs/015-mutant-bridge-v2.receipt",
+      "sha256": "1c8ac861c657d8a6b87a4227bcd8e0c98537f806a675d2bb579f0bdba1728c86",
+      "bytes": 1512
+    },
+    {
+      "path": "logs/016-mutant-catalog-v2.log",
+      "sha256": "299c8dab58ddd83960ee4bf04bda6e75c6fd48fb1d5da30e6b376de15aa2c984",
+      "bytes": 17993
+    },
+    {
+      "path": "logs/016-mutant-catalog-v2.receipt",
+      "sha256": "f11861b05164b1946755a5829f9f59225b7ba635fb2df2ebc8ab61e9d4f663ac",
+      "bytes": 1514
+    },
+    {
+      "path": "logs/017-final-units.log",
+      "sha256": "012a7313724013d2f4f5c8f025887a187d993b4c9eb189d48fe075cddcc67079",
+      "bytes": 34130
+    },
+    {
+      "path": "logs/017-final-units.receipt",
+      "sha256": "7f1b1ee56a712bd67af5d29471bf62e698bcd591536b804f9430b97faf57b57d",
+      "bytes": 1449
+    },
+    {
+      "path": "logs/018-mutant-always-deny.log",
+      "sha256": "0e111c756e5e05b3df8fc0b0828ee04e239b2bc81512ce3ece7fad53b9196e62",
+      "bytes": 17816
+    },
+    {
+      "path": "logs/018-mutant-always-deny.receipt",
+      "sha256": "fa70a57af499ad63a9abc24425ed53b2996d674df7b1c2c4a26e7eb7278cd096",
+      "bytes": 1526
+    },
+    {
+      "path": "logs/019-mutant-import-final.log",
+      "sha256": "04957c1b682f511012a4bc69995a5c6c28aa90a2ec5951c35e59937e1ce8c87c",
+      "bytes": 18337
+    },
+    {
+      "path": "logs/019-mutant-import-final.receipt",
+      "sha256": "7cccca65f5a8e731dc41326210fa90a457191b9bf4a6b66a339983c14fb49cda",
+      "bytes": 1512
+    },
+    {
+      "path": "logs/020-mutant-bridge-final.log",
+      "sha256": "354e797578fbbf7ec689573aad5cd43025dcda83a80c6f9c90527d100b44a4d2",
+      "bytes": 17764
+    },
+    {
+      "path": "logs/020-mutant-bridge-final.receipt",
+      "sha256": "73310ef775e97d649cd70199be4a2c7234c3cb7f7370db8fa1652e4a1dfcc4b5",
+      "bytes": 1512
+    },
+    {
+      "path": "logs/021-mutant-catalog-final.log",
+      "sha256": "944f8c07dd821622d18d567d0342c7b9addd183256fb8467fad49bb12899ebc9",
+      "bytes": 17993
+    },
+    {
+      "path": "logs/021-mutant-catalog-final.receipt",
+      "sha256": "ccd52c02492c9c5a82d4d3a9f390bfe86bb54e202d6502b958dd5b75bcbf244f",
+      "bytes": 1514
+    },
+    {
+      "path": "logs/022-mutant-registry-final.log",
+      "sha256": "c554d17fc8bac1c0a86999bbbdfcc63af4454c694d28643980ea75501fa8c65c",
+      "bytes": 17941
+    },
+    {
+      "path": "logs/022-mutant-registry-final.receipt",
+      "sha256": "249e13e1c5ce6b246a9eb656c5911ed9fecc3f2321ef04772de464720e5a0a3b",
+      "bytes": 1516
+    },
+    {
+      "path": "logs/023-mutant-diagnostics-final.log",
+      "sha256": "7224d366f19e3e050c200e7e38e1f488fece03f2d9110522d1283451d4e2d0cc",
+      "bytes": 17965
+    },
+    {
+      "path": "logs/023-mutant-diagnostics-final.receipt",
+      "sha256": "799b579194a9f9b5bdf3c6a7564d77a49985c36e6bb24985fb2738029e0ac69d",
+      "bytes": 1522
+    },
+    {
+      "path": "logs/024-mutant-runner-final.log",
+      "sha256": "0a4b206637a52abcd62d303f787998f150680184d48d244f76aa41240fba239e",
+      "bytes": 19453
+    },
+    {
+      "path": "logs/024-mutant-runner-final.receipt",
+      "sha256": "c9056e49295190780cc254f552669cdada34df8b74f8661c6e2e2b1c1256cd42",
+      "bytes": 1536
+    },
+    {
+      "path": "logs/025-final-units.log",
+      "sha256": "1d624e7063e71e78c44cb06d299392426e4f16e16f8d13961d6c8cfff6032376",
+      "bytes": 34139
+    },
+    {
+      "path": "logs/025-final-units.receipt",
+      "sha256": "9cf0b43d92537c63e9d2a75228a496fbac243f6df42af42339517016349b80d1",
+      "bytes": 1449
+    },
+    {
+      "path": "logs/026-parity-after.log",
+      "sha256": "633e8d486c6a562b30cc818bf97a291220429f8f35d7909ad552c9a4d244ab52",
+      "bytes": 98
+    },
+    {
+      "path": "logs/026-parity-after.receipt",
+      "sha256": "778e711dece127910590a2ff1833d22a191a08be1d8a13f5725cd4c793dd3068",
+      "bytes": 79
+    },
+    {
+      "path": "parity-before.json",
+      "sha256": "6b220b00524fcea749089a6d02d4ee8a350ac023cd66e281617a03c1bcdc251d",
+      "bytes": 223915
+    },
+    {
+      "path": "parity-after.json",
+      "sha256": "fb4e7afe72f34d7235b0790e09c0df2136b09d0afc78f2df9caca29a702eed31",
+      "bytes": 223932
+    }
+  ],
+  "dependency": {
+    "name": "zod",
+    "version": "4.6.5",
+    "license": "MIT",
+    "loadedFiles": [
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/index.js",
+        "sha256": "32e7efd49a94a765f6d10a1a0a3c02c50c246def17c80c6f0225f85525d98505"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/external.js",
+        "sha256": "c6b584ae70ba4e7132b2cd78c23ea4ecedc9828abf999edee312372e1fb453d6"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/index.js",
+        "sha256": "2a0e452323aa5b75b7d7de4879289e2579b9dd2d6af291c0416ba6806ca2199d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/core.js",
+        "sha256": "c7ce485c97263e42568d16b11bb4a90133221c7e807498a9273d70f41ba16ef6"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/util.js",
+        "sha256": "728f52b496620336775eafcdb91c0a574380086e53f215b55c58eedc1422c49c"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/parse.js",
+        "sha256": "fb05b91ec260f3f484f7c00a177b6126ceb8fd1b09dc90b1200afdffd4d98efd"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/errors.js",
+        "sha256": "a0c95ef2f7085b5bc2931f7b566f524b26a0360c8df741e3f87f923745cf9792"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/schemas.js",
+        "sha256": "e632b655441418f0593153abc6809fd81cf3e0782d810622d0a4fa50ef6e182e"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/checks.js",
+        "sha256": "bc42543274218aa7ef72192b3218d2a4a399e53df8de240a04d9ff275096f563"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/regexes.js",
+        "sha256": "24fc98f6fc9175e50ff29d28b040e3b4ac5650de19914d45ee27b853d367ecc6"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/doc.js",
+        "sha256": "be4c1b1a1ad247cc70f360a572060edd7e0cea24252c3a319f33d247899c5643"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/versions.js",
+        "sha256": "63b38035ff5e2a5a5cfe5665e271af72b0cf9791e770dccf5e99d977064fb96c"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/memoizer.js",
+        "sha256": "18a3188c51229d9189a5408b0b7fbc3e121b55c2b4c3c406d79cb9b77e7ad964"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/index.js",
+        "sha256": "7ea85250d1e7bd9459cda61f38c78757a410d561a5421bb3f08019bba79c9849"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ar.js",
+        "sha256": "eec4016c2b3063ae929617d90ec609e4c425e60c97a954d3a24de0f457b6ec97"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/az.js",
+        "sha256": "5bd03646b9d18b73e71356cd28937e4e6413b806bb23e14689cc88f6f65ff3a6"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/be.js",
+        "sha256": "f969afea5d9800a71958a621658943b85a2576a2bfefdd5dea70afc4924d4af4"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/bg.js",
+        "sha256": "96741333a790320e05aef7286b5b709a4a7c48cfffc50fc5e6acff5b505275e9"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/bn.js",
+        "sha256": "6d8227b52a6864465b7c52a9ef7e09d261d904ec8a619932e15dd9f9f826e8dd"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ca.js",
+        "sha256": "67f6f38b59a6e3ee81cc5155480465331dd9a142b2471a495503a81dafba0684"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ckb.js",
+        "sha256": "bdb9ef0cfda4009f8892585a1780fff863cd409931d6f89394c271042c131137"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/cs.js",
+        "sha256": "4ffa0e484ad1842a2c0e5c7f2dfe9160155ff5be4b95ab6e524d3a30a2210488"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/da.js",
+        "sha256": "29addcd60e88422bed9ed78c6c864220a15c06b31fdb4ab7ad4f87be4098e6ae"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/de.js",
+        "sha256": "f344eb96ba18d9db907f3f9c95897ce2590ab0cde1553c023daffbb1cb5ef6f4"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/el.js",
+        "sha256": "fdea833aa0a8c381d26216db1521dd7fbc4dccb6d3aa50f9a585ffb975df91eb"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/en.js",
+        "sha256": "d5930e10d137b048b37823e168e4177947e1f696ada8419c71bb0d32da4333c0"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/eo.js",
+        "sha256": "97797bd22319ecc3f2044da6c305f1114b851803697029ffce2b66644757da3a"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/es.js",
+        "sha256": "12e762b921b1e3fdb8e265d2b554de81ce9706ceb23a81527f48ae2dddf355db"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/fa.js",
+        "sha256": "60e7eeff4c000c85f8420168374344305d3c2110a5f91a2fb672b2a2381eeddf"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/fi.js",
+        "sha256": "1e72af4193e564cd37dce4a850dc18bc1bcd6ca280f29e9f5f8c6bbab6a2cad9"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/fr.js",
+        "sha256": "477345d6401d0e4f07794b1a2cff8b78953723f1fc8cfaeb6b660c19be47125a"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/fr-CA.js",
+        "sha256": "a2ca0451ff943766bb6a88b392b25447462a1d3ed75c1adda5ddb0bc474bcd42"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/gu.js",
+        "sha256": "b1921ac6b4158e6360a8da6099df8bbf2d7bce7c1cf381d5a5e47aa0c74874d2"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/he.js",
+        "sha256": "1cfff31fac19616d900d1f3febd9690ea87711e13b5be299326ebfd3f33aad4d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/hi.js",
+        "sha256": "c31e466c2a31dc10ba6a288e1aebf429a6e9566a26918d0240aae058693f6329"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/hr.js",
+        "sha256": "ff2bebef0761f2d6095103d58484e3b95551bc51d56770db8f161b8e0e0ec941"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/hu.js",
+        "sha256": "9816c21ee0b3be9d973f9e033e9587a608f2d35dd1b984d415b88e03242b0189"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/hy.js",
+        "sha256": "daf6d0c590d9b061759598ba9f7f97041e2874c7a58da2c64b86f152840d68fa"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/id.js",
+        "sha256": "e5c23bb0b6f696fa936bafd7969e64738504cf7a5be3ec04b24ae899d4912b58"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/is.js",
+        "sha256": "1cce1285bbf55c8a76303fea0be0fb6d39fbd0ece833137ea23a22f406ac1ae1"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/it.js",
+        "sha256": "096b497df6c5fe7de4422482b7733e764e4b344e8d7f768a7289556687acdb82"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ja.js",
+        "sha256": "2a6bbbd6dbd573687b22f35873a13cdf730c07423b4ab114e5a8b12d8777146d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ka.js",
+        "sha256": "baf3204123cf4246df654fd1948b6c8da6917e7a06e470aeeaf7c1eaa7003628"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/kh.js",
+        "sha256": "78c3d1991041bb8c8fc0f7c5d745aae422d4c2e4e8f30bae44f3fef4765900a8"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/km.js",
+        "sha256": "e61079f14070dfa9c7b2047eb79f5bea6d4e845f192756d103c121bbd63ee18a"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/kn.js",
+        "sha256": "884b1b68a1ca02fe9a774b8de9cbfa3486892eea36192699120f57b31f0a1f42"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ko.js",
+        "sha256": "11fcef61a2f23e010bf0f569d71be0d49524afc97f3072cc03fdc6fe3ea2f14d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/lt.js",
+        "sha256": "d2e67a35a3c6e7241a9eb9c5851e4b5b651ac8b23278854862e6055829946c48"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/mk.js",
+        "sha256": "64ddd914c432ba5690d0686bff6603651ce886a891f84823d7dc766c9c980cd1"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ms.js",
+        "sha256": "94faf0d306ffa2a4f95e57f3e53060d27220a639b9cb529f00d1d01b6270f045"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ne.js",
+        "sha256": "6da69989b702ae15baa27b799b6b2b32fd011ba3980a190dd0eccfc9233083d6"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/nl.js",
+        "sha256": "296ced8be508c5f9e82b562049d2974882029bcd5b2ab4ade14401b33ec99909"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/nn.js",
+        "sha256": "bae9756817629db30841eb54a27ed9b3c71c2a4208314d8d070be624bd2e9359"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/no.js",
+        "sha256": "f358e5586940350ee25a05db184565d23eb1c66903e182ebec812172f31cb55a"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ota.js",
+        "sha256": "66ed8c3ce00b2e9971ed5a17f002937405d8cdfeb399ebe012db9d2317f42146"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ps.js",
+        "sha256": "1c15b81fcce0cdc59dbcca18df5c4ecf4e176fc3fb7668207b9ba54df43cce46"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/pl.js",
+        "sha256": "b7f82cf9f747785beeec05cd31d3d7493c52bd3647598924141568f148c07222"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/pt.js",
+        "sha256": "93a820f60d571607bf34b69198f5b24617475584c0b22c0f8d160fcdef096a46"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/pt-BR.js",
+        "sha256": "abc52db767b9dd938954776728ea7480cdcab569a5a17664f60e5a2c1d63e60b"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ro.js",
+        "sha256": "54751d2866171c9c7ce1a72868dec09efa54d1b2b67401767594c5b360aca38a"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ru.js",
+        "sha256": "40a019b53bd1684fd4b750db87021520dd5d710f714010c0a594e5bcf5787478"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/sk.js",
+        "sha256": "ae7c49242e70149434c9051dd00209afbd517d98ba54c13692371a5340b616da"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/sl.js",
+        "sha256": "490ca48f8aae3aed660758b32856d49a9fc5c7e255dad220e75abaef8c35140b"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/sv.js",
+        "sha256": "448f36996bb0d159489b34ad7d86df03e520a13e43b1c98ea2fb18d7ed4a3c95"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ta.js",
+        "sha256": "8b6e1bc033fdaefb1acfc7edf88c9f53c3a50cc892066effdab306103e994d42"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/tg.js",
+        "sha256": "9a5c9a3b18b8ccded28d66033575b22d823df17a7afa8bb9a733f31fe071462f"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/th.js",
+        "sha256": "913cc4962ddf5cb54ed694d04b7008493ef401d3333b26426b32f4890712574e"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/tk.js",
+        "sha256": "445abfed18c5a9d79143b02c9cf9c171b41fb5dff8ffc2cb59b7aef7203e5a7f"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/tr.js",
+        "sha256": "bca07607a27f518f19877dd9c2235fada9c73eb56896f0f6e274781fab71d64e"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ua.js",
+        "sha256": "9391169ffbc72f777a83230b6ffcc3f4cf46ab5945ec540de9ef4609dca1f4cc"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/uk.js",
+        "sha256": "1e59ba41296aeb5b6142a6e5ed84712931e33e54ab0b9ae5d83faf436fc3d968"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/ur.js",
+        "sha256": "d37ed2c93408e0a6b6e1cd290117a6f0e9d7b2c83509cd34b502e1dd94899c87"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/uz.js",
+        "sha256": "2cbe07635b03064ffad0bfcc98d2d570f3264b9cd3e22bbd5c160cd0343f7872"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/vi.js",
+        "sha256": "15939adaf263e0869c602d4b34c206178a235b8bec11c8207ccd3fa50de3a141"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/zh-CN.js",
+        "sha256": "8fc02f2bd4d92f46b24b8d82da0ee95c962fc80c14dd7dd469500e14de08d320"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/zh-TW.js",
+        "sha256": "01d9b119e318d8b9f1a8fa720d06424457429425a61d0730984b750e6a5edf7d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/locales/yo.js",
+        "sha256": "88b33f6527c1a2faaf159568330cf727c448dc468eac72142a6fb24f8714ac1e"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/registries.js",
+        "sha256": "f04d4b2c0bc5b4ac2d6610ea34edf2e5260eade18f20976b79916dcdbeb9fa4d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/compile.js",
+        "sha256": "df28853593428e5a2a8729b09f43baf0998eaae7f1e37797993035187833b054"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/api.js",
+        "sha256": "03ae6016abc9585e3f3481d6b8d775a95ae4ee65badbde73ca1ed953ff14c0e7"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/to-json-schema.js",
+        "sha256": "85b883eb8f05e9f060c71a39fce7df9345b566af29d5bc9c8fa477fe616a051d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/json-schema-processors.js",
+        "sha256": "b6d2aee72212c076b9cde38da6333591c76a24eb049a4ee4e7bd2b7825d8b817"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/json-schema-generator.js",
+        "sha256": "beaeab6faa654e99e443b8a9f5d8a4adc08cd8226f92a0cd32477a58ecfa1807"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/json-schema.js",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/schemas.js",
+        "sha256": "2bf4a631a18f734a9a7ab7fc11bcf919214774d2235a312dcec0dd53d0324c32"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/checks.js",
+        "sha256": "7543391a9ad5e7df287bbfecaa79844d46af44c75c1de0d43a411d65795d9dd1"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/parse.js",
+        "sha256": "11941573401bbef138842c7a523dff554873343fccbf0e8b0a144259d2d703f1"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/errors.js",
+        "sha256": "d32f7c1ef8e2c70072f6f0ec8ba7081bbc331353cc3a7cb4429e5ece91409543"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/compat.js",
+        "sha256": "0e948b101771cc0e7b753e54b3f5b486929d3db9bd4c09d98fe4ce86271bcf7b"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/from-json-schema.js",
+        "sha256": "31dc999a26cb6928f5e99ea564d648567e85cf9aa47565198fb6186dbd6c070e"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/iso.js",
+        "sha256": "deaa026b7c5302e59719f401248e7866691d8d8a892884dd2b6868b1cb7252d8"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/deep-partial.js",
+        "sha256": "0abffcc9838e04dc6f091229c1d522fbfd43aab9563316b52d3eb8ff2bacf26d"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/core/visit.js",
+        "sha256": "a804062900869e09ea0b975cfa569fd3c70dc33bad7fc30b63872d451cae29f7"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/in-out.js",
+        "sha256": "34370913842ff02d14a9796b11c5ec2af160bdb35a7148edc286e9a9c6fb5c17"
+      },
+      {
+        "path": "/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules/zod/v4/classic/coerce.js",
+        "sha256": "fb2efe3b6eacc475c77cbb571b5fb8650d92a10f316dc869e49b722973d83c3c"
+      }
+    ]
+  },
+  "materializedVariants": [
+    {
+      "case": "valid private declaration, real socket absent",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/836/variant-manifest.json",
+      "sha256": "e7ab66f0ec743d4fa1886de61851dce61cc2ffc0391701914619ed7b7cff880a"
+    },
+    {
+      "case": "valid declaration, socket metadata injected only, runtime still unavailable",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/dff/variant-manifest.json",
+      "sha256": "bbbab2d260c20cf231c1f2d2180d64cb075594905a953bcb14561df7463c2d6d"
+    },
+    {
+      "case": "missing admission",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/a2c/variant-manifest.json",
+      "sha256": "110e27156ed4b57d5149a6b165db3a1b4b6c5d938c0da1dffd4dfc25b5dbe149"
+    },
+    {
+      "case": "missing binding",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/a7b/variant-manifest.json",
+      "sha256": "e407d975faa0b8b38c6f420b879e8219771ffefe257bba9a27ae5565a70087d8"
+    },
+    {
+      "case": "malformed JSON",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/ea0/variant-manifest.json",
+      "sha256": "d05498cace9b260e671201d8c363d6b13e4a8d62ebace2b840c962272bc83176"
+    },
+    {
+      "case": "stale declaration",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/84c/variant-manifest.json",
+      "sha256": "630d57a3a7b2b8dd8694d56b9b62970c134cbfe5701f7dfe8296c9293e2f7acf"
+    },
+    {
+      "case": "missing S declaration",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/37c/variant-manifest.json",
+      "sha256": "74ee6574f6115485f1d57aace4d622c371a53d891471929df2b3a7e8b14139a9"
+    },
+    {
+      "case": "foreign mode",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/a54/variant-manifest.json",
+      "sha256": "a0c745023cf159a9123f80ae6f60a8430be97cf86a8d01cc777c502bf42bb01b"
+    },
+    {
+      "case": "inconsistent K",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/bcf/variant-manifest.json",
+      "sha256": "d4dd97d770899052cbd29ded96a65990932c306de9d9689a1c8c65937a4e6a1e"
+    },
+    {
+      "case": "unsafe key",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/552/variant-manifest.json",
+      "sha256": "a3dffb368580780f9f129b42102867e1a1df92c7fd0f4eb859c7bd6d078407ea"
+    },
+    {
+      "case": "inconsistent C",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/1a1/variant-manifest.json",
+      "sha256": "d465f85148ff42362ded0175ca44fed2b67b056b943e9bcf01abe712058693dd"
+    },
+    {
+      "case": "inconsistent S",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/403/variant-manifest.json",
+      "sha256": "0a914d8071478891133aca34b24a140c91ce444bdea52c0b5313cb454b07e681"
+    },
+    {
+      "case": "binding S mismatch",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/76a/variant-manifest.json",
+      "sha256": "c23d0e25530e39ad951a03ca97a7c64c7aa4e256826f78de343fb6961d58b58e"
+    },
+    {
+      "case": "admission symlink",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/b7a/variant-manifest.json",
+      "sha256": "811fe91088dd8afb4f21872254626d8b097aa87cf6e62114f0ee358a2a643539"
+    },
+    {
+      "case": "binding symlink",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/7b4/variant-manifest.json",
+      "sha256": "2f29069728dcf5fb0d32e785c21315bd1e91f84479d1228576339729ba1140f5"
+    },
+    {
+      "case": "wrong admission mode",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/eb5/variant-manifest.json",
+      "sha256": "579ea2e918b491e4d84845be8d4fab0abe4963a9b84526ecd063a6ee78e2d4e5"
+    },
+    {
+      "case": "wrong B mode",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/94b/variant-manifest.json",
+      "sha256": "cd056109d6c250de2cf737532f0f0cbfb012730fde8742482efc7334cc30ce9c"
+    },
+    {
+      "case": "wrong C mode",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/82f/variant-manifest.json",
+      "sha256": "e8673cb090d51ed056f019f67e5a462afc41ac29782553a2fcd93d3da1411ea6"
+    },
+    {
+      "case": "wrong binding mode",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/b08/variant-manifest.json",
+      "sha256": "c9301a912dbab1137d45094052118827a9b7bbb747ba80698a8c05c4e52e61f0"
+    },
+    {
+      "case": "missing C directory",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/1b3/variant-manifest.json",
+      "sha256": "e2561197f06eeaf6ae01f26808c8dd818e3caf33be7059872c937e7c73292ea1"
+    },
+    {
+      "case": "missing B directory",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/a20/variant-manifest.json",
+      "sha256": "44d3ea84226a1637a92c06b283202605a483db028a08c751abb2381513607d5a"
+    },
+    {
+      "case": "C directory symlink",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/79d/variant-manifest.json",
+      "sha256": "d0ed567451de628cbce9373e8b6891fb40f6eec86745dda7a9f059972cbc2d13"
+    },
+    {
+      "case": "B directory symlink",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/5bf/variant-manifest.json",
+      "sha256": "caafc366d58fef53f395e760a49db7895b8c3a9697fcd5d6085166aaafffbb02"
+    },
+    {
+      "case": "foreign UID metadata injected on admission",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/8aa/variant-manifest.json",
+      "sha256": "dc4bcaa1f9be9c0bf78e2f3c5823616d7a2e6b574e94bf7af57bd62ea33e6083"
+    },
+    {
+      "case": "foreign UID socket metadata injected",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/adb/variant-manifest.json",
+      "sha256": "7b4f6b4b86cb47a15186d174bb91abf1c7b0e1b81b1cf79739948003d9851ccc"
+    },
+    {
+      "case": "wrong socket mode metadata injected",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/dcc/variant-manifest.json",
+      "sha256": "7391b0ce6b7d106604683af1ff8edb0a6781ac9558f024efc5f2924d85658858"
+    },
+    {
+      "case": "socket symlink",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/523/variant-manifest.json",
+      "sha256": "32462c08528d4d8eb2c5b98573dea6939d9160c8d0128ec558079fe1c802d34d"
+    },
+    {
+      "case": "socket regular file, never accepted as socket",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/1b8/variant-manifest.json",
+      "sha256": "20cd2e103da00138fe31ec98cd1fdbdd42d1aa3c8df0a157e9ef14a5240260c8"
+    },
+    {
+      "case": "request identity refusals",
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-private/.cache/shared-required-stage1/4a9/variant-manifest.json",
+      "sha256": "2dfc1a5dc0e18fae47fd34695470c2e98563f82195268614ca560deff0c50e8b"
+    }
+  ],
+  "normalization": "Each private module differs only by explicitly pinned fixtureRoot; its manifest contains exact 192 file hashes. No compiled variant exists.",
+  "inputPatchPaths": [
+    "server.ts",
+    "src/host/index.ts",
+    "src/host/bridge.ts",
+    "src/host/catalog.ts",
+    "src/host/session-registry.ts",
+    "src/host/runner-process.ts",
+    "src/host/discovery-handler.ts",
+    "src/runner/index.ts"
+  ]
+}

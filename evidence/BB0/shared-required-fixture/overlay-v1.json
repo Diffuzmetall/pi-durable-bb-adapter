@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "format": "unique-literal-patches-not-a-builder",
+  "patches": [
+    {
+      "path": "server.ts",
+      "replacements": [
+        ["import { inspectPiEnvironment } from \"./src/runner/diagnostics.ts\";", "import { admitPrivateFixture, refuseFixtureEntry } from \"./src/fixture-admission.mjs\";"],
+        ["export default function plugin(bb: any) {", "export default function plugin(bb: any) {\n  admitPrivateFixture();"],
+        ["diagnostics_get: async () => {\n      const report", "diagnostics_get: async () => {\n      refuseFixtureEntry(\"diagnostics_get\");\n      const { inspectPiEnvironment } = await import(\"./src/runner/diagnostics.ts\");\n      const report"]
+      ]
+    },
+    {
+      "path": "src/host/index.ts",
+      "replacements": [
+        ["import { ProviderBridge } from \"./bridge.ts\";", "import { refuseFixtureEntry } from \"../fixture-admission.mjs\";\nrefuseFixtureEntry(\"host.entry\");\nconst { ProviderBridge } = await import(\"./bridge.ts\");"]
+      ]
+    },
+    {
+      "path": "src/host/bridge.ts",
+      "replacements": [
+        ["import { forkSessionDatabase } from \"./thread-fork.ts\";", "import { refuseFixtureEntry } from \"../fixture-admission.mjs\";"],
+        ["\t\ttry {\n\t\t\tconst catalogCwd", "\t\ttry {\n\t\t\trefuseFixtureEntry(method, params, \"bridge.request\");\n\t\t\tconst catalogCwd"],
+        ["\t\t\t\t\t\tforkSessionDatabase({", "\t\t\t\t\t\tconst { forkSessionDatabase } = await import(\"./thread-fork.ts\");\n\t\t\t\t\t\tforkSessionDatabase({"]
+      ]
+    },
+    {
+      "path": "src/host/catalog.ts",
+      "replacements": [
+        ["import { inspectPiEnvironment, type PiDiagnosticsReport } from \"../runner/diagnostics.ts\";", "import type { PiDiagnosticsReport } from \"../runner/diagnostics.ts\";\nimport { refuseFixtureEntry } from \"../fixture-admission.mjs\";"],
+        ["public async start(): Promise<void> {", "public async start(): Promise<void> {\n\t\trefuseFixtureEntry(\"model/list\", { cwd: this.cwd }, \"catalog.start\");"],
+        ["public async getDiagnostics(): Promise<PiDiagnosticsReport> {", "public async getDiagnostics(): Promise<PiDiagnosticsReport> {\n\t\trefuseFixtureEntry(\"provider/diagnostics\", { cwd: this.cwd });\n\t\tconst { inspectPiEnvironment } = await import(\"../runner/diagnostics.ts\");"],
+        ["public async getHealth(): Promise<{ status: \"ready\" | \"unauthenticated\" | \"unknown\"; statusMessage?: string }> {", "public async getHealth(): Promise<{ status: \"ready\" | \"unauthenticated\" | \"unknown\"; statusMessage?: string }> {\n\t\trefuseFixtureEntry(\"provider/health\", { cwd: this.cwd });"]
+      ]
+    },
+    {
+      "path": "src/host/session-registry.ts",
+      "replacements": [
+        ["import { PiThreadSession } from \"./session.ts\";", "import type { PiThreadSession } from \"./session.ts\";\nimport { refuseFixtureEntry } from \"../fixture-admission.mjs\";"],
+        ["): Promise<PiThreadSession> {\n\t\tconst existing", "): Promise<PiThreadSession> {\n\t\trefuseFixtureEntry(\"registry.createOrGet\", { ...params, threadId, providerThreadId });\n\t\tconst { PiThreadSession } = await import(\"./session.ts\");\n\t\tconst existing"],
+        ["public async reconcileCwd(threadId: string, targetCwd?: string): Promise<PiThreadSession | undefined> {", "public async reconcileCwd(threadId: string, targetCwd?: string): Promise<PiThreadSession | undefined> {\n\t\trefuseFixtureEntry(\"registry.reconcileCwd\", { threadId, cwd: targetCwd });"]
+      ]
+    },
+    {
+      "path": "src/host/runner-process.ts",
+      "replacements": [
+        ["import { resolveRunnerPath } from \"./paths.ts\";", "import { resolveRunnerPath } from \"./paths.ts\";\nimport { refuseFixtureEntry } from \"../fixture-admission.mjs\";"],
+        ["constructor(options: RunnerProcessOptions) {", "constructor(options: RunnerProcessOptions) {\n\t\trefuseFixtureEntry(\"runner.construct\", { cwd: options.cwd, shellEnvOverrides: options.env });"]
+      ]
+    },
+    {
+      "path": "src/host/discovery-handler.ts",
+      "replacements": [
+        ["import type { ModelCatalog }", "import { refuseFixtureEntry } from \"../fixture-admission.mjs\";\nimport type { ModelCatalog }"],
+        ["): Promise<Record<string, unknown> | null> {", "): Promise<Record<string, unknown> | null> {\n\trefuseFixtureEntry(method, params, \"discovery.request\");"]
+      ]
+    },
+    {
+      "path": "src/runner/index.ts",
+      "replacements": [
+        ["import { setupRunnerModels } from \"./model-setup.ts\";", "import { refuseFixtureEntry } from \"../fixture-admission.mjs\";\nimport { parseCliArgs } from \"./cli-args.ts\";\nconst fixtureArgs = parseCliArgs(process.argv.slice(2));\nrefuseFixtureEntry(\"runner.entry\", { cwd: fixtureArgs.cwd, sessionDirectory: fixtureArgs.session });\nconst { setupRunnerModels } = await import(\"./model-setup.ts\");"],
+        ["import { attachJsonlLineReader, serializeJsonLine } from \"./jsonl.ts\";", "const { attachJsonlLineReader, serializeJsonLine } = await import(\"./jsonl.ts\");"],
+        ["import { openDurable, type OpenDurableOptions, type OpenDurableResult } from \"./runtime.ts\";", "import type { OpenDurableOptions, OpenDurableResult } from \"./runtime.ts\";\nconst { openDurable } = await import(\"./runtime.ts\");"],
+        ["import { BBEventAdapter } from \"./bridge/bb-event-adapter.ts\";", "const { BBEventAdapter } = await import(\"./bridge/bb-event-adapter.ts\");"],
+        ["import { parseCliArgs } from \"./cli-args.ts\";\nimport { handleActiveSessionCommand, type RunnerCommandPayload } from \"./session-commands.ts\";", "import type { RunnerCommandPayload } from \"./session-commands.ts\";\nconst { handleActiveSessionCommand } = await import(\"./session-commands.ts\");"],
+        ["import { getPiDurableVersion } from \"./version.ts\";", "const { getPiDurableVersion } = await import(\"./version.ts\");"],
+        ["import { sharedHostSocket, runSharedHost } from \"./shared-host.ts\";", "const { sharedHostSocket, runSharedHost } = await import(\"./shared-host.ts\");"],
+        ["import { createBridgeSender, initBridgeInboundChannel } from \"./bridge-channel.ts\";", "const { createBridgeSender, initBridgeInboundChannel } = await import(\"./bridge-channel.ts\");"],
+        ["import { startSubagentWatcher, type SubagentWatcherController } from \"./subagent-watcher.ts\";", "import type { SubagentWatcherController } from \"./subagent-watcher.ts\";\nconst { startSubagentWatcher } = await import(\"./subagent-watcher.ts\");"],
+        ["import { startTaskGraphBridge } from \"./task-graph-bridge.ts\";", "const { startTaskGraphBridge } = await import(\"./task-graph-bridge.ts\");"]
+      ]
+    }
+  ]
+}
