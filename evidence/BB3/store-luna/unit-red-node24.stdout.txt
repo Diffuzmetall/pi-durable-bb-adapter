@@ -1,0 +1,42 @@
+✔ Durable binding survives SQLite reopen and rejects conflicting identity tuples (56.175784ms)
+✖ get rejects a stored binding with an inconsistent embedded conversation ID (13.653133ms)
+✖ findByThread rejects an indexed document with an inconsistent embedded conversation ID (11.053464ms)
+✔ binding write refuses a conversation absent from the owning Durable session (4.776664ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 781.684513
+
+✖ failing tests:
+
+test at candidates/parallel-bb3-store/host/tests/binding-store.test.mjs:73:1
+✖ get rejects a stored binding with an inconsistent embedded conversation ID (13.653133ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/parallel-bb3-store/host/tests/binding-store.test.mjs:87:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Corrupt durable child binding/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at candidates/parallel-bb3-store/host/tests/binding-store.test.mjs:93:1
+✖ findByThread rejects an indexed document with an inconsistent embedded conversation ID (11.053464ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/ubuntu/Projects/pi-durable-bb-adapter/candidates/parallel-bb3-store/host/tests/binding-store.test.mjs:107:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /Corrupt durable child binding/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

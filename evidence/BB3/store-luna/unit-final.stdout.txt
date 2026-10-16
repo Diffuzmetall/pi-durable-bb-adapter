@@ -1,0 +1,12 @@
+✔ Durable binding survives SQLite reopen and rejects conflicting identity tuples (36.013262ms)
+✔ get rejects a stored binding with an inconsistent embedded conversation ID (11.151095ms)
+✔ findByThread rejects an indexed document with an inconsistent embedded conversation ID (11.416646ms)
+✔ binding write refuses a conversation absent from the owning Durable session (15.244504ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1256.161531

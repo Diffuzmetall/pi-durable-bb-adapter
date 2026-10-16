@@ -1,0 +1,1 @@
+✓ Comment added to bbup-3-binding — BB3: Persistent scoped binding and recovery reconciliation

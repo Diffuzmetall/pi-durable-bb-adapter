@@ -1,0 +1,31 @@
+TAP version 13
+# node:internal/modules/esm/translators:391
+#     throw new ERR_UNKNOWN_BUILTIN_MODULE(url);
+#           ^
+# Error [ERR_UNKNOWN_BUILTIN_MODULE]: No such built-in module: node:sqlite
+#     at ModuleLoader.builtinStrategy (node:internal/modules/esm/translators:391:11)
+#     at \#translate (node:internal/modules/esm/loader:431:12)
+#     at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:478:27) {
+#   code: 'ERR_UNKNOWN_BUILTIN_MODULE'
+# }
+# Node.js v20.19.4
+# Subtest: /home/ubuntu/Projects/pi-durable-bb-adapter/candidates/parallel-bb3-store/host/tests/binding-store.test.mjs
+not ok 1 - /home/ubuntu/Projects/pi-durable-bb-adapter/candidates/parallel-bb3-store/host/tests/binding-store.test.mjs
+  ---
+  duration_ms: 312.541372
+  location: '/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/parallel-bb3-store/host/tests/binding-store.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 326.211664

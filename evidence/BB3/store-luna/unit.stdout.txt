@@ -1,0 +1,10 @@
+✔ Durable binding survives SQLite reopen and rejects conflicting identity tuples (64.02316ms)
+✔ binding write refuses a conversation absent from the owning Durable session (10.88641ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1104.882428
