@@ -1,0 +1,7 @@
+/usr/bin/env -i PATH=/usr/bin:/bin HOME=/tmp/strictqa-bytebound-plan-v3-cl3GXSjt/supervision-001/home TMPDIR=/tmp/strictqa-bytebound-plan-v3-cl3GXSjt/supervision-001/tmp LANG=C.UTF-8 TZ=UTC BBUP_STRICTQA_GO=six-bytebound-v3:a75832c2b09a08d2a01fd6845024f02fb06c67a62ab88fe12534008168fc9fab /bin/sh -c 'prefix=/tmp/strictqa-bytebound-plan-v3-cl3GXSjt/supervisor-pycache-001
+if [ -e "$prefix" ] || [ -L "$prefix" ]; then
+    printf '"'"'%s\n'"'"' '"'"'STOP: outer Python prefix must be absent, including dangling symlinks'"'"' >&2
+    exit 125
+fi
+exec /usr/bin/python3 -I -B -X pycache_prefix=/tmp/strictqa-bytebound-plan-v3-cl3GXSjt/supervisor-pycache-001 -c '"'"'import hashlib,pathlib,stat,os; b=pathlib.Path('"'"'"'"'"'"'"'"'/tmp/strictqa-bytebound-plan-v3-cl3GXSjt'"'"'"'"'"'"'"'"'); assert b.resolve(strict=True)==b and all(not p.is_symlink() for p in [b,*b.parents]) and b.stat().st_uid==os.getuid() and stat.S_IMODE(b.stat().st_mode)==0o700; p=b/"supervisor.py"; assert stat.S_ISREG(p.lstat().st_mode) and p.resolve(strict=True).parent==b; raw=p.read_bytes(); assert hashlib.sha256(raw).hexdigest()=='"'"'"'"'"'"'"'"'11a66db2d777d35f7b22e1233ca362511598c71af381c77f97c8d92a635602b8'"'"'"'"'"'"'"'"'; exec(compile(raw,str(p),"exec"))'"'"'
+'

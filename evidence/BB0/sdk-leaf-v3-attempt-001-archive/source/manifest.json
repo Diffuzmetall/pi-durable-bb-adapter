@@ -1,0 +1,185 @@
+{
+  "basedOnV1Plan": "/tmp/sdk-leaf-qa-plan-3JPnxD",
+  "files": [
+    {
+      "bytes": 11666,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+      "sha256": "5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4"
+    },
+    {
+      "bytes": 24333,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+      "sha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+    },
+    {
+      "bytes": 10788,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/README.md",
+      "sha256": "52d70aadd6e5903ed26c49d93b3e6868f501c669a20dc8d621f9227be661300a"
+    },
+    {
+      "bytes": 4470,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/source-checks.json",
+      "sha256": "810468f1447c1fe23a5a9dfdaa906c7af1b52753ee4232bc216dd5416964a8af"
+    },
+    {
+      "bytes": 3202,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/checkpoint.json",
+      "sha256": "c8c551e9a481f101a9ccf77a88cce10b6525b940e246c7668a5e4999a0d69ff7"
+    },
+    {
+      "bytes": 43975,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/source-verification-v2.json",
+      "sha256": "108562f1ec3604ae49d147161c171c27dc4a0a5b39b2dbfef2b058cde068c550"
+    },
+    {
+      "bytes": 27480,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/execution-visibility-v1.json",
+      "sha256": "e65c1b2a838db33f18eb4e00404c5f8b6843637b685f34a2e9b36b1ab204e9fd"
+    },
+    {
+      "bytes": 5335,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/checkpoint-v2.json",
+      "sha256": "25e5f77264c4c584ede60b0bf40b587f064957e7524e08bd61b33ee63ee64784"
+    },
+    {
+      "bytes": 11167,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox.py",
+      "sha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272"
+    },
+    {
+      "bytes": 11468,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox-sdk-leaf-v1.py",
+      "sha256": "debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d"
+    },
+    {
+      "bytes": 40594,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/source-test-manifest.json",
+      "sha256": "6edee765d93ebb13117299b276a667b96c65455a0095a73fc4a9801259976ab9"
+    },
+    {
+      "bytes": 36568,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/shared-required-fixture/checkpoint.json",
+      "sha256": "480890f3baed3b66187b43e177983d3694051328c13de7755f9d910db1f0398c"
+    },
+    {
+      "bytes": 8348,
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-baseline-unit-checkpoint.json",
+      "sha256": "4fab67577dca0db6c78e7e5ccf3b46518b95210f7a277803c7defea0457be6ba"
+    }
+  ],
+  "frozenV1Pins": {
+    "helperSha256": "debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d",
+    "parentSha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272",
+    "v1SupervisorSha256": "e072e87374088cb91572f773be1699a34e559a27ab1213b8c35a67a70f8d56e1",
+    "v1WitnessSha256": "f64b5639f314ab52952e8bc61d60923a53b2f1ec14bff8e33a10dc08469c0e70"
+  },
+  "helperSha256": "debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d",
+  "limits": [
+    "No FS3 attempt; no SDK execution/GO",
+    "No helper, main, Node, namespace, public sweep, build, install, config or SQLite execution",
+    "ACL values/effective permissions were not read; names-presence only is informational",
+    "Independent source reviewer must read exact v2 candidate; no runtime admission follows from this plan"
+  ],
+  "modelRouting": {
+    "effective": "UNKNOWN",
+    "gemini": "unavailable",
+    "requestedFallback": "Luna-high"
+  },
+  "node": "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+  "node_argv": [
+    "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+    "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+    "--execute-leaf"
+  ],
+  "owner": "qa-bb0-inventory",
+  "parentSha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272",
+  "projectTokenLease": "NOT_CLAIMED; future Root authorization required",
+  "publicPinManifest": {
+    "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+    "sha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+  },
+  "runtimeGO": "NONE",
+  "schema": "sdk-leaf-qa-plan-v3-NOEXEC",
+  "status": "NEEDS_CHECKS",
+  "supervisorSha256": "423f157bc2cc48a6b07a8661ec2ded6b6cace05acb8b1a1fdc7af848b5103145",
+  "testEvidence": {
+    "ast": "PASS: v2 scripts parse; one outcome_code; receipt keys deduplicated",
+    "execution": "NOT_RUN",
+    "json": "PASS: source manifest parsed; output manifest schema structured",
+    "pureOutcomeFixtures": "PASS: four cases from actual extracted outcome_code only"
+  },
+  "v1PlanArtifacts": [
+    {
+      "bytes": 8849,
+      "path": "/tmp/sdk-leaf-qa-plan-3JPnxD/supervisor.py",
+      "sha256": "e072e87374088cb91572f773be1699a34e559a27ab1213b8c35a67a70f8d56e1"
+    },
+    {
+      "bytes": 10228,
+      "path": "/tmp/sdk-leaf-qa-plan-3JPnxD/inner-witness.py",
+      "sha256": "f64b5639f314ab52952e8bc61d60923a53b2f1ec14bff8e33a10dc08469c0e70"
+    },
+    {
+      "bytes": 7848,
+      "path": "/tmp/sdk-leaf-qa-plan-3JPnxD/proposal.md",
+      "sha256": "16191a118313fe29bf2d07321148a4c21c731d61c4adfc55749c9891a58041b3"
+    },
+    {
+      "bytes": 3574,
+      "path": "/tmp/sdk-leaf-qa-plan-3JPnxD/manifest.json",
+      "sha256": "a2f030e4d6d6dd9d8931cad30792d0d3510136c524af3800a25b9413bb7e88f1"
+    }
+  ],
+  "v2Artifacts": [
+    {
+      "bytes": 9271,
+      "path": "supervisor.py",
+      "sha256": "a62ad8418514db1c7d991e3e95f5d3dc4229a657c7e420b410a221155093b3d1"
+    },
+    {
+      "bytes": 10274,
+      "path": "inner-witness.py",
+      "sha256": "c0b9963afac26d9d21c0acb42135b5d86a0238b48a3968aa74cacab1e8f3f8c4"
+    },
+    {
+      "bytes": 1697,
+      "path": "proposal.md",
+      "sha256": "6e3c8530ef28f762f77502fe9246401df4e594b433fdb27c73b27a2a22de1c30"
+    },
+    {
+      "bytes": 6228,
+      "path": "v2.diff",
+      "sha256": "b5858404f23e15efe56c2ce69cd010d1fca9246bac4bc98238505b3ee9d50d0e"
+    }
+  ],
+  "v3Artifacts": [
+    {
+      "bytes": 9354,
+      "path": "supervisor.py",
+      "sha256": "423f157bc2cc48a6b07a8661ec2ded6b6cace05acb8b1a1fdc7af848b5103145"
+    },
+    {
+      "bytes": 10207,
+      "path": "inner-witness.py",
+      "sha256": "d21c1a8895fb6ea25610d5f6455e62a274c9dc53612cf897e646a3d7f3dd2528"
+    },
+    {
+      "bytes": 2114,
+      "path": "proposal.md",
+      "sha256": "d235e6a6f76cba46aaa9075bd3029f472af2cd641956c3cd947dda91799504dd"
+    },
+    {
+      "bytes": 2910,
+      "path": "v3.diff",
+      "sha256": "1430e26b8f6a43c77f1d61ecdc7b531d5a68a57334bf3520918070c1d8106ded"
+    }
+  ],
+  "verification": {
+    "AST": "PASS: actual supervisor/witness/proposal parsed",
+    "JSON": "PASS: final manifest parsed",
+    "manifestContract": "PASS: all actual m['literal'] keys present; files=13 exact path/hash/bytes; canonical helper/parent/pin/node invariants",
+    "pureOutcomeFixtures": "PASS: five cases from actual extracted outcome_code only",
+    "runtime": "NOT_RUN"
+  },
+  "witnessSha256": "d21c1a8895fb6ea25610d5f6455e62a274c9dc53612cf897e646a3d7f3dd2528"
+}

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<string>", line 88, in <module>
+    require(set(os.environ) == set(expected), 'ENV_KEYS')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 23, in require
+    raise RuntimeError('FS2_WITNESS_HOLD:' + reason)
+RuntimeError: FS2_WITNESS_HOLD:ENV_KEYS

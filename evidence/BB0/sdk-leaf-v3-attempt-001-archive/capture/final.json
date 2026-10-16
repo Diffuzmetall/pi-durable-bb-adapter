@@ -1,0 +1,80 @@
+{
+  "status": "STARTING_ONE_ATTEMPT",
+  "utc_start": "2026-10-16T05:53:40.633453+00:00",
+  "manifest_sha256": "7ceb55d9fce8379c7a7bcdbeb534d2e385169b9f428133c543cf0d03833bdfe7",
+  "supervisor_sha256": "423f157bc2cc48a6b07a8661ec2ded6b6cace05acb8b1a1fdc7af848b5103145",
+  "witness_sha256": "d21c1a8895fb6ea25610d5f6455e62a274c9dc53612cf897e646a3d7f3dd2528",
+  "helper_sha256": "debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d",
+  "parent_sha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272",
+  "public_pin_count": 98,
+  "argv": [
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox-sdk-leaf-v1.py",
+    "--cwd",
+    "provider",
+    "--",
+    "/usr/bin/env",
+    "BB0_SDK_LEAF_GO=sdk-definition-leaf-v1",
+    "BB0_EXPECT_HOST_PID_NS=pid:[4026531836]",
+    "BB0_EXPECT_HOST_MNT_NS=mnt:[4026531832]",
+    "BB0_EXPECT_HOST_UID=1000",
+    "BB0_EXPECT_HOST_GID=1000",
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "# QA-only pre-exec witness. Not run during source/prep. Future controller passes these\n# exact bytes as Python -c inside the existing four-RO command port.\nimport hashlib\nimport json\nimport os\nimport re\nimport stat\n\nNODE = '/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node'\nPROBE = '/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs'\nMANIFEST = '/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json'\nSDK = '/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js'\nAPP_META = '/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json'\nPINS = {\n    PROBE: '5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4',\n    MANIFEST: '1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58',\n    SDK: '62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126',\n    APP_META: '5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241',\n}\n\ndef require(ok, reason):\n    if not ok:\n        raise RuntimeError('FS2_WITNESS_HOLD:' + reason)\n\ndef sha(path):\n    h = hashlib.sha256()\n    with open(path, 'rb', buffering=0) as f:\n        for block in iter(lambda: f.read(1024 * 1024), b''):\n            h.update(block)\n    return h.hexdigest()\n\ndef unescape_mount(s):\n    return re.sub(r'\\\\([0-7]{3})', lambda m: chr(int(m.group(1), 8)), s)\n\ndef mount_rows():\n    rows = []\n    with open('/proc/self/mountinfo', encoding='utf-8') as f:\n        for line in f:\n            left, sep, right = line.rstrip('\\n').partition(' - ')\n            require(bool(sep), 'MOUNTINFO_PARSE')\n            a, b = left.split(), right.split()\n            rows.append((unescape_mount(a[4]), set(a[5].split(',')), b[0]))\n    return rows\n\ndef covering(rows, path):\n    matches = [r for r in rows if path == r[0] or path.startswith(r[0].rstrip('/') + '/')]\n    require(bool(matches), 'MOUNT_MISSING:' + path)\n    return max(matches, key=lambda r: len(r[0]))\n\n# Exact helper-produced environment plus only witness metadata and the authorized marker.\nstate = '/bb0-state'\nexpected = {\n    'PATH': '/home/ubuntu/.nvm/versions/node/v24.19.0/bin:/usr/bin:/bin',\n    'HOME': state + '/home', 'PI_AGENT_DIR': state + '/agent',\n    'PI_CODING_AGENT_DIR': state + '/agent', 'XDG_CONFIG_HOME': state + '/config',\n    'XDG_CACHE_HOME': state + '/cache', 'XDG_DATA_HOME': state + '/data',\n    'XDG_STATE_HOME': state + '/state', 'TMPDIR': state + '/tmp',\n    'TMP': state + '/tmp', 'TEMP': state + '/tmp',\n    'npm_config_cache': state + '/npm-cache',\n    'npm_config_userconfig': state + '/home/.npmrc',\n    'npm_config_globalconfig': state + '/home/global.npmrc',\n    'npm_config_update_notifier': 'false', 'npm_config_audit': 'false',\n    'npm_config_fund': 'false', 'USER': 'ubuntu', 'LOGNAME': 'ubuntu',\n    'SHELL': '/bin/sh', 'LANG': 'C.UTF-8', 'TZ': 'UTC', 'CI': '1',\n    'NO_COLOR': '1', 'TERM': 'xterm-256color',\n    'PI_DURABLE_GLOBAL_ROOT': '/home/ubuntu/.nvm/versions/node/v24.19.0/lib/node_modules',\n    'HINDSIGHT_DISABLED': '1', 'HINDSIGHT_DISABLE_HOOKS': '1',\n}\nrequire(os.environ.get('BB0_SDK_LEAF_GO') == 'sdk-definition-leaf-v1', 'GO_MARKER')\nrequire('NODE_OPTIONS' not in os.environ, 'NODE_OPTIONS_PRESENT')\nrequire(os.environ.get('BB0_EXPECT_HOST_PID_NS'), 'HOST_PID_NS_MISSING')\nrequire(os.environ.get('BB0_HOST_NET_NS'), 'HOST_NET_NS_MISSING')\nrequire(re.fullmatch(r'pid:\\[\\d+\\]', os.environ['BB0_EXPECT_HOST_PID_NS']), 'HOST_PID_NS_FORMAT')\nrequire(re.fullmatch(r'mnt:\\[\\d+\\]', os.environ['BB0_EXPECT_HOST_MNT_NS']), 'HOST_MNT_NS_FORMAT')\nrequire(re.fullmatch(r'net:\\[\\d+\\]', os.environ['BB0_HOST_NET_NS']), 'HOST_NET_NS_FORMAT')\nrequire(os.environ.get('BB0_EXPECT_HOST_MNT_NS'), 'HOST_MNT_NS_MISSING')\nrequire(os.environ.get('BB0_EXPECT_HOST_UID', '').isdigit(), 'HOST_UID_MISSING')\nrequire(os.environ.get('BB0_EXPECT_HOST_GID', '').isdigit(), 'HOST_GID_MISSING')\nexpected.update({\n    'BB0_HIDDEN_SENTINEL': os.environ.get('BB0_HIDDEN_SENTINEL', ''),\n    'BB0_HOST_NET_NS': os.environ.get('BB0_HOST_NET_NS', ''),\n    'BB0_SDK_LEAF_GO': 'sdk-definition-leaf-v1',\n    'BB0_EXPECT_HOST_PID_NS': os.environ['BB0_EXPECT_HOST_PID_NS'],\n    'BB0_EXPECT_HOST_MNT_NS': os.environ['BB0_EXPECT_HOST_MNT_NS'],\n    'BB0_EXPECT_HOST_UID': os.environ['BB0_EXPECT_HOST_UID'],\n    'BB0_EXPECT_HOST_GID': os.environ['BB0_EXPECT_HOST_GID'],\n})\nrequire(set(os.environ) == set(expected), 'ENV_KEYS')\nrequire(dict(os.environ) == expected, 'ENV_VALUES')\nrequire(os.getcwd() == '/home/ubuntu/Projects/pi-durable-bb-adapter/candidates/provider', 'CWD')\nhuid, hgid = int(expected['BB0_EXPECT_HOST_UID']), int(expected['BB0_EXPECT_HOST_GID'])\nrequire(os.getuid() == os.geteuid() == huid, 'UID')\nrequire(os.getgid() == os.getegid() == hgid, 'GID')\n\n# Own proc/namespace evidence only; no process enumeration.\npid_ns = os.readlink('/proc/self/ns/pid')\nnet_ns = os.readlink('/proc/self/ns/net')\nmnt_ns = os.readlink('/proc/self/ns/mnt')\nrequire(pid_ns != expected['BB0_EXPECT_HOST_PID_NS'], 'PID_NS_NOT_PRIVATE')\nrequire(net_ns != expected['BB0_HOST_NET_NS'], 'NET_NS_NOT_PRIVATE')\nrequire(mnt_ns != expected['BB0_EXPECT_HOST_MNT_NS'], 'MNT_NS_NOT_PRIVATE')\nstatus = {}\nwith open('/proc/self/status', encoding='ascii') as f:\n    for line in f:\n        if line.startswith(('CapInh:', 'CapPrm:', 'CapEff:', 'CapBnd:', 'CapAmb:')):\n            k, v = line.split(':', 1)\n            status[k] = int(v.strip(), 16)\nrequire(set(status) == {'CapInh', 'CapPrm', 'CapEff', 'CapBnd', 'CapAmb'}, 'CAP_FIELDS')\nrequire(all(v == 0 for v in status.values()), 'CAPABILITIES_NONZERO')\nrows = mount_rows()\nroot_mount = next((r for r in rows if r[0] == '/'), None)\nproc_mount = next((r for r in rows if r[0] == '/proc'), None)\nrequire(root_mount is not None and 'ro' in root_mount[1], 'ROOT_NOT_READONLY')\nrequire(proc_mount is not None and proc_mount[2] == 'proc', 'PROC_MOUNT')\nrequire([x.split(':', 1)[0].strip() for x in open('/proc/net/dev', encoding='ascii').read().splitlines()[2:]] == ['lo'], 'NET_INTERFACES')\n\nnode_row = covering(rows, NODE)\nrequire(stat.S_ISREG(os.stat(NODE).st_mode) and os.access(NODE, os.X_OK), \"NODE_NOT_EXECUTABLE\")\nrequire(\"ro\" in node_row[1], \"NODE_NOT_READONLY\")\n# Verify exact private modes; record POSIX ACL-name presence as informational metadata.\ndef private_dir(path):\n    s = os.stat(path, follow_symlinks=False)\n    require(stat.S_ISDIR(s.st_mode), 'NOT_DIR:' + path)\n    require(s.st_uid == huid and stat.S_IMODE(s.st_mode) == 0o700, 'DIR_MODE_OWNER:' + path)\n    require(not (s.st_mode & (stat.S_ISUID | stat.S_ISGID | stat.S_ISVTX)), 'DIR_SPECIAL_MODE:' + path)\n    names = os.listxattr(path, follow_symlinks=False)\n    return any(n.startswith('system.posix_acl_') for n in names)\n\nprivate_acl_names_present = {state: private_dir(state)}\nfor name in ('home', 'agent', 'config', 'cache', 'data', 'state', 'tmp', 'npm-cache', 'work'):\n    path = state + '/' + name\n    private_acl_names_present[path] = private_dir(path)\nprivate_acl_names_present['/bb0-readonly'] = private_dir('/bb0-readonly')\nrequire('ro' in covering(rows, '/bb0-readonly')[1], 'FIXTURE_NOT_READONLY')\n\n# Four exact path/hash/readonly checks; never attempt writes to public mounted sources.\nfor path, expected_sha in PINS.items():\n    require(os.path.realpath(path) == path, 'SOURCE_NONCANONICAL:' + path)\n    require(stat.S_ISREG(os.stat(path, follow_symlinks=False).st_mode), 'SOURCE_NOT_REGULAR:' + path)\n    row = covering(rows, path)\n    require(row[0] == path and 'ro' in row[1], 'SOURCE_NOT_EXACT_READONLY_BIND:' + path)\n    require(sha(path) == expected_sha, 'SOURCE_HASH:' + path)\n\n# The helper's synthetic concealed marker must be absent. Private RW canaries are left\n# in this unique run state as evidence; nothing is removed on failure or success.\nhidden = expected['BB0_HIDDEN_SENTINEL']\ntry:\n    os.stat(hidden)\nexcept FileNotFoundError:\n    pass\nelse:\n    raise RuntimeError('FS2_WITNESS_HOLD:HIDDEN_MARKER_VISIBLE')\nfor directory, name in ((expected['HOME'], 'sdk-leaf-home-canary'),\n                        (expected['TMPDIR'], 'sdk-leaf-tmp-canary')):\n    path = directory + '/' + name\n    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)\n    try:\n        os.write(fd, b'sdk-leaf-fs2-preexec-canary-v1\\n')\n        os.fsync(fd)\n    finally:\n        os.close(fd)\n    require(stat.S_IMODE(os.stat(path, follow_symlinks=False).st_mode) == 0o600, 'CANARY_MODE:' + path)\n\n# Remove only witness comparison variables. Keep the original helper environment and GO.\nnode_env = dict(os.environ)\nfor key in ('BB0_EXPECT_HOST_PID_NS', 'BB0_EXPECT_HOST_MNT_NS',\n            'BB0_EXPECT_HOST_UID', 'BB0_EXPECT_HOST_GID'):\n    node_env.pop(key)\nreceipt = {\n    \"phase\": \"preexec\", \"pid\": os.getpid(),\n    \"namespaces\": {\"pid\": pid_ns, \"net\": net_ns, \"mnt\": mnt_ns},\n    \"uid\": os.getuid(), \"euid\": os.geteuid(), \"gid\": os.getgid(), \"egid\": os.getegid(),\n    \"capabilities\": status, \"env_exact_match\": True,\n    \"root_mount\": {\"mountpoint\": root_mount[0], \"options\": sorted(root_mount[1])},\n    \"node_mount\": {\"mountpoint\": node_row[0], \"options\": sorted(node_row[1])},\n    \"proc_mount\": {\"fstype\": proc_mount[2], \"options\": sorted(proc_mount[1])},\n    \"interfaces\": [x.split(\":\", 1)[0].strip() for x in open(\"/proc/net/dev\", encoding=\"ascii\").read().splitlines()[2:]],\n    \"go_marker\": expected[\"BB0_SDK_LEAF_GO\"], \"node_options_absent\": True,\n    \"private_dirs_posix_acl_names_present\": private_acl_names_present,\n    \"private_dirs_mode\": {p: oct(stat.S_IMODE(os.stat(p, follow_symlinks=False).st_mode))\n                            for p in [state] + [state + \"/\" + n for n in (\"home\", \"agent\", \"config\", \"cache\", \"data\", \"state\", \"tmp\", \"npm-cache\", \"work\")]},\n    \"readonly_files_sha256\": {p: sha(p) for p in PINS},\n    \"readonly_mounts\": {p: {\"mountpoint\": covering(rows, p)[0], \"options\": sorted(covering(rows, p)[1])} for p in PINS},\n    \"private_canaries\": [expected[\"HOME\"] + \"/sdk-leaf-home-canary\", expected[\"TMPDIR\"] + \"/sdk-leaf-tmp-canary\"],\n}\nos.write(1, b\"BB0_LEAF_PREEXEC \" + json.dumps(receipt, sort_keys=True).encode(\"utf-8\") + b\"\\n\")\n# No argv/execArgv rewrite, Node flags, SDK edits, or pre-imports.\nos.execve(NODE, [NODE, PROBE, '--execute-leaf'], node_env)\n"
+  ],
+  "outer_env": {
+    "PATH": "/usr/bin:/bin",
+    "LANG": "C.UTF-8",
+    "HOME": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/home",
+    "TMPDIR": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/tmp",
+    "BB0_LEAF_QA_ROOT": "/tmp/bbup-sdk-v3-qa-M15qpc/qa",
+    "BB0_LEAF_QA_EXECUTION_GO": "sdk-leaf-20261016:7ceb55d9fce8379c7a7bcdbeb534d2e385169b9f428133c543cf0d03833bdfe7"
+  },
+  "child_env": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/home",
+    "TMPDIR": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/tmp",
+    "LANG": "C.UTF-8"
+  },
+  "host_pid_ns": "pid:[4026531836]",
+  "host_mnt_ns": "mnt:[4026531832]",
+  "host_uid": 1000,
+  "host_gid": 1000,
+  "timeout_seconds": 60,
+  "timeout_policy": "kill only owned Popen then wait <=5s; unknown => retain/no retry/no delete",
+  "popen_exit": 1,
+  "child_status": "REAPED_NORMAL",
+  "utc_end": "2026-10-16T05:53:40.798983+00:00",
+  "stdout_sha256": "011c1d1af98d3d24eec18b1b51b965511e2550dbde96e1d6b11867bbf63db5ac",
+  "stderr_sha256": "7a88de0e8f25bd908c0b5a3d92d6d232c38995b68a6c3be40cba5413d40b539a",
+  "supervisor_sha256_after": "423f157bc2cc48a6b07a8661ec2ded6b6cace05acb8b1a1fdc7af848b5103145",
+  "witness_sha256_after": "d21c1a8895fb6ea25610d5f6455e62a274c9dc53612cf897e646a3d7f3dd2528",
+  "manifest_sha256_after": "7ceb55d9fce8379c7a7bcdbeb534d2e385169b9f428133c543cf0d03833bdfe7",
+  "public_pin_count_after": 98,
+  "source_pins_after": "MATCH",
+  "helper_base_after": [
+    2049,
+    9384078,
+    1000,
+    448
+  ],
+  "helper_base_before": [
+    2049,
+    9384078,
+    1000,
+    448
+  ],
+  "helper_base_posix_acl_names_present": {
+    "before": true,
+    "after": true
+  },
+  "plan_sources_after_match": true,
+  "helper_base_after_match": true,
+  "post_integrity": "MATCH",
+  "classification": "PROCESS_EXIT_OBSERVED_ONLY; inspect Node assertion report; no broader acceptance"
+}

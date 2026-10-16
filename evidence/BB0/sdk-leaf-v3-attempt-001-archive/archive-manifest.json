@@ -1,0 +1,79 @@
+{
+  "schema": "bb0-finite-sdk-v3-source-and-attempt-archive-v1",
+  "scope": "Exact5 frozen source plus7 rawcaptures; no cache/HOME/profile contents copied. Raw exit1 ENV_KEYS preserved, notSDKpass. GO marker is non-secret fixture control, not service credential.",
+  "newArchiveSetupHistory": "Initial creation-only routine failed exactmode assertion: new archive/source/capture inherited2700, first9,354byte source copy664, hashcorrect. All behindgroupclass0 parent, noleak alleged. Beforefreeze, onlythese brand-newRootarchive directories/copy gotdescriptor fchmod700/600, originalQA/source/cache/parentmodes neverchanged. No archive manifest existed onrecovery. No data overwritten/deleted, no runtime retry.",
+  "entries": [
+    {
+      "source": "/tmp/sdk-leaf-qa-plan-v3-WfYyH7/supervisor.py",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/source/supervisor.py",
+      "bytes": 9354,
+      "sha256": "423f157bc2cc48a6b07a8661ec2ded6b6cace05acb8b1a1fdc7af848b5103145"
+    },
+    {
+      "source": "/tmp/sdk-leaf-qa-plan-v3-WfYyH7/inner-witness.py",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/source/inner-witness.py",
+      "bytes": 10207,
+      "sha256": "d21c1a8895fb6ea25610d5f6455e62a274c9dc53612cf897e646a3d7f3dd2528"
+    },
+    {
+      "source": "/tmp/sdk-leaf-qa-plan-v3-WfYyH7/proposal.md",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/source/proposal.md",
+      "bytes": 2114,
+      "sha256": "d235e6a6f76cba46aaa9075bd3029f472af2cd641956c3cd947dda91799504dd"
+    },
+    {
+      "source": "/tmp/sdk-leaf-qa-plan-v3-WfYyH7/v3.diff",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/source/v3.diff",
+      "bytes": 2910,
+      "sha256": "1430e26b8f6a43c77f1d61ecdc7b531d5a68a57334bf3520918070c1d8106ded"
+    },
+    {
+      "source": "/tmp/sdk-leaf-qa-plan-v3-WfYyH7/manifest.json",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/source/manifest.json",
+      "bytes": 7638,
+      "sha256": "7ceb55d9fce8379c7a7bcdbeb534d2e385169b9f428133c543cf0d03833bdfe7"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/logs/stdout.raw",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/stdout.raw",
+      "bytes": 18441,
+      "sha256": "011c1d1af98d3d24eec18b1b51b965511e2550dbde96e1d6b11867bbf63db5ac"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/logs/stderr.raw",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/stderr.raw",
+      "bytes": 323,
+      "sha256": "7a88de0e8f25bd908c0b5a3d92d6d232c38995b68a6c3be40cba5413d40b539a"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/logs/final.json",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/final.json",
+      "bytes": 13376,
+      "sha256": "99c016000dc897c322ed2081cb1402c672a4026daeda1eeb58b02880d8b9b05c"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/qa/logs/launch.json",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/launch.json",
+      "bytes": 12316,
+      "sha256": "49ea6ab4e9aaf643b417713563c46cdd33f854060821cfd42ca260309dc01d36"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/outer-result.json",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/outer-result.json",
+      "bytes": 15340,
+      "sha256": "dd364e5b3c8d15f798fe701b7d54265c58130615dc9982ba1076d48263e5dd9f"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/outer.stdout.raw",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/outer.stdout.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/tmp/bbup-sdk-v3-qa-M15qpc/outer.stderr.raw",
+      "path": "evidence/BB0/sdk-leaf-v3-attempt-001-archive/capture/outer.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

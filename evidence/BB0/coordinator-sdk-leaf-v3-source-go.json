@@ -1,0 +1,45 @@
+{
+  "schema": "bb0-sdk-leaf-v3-source-go-v1",
+  "coordinator": "RusticCanyon",
+  "candidate": "/tmp/sdk-leaf-qa-plan-v3-WfYyH7",
+  "sourceReviewer": "review-dag",
+  "sourceVerdict": "PASS source-only; actual runtime still pending",
+  "pins": {
+    "supervisor.py": [9354, "423f157bc2cc48a6b07a8661ec2ded6b6cace05acb8b1a1fdc7af848b5103145"],
+    "inner-witness.py": [10207, "d21c1a8895fb6ea25610d5f6455e62a274c9dc53612cf897e646a3d7f3dd2528"],
+    "proposal.md": [2114, "d235e6a6f76cba46aaa9075bd3029f472af2cd641956c3cd947dda91799504dd"],
+    "v3.diff": [2910, "1430e26b8f6a43c77f1d61ecdc7b531d5a68a57334bf3520918070c1d8106ded"],
+    "manifest.json": [7638, "7ceb55d9fce8379c7a7bcdbeb534d2e385169b9f428133c543cf0d03833bdfe7"]
+  },
+  "parentActualChecks": {
+    "fiveArtifactHashBytesUIDModesASTJSON": "MATCH",
+    "sixConsumedManifestKeysAndNestedShape": "MATCH; no v2 missing-key defect",
+    "thirteenSourcePinsActualBytesHashes": "MATCH",
+    "publicManifestRowCount": 98,
+    "actualPublic98RuntimeVerification": "Not performed by parent; exact supervisor verifies pre/post during admitted attempt",
+    "actualExtractedOutcomeFunctionCases": "5/5 PASS: timeout late0=>124, timeout -9=>124, UNKNOWN reap=>124, normal0=>0, post-integrity HOLD=>125. This is a pure-function test, not a process-timeout experiment.",
+    "baseMetadataOnly": "canonical, UID1000, exact0700; POSIX default/access xattr names present; no contents or ACL values read",
+    "sourceBinding": "v3 diff read; original helper/probe and four RO additions unchanged. Bound supervisor loader compiles checked bytes with correct __file__/__name__, no importlib cache."
+  },
+  "rootDecision": {
+    "authority": "ONE genuine SDK+real Zod definition-leaf QA attempt only",
+    "operator": "qa-bb0-inventory native child; Root holds reservations, no separate Agent Mail identity impersonated",
+    "leaseIDs": [349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361],
+    "expiryUTC": "2026-10-16T06:11:02.817199Z",
+    "cpuLease": 349,
+    "go": "sdk-leaf-20261016:7ceb55d9fce8379c7a7bcdbeb534d2e385169b9f428133c543cf0d03833bdfe7",
+    "freshState": "New capture0700, EMPTYqa0700 child, fresh qa/home and qa/tmp created only by supervisor; outer exclusive0600 captures outside empty qa. Never reuse any completed QA HOME.",
+    "entry": "Direct owned Popen env-i exact six supervisor vars, Python-I-B checked-byte compile loader; no inherited bash wrapper. AST-check tiny loader before launching; no new collector/framework.",
+    "beforeSDK": "Existing inline witness independently checks actual namespace/env/caps/owner/exact0700/four RO hashes/canaries before same-PID execve of original Node/probe --execute-leaf.",
+    "timeout": "Inner owned helper Popen60 + owned-only kill/wait5. Optional outer owned supervisor Popen120 + owned-only kill/wait5. Any timeout=>124 even late0; descendant/namespace cleanup UNKNOWN=>STOP retain no retry/delete, no group/global PID kills.",
+    "baseWrites": "Only prechecked same700 BASE chmod and fresh unique run-/readonly-/concealed-children; no old contents, parent ACL/mode repair or deletion.",
+    "fs3Dependency": "FS3 is separate and NOT_STARTED; no FS3 result is prerequisite for this self-contained witness/leaf. Its source-only preflight prep deferred, not another runtime GO.",
+    "forbidden": "No BB CLI, Pi install, model generation, oldstack restart, production/Pocket/liveSQLite/managed-source writes, new mounts/flags/SDK shim, broad scans or credential/config reads. No other runtime permission."
+  },
+  "runtimeResult": "PENDING; authorization is not execution evidence. Until actual report, no SDK-evaluation or effect-zero PASS asserted.",
+  "scopeLimit": "Even a successful leaf cannot close original BB loader/compiled-contract ordering, canonical requester identity/auth, C/socket, Stage2 or full BB0.",
+  "docNitsRetainedFrozen": "Proposal/metadata retain some v2 labels and four-case wording; actual v3 pure function was checked with five. No mutation of reviewed bytes during QA.",
+  "modelDisclosure": "Gemini unavailable; requested Luna-high fallback; effective model UNKNOWN",
+  "fullAcceptance": "0/222; no Bead closed; BB1 waits",
+  "latestVerifiedPrivateBackup": "97aafa6aeb8b6d05f2082cf81bf00ff55cf4e56e; this later receipt is not in that commit"
+}
