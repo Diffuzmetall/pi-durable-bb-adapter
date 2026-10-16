@@ -1,0 +1,108 @@
+gyp info it worked if it ends with ok
+gyp info using node-gyp@11.4.0
+gyp info using node@24.19.0 | linux | x64
+(node:3832881) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+gyp info find Python using Python version 3.13.7 found at "/usr/bin/python3"
+gyp info spawn /usr/bin/python3
+gyp info spawn args [
+gyp info spawn args '/usr/share/nodejs/node-gyp/gyp/gyp_main.py',
+gyp info spawn args 'binding.gyp',
+gyp info spawn args '-f',
+gyp info spawn args 'make',
+gyp info spawn args '-I',
+gyp info spawn args '/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build/config.gypi',
+gyp info spawn args '-I',
+gyp info spawn args '/usr/share/nodejs/node-gyp/addon.gypi',
+gyp info spawn args '-I',
+gyp info spawn args '/home/ubuntu/.nvm/versions/node/v24.19.0/include/node/common.gypi',
+gyp info spawn args '-Dlibrary=shared_library',
+gyp info spawn args '-Dvisibility=default',
+gyp info spawn args '-Dnode_root_dir=/home/ubuntu/.nvm/versions/node/v24.19.0',
+gyp info spawn args '-Dnode_gyp_dir=/usr/share/nodejs/node-gyp',
+gyp info spawn args '-Dnode_lib_file=/home/ubuntu/.nvm/versions/node/v24.19.0/$(Configuration)/node.lib',
+gyp info spawn args '-Dmodule_root_dir=/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite',
+gyp info spawn args '-Dnode_engine=v8',
+gyp info spawn args '--depth=.',
+gyp info spawn args '--no-parallel',
+gyp info spawn args '--generator-output',
+gyp info spawn args 'build',
+gyp info spawn args '-Goutput_dir=.'
+gyp info spawn args ]
+gyp info spawn make
+gyp info spawn args [ 'V=1', 'BUILDTYPE=Release', '-C', 'build', '--jobs', 2 ]
+make: Entering directory '/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build'
+  touch ba23eeee118cd63e16015df367567cb043fed872.intermediate
+  LD_LIBRARY_PATH=/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build/Release/lib.host:/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build/Release/lib.target:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH; cd ../deps; mkdir -p /home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build/Release/obj/gen/sqlite3; node copy.js "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build/Release/obj/gen/sqlite3" ""
+  touch Release/obj.target/deps/locate_sqlite3.stamp
+  cc -o Release/obj.target/sqlite3/gen/sqlite3/sqlite3.o Release/obj/gen/sqlite3/sqlite3.c '-DNODE_GYP_MODULE_NAME=sqlite3' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_GLIBCXX_USE_CXX11_ABI=1' '-D_FILE_OFFSET_BITS=64' '-D_LARGEFILE_SOURCE' '-D__STDC_FORMAT_MACROS' '-DOPENSSL_NO_PINSHARED' '-DOPENSSL_THREADS' '-DHAVE_INT16_T=1' '-DHAVE_INT32_T=1' '-DHAVE_INT8_T=1' '-DHAVE_STDINT_H=1' '-DHAVE_UINT16_T=1' '-DHAVE_UINT32_T=1' '-DHAVE_UINT8_T=1' '-DHAVE_USLEEP=1' '-DSQLITE_DEFAULT_CACHE_SIZE=-16000' '-DSQLITE_DEFAULT_FOREIGN_KEYS=1' '-DSQLITE_DEFAULT_MEMSTATUS=0' '-DSQLITE_DEFAULT_WAL_SYNCHRONOUS=1' '-DSQLITE_DQS=0' '-DSQLITE_ENABLE_COLUMN_METADATA' '-DSQLITE_ENABLE_DBSTAT_VTAB' '-DSQLITE_ENABLE_DESERIALIZE' '-DSQLITE_ENABLE_FTS3' '-DSQLITE_ENABLE_FTS3_PARENTHESIS' '-DSQLITE_ENABLE_FTS4' '-DSQLITE_ENABLE_FTS5' '-DSQLITE_ENABLE_GEOPOLY' '-DSQLITE_ENABLE_JSON1' '-DSQLITE_ENABLE_MATH_FUNCTIONS' '-DSQLITE_ENABLE_PERCENTILE' '-DSQLITE_ENABLE_RTREE' '-DSQLITE_ENABLE_STAT4' '-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT' '-DSQLITE_LIKE_DOESNT_MATCH_BLOBS' '-DSQLITE_OMIT_DEPRECATED' '-DSQLITE_OMIT_PROGRESS_CALLBACK' '-DSQLITE_OMIT_SHARED_CACHE' '-DSQLITE_OMIT_TCL_VARIABLE' '-DSQLITE_SOUNDEX' '-DSQLITE_THREADSAFE=2' '-DSQLITE_TRACE_SIZE_LIMIT=32' '-DSQLITE_USE_URI=0' '-DNDEBUG' -I/home/ubuntu/.nvm/versions/node/v24.19.0/include/node -I/home/ubuntu/.nvm/versions/node/v24.19.0/src -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/openssl/config -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/openssl/openssl/include -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/uv/include -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/zlib -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/v8/include -I./Release/obj/gen/sqlite3  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -std=c99 -w -m64 -O3 -O3 -fno-omit-frame-pointer  -MMD -MF ./Release/.deps/Release/obj.target/sqlite3/gen/sqlite3/sqlite3.o.d.raw   -c
+rm -f Release/obj.target/deps/sqlite3.a Release/obj.target/deps/sqlite3.a.ar-file-list; mkdir -p `dirname Release/obj.target/deps/sqlite3.a`
+ar crs Release/obj.target/deps/sqlite3.a @Release/obj.target/deps/sqlite3.a.ar-file-list
+  ln -f "Release/obj.target/deps/sqlite3.a" "Release/sqlite3.a" 2>/dev/null || (rm -rf "Release/sqlite3.a" && cp -af "Release/obj.target/deps/sqlite3.a" "Release/sqlite3.a")
+  g++ -o Release/obj.target/better_sqlite3/src/better_sqlite3.o ../src/better_sqlite3.cpp '-DNODE_GYP_MODULE_NAME=better_sqlite3' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_GLIBCXX_USE_CXX11_ABI=1' '-D_FILE_OFFSET_BITS=64' '-D_LARGEFILE_SOURCE' '-D__STDC_FORMAT_MACROS' '-DOPENSSL_NO_PINSHARED' '-DOPENSSL_THREADS' '-DBUILDING_NODE_EXTENSION' '-DNDEBUG' -I/home/ubuntu/.nvm/versions/node/v24.19.0/include/node -I/home/ubuntu/.nvm/versions/node/v24.19.0/src -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/openssl/config -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/openssl/openssl/include -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/uv/include -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/zlib -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/v8/include -I./Release/obj/gen/sqlite3  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -O3 -O3 -fno-omit-frame-pointer -fno-rtti -fno-exceptions -fno-strict-aliasing -std=gnu++20 -std=c++20 -MMD -MF ./Release/.deps/Release/obj.target/better_sqlite3/src/better_sqlite3.o.d.raw   -c
+  cc -o Release/obj.target/test_extension/deps/test_extension.o ../deps/test_extension.c '-DNODE_GYP_MODULE_NAME=test_extension' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_GLIBCXX_USE_CXX11_ABI=1' '-D_FILE_OFFSET_BITS=64' '-D_LARGEFILE_SOURCE' '-D__STDC_FORMAT_MACROS' '-DOPENSSL_NO_PINSHARED' '-DOPENSSL_THREADS' '-DBUILDING_NODE_EXTENSION' '-DNDEBUG' -I/home/ubuntu/.nvm/versions/node/v24.19.0/include/node -I/home/ubuntu/.nvm/versions/node/v24.19.0/src -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/openssl/config -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/openssl/openssl/include -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/uv/include -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/zlib -I/home/ubuntu/.nvm/versions/node/v24.19.0/deps/v8/include -I./Release/obj/gen/sqlite3  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -O3 -O3 -fno-omit-frame-pointer  -MMD -MF ./Release/.deps/Release/obj.target/test_extension/deps/test_extension.o.d.raw   -c
+  g++ -o Release/obj.target/test_extension.node -shared -pthread -rdynamic -m64  -Wl,-soname=test_extension.node -Wl,--start-group Release/obj.target/test_extension/deps/test_extension.o Release/obj.target/deps/sqlite3.a -Wl,--end-group -lnode
+  ln -f "Release/obj.target/test_extension.node" "Release/test_extension.node" 2>/dev/null || (rm -rf "Release/test_extension.node" && cp -af "Release/obj.target/test_extension.node" "Release/test_extension.node")
+In file included from ../src/better_sqlite3.cpp:11:
+/home/ubuntu/.nvm/versions/node/v24.19.0/include/node/node.h:1384:7: warning: cast between incompatible function types from ‘void (*)(v8::Local<v8::Object>, v8::Local<v8::Value>, v8::Local<v8::Context>)’ to ‘node::addon_context_register_func’ {aka ‘void (*)(v8::Local<v8::Object>, v8::Local<v8::Value>, v8::Local<v8::Context>, void*)’} [-Wcast-function-type]
+ 1384 |       (node::addon_context_register_func) (regfunc),                  \
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/.nvm/versions/node/v24.19.0/include/node/node.h:1402:3: note: in expansion of macro ‘NODE_MODULE_CONTEXT_AWARE_X’
+ 1402 |   NODE_MODULE_CONTEXT_AWARE_X(modname, regfunc, NULL, 0)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/ubuntu/.nvm/versions/node/v24.19.0/include/node/node.h:1433:3: note: in expansion of macro ‘NODE_MODULE_CONTEXT_AWARE’
+ 1433 |   NODE_MODULE_CONTEXT_AWARE(NODE_GYP_MODULE_NAME,                     \
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/better_sqlite3.cpp:48:1: note: in expansion of macro ‘NODE_MODULE_INIT’
+   48 | NODE_MODULE_INIT(/* exports, context */) {
+      | ^~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:26:
+../src/util/data.cpp: In function ‘v8::Local<v8::Value> Data::GetValueJS(v8::Isolate*, sqlite3_stmt*, int, bool)’:
+../src/util/data.cpp:36:17: warning: this statement may fall through [-Wimplicit-fallthrough=]
+   36 |                 if (safe_ints) {                                                       \
+      |                 ^~
+../src/util/data.cpp:73:17: note: in expansion of macro ‘SQLITE_VALUE_TO_JS’
+   73 |                 SQLITE_VALUE_TO_JS(column, isolate, safe_ints, handle, column);
+      |                 ^~~~~~~~~~~~~~~~~~
+../src/util/data.cpp:42:9: note: here
+   42 |         case SQLITE_FLOAT:                                                         \
+      |         ^~~~
+../src/util/data.cpp:73:17: note: in expansion of macro ‘SQLITE_VALUE_TO_JS’
+   73 |                 SQLITE_VALUE_TO_JS(column, isolate, safe_ints, handle, column);
+      |                 ^~~~~~~~~~~~~~~~~~
+../src/util/data.cpp: In function ‘v8::Local<v8::Value> Data::GetValueJS(v8::Isolate*, sqlite3_value*, bool)’:
+../src/util/data.cpp:36:17: warning: this statement may fall through [-Wimplicit-fallthrough=]
+   36 |                 if (safe_ints) {                                                       \
+      |                 ^~
+../src/util/data.cpp:77:17: note: in expansion of macro ‘SQLITE_VALUE_TO_JS’
+   77 |                 SQLITE_VALUE_TO_JS(value, isolate, safe_ints, value);
+      |                 ^~~~~~~~~~~~~~~~~~
+../src/util/data.cpp:42:9: note: here
+   42 |         case SQLITE_FLOAT:                                                         \
+      |         ^~~~
+../src/util/data.cpp:77:17: note: in expansion of macro ‘SQLITE_VALUE_TO_JS’
+   77 |                 SQLITE_VALUE_TO_JS(value, isolate, safe_ints, value);
+      |                 ^~~~~~~~~~~~~~~~~~
+  g++ -o Release/obj.target/better_sqlite3.node -shared -pthread -rdynamic -Wl,-Bsymbolic -Wl,--exclude-libs,ALL -m64  -Wl,-soname=better_sqlite3.node -Wl,--start-group Release/obj.target/better_sqlite3/src/better_sqlite3.o Release/obj.target/deps/sqlite3.a -Wl,--end-group -lnode
+  ln -f "Release/obj.target/better_sqlite3.node" "Release/better_sqlite3.node" 2>/dev/null || (rm -rf "Release/better_sqlite3.node" && cp -af "Release/obj.target/better_sqlite3.node" "Release/better_sqlite3.node")
+rm ba23eeee118cd63e16015df367567cb043fed872.intermediate
+make: Leaving directory '/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build/sqlite/build'
+gyp info ok 
+
+[1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port[39m
+
+[90mstderr[2m | apps/server/test/threads/native-existing-handler.test.ts[2m > [22m[2mregisters durably through real daemon authentication without submitting a turn
+[22m[39m2026-10-16T19:51:06.620Z ERROR [Better Auth]: Failed to validate API key: [APIError: Invalid API key.] {
+  status: [32m'UNAUTHORIZED'[39m,
+  body: { message: [32m'Invalid API key.'[39m, code: [32m'INVALID_API_KEY'[39m },
+  headers: {},
+  statusCode: [33m401[39m
+}
+
+ [32m✓[39m apps/server/test/threads/native-existing-handler.test.ts[2m > [22mregisters durably through real daemon authentication without submitting a turn[32m -4329[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 22:51:01
+[2m   Duration [22m 5.45s[2m (transform 2.56s, setup 0ms, import 4.61s, tests 0ms, environment 0ms)[22m
+

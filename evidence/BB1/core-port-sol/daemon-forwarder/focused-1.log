@@ -1,0 +1,26 @@
+
+[1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m apps/server/test/threads/native-existing-daemon.test.ts[2m [ apps/server/test/threads/native-existing-daemon.test.ts ][22m
+[31m[1mError[22m: Transform failed with 1 error:
+
+[31m[TSCONFIG_ERROR] Error:[0m Failed to load tsconfig for 'apps/host-daemon/src/server-client.ts': Tsconfig not found
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36m/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port/apps/host-daemon/src/server-client.ts[39m
+[90m [2m❯[22m transformWithOxc node_modules/.pnpm/vite@8.0.12_@types+node@24.12.4_esbuild@0.28.1_jiti@2.7.0_terser@5.50.0_tsx@4.23.1_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:[2m3340:19[22m[39m
+[90m [2m❯[22m TransformPluginContext.transform node_modules/.pnpm/vite@8.0.12_@types+node@24.12.4_esbuild@0.28.1_jiti@2.7.0_terser@5.50.0_tsx@4.23.1_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:[2m3408:26[22m[39m
+[90m [2m❯[22m EnvironmentPluginContainer.transform node_modules/.pnpm/vite@8.0.12_@types+node@24.12.4_esbuild@0.28.1_jiti@2.7.0_terser@5.50.0_tsx@4.23.1_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:[2m30193:51[22m[39m
+[90m [2m❯[22m loadAndTransform node_modules/.pnpm/vite@8.0.12_@types+node@24.12.4_esbuild@0.28.1_jiti@2.7.0_terser@5.50.0_tsx@4.23.1_yaml@2.9.0/node_modules/vite/dist/node/chunks/node.js:[2m24511:26[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [2mno tests[22m
+[2m   Start at [22m 00:16:28
+[2m   Duration [22m 5.53s[2m (transform 3.00s, setup 0ms, import 0ms, tests 0ms, environment 0ms)[22m
+

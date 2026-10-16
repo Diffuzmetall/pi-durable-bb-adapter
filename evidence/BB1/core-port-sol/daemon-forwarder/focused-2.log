@@ -1,0 +1,25 @@
+
+[1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m apps/server/test/threads/native-existing-daemon.test.ts[2m [ apps/server/test/threads/native-existing-daemon.test.ts ][22m
+[31m[1mError[22m: Cannot find package 'p-retry' imported from /home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port/apps/host-daemon/src/server-client.ts[39m
+[36m [2m❯[22m apps/host-daemon/src/server-client.ts:[2m1:1[22m[39m
+    [90m  1|[39m [35mimport[39m pRetry[33m,[39m { [33mAbortError[39m } [35mfrom[39m [32m"p-retry"[39m[33m;[39m
+    [90m   |[39m [31m^[39m
+    [90m  2|[39m [35mimport[39m { z } [35mfrom[39m [32m"zod"[39m[33m;[39m
+    [90m  3|[39m [35mimport[39m {
+[90m [2m❯[22m apps/server/test/threads/native-existing-daemon.test.ts:[2m14:1[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ code: 'ERR_MODULE_NOT_FOUND' }[39m
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [2mno tests[22m
+[2m   Start at [22m 00:21:42
+[2m   Duration [22m 6.08s[2m (transform 3.26s, setup 0ms, import 0ms, tests 0ms, environment 0ms)[22m
+

@@ -1,0 +1,112 @@
+{
+  "at": "2026-10-16T19:31:18.379252+00:00",
+  "coreCommit": "4c87fdec7b7effc022ff2ee31ec95c0a09c9ee62",
+  "recipeSHA256": "a53c2821c2d7d0a29a8511e47be92b8a0406b82254dc5ea3a405ef8c382aee32",
+  "scratch": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port",
+  "work": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/sqlite-build",
+  "overlayParity": [
+    {
+      "path": "apps/server/src/internal/hosts.ts",
+      "sourceSHA256": "93f9292982e49704992832996560da92880306807184c545a2b345975ed56b16",
+      "scratchSHA256": "93f9292982e49704992832996560da92880306807184c545a2b345975ed56b16"
+    },
+    {
+      "path": "apps/server/test/helpers/seed.ts",
+      "sourceSHA256": "a60af0f8843215e6c6ff95fd4f973f5c0b097aa2b6b225376be17a92bf15528a",
+      "scratchSHA256": "a60af0f8843215e6c6ff95fd4f973f5c0b097aa2b6b225376be17a92bf15528a"
+    },
+    {
+      "path": "apps/server/test/helpers/test-app.ts",
+      "sourceSHA256": "99991057d552dee49bca0ab21bfa82d840a6d40ff062f50fff7a2a213b3681d3",
+      "scratchSHA256": "99991057d552dee49bca0ab21bfa82d840a6d40ff062f50fff7a2a213b3681d3"
+    },
+    {
+      "path": "apps/server/test/internal/internal-session-protocol-version.test.ts",
+      "sourceSHA256": "50d9373021cd750271347c2a70bc081636e965f5e50f5e2853ac5bd09cb8db4b",
+      "scratchSHA256": "50d9373021cd750271347c2a70bc081636e965f5e50f5e2853ac5bd09cb8db4b"
+    },
+    {
+      "path": "apps/server/test/threads/native-existing-handler.test.ts",
+      "sourceSHA256": "92d969c3f727184a79529bddfb64650547338959851ac919a85a12bb4a60f1cc",
+      "scratchSHA256": "92d969c3f727184a79529bddfb64650547338959851ac919a85a12bb4a60f1cc"
+    },
+    {
+      "path": "apps/server/test/threads/native-existing-registration.test.ts",
+      "sourceSHA256": "17b7415538e28ebf96d4168dc24843d76c6e3752ef2c2bb1869a3630c9e99b88",
+      "scratchSHA256": "17b7415538e28ebf96d4168dc24843d76c6e3752ef2c2bb1869a3630c9e99b88"
+    },
+    {
+      "path": "packages/db/src/data/index.ts",
+      "sourceSHA256": "b2eca8a51b84f97c2c162cf42440cd01ae18cabc2b46d3eef7e7c5b1105200e4",
+      "scratchSHA256": "b2eca8a51b84f97c2c162cf42440cd01ae18cabc2b46d3eef7e7c5b1105200e4"
+    },
+    {
+      "path": "packages/db/src/data/threads.ts",
+      "sourceSHA256": "986beef2d65f7eecbf7f137329da49c9be320ede865d67e5ab7cf884f11c572e",
+      "scratchSHA256": "986beef2d65f7eecbf7f137329da49c9be320ede865d67e5ab7cf884f11c572e"
+    }
+  ],
+  "configSHA256": "dd37bb317c5227e362137bf3f99d9469aa884b6ff89dab042780e0c2f99a5b77",
+  "sqliteVersion": "12.10.0",
+  "sqliteInputFiles": {
+    "LICENSE": "09856b52897c91ab67e7456ef43067019f31dfd3b87fda72e655736b1ebdee55",
+    "README.md": "647a90bd246a10fdd1d827f6ca7aa391f142e3322068470be07220941d953386",
+    "binding.gyp": "2a48a110d17a692e769e4747dfea3b4471842ba86501db7cdcda33f8dfcb2921",
+    "build/Release/better_sqlite3.node": "6fd4292c6c5f352436cd85c9e1cb286978efa43c20ae350973f83414ced9991d",
+    "deps/common.gypi": "e71a565cd7733e05efc3a2792b54e260126f03f490325aa2a201202acbbdb315",
+    "deps/copy.js": "05a2bd41dbd96e33e2fc6cf4bcbc722b4bc8c529813b882f92113d7dbbbece67",
+    "deps/defines.gypi": "029426d3d6528d56ea75682a67a49e48747ccb7439faa75107601d4e2cafabc3",
+    "deps/download.sh": "f914d7d4edd1066e57556618e0001bdc36c52151d593b184a64897aba2d013e9",
+    "deps/patches/1208.patch": "5d1f22d69fee3551b70a7b7b9b14be43fcfd04dbc8683233667abfa75905011a",
+    "deps/sqlite3/sqlite3.c": "4400debe164efbc652cf868a951f6eb721e25f794466a8fc41cd854646883da8",
+    "deps/sqlite3/sqlite3.h": "16d6e2f265fb13ece42329da39a865d4c540045b444d16b4bf9f7e1a7e39408f",
+    "deps/sqlite3/sqlite3ext.h": "ac9645e5c9ff0cf176efdd6e75cb5e98f46295d38e02db5c4d208826a39ab4be",
+    "deps/sqlite3.gyp": "a009b8f80cf0a944eacaf71a84e590504f353fbd8f8b341138d0c3094e372d18",
+    "deps/test_extension.c": "948af88dbf356835f5496c1a3d047fdbcc58f3717aa9bc94d0943d7de2b7cf5b",
+    "lib/database.js": "02ea23bdd23d7ac5de0675a2f32fc686e76d5c6a32bd3e3891f360e72e07f61f",
+    "lib/index.js": "82db11c4ee43a41d859988c5db42c3771dff565371f94bacbd1e4d8d6ceb47cd",
+    "lib/methods/aggregate.js": "e9f74eb919ec93fe089c95ddf25a98f1f631c80418fa34fb2346ca1bc29f1b82",
+    "lib/methods/backup.js": "ea29d34992bb02e006d0fdeda9675ac5d2bb227aaf57468decd997e9fc9c7dbf",
+    "lib/methods/function.js": "f431d49303b8bbdc044b1f1b455bdad21fc9b74b007de0acb22f08f25b4febd3",
+    "lib/methods/inspect.js": "4975a78daee850adee62ba98719d0f223819a0ec135a07c0e302994bd8dbff61",
+    "lib/methods/pragma.js": "8b1c54475bd4340b15e25c50d53d06308be65f8f919ecbe4aa9d285ca859ad5a",
+    "lib/methods/serialize.js": "7a10ee5c2735384b7f0c361811bc6d017db29f62b203fd3c68a35f667e2c2605",
+    "lib/methods/table.js": "97c42d9ded1aa96c7d916b5b92f96b4e59581d50eaf629cd2c7afb78ff26a9ea",
+    "lib/methods/transaction.js": "bc8624a3ef689d8f78e5669020ad121e17acbc93b1d5ee5afe26860b1084c66c",
+    "lib/methods/wrappers.js": "a150a6271d23f4e5f8953b129f370ff096c7cdc4b812afbf080a6cf4ab741bcf",
+    "lib/sqlite-error.js": "2582d61c27680dead168543f392eb102be621dfbef282a4ca4c7c21aa5e7c75d",
+    "lib/util.js": "92b2e39e2151b43a2252e10b6d6de876ecaf0008336a4fa1dfe1317b20f1916f",
+    "node_modules/.bin/prebuild-install": "1caf1ce3a8b550e5b96e3d8b164e32ea73dc90905959a029929732bfd55e349c",
+    "package.json": "d1db58a099dfdef5d10253e873e358eb1e9e2ebb01fa6ef0d40150e37cef6317",
+    "src/addon.cpp": "20f19f480ce060900521cf9510922e5ca1c8e76936f07ac2916f316e549a0190",
+    "src/better_sqlite3.cpp": "c343ae9a8c876ed62d620562ffe9acedcdb105f49ba196b4e79f9aab8ffe16fa",
+    "src/objects/backup.cpp": "16a67102c49c9312eb1deecd08c27064325840df51d6957fe134b871f5d8798c",
+    "src/objects/backup.hpp": "02d57e03a1a03b3f8bb2fc503fc1704d4143b76d939fe37230fbb3b44177c44a",
+    "src/objects/database.cpp": "081c514fb0a472a0e0962f0619149c187b6cf424e09baa7f39cc5246c17f75aa",
+    "src/objects/database.hpp": "f47ab5d6bb775cadd0b2b73c4fcb6faf5cb2ae783a049ff4691fafc5d29a0bca",
+    "src/objects/statement-iterator.cpp": "6ac791fbb786fc498450e843f2a043eddeb03093eb6b31012a04ae7b84a8d7ab",
+    "src/objects/statement-iterator.hpp": "c064f10ad6bca99154d4f5325e187978d4c6d6cc6fedaa047a4d2f3b4b4f9655",
+    "src/objects/statement.cpp": "4875a4d1942b89b1dc715b50f3f01e0899530a0772d0fef6f26c358d7e3d12a3",
+    "src/objects/statement.hpp": "3dca186418c62d81f4b9170904fdc02e624c3d76a0c0c61e6aa95486799808e9",
+    "src/util/bind-map.cpp": "7026e107a7f662b6460fbd05e91d9594f5114ffa69de7a8ddb082911f6e90876",
+    "src/util/binder.cpp": "64e2ebe910f2efc1d7a847672565745da2c4f5656d951033d99567e7593409d8",
+    "src/util/constants.cpp": "bbf4a3f983631f01f723627ee0e897f92b12cd6ca3e8b8b965318931bba0f2b4",
+    "src/util/custom-aggregate.cpp": "742d03187a7b8483c9f42bb7b77ed29d0f6877450584fba2662164d2b8dd11b6",
+    "src/util/custom-function.cpp": "6a1f826df2cc2c402d8a3dd747a57dbcedb52fe9220a2bbda6a5e01f038b13d1",
+    "src/util/custom-table.cpp": "7549b38f24b7e69e78d407534a5cde8814a8a08628a421b122644a43940e0aaf",
+    "src/util/data-converter.cpp": "3cb73d0911e92893abf840752e9cfd6baded604d49b39ec4000599eec7c8c594",
+    "src/util/data.cpp": "74de42f9a0fa68277d8ea9cbaf8ee5f455bbd99cc41297696546c0ec8408c882",
+    "src/util/helpers.cpp": "4d273c4ee67337fbe3440ec49058a2ee5cbe6a627b14917dc1e1c98fda8178f1",
+    "src/util/macros.cpp": "c27bbcf3ac17bc0d729684bd06dbde2880e4f6e662b360e1bcd8ede8d373b9a0",
+    "src/util/query-macros.cpp": "0dcf68c3ff527398ebe0a6b874b38aa23b3fb87f285b9701636c3b19282dde8c",
+    "src/util/row-builder.cpp": "d5b352ac4959a07db22a825019286e085910310d6363c61fbdf037e3f32d56fc"
+  },
+  "fixtureTreeSHA256": "255bd90093ed021d9db5af2769d4ccaf492fa3e067d902cc9efea5ca8237f65b",
+  "fixtureRegularFileCount": 39532,
+  "fixtureInternalLinkCount": 1982,
+  "externalLinkCount": 0,
+  "rootMode": "0o700",
+  "previousGOc": "UNCONSUMED_SUPERSEDED_RELOCATION",
+  "proposedNonce": "core-sqlite-project-root-frozen-20261016-d",
+  "status": "PREPARED_NOT_BUILT_NOT_TESTED"
+}

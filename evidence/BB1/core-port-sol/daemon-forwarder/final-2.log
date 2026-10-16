@@ -1,0 +1,10 @@
+
+[1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/native-port[39m
+
+ [32m✓[39m apps/server/test/threads/native-existing-daemon.test.ts[2m > [22mroutes provider reverse RPC through daemon-owned auth into real Core SQLite without submission[32m -5411[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 00:36:00
+[2m   Duration [22m 7.04s[2m (transform 3.53s, setup 0ms, import 5.96s, tests 0ms, environment 0ms)[22m
+

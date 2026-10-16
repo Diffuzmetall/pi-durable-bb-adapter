@@ -1,0 +1,63 @@
+{
+  "corePin": "4c87fdec7b7effc022ff2ee31ec95c0a09c9ee62",
+  "sdkVersion": "0.6.37",
+  "files": [
+    {
+      "path": "packages/agent-runtime/src/runtime.ts",
+      "sourceSHA256": "397f362c4f0e41bbc94f941880abf112fff0cab85ba6822353d562d7268d6432",
+      "scratchSHA256": "397f362c4f0e41bbc94f941880abf112fff0cab85ba6822353d562d7268d6432"
+    },
+    {
+      "path": "packages/agent-runtime/src/types.ts",
+      "sourceSHA256": "3f7687a2d325b3483b33084b27c62b8937c9ef772e25ecc7c82eeba545778ef5",
+      "scratchSHA256": "3f7687a2d325b3483b33084b27c62b8937c9ef772e25ecc7c82eeba545778ef5"
+    },
+    {
+      "path": "apps/host-daemon/src/app.ts",
+      "sourceSHA256": "89d10455fa1f8d445870d587ec9ad86c5a9b0b9958b2b9e99e82a57b841e739d",
+      "scratchSHA256": "89d10455fa1f8d445870d587ec9ad86c5a9b0b9958b2b9e99e82a57b841e739d"
+    },
+    {
+      "path": "apps/host-daemon/src/runtime-manager.ts",
+      "sourceSHA256": "ca0d91917acbea7ef9d3039dd46c3f5fe79fb483847a55e2aab35d64adb6479a",
+      "scratchSHA256": "ca0d91917acbea7ef9d3039dd46c3f5fe79fb483847a55e2aab35d64adb6479a"
+    },
+    {
+      "path": "apps/host-daemon/src/server-client.ts",
+      "sourceSHA256": "d9c40a9a77541c2546bc09d8ff4553c61eaea58a470005d311ef510febfde851",
+      "scratchSHA256": "d9c40a9a77541c2546bc09d8ff4553c61eaea58a470005d311ef510febfde851"
+    },
+    {
+      "path": "apps/host-daemon/src/native-thread-registration.ts",
+      "sourceSHA256": "69f67b1c5008879499e1e2ca4c046ceb3f1cf84b6ed3921d1b7158f82b6f95d2",
+      "scratchSHA256": "69f67b1c5008879499e1e2ca4c046ceb3f1cf84b6ed3921d1b7158f82b6f95d2"
+    },
+    {
+      "path": "apps/server/test/threads/native-existing-daemon.test.ts",
+      "sourceSHA256": "710ed3bb7d60a777b96ae2cc0fa2d534c73fee903c935e35a518d7e505a4e057",
+      "scratchSHA256": "710ed3bb7d60a777b96ae2cc0fa2d534c73fee903c935e35a518d7e505a4e057"
+    },
+    {
+      "path": "apps/server/src/internal/hosts.ts",
+      "sourceSHA256": "93f9292982e49704992832996560da92880306807184c545a2b345975ed56b16",
+      "scratchSHA256": "93f9292982e49704992832996560da92880306807184c545a2b345975ed56b16"
+    },
+    {
+      "path": "packages/db/src/data/threads.ts",
+      "sourceSHA256": "986beef2d65f7eecbf7f137329da49c9be320ede865d67e5ab7cf884f11c572e",
+      "scratchSHA256": "986beef2d65f7eecbf7f137329da49c9be320ede865d67e5ab7cf884f11c572e"
+    },
+    {
+      "path": "packages/db/src/data/index.ts",
+      "sourceSHA256": "b2eca8a51b84f97c2c162cf42440cd01ae18cabc2b46d3eef7e7c5b1105200e4",
+      "scratchSHA256": "b2eca8a51b84f97c2c162cf42440cd01ae18cabc2b46d3eef7e7c5b1105200e4"
+    }
+  ],
+  "testResult": "PASS1/1_EXIT0",
+  "logSHA256": "0882f90a0a176a1a7ae68ffcde6152f7346ae1b93ec80e7375d1173cfdb6996e",
+  "nativeBinarySHA256": "b16f15fe0be7f9c0d9577114ef18b219b2305a773cc6e4d3ff873d6e3423d60a",
+  "workerSourceSHA256": "4e43effe26200bf7a826dedc057c449bc72df3087e4c364f65707f4d26228704",
+  "compiledWorkerSHA256": "6385bb28527f47ca2418d142552c2669c7c4db5fa40d1146d77bdcf214520623",
+  "configSHA256": "a8461a8b5af0914c19bda9aa088eb8db524bd61955fdd7b8204aed25fe8d6c43",
+  "scope": "actual BB runtime reverse-RPC + daemon-owned HTTP registrar + real Hono/auth/SQLite; app/RuntimeManager callback wiring source inspected, not full daemon executable/UI acceptance"
+}
