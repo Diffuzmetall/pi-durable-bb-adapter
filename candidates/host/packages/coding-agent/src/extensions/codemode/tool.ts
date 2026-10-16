@@ -25,8 +25,6 @@ import { join } from "node:path";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 import type { CodemodeJsonSchema, CodemodeTool } from "@earendil-works/pi-codemode";
 import {
-	MCP_TYPESCRIPT_PREAMBLE,
-	mcpStructuredContentSchema,
 	renderToolOutputType,
 	renderToolSample,
 	toCodemodeIdentifier,
@@ -229,7 +227,7 @@ function selectCatalog(groups: readonly CatalogGroup[], budget: number | undefin
 
 /**
  * Model-facing description: the helper list, guidance for finding tools that are not listed, the
- * shared MCP types when listed tools need them, the `models` API, and one section per listed tool,
+ * schema-rendered output types, the `models` API, and one section per listed tool,
  * grouped by namespace. Deferred tools are never listed and do not affect the description at all, so
  * it stays the same while MCP servers connect or change their tools. Tool sections are limited to
  * `inlineBudget`.
@@ -256,14 +254,6 @@ export function createCodemodeDescription(
 	const shown = selectCatalog(ordered, options.inlineBudget);
 
 	const sections = [DESCRIPTION_INTRO, describeGlobals(options.models === true)];
-	if (
-		declarations.some(
-			(declaration) =>
-				shown.has(declaration.name) && mcpStructuredContentSchema(declaration.outputSchema) !== undefined,
-		)
-	) {
-		sections.push(`Shared MCP Types:\n\`\`\`ts\n${MCP_TYPESCRIPT_PREAMBLE}\n\`\`\``);
-	}
 	if (declarations.length === 0) return sections.join("\n\n");
 
 	const toolSections = ["Nested tools:"];
@@ -286,25 +276,10 @@ export function createCodemodeDescription(
 	return sections.join("\n\n");
 }
 
-/**
- * What a script call resolves to, in one line: `a string`, the field names of an object
- * (`{ output, exit_code, full_output_path? }`), or the rendered type for anything else.
- */
+/** What a script call resolves to, preserving nested output types in direct-tool descriptions. */
 function describeOutput(schema: CodemodeJsonSchema | undefined): string {
 	const type = renderToolOutputType(schema);
 	if (type === "string") return "a string";
-	const object = typeof schema === "object" ? schema : undefined;
-	const properties = object?.properties;
-	if (
-		object?.type === "object" &&
-		typeof properties === "object" &&
-		properties !== null &&
-		mcpStructuredContentSchema(schema) === undefined
-	) {
-		const required = new Set(Array.isArray(object.required) ? object.required : []);
-		const fields = Object.keys(properties).map((name) => (required.has(name) ? name : `${name}?`));
-		return `\`{ ${fields.join(", ")} }\``;
-	}
 	return `\`${type.replace(/\s+/g, " ")}\``;
 }
 
