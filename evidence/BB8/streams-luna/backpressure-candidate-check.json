@@ -1,0 +1,32 @@
+{
+  "task": "BB8 shared-host event-delivery backpressure fix",
+  "candidate_files": [
+    "candidates/parallel-bb8-streams/host/packages/coding-agent/src/experimental/durable/shared-server.ts",
+    "candidates/parallel-bb8-streams/host/packages/coding-agent/src/experimental/durable/shared-server.test.ts"
+  ],
+  "bootstrap": {
+    "source": "candidates/parallel-bb2/host/packages/coding-agent/src/experimental/durable/subagents/background.test.mjs and candidates/parallel-bb6-reload/host/packages/coding-agent/src/experimental/durable/pi-extensions/reload.test.mjs; shared runtime resolver read from /home/ubuntu/.local/share/pi-durable/global-runtime.mjs and host/packages/coding-agent/src/experimental/source-resolver.ts",
+    "adaptation": "The candidate contains only its owned server/test files. The focused test uses Node registerHooks to resolve only unchanged relative imports absent from the candidate to donor host files; package imports use the public global runtime bootstrap. No dependency install or runtime/product runner changes."
+  },
+  "verification": {
+    "command": "PI_DURABLE_GLOBAL_ROOT=/home/ubuntu/.nvm/versions/node/v24.19.0/lib/node_modules JITI_FS_CACHE=0 /home/ubuntu/.nvm/versions/node/v24.19.0/bin/node --import /home/ubuntu/.local/share/pi-durable/global-runtime.mjs --test candidates/parallel-bb8-streams/host/packages/coding-agent/src/experimental/durable/shared-server.test.ts",
+    "node": "v24.19.0",
+    "exit_code": 0,
+    "result": "4 passed, 0 failed. Real listenSharedHost + public SDK Harness test pauses its TCP consumer, submits a 3 MiB faux-model response, observes Durable submission completion before resume, then receives the committed event. Separate candidate-writer tests prove blocked write order, peer detach settlement/listener cleanup, and error settlement/listener cleanup."
+  },
+  "prior_failed_evidence": {
+    "command": "node --experimental-strip-types --test .../shared-server.test.ts",
+    "result": "Failed because the copied candidate lacked unchanged relative modules and the global runtime bootstrap was not used. Superseded by the passing public-global-runtime command above; test resolver now maps those missing unchanged donor modules without changing the product runner or installing dependencies.",
+    "oversize_probe": "A 15 MiB model message exceeded the shared frame's existing 16 MiB limit once event/view data were serialized, causing the expected socket close. The end-to-end test uses a 3 MiB message so the probe exercises drain rather than the pre-existing frame limit."
+  },
+  "donor_comparison": {
+    "source": "/home/ubuntu/.local/share/pi-durable/host/packages/coding-agent/src/experimental/durable/shared-server.ts",
+    "result": "Focused diff only: add writeSocketFrame in shared-server.ts; make send async and await the writer; await send from the existing AgentEventStream receive callback. The existing 16 MiB limit, detach behavior, and replay path remain. No queue, scheduler, execution pause, or abort was added."
+  },
+  "sha256": {
+    "candidate_shared_server.ts": "95960185cb5e5776e604405a8b40fe8b4c7e5a4cd4cf107deda23bcdb9fcb336",
+    "candidate_shared_server.test.ts": "67a1a5b6210fc7e9219b7641120369125091da557e563017e7ca3a4c6b891e8e",
+    "donor_shared_server.ts": "2f66d3503d57c4240e3653c7062622465fa1a4c3b2fa2b738af9d3c4e4e718c4"
+  },
+  "limits": "No TCP control-priority claim; bytes already queued behind a blocked socket cannot be prioritized. The focused end-to-end path uses the real candidate host handler and public SDK Harness but not the live/main runtime."
+}
