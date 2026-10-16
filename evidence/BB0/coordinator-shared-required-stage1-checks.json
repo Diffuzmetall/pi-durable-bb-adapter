@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "coordinator": "RusticCanyon",
+  "task": "bbup-0-baseline",
+  "acceptedScope": "Stage1 shared-required fixture refusal SOURCE/PURE-UNIT component ONLY; all operational entries remain fenced",
+  "stage1RefusalComponentAccepted": true,
+  "fullBB0Accepted": false,
+  "piInstallationAuthorized": false,
+  "namespaceExecutionAuthorized": false,
+  "positiveCatalogRuntimeAuthorized": false,
+  "fullBuildAuthorized": false,
+  "candidate": {
+    "manifest": "evidence/BB0/shared-required-fixture/source-test-manifest.json",
+    "sha256": "6edee765d93ebb13117299b276a667b96c65455a0095a73fc4a9801259976ab9",
+    "checkpoint": "evidence/BB0/shared-required-fixture/checkpoint.json",
+    "checkpointSha256": "480890f3baed3b66187b43e177983d3694051328c13de7755f9d910db1f0398c",
+    "lead": "IvoryBridge",
+    "leadHandoff": "Agent Mail45"
+  },
+  "technicalReview": {
+    "actor": "review-bb0-inventory",
+    "verdict": "PASS: Stage1 refusal/source-unit only",
+    "execution": "Actual independent hash/path/source inspection, retained command-log review; NOT a test replay",
+    "verified": {"sourcePins": 11, "artifactPins": 54, "dependencyPins": 95, "existingVariantManifests": 29, "variantSourceEntries": 5568, "publicBaselineSourcePins": 727, "frozenArtifactPins": 20},
+    "sourceLimit": "SDK contract/metadata modules are doubles. server.ts constructs its RPC contract during import before plugin preflight; pre-definition ordering and real SDK module effects are NOT established. Registration calls and protected runtime entrypaths are fenced in materialized unit paths."
+  },
+  "behavioralQA": {
+    "actor": "qa-bb0-inventory",
+    "verdict": "PASS: fresh unchanged Stage1 pure units and relevant negative controls",
+    "receipt": "/tmp/bbup-stage1-qa-1792114605/actual-behavioral-qa-receipt.md",
+    "receiptSha256": "5144d5b433f1aa2499d7fc5b9dc4944cf1a801d5d6affaf2143d118e8781bbd2",
+    "windowUTC": ["2026-10-16T01:37:30.477776669Z", "2026-10-16T01:37:38.042011699Z"],
+    "model": "Gemini unavailable; disclosed Luna-high fallback; effective-model telemetry UNKNOWN",
+    "environment": "Actual env-i Node24.19.0; fresh private /tmp HOME, both PI aliases, XDG and TMP roots",
+    "units": {"exit": 0, "tests": 31, "pass": 31, "fail": 0, "skip": 0, "zeroEffectGroups": 29},
+    "baselineControl": {"exit": 1, "rejection": "initialize lacked required refusal code -32000"},
+    "mutations": {
+      "allExpectedExit": 1,
+      "rejected": 7,
+      "selectedTestsPerInvocation": 1,
+      "reportedSkipsPerInvocation": 0,
+      "reasons": {
+        "pure-admission-always-deny": "ALWAYS_DENY_MUTATION instead of required STAGE2_NOT_ADMITTED; successful pure-admission case retained",
+        "runner-eager-import": "localPiModuleImports incremented to1",
+        "bridge-gate-removed": "first bridge boundary assertion failed",
+        "catalog-gate-removed": "runner.construct reached instead of catalog.start",
+        "registry-gate-removed": "FORBIDDEN_sessionConstructions",
+        "diagnostics-gate-removed": "FORBIDDEN_resourceInitializations",
+        "runner-constructor-gate-removed": "runner-path lookup reached instead of refusal; bundle absent, no spawn reached"
+      }
+    },
+    "preservation": "11/54/95/29 pins before/after match; only NEW random materializations and fresh /tmp captures written; retained source/logs/29 fixtures unchanged",
+    "parityScript": "Inspected but NOT executed because it writes frozen evidence; no fresh raw-private parity claim"
+  },
+  "parentChecks": {
+    "actualReceiptReadAndRehashed": true,
+    "actualCapturedLogAndCommandReceiptHashesVerified": 18,
+    "actualAllNineCommandExitsAndRelevantAssertionsInspected": true,
+    "candidateAndCheckpointPinsVerified": true,
+    "sourceArtifactDependencyVariantManifestPinsVerified": [11, 54, 95, 29],
+    "publicBaselineSourcePinsRehashed": 727,
+    "frozenPublicArtifactsRehashed": 20,
+    "cpuAndCacheLeases": [245, 246],
+    "leasesReleasedUTC": "2026-10-16T01:42:37.803649Z"
+  },
+  "explicitNonClaims": [
+    "No real BB SDK registration/bundle/import-order acceptance; SDK contract construction before preflight remains outside proof",
+    "Socket and foreign-UID metadata injection is NOT live socket, real UID isolation, connectivity or owner proof",
+    "Synthetic expectedThreadId and opaque legacy K/providerThreadId are NOT authenticated requester or real BB initial/reopen/second-fresh-root admission",
+    "No native owner/Harness/SQLite/model execution, actual catalog forwarding or namespace linkage",
+    "No existing owner cleanup/abort/delete; process/store assertions cover this unit process and synthetic fixture only",
+    "No raw-private configuration/auth/store byte scan; historical raw003 coverage remains metadata only",
+    "No full build, installation, first-visible paint, canonical BB/TUI image or full checklist acceptance"
+  ],
+  "continuation": "Same IvoryBridge owns any corrections; Stage2/3/native/namespace/install require separate scoped GO. AzureSpring's disjoint whole-test-BB FS-sandbox fixture is SOURCE-ONLY and has no execution GO."
+}
