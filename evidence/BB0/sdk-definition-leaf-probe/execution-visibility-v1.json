@@ -1,0 +1,200 @@
+{
+  "schema": "bb0-sdk-leaf-execution-visibility-source-v1",
+  "status": "SOURCE_ONLY_NEEDS_EXACT_VARIANT_REVIEW_EXECUTION_HOLD",
+  "receipt": {
+    "argv": [
+      "/usr/bin/python3",
+      "-I",
+      "-B",
+      "-c",
+      "from pathlib import Path\nimport ast,copy,difflib,hashlib,json,re\nroot=Path('/home/ubuntu/Projects/pi-durable-bb-adapter');parent=root/'evidence/BB0/lead-sandbox.py';variant=root/'evidence/BB0/lead-sandbox-sdk-leaf-v1.py';leaf=root/'evidence/BB0/sdk-definition-leaf-probe'\ndef pin(p):\n b=p.read_bytes();return {'path':str(p),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}\np=parent.read_bytes();v=variant.read_bytes();assert pin(parent)['sha256']=='5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272'\nanchor=\"    '/home/ubuntu/.local/share/pi-durable/host/node_modules']\\n\"\nadded=[\"    str(ROOT / 'evidence/BB0/sdk-definition-leaf-probe/probe.mjs'),\\n\",\"    str(ROOT / 'evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json'),\\n\",\"    '/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js',\\n\",\"    '/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json',\\n\"]\naddition=''.join(added);assert p.count(anchor.encode())==1;assert v==p.replace(anchor.encode(),(addition+anchor).encode());assert v.replace(addition.encode(),b'',1)==p\npt=ast.parse(p,filename=str(parent));vt=ast.parse(v,filename=str(variant));normalized=copy.deepcopy(vt)\ndef find_list(t):\n return next(n.value for n in t.body if isinstance(n,ast.Assign) and any(isinstance(x,ast.Name) and x.id=='readable' for x in n.targets))\na=find_list(pt);b=find_list(normalized);assert len(b.elts)==len(a.elts)+4;del b.elts[-5:-1];assert ast.dump(pt,include_attributes=False)==ast.dump(normalized,include_attributes=False)\nsource=v.decode();parentSource=p.decode();assert parent.parent==variant.parent\nrequired=[\"ROOT = Path(__file__).resolve().parents[2]\",\"parser.add_argument('--cwd', choices=list(CWD_ROOTS), default='provider')\",\"parser.add_argument('command', nargs=argparse.REMAINDER)\",\"command = args.command[1:] if args.command[:1] == ['--'] else args.command\",\"'--unshare-pid','--unshare-net'\",\"'--cap-drop','ALL'\",\"bwrap += ['--remount-ro','/','--clearenv']\",\"bwrap += ['--setenv',key,value]\",\"bwrap += ['--ro-bind',path,path]\",\"run = subprocess.run(bwrap+command,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})\",\"if args.allow_test_bb_network:\",\"parser.error('Host network is forbidden for bbup-0-boot')\"]\nfor quote in required:assert quote in source and quote in parentSource,quote\ncli=[ast.get_source_segment(parentSource,n) for n in ast.walk(pt) if isinstance(n,ast.Call) and isinstance(n.func,ast.Attribute) and n.func.attr=='add_argument']\nenvNode=next(n.value for n in pt.body if isinstance(n,ast.Assign) and any(isinstance(x,ast.Name) and x.id=='env' for x in n.targets));keys=[ast.literal_eval(k) for k in envNode.keys];assert 'NODE_OPTIONS' not in keys and 'BB0_SDK_LEAF_GO' not in keys\nmanifestBytes=(leaf/'pin-manifest.json').read_bytes();assert hashlib.sha256(manifestBytes).hexdigest()=='1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58';m=json.loads(manifestBytes)\nmapPins=[{'path':str(leaf/'probe.mjs'),'sha256':'5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4'},{'path':str(leaf/'pin-manifest.json'),'sha256':'1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58'},m['sdk'],next(x for x in m['packageMetadata'] if x['path'].endswith('/bb-app/package.json'))];mapping=[]\nfor row in mapPins:\n q=Path(row['path']);observed=pin(q);assert observed['sha256']==row['sha256'];mapping.append({'source':str(q),'destination':str(q),'flag':'--ro-bind','observedPin':observed,'expectedSha256':row['sha256'],'match':True})\nnode='/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node';probe=str(leaf/'probe.mjs');marker='sdk-definition-leaf-v1';probeSource=(leaf/'probe.mjs').read_text();assert \"const GO = 'sdk-definition-leaf-v1';\" in probeSource;assert 'assert.equal(process.execArgv.length, 0' in probeSource;assert \"assert.equal(process.env.NODE_OPTIONS ?? '', '');\" in probeSource\ninside=['/usr/bin/env','BB0_SDK_LEAF_GO='+marker,node,probe,'--execute-leaf'];launcher=['/usr/bin/python3','-I','-B',str(variant),'--cwd','provider','--',*inside];assert launcher[launcher.index('--')+1:]==inside\nsdk=Path(m['sdk']['path']);sdkSource=sdk.read_text();sdkLines=sdkSource.splitlines();imports=[{'line':i,'source':l} for i,l in enumerate(sdkLines,1) if l.startswith('import ')];assert [re.search(r'from \"([^\"]+)\";',x['source']).group(1) for x in imports]==['node:module','node:path','node:url'];assert sdkLines[3]=='const require = __createRequire(import.meta.url);';requireCalls=[{'line':i,'source':l} for i,l in enumerate(sdkLines,1) if re.search(r'\\brequire\\s*(?:\\(|\\.resolve\\s*\\()',l)];assert not requireCalls\nfullDiff=''.join(difflib.unified_diff(parentSource.splitlines(keepends=True),source.splitlines(keepends=True),fromfile=str(parent.relative_to(root)),tofile=str(variant.relative_to(root))));plus=[l for l in fullDiff.splitlines() if l.startswith('+') and not l.startswith('+++')];minus=[l for l in fullDiff.splitlines() if l.startswith('-') and not l.startswith('---')];assert len(plus)==4 and not minus\nprint(json.dumps({'check':'execution-visibility-v1-AST-source-only','originalPin':pin(parent),'variantPin':pin(variant),'originalBytesRetainedAfterDeletingExactlyFourAdditions':True,'astParseOnly':True,'normalizedASTIdentical':True,'sameDirectoryROOTAnchorPreserved':True,'addedLines':4,'removedLines':0,'fullUnifiedDiff':fullDiff,'fixed4ROFileMapping':mapping,'unchangedSafetySourceQuotes':required,'actualOriginalCLIArgumentDeclarations':cli,'futureInvocation':{'launcherArgv':launcher,'postDelimiterCommandArgv':inside,'nodeArgv':[node,probe,'--execute-leaf'],'nodeExecArgvDerived':[],'NODE_OPTIONSPresentInNonbaselineClearEnvironment':False,'insideNamespaceMarkerAssignment':inside[1],'hostMarkerInheritanceUsed':False,'derivation':'Original argparse REMAINDER, single delimiter stripping, nonbaseline clearenv + fixed setenv then bwrap+command; /usr/bin/env marker assignment is AFTER namespace entry. No Node flags or NODE_OPTIONS supplied.','actualInsideNamespaceValuesObserved':False,'runtimeRequirements':'After separate execution GO verify actual execArgv=[], NODE_OPTIONS absent and exact marker INSIDE namespace; static source derivation is NOT runtime proof. Use ONLY nonbaseline/nonboot/nonprobe invocation.'},'SDKCreateRequireSourceReview':{'sdkPin':pin(sdk),'actualImports':imports,'topLevelConstructionLine':4,'topLevelConstructionSource':sdkLines[3],'directRequireOrRequireResolveInvocationSites':requireCalls,'requireInvocationClaim':'NONE. A createRequire constructor call site is NOT invocation of the returned require function. No SDK constructor, import, require, definition or dynamic traffic executed/measured now.','sourceReviewLimit':'Static exact-source call-site inspection, not proof createRequire is effect-free or complete runtime traffic.'},'ZodVisibility':'Existing readonly donor node_modules ancestry unchanged; no additional Zod/app-tree mount. Live namespace visibility NOT tested.','nonClaims':['No namespace or fixture/harness source executed','No SDK/Zod import/evaluation/definition','No authentic original BB loader or compiled-order proof','No CPU/cache/log/fresh-state execution authorization']},indent=2))\n"
+    ],
+    "cwd": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1",
+    "environmentReplacedNotInherited": true,
+    "environment": {
+      "PATH": "/usr/bin:/bin",
+      "HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/home",
+      "TMPDIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/tmp",
+      "XDG_CONFIG_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/config",
+      "XDG_CACHE_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/cache",
+      "XDG_DATA_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/data",
+      "XDG_STATE_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/state",
+      "XDG_RUNTIME_DIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/runtime",
+      "PI_AGENT_DIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/agent",
+      "PI_CODING_AGENT_DIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/execution-visibility-v1/agent",
+      "LANG": "C.UTF-8",
+      "TZ": "UTC"
+    },
+    "start_utc": "2026-10-16T03:44:22.452707+00:00",
+    "end_utc": "2026-10-16T03:44:22.542079+00:00",
+    "exit": 0,
+    "expected_exit": 0,
+    "stdout": "{\n  \"check\": \"execution-visibility-v1-AST-source-only\",\n  \"originalPin\": {\n    \"path\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox.py\",\n    \"bytes\": 11167,\n    \"sha256\": \"5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272\"\n  },\n  \"variantPin\": {\n    \"path\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox-sdk-leaf-v1.py\",\n    \"bytes\": 11468,\n    \"sha256\": \"debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d\"\n  },\n  \"originalBytesRetainedAfterDeletingExactlyFourAdditions\": true,\n  \"astParseOnly\": true,\n  \"normalizedASTIdentical\": true,\n  \"sameDirectoryROOTAnchorPreserved\": true,\n  \"addedLines\": 4,\n  \"removedLines\": 0,\n  \"fullUnifiedDiff\": \"--- evidence/BB0/lead-sandbox.py\\n+++ evidence/BB0/lead-sandbox-sdk-leaf-v1.py\\n@@ -76,6 +76,10 @@\\n     '/etc/ld.so.cache','/etc/passwd','/etc/group','/etc/nsswitch.conf', NODE_BIN,\\n     GLOBAL + '/@earendil-works', str(ROOT / 'candidates/provider'), str(ROOT / 'candidates/host'),\\n     '/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules',\\n+    str(ROOT / 'evidence/BB0/sdk-definition-leaf-probe/probe.mjs'),\\n+    str(ROOT / 'evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json'),\\n+    '/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js',\\n+    '/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json',\\n     '/home/ubuntu/.local/share/pi-durable/host/node_modules']\\n if args.baseline:\\n     readable += [GLOBAL+'/npm','/home/ubuntu/.bb-server/app/node_modules']\\n\",\n  \"fixed4ROFileMapping\": [\n    {\n      \"source\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs\",\n      \"destination\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs\",\n      \"flag\": \"--ro-bind\",\n      \"observedPin\": {\n        \"path\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs\",\n        \"bytes\": 11666,\n        \"sha256\": \"5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4\"\n      },\n      \"expectedSha256\": \"5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4\",\n      \"match\": true\n    },\n    {\n      \"source\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json\",\n      \"destination\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json\",\n      \"flag\": \"--ro-bind\",\n      \"observedPin\": {\n        \"path\": \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json\",\n        \"bytes\": 24333,\n        \"sha256\": \"1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58\"\n      },\n      \"expectedSha256\": \"1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58\",\n      \"match\": true\n    },\n    {\n      \"source\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js\",\n      \"destination\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js\",\n      \"flag\": \"--ro-bind\",\n      \"observedPin\": {\n        \"path\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js\",\n        \"bytes\": 29313,\n        \"sha256\": \"62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126\"\n      },\n      \"expectedSha256\": \"62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126\",\n      \"match\": true\n    },\n    {\n      \"source\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json\",\n      \"destination\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json\",\n      \"flag\": \"--ro-bind\",\n      \"observedPin\": {\n        \"path\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json\",\n        \"bytes\": 2736,\n        \"sha256\": \"5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241\"\n      },\n      \"expectedSha256\": \"5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241\",\n      \"match\": true\n    }\n  ],\n  \"unchangedSafetySourceQuotes\": [\n    \"ROOT = Path(__file__).resolve().parents[2]\",\n    \"parser.add_argument('--cwd', choices=list(CWD_ROOTS), default='provider')\",\n    \"parser.add_argument('command', nargs=argparse.REMAINDER)\",\n    \"command = args.command[1:] if args.command[:1] == ['--'] else args.command\",\n    \"'--unshare-pid','--unshare-net'\",\n    \"'--cap-drop','ALL'\",\n    \"bwrap += ['--remount-ro','/','--clearenv']\",\n    \"bwrap += ['--setenv',key,value]\",\n    \"bwrap += ['--ro-bind',path,path]\",\n    \"run = subprocess.run(bwrap+command,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})\",\n    \"if args.allow_test_bb_network:\",\n    \"parser.error('Host network is forbidden for bbup-0-boot')\"\n  ],\n  \"actualOriginalCLIArgumentDeclarations\": [\n    \"parser.add_argument('--probe', action='store_true')\",\n    \"parser.add_argument('--boot', action='store_true')\",\n    \"parser.add_argument('--baseline', action='store_true', help='Private baseline fixture; optional --probe')\",\n    \"parser.add_argument('--baseline-phase', choices=['unit','live'], default='unit')\",\n    \"parser.add_argument('--allow-test-bb-network', action='store_true')\",\n    \"parser.add_argument('--cwd', choices=list(CWD_ROOTS), default='provider')\",\n    \"parser.add_argument('command', nargs=argparse.REMAINDER)\"\n  ],\n  \"futureInvocation\": {\n    \"launcherArgv\": [\n      \"/usr/bin/python3\",\n      \"-I\",\n      \"-B\",\n      \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox-sdk-leaf-v1.py\",\n      \"--cwd\",\n      \"provider\",\n      \"--\",\n      \"/usr/bin/env\",\n      \"BB0_SDK_LEAF_GO=sdk-definition-leaf-v1\",\n      \"/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node\",\n      \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs\",\n      \"--execute-leaf\"\n    ],\n    \"postDelimiterCommandArgv\": [\n      \"/usr/bin/env\",\n      \"BB0_SDK_LEAF_GO=sdk-definition-leaf-v1\",\n      \"/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node\",\n      \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs\",\n      \"--execute-leaf\"\n    ],\n    \"nodeArgv\": [\n      \"/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node\",\n      \"/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs\",\n      \"--execute-leaf\"\n    ],\n    \"nodeExecArgvDerived\": [],\n    \"NODE_OPTIONSPresentInNonbaselineClearEnvironment\": false,\n    \"insideNamespaceMarkerAssignment\": \"BB0_SDK_LEAF_GO=sdk-definition-leaf-v1\",\n    \"hostMarkerInheritanceUsed\": false,\n    \"derivation\": \"Original argparse REMAINDER, single delimiter stripping, nonbaseline clearenv + fixed setenv then bwrap+command; /usr/bin/env marker assignment is AFTER namespace entry. No Node flags or NODE_OPTIONS supplied.\",\n    \"actualInsideNamespaceValuesObserved\": false,\n    \"runtimeRequirements\": \"After separate execution GO verify actual execArgv=[], NODE_OPTIONS absent and exact marker INSIDE namespace; static source derivation is NOT runtime proof. Use ONLY nonbaseline/nonboot/nonprobe invocation.\"\n  },\n  \"SDKCreateRequireSourceReview\": {\n    \"sdkPin\": {\n      \"path\": \"/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js\",\n      \"bytes\": 29313,\n      \"sha256\": \"62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126\"\n    },\n    \"actualImports\": [\n      {\n        \"line\": 1,\n        \"source\": \"import { createRequire as __createRequire } from \\\"node:module\\\";\"\n      },\n      {\n        \"line\": 2,\n        \"source\": \"import { dirname as __pathDirname } from \\\"node:path\\\";\"\n      },\n      {\n        \"line\": 3,\n        \"source\": \"import { fileURLToPath as __fileURLToPath } from \\\"node:url\\\";\"\n      }\n    ],\n    \"topLevelConstructionLine\": 4,\n    \"topLevelConstructionSource\": \"const require = __createRequire(import.meta.url);\",\n    \"directRequireOrRequireResolveInvocationSites\": [],\n    \"requireInvocationClaim\": \"NONE. A createRequire constructor call site is NOT invocation of the returned require function. No SDK constructor, import, require, definition or dynamic traffic executed/measured now.\",\n    \"sourceReviewLimit\": \"Static exact-source call-site inspection, not proof createRequire is effect-free or complete runtime traffic.\"\n  },\n  \"ZodVisibility\": \"Existing readonly donor node_modules ancestry unchanged; no additional Zod/app-tree mount. Live namespace visibility NOT tested.\",\n  \"nonClaims\": [\n    \"No namespace or fixture/harness source executed\",\n    \"No SDK/Zod import/evaluation/definition\",\n    \"No authentic original BB loader or compiled-order proof\",\n    \"No CPU/cache/log/fresh-state execution authorization\"\n  ]\n}\n",
+    "stderr": ""
+  },
+  "result": {
+    "check": "execution-visibility-v1-AST-source-only",
+    "originalPin": {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox.py",
+      "bytes": 11167,
+      "sha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272"
+    },
+    "variantPin": {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox-sdk-leaf-v1.py",
+      "bytes": 11468,
+      "sha256": "debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d"
+    },
+    "originalBytesRetainedAfterDeletingExactlyFourAdditions": true,
+    "astParseOnly": true,
+    "normalizedASTIdentical": true,
+    "sameDirectoryROOTAnchorPreserved": true,
+    "addedLines": 4,
+    "removedLines": 0,
+    "fullUnifiedDiff": "--- evidence/BB0/lead-sandbox.py\n+++ evidence/BB0/lead-sandbox-sdk-leaf-v1.py\n@@ -76,6 +76,10 @@\n     '/etc/ld.so.cache','/etc/passwd','/etc/group','/etc/nsswitch.conf', NODE_BIN,\n     GLOBAL + '/@earendil-works', str(ROOT / 'candidates/provider'), str(ROOT / 'candidates/host'),\n     '/home/ubuntu/.local/share/pi-durable/bb-provider-shared-0.2.29/node_modules',\n+    str(ROOT / 'evidence/BB0/sdk-definition-leaf-probe/probe.mjs'),\n+    str(ROOT / 'evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json'),\n+    '/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js',\n+    '/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json',\n     '/home/ubuntu/.local/share/pi-durable/host/node_modules']\n if args.baseline:\n     readable += [GLOBAL+'/npm','/home/ubuntu/.bb-server/app/node_modules']\n",
+    "fixed4ROFileMapping": [
+      {
+        "source": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "destination": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "flag": "--ro-bind",
+        "observedPin": {
+          "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+          "bytes": 11666,
+          "sha256": "5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4"
+        },
+        "expectedSha256": "5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4",
+        "match": true
+      },
+      {
+        "source": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+        "destination": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+        "flag": "--ro-bind",
+        "observedPin": {
+          "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+          "bytes": 24333,
+          "sha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+        },
+        "expectedSha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58",
+        "match": true
+      },
+      {
+        "source": "/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js",
+        "destination": "/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js",
+        "flag": "--ro-bind",
+        "observedPin": {
+          "path": "/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js",
+          "bytes": 29313,
+          "sha256": "62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126"
+        },
+        "expectedSha256": "62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126",
+        "match": true
+      },
+      {
+        "source": "/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json",
+        "destination": "/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json",
+        "flag": "--ro-bind",
+        "observedPin": {
+          "path": "/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json",
+          "bytes": 2736,
+          "sha256": "5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241"
+        },
+        "expectedSha256": "5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241",
+        "match": true
+      }
+    ],
+    "unchangedSafetySourceQuotes": [
+      "ROOT = Path(__file__).resolve().parents[2]",
+      "parser.add_argument('--cwd', choices=list(CWD_ROOTS), default='provider')",
+      "parser.add_argument('command', nargs=argparse.REMAINDER)",
+      "command = args.command[1:] if args.command[:1] == ['--'] else args.command",
+      "'--unshare-pid','--unshare-net'",
+      "'--cap-drop','ALL'",
+      "bwrap += ['--remount-ro','/','--clearenv']",
+      "bwrap += ['--setenv',key,value]",
+      "bwrap += ['--ro-bind',path,path]",
+      "run = subprocess.run(bwrap+command,env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8'})",
+      "if args.allow_test_bb_network:",
+      "parser.error('Host network is forbidden for bbup-0-boot')"
+    ],
+    "actualOriginalCLIArgumentDeclarations": [
+      "parser.add_argument('--probe', action='store_true')",
+      "parser.add_argument('--boot', action='store_true')",
+      "parser.add_argument('--baseline', action='store_true', help='Private baseline fixture; optional --probe')",
+      "parser.add_argument('--baseline-phase', choices=['unit','live'], default='unit')",
+      "parser.add_argument('--allow-test-bb-network', action='store_true')",
+      "parser.add_argument('--cwd', choices=list(CWD_ROOTS), default='provider')",
+      "parser.add_argument('command', nargs=argparse.REMAINDER)"
+    ],
+    "futureInvocation": {
+      "launcherArgv": [
+        "/usr/bin/python3",
+        "-I",
+        "-B",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/lead-sandbox-sdk-leaf-v1.py",
+        "--cwd",
+        "provider",
+        "--",
+        "/usr/bin/env",
+        "BB0_SDK_LEAF_GO=sdk-definition-leaf-v1",
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "--execute-leaf"
+      ],
+      "postDelimiterCommandArgv": [
+        "/usr/bin/env",
+        "BB0_SDK_LEAF_GO=sdk-definition-leaf-v1",
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "--execute-leaf"
+      ],
+      "nodeArgv": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "--execute-leaf"
+      ],
+      "nodeExecArgvDerived": [],
+      "NODE_OPTIONSPresentInNonbaselineClearEnvironment": false,
+      "insideNamespaceMarkerAssignment": "BB0_SDK_LEAF_GO=sdk-definition-leaf-v1",
+      "hostMarkerInheritanceUsed": false,
+      "derivation": "Original argparse REMAINDER, single delimiter stripping, nonbaseline clearenv + fixed setenv then bwrap+command; /usr/bin/env marker assignment is AFTER namespace entry. No Node flags or NODE_OPTIONS supplied.",
+      "actualInsideNamespaceValuesObserved": false,
+      "runtimeRequirements": "After separate execution GO verify actual execArgv=[], NODE_OPTIONS absent and exact marker INSIDE namespace; static source derivation is NOT runtime proof. Use ONLY nonbaseline/nonboot/nonprobe invocation."
+    },
+    "SDKCreateRequireSourceReview": {
+      "sdkPin": {
+        "path": "/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js",
+        "bytes": 29313,
+        "sha256": "62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126"
+      },
+      "actualImports": [
+        {
+          "line": 1,
+          "source": "import { createRequire as __createRequire } from \"node:module\";"
+        },
+        {
+          "line": 2,
+          "source": "import { dirname as __pathDirname } from \"node:path\";"
+        },
+        {
+          "line": 3,
+          "source": "import { fileURLToPath as __fileURLToPath } from \"node:url\";"
+        }
+      ],
+      "topLevelConstructionLine": 4,
+      "topLevelConstructionSource": "const require = __createRequire(import.meta.url);",
+      "directRequireOrRequireResolveInvocationSites": [],
+      "requireInvocationClaim": "NONE. A createRequire constructor call site is NOT invocation of the returned require function. No SDK constructor, import, require, definition or dynamic traffic executed/measured now.",
+      "sourceReviewLimit": "Static exact-source call-site inspection, not proof createRequire is effect-free or complete runtime traffic."
+    },
+    "ZodVisibility": "Existing readonly donor node_modules ancestry unchanged; no additional Zod/app-tree mount. Live namespace visibility NOT tested.",
+    "nonClaims": [
+      "No namespace or fixture/harness source executed",
+      "No SDK/Zod import/evaluation/definition",
+      "No authentic original BB loader or compiled-order proof",
+      "No CPU/cache/log/fresh-state execution authorization"
+    ]
+  },
+  "originalSandboxExecuted": false,
+  "variantExecuted": false,
+  "sdkZodEvaluated": false,
+  "namespaceExecuted": false
+}

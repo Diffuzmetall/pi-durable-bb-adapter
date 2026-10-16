@@ -1,0 +1,104 @@
+{
+  "schema": "bb0-sdk-leaf-checkpoint-v2",
+  "status": "SOURCE_ONLY_F1_REPAIR_NEEDS_CHECKS_VARIANT_EXECUTION_HOLD",
+  "utc": "2026-10-16T03:46:11.609118+00:00",
+  "actor": "IvoryBridge/id374",
+  "leases": [
+    284,
+    285
+  ],
+  "authorizedNewFiniteFiles": [
+    "evidence/BB0/sdk-definition-leaf-probe/source-verification-v2.json",
+    "evidence/BB0/sdk-definition-leaf-probe/execution-visibility-v1.json",
+    "evidence/BB0/sdk-definition-leaf-probe/checkpoint-v2.json",
+    "evidence/BB0/lead-sandbox-sdk-leaf-v1.py"
+  ],
+  "filesExcludingThisCheckpoint": [
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+      "bytes": 11666,
+      "sha256": "5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+      "bytes": 24333,
+      "sha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/README.md",
+      "bytes": 10788,
+      "sha256": "52d70aadd6e5903ed26c49d93b3e6868f501c669a20dc8d621f9227be661300a"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/source-checks.json",
+      "bytes": 4470,
+      "sha256": "810468f1447c1fe23a5a9dfdaa906c7af1b52753ee4232bc216dd5416964a8af"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/checkpoint.json",
+      "bytes": 3202,
+      "sha256": "c8c551e9a481f101a9ccf77a88cce10b6525b940e246c7668a5e4999a0d69ff7"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/source-verification-v2.json",
+      "bytes": 43975,
+      "sha256": "108562f1ec3604ae49d147161c171c27dc4a0a5b39b2dbfef2b058cde068c550"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/execution-visibility-v1.json",
+      "bytes": 27480,
+      "sha256": "e65c1b2a838db33f18eb4e00404c5f8b6843637b685f34a2e9b36b1ab204e9fd"
+    },
+    {
+      "path": "evidence/BB0/lead-sandbox-sdk-leaf-v1.py",
+      "bytes": 11468,
+      "sha256": "debee9fbe61e759b4dcd84129c6b7ca0c7e38edc74be10313800e5b0ce3e1f6d"
+    }
+  ],
+  "original5Immutable": true,
+  "originalSandboxUnchanged": {
+    "path": "evidence/BB0/lead-sandbox.py",
+    "bytes": 11167,
+    "sha256": "5aa7f86f17ae52b79530c4149a833c76bb64d41b63c24e816653ae36f201f272"
+  },
+  "historicalCorrection": {
+    "originalCheckpointChecksActuallyRunIndexes4Through7": "historically UNRECEIPTED; original bytes retained; NO retroactive PASS",
+    "freshReplacementEvidence": "source-verification-v2.json contains4 fresh exact command/env/UTC/exit/stdout/stderr receipts; not reconstructed historical receipts",
+    "original4NodeReceipts": "Retained unchanged as history; NO Node or probe/harness execution in this repair"
+  },
+  "freshReceiptResults": {
+    "publicPins": 98,
+    "currentDOCv2References": 19,
+    "Stage1UNIT004FrozenPins": 3,
+    "whitespaceFiles": 6,
+    "original5HashPreservation": true,
+    "astSourceOnlyFourRODelta": true,
+    "sourceVariantParentAndFourROMapping": "execution-visibility-v1.json",
+    "freshMetadataEnvironmentRoots": [
+      ".private/source-verification-v2",
+      ".private/source-verification-v2-b",
+      ".private/source-verification-v2-c",
+      ".private/execution-visibility-v1"
+    ],
+    "retainedReceiptedMetadataHome": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/source-verification-v2-c/home",
+    "qaRefusalHomeReused": false,
+    "earlierReceiptPackagingAttempts": "First2 metadata receipt packaging attempts not retained/not relied on; separately fresh third attempt is the retained evidence; all created environment directories remain EMPTY"
+  },
+  "F2": "Source-derived exact original REMAINDER/-- argv port preserved; future /usr/bin/env sets exact marker AFTER namespace entry. Derived node execArgv=[], NODE_OPTIONS absent in nonbaseline clearenv; actual in-NS values NOT observed and MUST be verified after separate execution GO. Probe v1 permits empty NODE_OPTIONS but future command/environment omits the key entirely.",
+  "F3": "Exact SDK line4 constructs local require using real node:module createRequire; source has no direct returned-require/require.resolve invocation call site. Constructor call is NOT returned require invocation; no SDK dynamic traffic/effects measured now.",
+  "actualExecutionProhibited": [
+    "SDK/Zod import/evaluation/definition",
+    "Original or variant sandbox/harness execution",
+    "Node/probe execution in this repair",
+    "Namespace/build/CLI/Pi/native/managed/runtime/install execution"
+  ],
+  "remainingGates": [
+    "Distinct exact-source review of original-parent+variant+fourROmapping+newreceipts",
+    "Distinct confined behavioral QA with ROOT execution GO + CPU/cache/log/fresh-state leases",
+    "Actual namespace four-file visibility, isolated network/readonly/newstate proof and in-NS admission/env/execArgv validation",
+    "Actual guarded real SDK/Zod leaf behavior, not merely AST or counters",
+    "Authentic original-provider BB loading and compiled ordering remain OPEN",
+    "Product/C-seam/API/capability/trusted identity/fullBB0 remain NOT admitted"
+  ],
+  "preservation": "DOC6/Stage1/UNIT004/FS18/original sandbox/original five untouched; no product/Git/tracker/installer/config/private SQLite/Pocket/managed writes; no nested agents"
+}

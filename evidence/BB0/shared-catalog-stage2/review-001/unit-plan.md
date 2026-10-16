@@ -1,0 +1,44 @@
+# Stage2 metadata-only catalog verification PLAN
+
+Status: DOC needs_checks. **No tests executed; no test/source implementation or execution GO.** This plan specifies future evidence, not passing results. Contract: change-request.md C1–C4; public-source fingerprints: source-manifest.json. Preserve accepted Stage1 bytes, historical PENDING labels and component-only acceptance.
+
+## Ordered independent gates
+
+1. Review these three documents and explicit NEW API, including the single-host-file feasibility gap. Coordinator approves scope; no child delegation.
+2. SDK/source gate BEFORE implementation/runtime GO: under separate probe authority, resolve and hash exact actual BB SDK0.6.37 entry/exports/transitive import files and Zod closure. Statically trace server.ts → rpc/contract.ts → actual SDK/Zod and every host/bridge entry's eager imports. Do not substitute donor0.6.15, dirty BB source, SDK stubs or accepted Zod-only checks for actual0.6.37 evidence. Missing exact artifact/resolution is BLOCKED.
+3. Separately authorized isolated source/pure probes import the REAL resolved SDK closure and evaluate the REAL rpcContract definition with mandatory guards for fs/config/auth/store access, sockets, subprocesses, resources and runtime/model construction. Assert precise event order relative to preflight; deny-path evaluation must not acquire forbidden effects. This is a plan, not execution permission. If even safe isolated probes cannot be admitted, gate stays blocked.
+4. Supported bundle gate: only after explicit build/probe authority, use existing npm run build route (scripts/build-runner.mjs then bb plugin build), hash actual outputs, inspect/test compiled import/evaluation ordering and repeat real-definition forbidden-effect probes on the executed artifact. Metadata introspection may require synchronous exports; do not assume top-level-await/lazy exports are supported. No hand-built bundle, SDK shim, replacement builder or migration. An unresolved/failing gate stops implementation/runtime GO.
+5. Only after these gates and distinct implementation/source-test GO, write a versioned overlay and pure tests under newly leased NEW paths; never amend Stage1/candidates. Independent technical review then independent behavioral QA on exact hashes. Any future native filesystem/socket execution requires its own explicit GO below.
+
+## P — Fake-duplex pure/source checks (future, not run)
+
+Exercise REAL materialized dispatcher and admitted client against deterministic fake duplex input/output, no Unix socket, no native owner, no SQLite, no local Pi runtime. Inject exact fixture admission and native host metadata reads. A helper-only switch test is insufficient.
+
+- P1 positive: admitted fresh catalog-v1/version1/C parity → exact acknowledgement → get_available_models/get_state projected response; empty models valid; always-deny implementation must fail this test.
+- P2 admission: wrong/missing/expired permit, malformed/extra keys, wrong version, canonical/wrong/unresolvable C, missing S, bad UID/mode/type/symlink fail before any prohibited import/read/connect. Capability assertions must be independently provisioned, not first observed request state.
+- P3 mode crossing: before handshake deny queries/controls; catalog→attach, attached→catalog, duplicate handshake and second attach denied. Normal attached path's existing valid behavior and normal responses unchanged. Pipelined cross-mode frames must not bypass ordered dispatcher admission; default deny unknown future command.
+- P4 server enforcement: directly feed REAL dispatcher attach/prompt/steer/abort/compact/set_model/set_thinking_level/stats/unknown commands, conversationId or extra payload in catalog mode; no generic sharedCommand reachability. Client allowlist alone cannot satisfy this gate.
+- P5 C2 leak adversary: snapshot objects carry synthetic sentinel headers.authorization, baseUrl, apiKey, auth/oauth/private config, compat, nested extras and throwing unknown getters/toJSON. Allowed output has EXACT id/provider/name only, freshly constructed; snapshot remains unchanged. Selection has exact model(provider/id) plus thinkingLevel only; reject invalid allowed scalars, omit sessionId/cwd/entries/tasks/docs and ALL unknown extras. No raw snapshot/agent/model spreads, even clean-input case. This checks structural projection, not sanitization of arbitrary secret-bearing public labels.
+- P6 source guard spies THROW/record on view.current/viewState/history/entries/watchEvents/replay/taskGraph/subscribe, view/event/graph publication, submit/abort/compact/configure, model refresh/getAvailable(), auth/config readers, storage/runtime/runner construction. Assert ZERO calls on every catalog positive/negative/disposal path. Permit only canonical-C scalar, snapshot getter and existing root conversation/agent read; assert no conversation creation. Include eager-import probes. No message output alone can prove nonaccess.
+- P7 old server/missing S/wrong C/unsupported version: missing local S/wrong local C sends ZERO frames; reachable old/wrong-C server receives at most one catalog-v1 handshake and returns error/closes. Never attach, query, retry/fallback or spawn local runner. Test against deterministic old-server Attach first behavior.
+- P8 lifecycle: connect/handshake/total/dispose timeouts, cancellation before/after each boundary, EOF/error, malformed JSON/UTF8, line/aggregate overflow, wrong/duplicate response ID/command, unexpected history/views/events/tasks and conflicting replies. One terminal outcome; clear timers/listeners/waits; destroy only own client. No unexpected frames reach BB. Parallel calls isolate binding/expiry; no cross-binding cache. Two query results are not represented as atomic.
+
+## U — REAL minimal fake-host Unix-socket tests (SEPARATE execution GO, not run)
+
+These are NOT P fake-duplex tests and NOT native-owner proof. With explicit filesystem/socket authority and exclusive CPU/cache/path leases, start only the small materialized shared-server dispatcher against a minimal fake OpenDurableResult in a fresh private test directory. Fake harness spies implement only existing root agent selection and snapshot; all history/view/event/graph/subscription/control/storage/config/auth methods throw. Prove real AF_UNIX framing, mode dispatch and disposal for P1–P8 subsets, including wrong-C/version/crossing/leaky payload/old-server refusals. No native owner, installed Pi/BB call, model generation, SQLite or full runtime import. Source dependencies may currently load real runtime through generic command imports: inspect that graph first; if unavoidable effects occur, STOP rather than call this safe or create a shim. Capture server/client call logs, process/socket identities and resource counts, bounded exit/disposal results. Never remove pre-existing resources. Cleanup of newly owned fixture resources needs explicit scope authorization; otherwise retain them.
+
+## Required mutants on the final exact candidate
+
+- Always deny catalog: P1 rejects it.
+- Remove version/private-fixture/C admission or change equality to client-only C: P2 rejects.
+- Permit catalog→attach or attached→catalog/fallthrough/unknown command: P3/P4 reject at actual dispatcher.
+- Pass raw snapshot or spread model/selection, whitelist only conditionally: P5 rejects ALL leaky fields.
+- Invoke view/history/task graph/watch/subscribe/replay while discarding output: P6 source spies reject.
+- Restore attach negotiation fallback/keyless local runner on old server: P7 rejects; exact outbound trace contains no attach.
+- Drop finally/cancellation or byte bounds: P8 rejects bounded-lifecycle violations.
+
+Retain unchanged accepted Stage1 negatives for bridge/registry/implicit turn router/diagnostics/RunnerProcess/direct --no-session runner. Catalog-specific positive tests do not authorize those operations. Any intentionally superseded catalog-refusal expectation belongs only in a NEW versioned Stage2 test; historical Stage1 artifacts remain byte-identical, and unaffected negatives must still pass. Keep baseline control and mutant results honestly, including surviving mutants until assertions improve.
+
+## Handoff/evidence requirements
+
+Each future authorized verification unit ends in exact input/output/source SHA256s, command/environment/UTC/exit receipts, event-order and forbidden-call counts, expected/observed assertions and resource disposition. Separate P, U, compiled-SDK and later synthetic-native-owner results. No inherited PASS, fake-host result or socket possession stands in for real native/catalog/peer/BB identity proof. SDK0.6.37 gate, capability provisioning, authoritative C seam, actual peer identity, trusted initial/reopen/second-thread admission, install and full BB0 remain independently blocked. Coordinator alone writes canonical acceptance and tracker/Git decisions.

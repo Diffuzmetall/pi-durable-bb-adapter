@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "actor": "RusticCanyon",
+  "task": "bbup-test-bb",
+  "verdict": "HOLD_EXACT_PRIVATE_MODE_DEVIATION",
+  "scope": "ONE independently executed FS2v3 Node/filesystem preflight, not SDK evaluation or BB/Pi runtime",
+  "source": {
+    "base": "/tmp/bbup-fs2-plan-2hf01on3/",
+    "operatorSha256": "c419aa14906c728637093649ca2fb3bf149c7f485c52d80adb0a78d4114e8d2b",
+    "planSha256": "598dbabaad878d6afbeee5f59f57bf32d564e66299265e99327dbdb36522f4be",
+    "argvSha256": "9116bb19e11905f8332669d5659cc08c8c57919f71e0ef0a55ff4fbd7819c0c1",
+    "payloadSha256": "f5746018b13a33fb58357298c7e08a9e772b13a1e0c629deb52b8d2a921dad80",
+    "launcherSha256": "a156d4d7cc79f77110d195a9786bb8801028f1159ab3993c94c4a4bf311d965f",
+    "independentSourceReview": "review-bb0-inventory PASS source only; checked launcher bytes directly compile/exec without target pyc loader; original/v2 guards unchanged"
+  },
+  "execution": {
+    "executor": "qa-bb0-inventory, distinct from AzureSpring author and source reviewer; Agent Mail unavailable, no fabricated identity or Mail receipt",
+    "qaRoot": "/tmp/bbup-fs2-v3-qa-doFHAQ/",
+    "projectRoot": "/home/ubuntu/Projects/pi-durable-bb-adapter/.test-bb/fs-private.fs2-20261016",
+    "startUTC": "2026-10-16T04:09:08Z",
+    "endUTC": "2026-10-16T04:09:11Z",
+    "operatorExit": 0,
+    "nodeExit": 0,
+    "actualOuterCommand": "/bin/bash /tmp/bbup-fs2-v3-qa-doFHAQ/logs/invocation-approved.txt",
+    "outerShellEnvironment": "INHERITED as explicitly disclosed in run-record; universal parent-environment isolation NOT established",
+    "innerEnvironment": "env -i Python -I -B; exact four approved invocation substitutions only: new QA HOME/TMPDIR and parent/timeout GO values",
+    "parentActualInvocationComparison": "Byte-exact after only those four substitutions",
+    "timeoutOrKillObserved": false,
+    "automaticRetryOrCleanup": false
+  },
+  "observedNodeAssertions": {
+    "hiddenSyntheticHostMarkerAbsentInside": true,
+    "privateHOMEandTMProundtrips": true,
+    "sdkFileHashMatches62c27b9": true,
+    "publicAppMountReadOnly": true,
+    "procMountType": "proc",
+    "ownPidNamespace": "pid:[4026533689]",
+    "hostSelfPidNamespace": "pid:[4026531836]",
+    "exactExpectedEnvironmentAndNoExtraBBAliases": true,
+    "network": "HOST_SHARED_NOT_ISOLATION",
+    "sdkZodEvaluated": false
+  },
+  "hold": {
+    "rootAndAllTenPrivateDirectoriesActualMode": "2700, owner UID/GID1000; not exact requested0700",
+    "preflightLogActualMode": "0664; contained in owner-only root, not requested0600",
+    "parentCurrentMetadata": "Root independently observed .test-bb mode6700 and system.posix_acl_default NAME presence only; no ACL values read. SGID/default-ACL inheritance is consistent with observations, not a definitive causal proof.",
+    "privacyLeakAlleged": false,
+    "retainedWithoutChmod": true,
+    "nextCandidate": "FS3 source-only fixed-mode proposal by same AzureSpring; new root required, exact descriptor fchmod+assert before child, no parent ACL/global modes/old fixture changes; independent source review then separate one-shot QA GO"
+  },
+  "evidence": {
+    "preflightLogSha256": "0675c7da0524898f60fd316338ef178a9bec79a8908e683e8befb7d70d47eb2b",
+    "receiptHashFile": "/tmp/bbup-fs2-v3-qa-doFHAQ/logs/final-receipt-hashes.txt",
+    "receiptHashFileSha256": "206d37484f34c8ad1baad12c6c6bcec8c24de855c01e7169fc7a10c1386ee75d",
+    "parentActualChecks": "All9 listed capture hashes; original20 FS2 input hashes; exact4 invocation substitutions; all21 read-only public file-mount hashes; actual Node JSON and lstat modes; protected10 AFTER hashes match frozen baseline map",
+    "protected10PerAttemptBeforeCapture": "NOT_CAPTURED_IN_SUPPLIED15_LOGS; do not infer fresh before/after proof",
+    "initialChecksumMappingMistake": "Read-only path-list mapping error disclosed/corrected; final20 input checks pass, no candidate/runtime file changed",
+    "frozenSource19": "Root actual hashes checked before this execution and again for exact40-file backup after execution; unchanged"
+  },
+  "leases": {
+    "rootHeldDelegatedRuntime": [298,299,300,301,302],
+    "renewedExpiry": "2026-10-16T04:34:41Z (second precision from handoff)",
+    "releasedUTC": "2026-10-16T04:24:27.904584Z"
+  },
+  "privateBackup": {
+    "commit": "fcd38230d48cdabfaf61058d3b4ba427e919a37d",
+    "tree": "12f7d94f8ba4b656743f6ab6fdd2a73ebd2b75fe",
+    "scope": "Earlier40 inspected FS19+cap1 archive15+coordinator4+metadata2 files; this later FS2 receipt is NOT in that commit",
+    "privateBeforeAfter": true,
+    "exactRemoteShaVerified": true,
+    "authorAndCommitter": "Diffuzmetall <208909650+Diffuzmetall@users.noreply.github.com>"
+  },
+  "nonClaims": "No source-bound historical6-test reacceptance, kernel-complete confinement, network isolation, SDK/Zod definition, authentic original BB loader or compiled order, catalog, identity, visuals, Pi installation, old-instance retirement or full BB0 acceptance; full0/222"
+}

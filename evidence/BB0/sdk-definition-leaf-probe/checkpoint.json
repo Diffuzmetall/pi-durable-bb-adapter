@@ -1,0 +1,72 @@
+{
+  "schema": "bb0-sdk-definition-leaf-source-checkpoint-v1",
+  "status": "SOURCE_ONLY_NEEDS_CHECKS_ACTUAL_LEAF_NOT_RUN",
+  "utc": "2026-10-16T03:16:19.289225+00:00",
+  "actor": "IvoryBridge/id374",
+  "lease": 280,
+  "filesExcludingThisCheckpoint": [
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+      "bytes": 11666,
+      "sha256": "5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+      "bytes": 24333,
+      "sha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/README.md",
+      "bytes": 10788,
+      "sha256": "52d70aadd6e5903ed26c49d93b3e6868f501c669a20dc8d621f9227be661300a"
+    },
+    {
+      "path": "evidence/BB0/sdk-definition-leaf-probe/source-checks.json",
+      "bytes": 4470,
+      "sha256": "810468f1447c1fe23a5a9dfdaa906c7af1b52753ee4232bc216dd5416964a8af"
+    }
+  ],
+  "emptyPrivateEnvironmentRoot": "evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001",
+  "checksActuallyRun": [
+    "Node24 --check syntax only",
+    "Default CLI refusal exit77",
+    "Execute-mode without GO refusal exit77",
+    "Four pure admission refusal cases exit0",
+    "96 SDK/Zod file pins plus2 public package metadata match",
+    "DOCv2 manifest194eb00 and19 references unchanged",
+    "Stage1 frozen refs + accepted UNIT004 checkpoint pin unchanged",
+    "Whitespace checks on3 source files"
+  ],
+  "testsNotRun": [
+    "No actual SDK/Zod import/evaluation/definition",
+    "No positive leaf assertion or effect-guard/source-URL hook execution",
+    "No OS namespace/network/resource confinement",
+    "No original-provider loading or compiled ordering"
+  ],
+  "preservedFingerprints": [
+    {
+      "path": "evidence/BB0/shared-catalog-stage2/source-manifest.json",
+      "sha256": "194eb00affe3d2786ed60252814f0ee5b70ceb1172b135afdc54ee826ccbcbf9"
+    },
+    {
+      "path": "evidence/BB0/shared-required-fixture/source-test-manifest.json",
+      "sha256": "6edee765d93ebb13117299b276a667b96c65455a0095a73fc4a9801259976ab9"
+    },
+    {
+      "path": "evidence/BB0/shared-required-fixture/checkpoint.json",
+      "sha256": "480890f3baed3b66187b43e177983d3694051328c13de7755f9d910db1f0398c"
+    },
+    {
+      "path": "evidence/BB0/lead-baseline-unit-checkpoint.json",
+      "sha256": "4fab67577dca0db6c78e7e5ccf3b46518b95210f7a277803c7defea0457be6ba"
+    }
+  ],
+  "executionHold": "Existing nonbaseline lead-sandbox.py command port lacks exact4 RO source files; no arbitrary mount flag. Proposal only in README; frozen FS18 untouched; no new platform/wrapper. Zod95 resides under existing readonly donor root by static ancestry, not freshly observed namespace.",
+  "independentGates": [
+    "Exact-source review",
+    "Separate execution/CPU/fresh-state/mount/confinement GO",
+    "Distinct real-artifact behavioral QA",
+    "Authentic BB original-contract loader and compiled-order gate remain separate"
+  ],
+  "sourceBoundary": "Only finite5 owned files plus fresh empty private environment directories. No Git/tracker/installed/product/donor edits or nested agents."
+}

@@ -1,0 +1,277 @@
+{
+  "schema": "bb0-stage2-doc-source-manifest-v2",
+  "status": "DOC_NEEDS_CHECKS_NOT_IMPLEMENTED",
+  "created_utc": "2026-10-16T02:49:37.016176+00:00",
+  "actor": {
+    "mail_name": "IvoryBridge",
+    "mail_id": 374,
+    "project": "/home/ubuntu/Projects/pi-durable-bb-adapter",
+    "leases": [
+      267,
+      268,
+      269,
+      270,
+      271,
+      272
+    ]
+  },
+  "authority": "DOC F1-only repair: exact3 current +3 original byte-exact archives; no other writes or execution",
+  "documents": [
+    {
+      "path": "evidence/BB0/shared-catalog-stage2/change-request.md",
+      "bytes": 13796,
+      "sha256": "6ca0931584560d7e1d021b7f7d68771e2156a170080196f34d169d84af2bf7ba"
+    },
+    {
+      "path": "evidence/BB0/shared-catalog-stage2/unit-plan.md",
+      "bytes": 12975,
+      "sha256": "0a2dcd0238327b34b8971ce59323eada4d50b7253c9f4eb9e2ab548c6da518a7"
+    }
+  ],
+  "self_hash": "Not embedded recursively; source-manifest.json SHA256 supplied in external handoff",
+  "sources": [
+    {
+      "id": "S1",
+      "path": "candidates/host/packages/coding-agent/src/experimental/durable/shared-server.ts",
+      "bytes": 6564,
+      "sha256": "2f66d3503d57c4240e3653c7062622465fa1a4c3b2fa2b738af9d3c4e4e718c4"
+    },
+    {
+      "id": "S2",
+      "path": "candidates/host/packages/coding-agent/src/experimental/durable/shared-commands.ts",
+      "bytes": 3369,
+      "sha256": "a8868ca5ce61aa321cb31f238bc5ac51dec62c25803f45262aadc0ded3dc45aa"
+    },
+    {
+      "id": "S3",
+      "path": "candidates/host/packages/coding-agent/src/core/model-runtime.ts",
+      "bytes": 39174,
+      "sha256": "de28a51492788e7f5f4d6f20a57fa8b08e32fd9e766a365211b54a3f3959a177"
+    },
+    {
+      "id": "S4",
+      "path": "/home/ubuntu/.nvm/versions/node/v24.19.0/lib/node_modules/@earendil-works/pi-ai/dist/types.d.ts",
+      "bytes": 31263,
+      "sha256": "a458c918f8ea955ef8089dea181a890ea33181033a584623a29e47453194f7f1"
+    },
+    {
+      "id": "S5",
+      "path": "candidates/host/packages/coding-agent/src/core/provider-composer.ts",
+      "bytes": 27746,
+      "sha256": "b410756ee3cd275c5e615061657c87b28fc6595b30611cafcb67b833e80a6c3f"
+    },
+    {
+      "id": "S6",
+      "path": "candidates/host/packages/coding-agent/src/experimental/durable/runtime.ts",
+      "bytes": 23091,
+      "sha256": "7b718b6b357b21449b89cc30cff6c87884831d60ea4d1e6ec9f2945b11bfb944"
+    },
+    {
+      "id": "S7",
+      "path": "candidates/provider/src/host/catalog.ts",
+      "bytes": 5051,
+      "sha256": "764b3f87f8932b536016c647a8c62bff0c8a5be118495574f06ea0606ee70e83"
+    },
+    {
+      "id": "S8",
+      "path": "candidates/provider/src/runner/shared-host.ts",
+      "bytes": 5051,
+      "sha256": "3d941739d409217534ecd21351352642a51ef89af548b11240167f5b24039650"
+    },
+    {
+      "id": "S9",
+      "path": "candidates/provider/server.ts",
+      "bytes": 2116,
+      "sha256": "2a628821a25e0e57a8ef35627d4b1d10acb2b39800c662ba57fc49e4f3a5c063"
+    },
+    {
+      "id": "S10",
+      "path": "candidates/provider/src/rpc/contract.ts",
+      "bytes": 397,
+      "sha256": "f68616f23f2c2a0818a03a26a0cb5f65babcb6bba47c99c7c8c32a84d137bf02"
+    },
+    {
+      "id": "S11",
+      "path": "/home/ubuntu/.nvm/versions/node/v24.19.0/lib/node_modules/@earendil-works/pi-ai/package.json",
+      "bytes": 2721,
+      "sha256": "3838d036bbb844ea6d4d08ef199423a0335022e34b5d5c8833257f64e4cae625"
+    },
+    {
+      "id": "S12",
+      "path": "evidence/BB0/lead-baseline-unit-checkpoint.json",
+      "bytes": 8348,
+      "sha256": "4fab67577dca0db6c78e7e5ccf3b46518b95210f7a277803c7defea0457be6ba"
+    }
+  ],
+  "source_policy": "Public source/types/package metadata and owned historical checkpoint only; no actual auth/config/store values read; candidates and installed donors read-only",
+  "versions": {
+    "inspected_pi_ai_public_types": "1.2.0",
+    "actual_BB_build_SDK_historical_record": "0.6.37",
+    "actual_SDK_0_6_37_full_closure_and_definition_and_bundle_order": "NOT_PROVEN_SEPARATE_BLOCKING_GATE_BEFORE_IMPLEMENTATION_RUNTIME_GO"
+  },
+  "frozen_handoff": [
+    {
+      "path": "evidence/BB0/shared-required-fixture/source-test-manifest.json",
+      "bytes": 40594,
+      "sha256": "6edee765d93ebb13117299b276a667b96c65455a0095a73fc4a9801259976ab9"
+    },
+    {
+      "path": "evidence/BB0/shared-required-fixture/checkpoint.json",
+      "bytes": 36568,
+      "sha256": "480890f3baed3b66187b43e177983d3694051328c13de7755f9d910db1f0398c"
+    }
+  ],
+  "protocol": "NEW PROPOSED catalog-v1, NOT existing API",
+  "acceptance_claim": "NONE",
+  "tests_executed": false,
+  "native_or_fake_unix_sockets_executed": false,
+  "host_scope_feasibility": "shared-server.ts only preferred; cached current:()=>state is harmless source fact; runtime.ts C seam is proposal-only NOT APPROVED, pending necessity/SDK/C-access policy decision",
+  "remaining_gates": [
+    "Independent DOC v2/F1 review; prior design review is not implementation acceptance",
+    "Exact actual SDK0.6.37 guarded import/definition/authentic loader/compiled-order probes under separate GO",
+    "Implementation and pure-test GO only after SDK gate",
+    "U minimal fake-host Unix-socket execution GO; require its own agentMetadataOnly evidence",
+    "Synthetic native owner/catalog GO and actual no-creation/no-write evidence",
+    "Fixture capability provisioning and endpoint peer identity",
+    "C-access policy/seam necessity decision; no runtime API approved",
+    "Trusted BB initial/reopen/second-thread identity before any public BB use",
+    "Stage3/build/install/full BB0 separate acceptance"
+  ],
+  "revision": "DOC_V2_F1_REPAIR_NEEDS_CHECKS_NOT_IMPLEMENTED",
+  "authorized_pathset": [
+    "evidence/BB0/shared-catalog-stage2/change-request.md",
+    "evidence/BB0/shared-catalog-stage2/unit-plan.md",
+    "evidence/BB0/shared-catalog-stage2/source-manifest.json",
+    "evidence/BB0/shared-catalog-stage2/review-001/change-request.md",
+    "evidence/BB0/shared-catalog-stage2/review-001/unit-plan.md",
+    "evidence/BB0/shared-catalog-stage2/review-001/source-manifest.json"
+  ],
+  "archive_map": [
+    {
+      "original_path": "evidence/BB0/shared-catalog-stage2/change-request.md",
+      "archived_path": "evidence/BB0/shared-catalog-stage2/review-001/change-request.md",
+      "old_sha256": "3aa8f4aca806d81ac3560d527f33daf09b04b70e407ba682a04709af326f72d6",
+      "bytes": 10682,
+      "frozen": true
+    },
+    {
+      "original_path": "evidence/BB0/shared-catalog-stage2/unit-plan.md",
+      "archived_path": "evidence/BB0/shared-catalog-stage2/review-001/unit-plan.md",
+      "old_sha256": "b5c573b9ea22cafccdd4705f75d33f26c1eebcf47c101014db7bc6fe522ad908",
+      "bytes": 8856,
+      "frozen": true
+    },
+    {
+      "original_path": "evidence/BB0/shared-catalog-stage2/source-manifest.json",
+      "archived_path": "evidence/BB0/shared-catalog-stage2/review-001/source-manifest.json",
+      "old_sha256": "48b52858ed774de47124d51751bc8b135607821790b61dcd70b9c22a1aa41d4f",
+      "bytes": 5423,
+      "frozen": true
+    }
+  ],
+  "historical_reference_resolution": {
+    "original_manifest_sha256": "48b52858ed774de47124d51751bc8b135607821790b61dcd70b9c22a1aa41d4f",
+    "frozen_manifest_path": "evidence/BB0/shared-catalog-stage2/review-001/source-manifest.json",
+    "rule": "Old manifest embedded document paths denote original bytes. Resolve them through archive_map to review-001 files, NEVER to repaired current documents. All original source/frozen handoff references retain their original paths/hashes. Archived manifest bytes must not be rewritten."
+  },
+  "reanchored_public_source_quotes": [
+    {
+      "source_id": "S3",
+      "line_start": 99,
+      "line_end": 105,
+      "exact_quotes": [
+        "available: readonly Model<Api>[];"
+      ]
+    },
+    {
+      "source_id": "S3",
+      "line_start": 499,
+      "line_end": 501,
+      "exact_quotes": [
+        "getAvailableSnapshot(): readonly Model<Api>[]",
+        "return this.snapshot.available;"
+      ]
+    },
+    {
+      "source_id": "S4",
+      "line_start": 619,
+      "line_end": 655,
+      "exact_quotes": [
+        "baseUrl: string;",
+        "headers?: Record<string, string>;"
+      ]
+    },
+    {
+      "source_id": "S5",
+      "line_start": 93,
+      "line_end": 105,
+      "exact_quotes": [
+        "baseUrl?: string;",
+        "apiKey?: string;",
+        "headers?: Record<string, string>;",
+        "authHeader?: boolean;",
+        "oauth?: ExtensionOAuthConfig;"
+      ]
+    },
+    {
+      "source_id": "S5",
+      "line_start": 713,
+      "line_end": 714,
+      "exact_quotes": [
+        "headers: model.headers || configured ? { ...model.headers, ...configured } : undefined,"
+      ]
+    },
+    {
+      "source_id": "S9",
+      "line_start": 1,
+      "line_end": 1,
+      "exact_quotes": [
+        "import { rpcContract } from \"./src/rpc/contract.ts\";"
+      ]
+    },
+    {
+      "source_id": "S10",
+      "line_start": 1,
+      "line_end": 5,
+      "exact_quotes": [
+        "import { defineRpcContract } from \"@get-bb/plugin-sdk\";",
+        "import { z } from \"zod\";",
+        "export const rpcContract = defineRpcContract({"
+      ]
+    },
+    {
+      "source_id": "S11",
+      "line_start": 2,
+      "line_end": 3,
+      "exact_quotes": [
+        "\"name\": \"@earendil-works/pi-ai\"",
+        "\"version\": \"1.2.0\""
+      ]
+    },
+    {
+      "source_id": "S6",
+      "line_start": 562,
+      "line_end": 562,
+      "exact_quotes": [
+        "current: () => state,"
+      ]
+    }
+  ],
+  "F1": {
+    "required_future_artifact": "agentMetadataOnly",
+    "required_boundaries": [
+      "P6-fake-duplex",
+      "U-real-Unix-fake-host"
+    ],
+    "requirements": [
+      "Throw/record ANY harness.root/creation/store-write/scan/list/transaction attempt",
+      "Throw/record ANY non-agent handle method",
+      "Noncreating ROOT-only lookup; missing root remains absent",
+      "Before/after fake inventory IDs,count,agent metadata digest unchanged through disposal",
+      "Zero forbidden attempts even on transient rollback",
+      "Named artifact contains exact candidate hashes, scenario, counts, assertions and fake-only boundary"
+    ],
+    "artifact_produced_now": false,
+    "implementation_or_test_execution_claim": "NONE"
+  }
+}

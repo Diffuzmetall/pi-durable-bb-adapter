@@ -1,0 +1,94 @@
+{
+  "status": "SOURCE_CHECKS_ONLY_NEEDS_INDEPENDENT_REVIEW",
+  "sourcePins": [
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+      "bytes": 11666,
+      "sha256": "5b094bd7eb12c565448f9be7eb5c093774c3380cd1391c2a5e224a6bb16624c4"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+      "bytes": 24333,
+      "sha256": "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/README.md",
+      "bytes": 10788,
+      "sha256": "52d70aadd6e5903ed26c49d93b3e6868f501c669a20dc8d621f9227be661300a"
+    }
+  ],
+  "environmentReplacedNotInherited": true,
+  "environment": {
+    "PATH": "/usr/bin:/bin",
+    "HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/home",
+    "TMPDIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/tmp",
+    "XDG_CONFIG_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/config",
+    "XDG_CACHE_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/cache",
+    "XDG_DATA_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/data",
+    "XDG_STATE_HOME": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/state",
+    "XDG_RUNTIME_DIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/runtime",
+    "PI_AGENT_DIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/agent",
+    "PI_CODING_AGENT_DIR": "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/.private/refusal-001/agent",
+    "LANG": "C.UTF-8",
+    "TZ": "UTC"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "--check",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs"
+      ],
+      "start_utc": "2026-10-16T03:15:22.535535+00:00",
+      "end_utc": "2026-10-16T03:15:22.576110+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs"
+      ],
+      "start_utc": "2026-10-16T03:15:22.576152+00:00",
+      "end_utc": "2026-10-16T03:15:22.676426+00:00",
+      "exit": 77,
+      "expected_exit": 77,
+      "stdout": "{\"status\":\"REFUSED_BEFORE_TARGET_IMPORT\",\"reason\":\"EXPLICIT_LEAF_MODE_REQUIRED\",\"targetImports\":0,\"sdkOrZodEvaluated\":false}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "--execute-leaf"
+      ],
+      "start_utc": "2026-10-16T03:15:22.676516+00:00",
+      "end_utc": "2026-10-16T03:15:22.772609+00:00",
+      "exit": 77,
+      "expected_exit": 77,
+      "stdout": "{\"status\":\"REFUSED_BEFORE_TARGET_IMPORT\",\"reason\":\"SEPARATE_EXECUTION_GO_REQUIRED\",\"targetImports\":0,\"sdkOrZodEvaluated\":false}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/ubuntu/.nvm/versions/node/v24.19.0/bin/node",
+        "/home/ubuntu/Projects/pi-durable-bb-adapter/evidence/BB0/sdk-definition-leaf-probe/probe.mjs",
+        "--refusal-self-test"
+      ],
+      "start_utc": "2026-10-16T03:15:22.772662+00:00",
+      "end_utc": "2026-10-16T03:15:22.866648+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "stdout": "{\"status\":\"REFUSAL_BRANCH_SELF_CHECK_ONLY\",\"cases\":4,\"targetImports\":0,\"sdkOrZodEvaluated\":false}\n",
+      "stderr": ""
+    }
+  ],
+  "targetEvaluations": 0,
+  "actualLeafResult": "NOT_RUN_SEPARATE_GO_REQUIRED",
+  "osNamespaceRunNow": false,
+  "sdkPlusZodModulesPinned": 96,
+  "packageMetadataPinned": 2,
+  "frozenEvidence": "Original6 DOC archive/current pins and Stage1/UNIT004 not mutated; existing source checkpoint hash checked"
+}

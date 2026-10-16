@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "actor": "RusticCanyon",
+  "task": "bbup-0-baseline",
+  "verdict": "DOC_SOURCE_POLICY_PASS_ONLY_WITH_ROOT_CLARIFICATIONS",
+  "manifest": {
+    "path": "evidence/BB0/shared-catalog-stage2/source-manifest.json",
+    "bytes": 19171,
+    "sha256": "55933eff0c7e47bc0597f52af560a3d62860b5e7ad05da50617b23603fecd0a3",
+    "parentActualChecks": "All30 document/source/frozen/archive byte+size+SHA references and all23 literal quote ranges MATCH; v2 original3 resolve byte-exact to review-002; v1 and SDK as-of receipts preserved"
+  },
+  "independentReview": {
+    "reviewer": "review-dag",
+    "scope": "Read-only exact DOCv3 policy review, not implementation or execution",
+    "reviewerHashes": "UNAVAILABLE; parent filled with actual byte/hash verification, not silently promoted",
+    "preserved": "C1/C2/C4 admission/lifecycle and F1 P6/U no-creation/store mutation attempts/inventory+digest/disposal/cancel obligations; artifacts NOT PRODUCED"
+  },
+  "policy": {
+    "C": "One cached host.view.current() result per admitted metadata operation; canonical owner C from cache.session.cwd, internal only",
+    "getState": "ExactlyONE current() result reused for C and cached selected ROOT-ID guard BEFORE docs['pi.agent']; only persisted model.provider/modelId and thinkingLevel to fresh narrow DTO",
+    "models": "Existing pure getAvailableSnapshot once; fresh {provider,id,name} ALWAYS allowlist, no spread/raw model/getters/toJSON/refresh/extensions",
+    "semantics": "CACHEDPERSISTEDROOTSELECTION, not resolved execution model or availability; no new wire semantic-label field",
+    "forbidden": "All Harness conversation/agent/root/lookup/load/store/read TX/materialization/wrappers/repair/fallback/history/attach/replay/subscription; cwd/sessionId/raw View/docs/model/headers/auth output; extra current() calls and unapproved property reads",
+    "failure": "Missing/malformed cache or model, wrong selected ROOT or invalid present thinkingLevel fails closed; no null-model success"
+  },
+  "rootClarifications": {
+    "N1": "Operation means PER INBOUND ADMITTED METADATA FRAME, not per connection or global cached lifetime. Reuse the one result for C check plus get_state projection in that frame. Schema/preflight/disposal do not opportunistically read it; a second current() in the same operation is a forbidden attempt.",
+    "N2": "When the displayed cached conversation is not ROOT, refusal is intentional. Fake Proxy path restrictions do not prove actual native getter purity; native proof remains required.",
+    "N3": {
+      "permittedPersistedScalars": ["off","minimal","low","medium","high","xhigh","max"],
+      "absentThinkingLevelOnlyDefault": "off",
+      "invalidPresentOrNull": "REFUSE; never default malformed values",
+      "supportLimit": "Seven nominal scalar values, not per-model runtime support or availability. No model-profile resolution or clamping callbacks. Candidate coding-agent general default medium is NOT this Durable-state fallback."
+    },
+    "draftBytesUnchanged": true,
+    "scope": "Acceptance annotations only; no new runtime API or implementation GO"
+  },
+  "existingWiringSourceFeasibility": {
+    "scout": "scout-port read-only actual candidate inspection; parent read quoted main/command/enum/default anchors",
+    "path": "main.ts75 opens durable,78 passes same object to listenSharedHost; shared-server.ts14 accepts OpenDurableResult and95 passes host to sharedCommand; shared-commands.ts8 already receives typed host; runtime.ts91-103/130-131 exposes its candidate-internal typed view.current",
+    "minimalPlacementProposal": "Future root-only catalog branch in existing sharedCommand BEFORE unconditional Harness lookup at shared-commands.ts11; existing caller wiring, no runtime.ts seam/accessor/server-options injection needed",
+    "doNotReuse": "Current shared-server view helper spreads broader state and can call current twice; current legacy get_state calls Harness.agent and returns model spread/cwd/sessionId. Those remain unsuitable and unchanged.",
+    "currentImplementation": "NOT_IMPLEMENTED; existing unconditional Harness path is still present",
+    "apiPrecision": "Candidate-internal typed host contract, NOT invented public SDK current-view API"
+  },
+  "additionalActualPins": [
+    {"path":"candidates/host/packages/coding-agent/src/experimental/durable/main.ts","bytes":3323,"sha256":"a18b7f56dc7c8499291f7dc74628a67937884c9e94d03a2c5d5ec7adf41b7897","lines":"75,78"},
+    {"path":"candidates/host/packages/agent/src/types.ts","bytes":20955,"sha256":"347efd535342c1d5fbd6b731168c57fcbb201a6652707f8e22e1b66fe3b69c2d","lines":"344-349"},
+    {"path":"/home/ubuntu/.nvm/versions/node/v24.19.0/lib/node_modules/@earendil-works/pi-ai/dist/providers/model-schema.d.ts","bytes":4437,"sha256":"09fd28a785b919b8c36bc2cb56a75ef5d15921473f7a8133947f865021a91fb0","lines":"3,8,80"}
+  ],
+  "defaultAndVersionLimits": "Public Pi Durable1.2.0 agent.js192 and current shared-commands.ts17 use off; public AgentState imports ModelThinkingLevel from pi-ai whose inspected public version is1.2.0 and seven-value schema above. Candidate coding-agent and pi-agent-core manifests remain1.0.2/^1.0.2; source agent-core independently has the same union. Actual candidate module resolution to public1.2.0 is NOT proved by these static reads.",
+  "remainingGates": ["SDK actual guarded definition and authentic BB original-contract loading","compiled original entrypoint/preflight ordering","native no-effects proof and actual selected cache behavior","capability/C/socket provisioning and trusted initial/reopen/second-thread identity","separately authorized Stage2 implementation/test/build","visual/live/performance/full BB0 acceptance"],
+  "fullAcceptance": "0/222; no product source, native API, socket, database, SDK evaluation, runtime/install/activation permission from this DOC acceptance",
+  "backupStatus": "Current DOCv3 plus SDK source9 and this later annotation are not included in private fcd38230d48cdabfaf61058d3b4ba427e919a37d"
+}
