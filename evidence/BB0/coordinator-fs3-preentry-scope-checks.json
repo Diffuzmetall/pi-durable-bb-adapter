@@ -1,0 +1,103 @@
+{
+  "schema": "bb0-fs3-preentry-scope-checks-v1",
+  "coordinator": "RusticCanyon",
+  "scope": "Historical pre-entry reconciliation and corrected future authority; NOT runtime acceptance",
+  "priorQA": {
+    "owner": "qa-bb0-inventory",
+    "recordedUTC": "2026-10-16T05:13:14.617449Z",
+    "directory": "/tmp/bbup-fs3-qa-UlbdsP/logs",
+    "status": "NOT_STARTED / HOLD_BEFORE_ENTRY",
+    "oldLeaseExpiryUTC": "2026-10-16T05:12:13.920423Z",
+    "operatorAttemptStarted": false,
+    "fixtureRootAbsentAsReported": true,
+    "markerAbsentAsReported": true,
+    "noAfterRunReceipt": true
+  },
+  "rootFindings": {
+    "protected10Definition": "Exactly ten SOURCE FILE hashes enumerated in evidence/BB0/test-bb-fs-sandbox/baseline-source-before.json; NOT ten private-directory mode/state checks",
+    "baselineMapSHA256": "3580bfa7e66787826a48096a31e5c2b56a76c4559f526d456db43f6bbd89be3c",
+    "parentActualVerification": "10/10 row identities, expected/observed SHA and freshly read source SHA matched. Prior actual10before.json satisfies the SOURCE-HASH scope. Additional private-ten before-mode gate was invented and is rejected.",
+    "priorRawUnchanged": true,
+    "expiredWindowStillBlocksPriorEntry": true,
+    "fs2MissingBeforeEvidenceNotRepaired": true,
+    "privateModeCriterion": "Fresh FS3 profile and marker absent BEFORE creation; created profile plus ten dirs exact0700 and log0600 checked during/after future Node payload. Do not stat nonexistent private dirs as an admission requirement."
+  },
+  "rawPins": [
+    [
+      "actual10before.json",
+      3634,
+      "d3e7d49b57142b4b04abd55b0e95c7f059d3a8803e2120413c1d74a73b190f3a"
+    ],
+    [
+      "fs3-hold-before-entry.json",
+      1027,
+      "d9864b6bf53acf0575bd038c0887d060d7f5f74a4572bb5be91bd3a00c0295e8"
+    ],
+    [
+      "preconditions-before.json",
+      353,
+      "314f26a18c9fab8e8cd78fe02d01b28434ca9d847a42db2b57c66e36b20fde15"
+    ],
+    [
+      "source13-before.json",
+      3923,
+      "7c864b1e86949ca21ed3663e042114cc49acbb6e74b87ecf9c37afc873fb2907"
+    ],
+    [
+      "fs2-original20-before.json",
+      6006,
+      "589dc45e0c4617a61c21e12bb9401da6b7c112cd39e908f66391563fe05283d6"
+    ],
+    [
+      "readonly-filemounts21-before.json",
+      6739,
+      "e06895478e0d7a945e3c69e98bc98b95860c67ee2c52eac0ca7b8060d27c456d"
+    ],
+    [
+      "pinned-runtime-inputs-before.json",
+      1665,
+      "674d5251cc1c9268131171fe2515a9c3621f4bf54b7e476b3dd67913d12712b3"
+    ]
+  ],
+  "futureAuthority": {
+    "leaseIDs": [
+      332,
+      333,
+      334,
+      335,
+      336,
+      337,
+      338
+    ],
+    "expiryUTC": "2026-10-16T05:35:50.264733Z",
+    "cpuOwner": 332,
+    "attempt": "FIRST / ONE actual FS3 operator after SDK-v2 source handoff, not a retry of an executed attempt",
+    "sourceManifestSHA256": "d6b2ecaf591a7d314dd509963d55fbd170d38185f0d797e60383b39e665a32bc",
+    "operatorSHA256": "2e97f05712115b4850b104be5d17c256ef4e74df8afd4b5e46e0988806e38a55",
+    "freshQAHomeRequired": true,
+    "priorAuditDirectoryNeverWritableHOME": true,
+    "freshBeforeAndAfterRequired": true,
+    "timeout": "Owned Popen10; kill owned child only, wait5; namespace cleanup UNKNOWN => retain STOP no retry",
+    "sdkPermission": "NOEXEC",
+    "result": "NOT_STARTED: preflight syntax error; final clock05:35:36Z below180-second start margin. Leases332-338 released05:36:59Z; no runtime GO remains"
+  },
+  "secondWindowHandback": {
+    "asReported": "Batch preflight syntax error before execution; only fresh directory /tmp/bbup-fs3-qa-oVxvKC mode0700 created, never HOME/TMP; retained. No operator, Node payload, public-tree verification, fixture or marker creation.",
+    "operatorAttemptsTotalAcrossBothWindows": 0,
+    "reportIsNotModeFailure": true,
+    "next": "Same QA author SDK-v3 SOURCE fix allowed now; NOT_STARTED handback satisfies reporting barrier, actual FS3 pass not prerequisite. Then source-only reuse/review of known working pre-audit.py cd4323404dd5ee1c174cad819df7eb38b6bc8561333fccaaa3308f3797f70ee6 with fresh future QA-root substitutions, AST/diff/hash before any future execution. No automatic retry or renewed GO."
+  },
+  "strictQASourceOnly": {
+    "plan": "/tmp/strictqa-bytebound-plan-T9jA7WVL",
+    "manifestSHA256": "e8c6977682052f5c7fae30ec82176059c3e8e461d72c0a31a6b3aaa166d2922f",
+    "driverSHA256": "a5ff434b2c38fe84cb7cdaf7ef166bdc479e09259425ed35cbca9317d341aaf1",
+    "parentFourHashesBytesModesASTJSON": "MATCH",
+    "independentReviewer": "review-bb0-inventory",
+    "runtime": "NOT_RUN / no GO",
+    "reviewVerdict": "HOLD: wrapper START/END trace redirections can fail open; no bounded supervisor in invocation. Source byte-bound load chain passes static review only.",
+    "sameAuthorFix": "AzureSpring v2 source fix: explicit trace-write errors, distinguish reserved instrumentation failures from expected negative-test refusals, observed launch count and complete pairs. No hardcoded39 unless source-derived.",
+    "futureSupervisionPolicy": "Root permits future owned-Popen120 + owned-only kill/wait5, timeout always124 evenlate0, descendant cleanup UNKNOWN=>STOP retain no retry; policy is not execution GO. Independent review and separate serialized CPU/GO required."
+
+  },
+  "fullAcceptance": "0/222; no Bead closed; BB1 waits"
+}

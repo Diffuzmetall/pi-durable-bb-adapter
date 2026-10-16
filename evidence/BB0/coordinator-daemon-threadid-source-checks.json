@@ -1,0 +1,69 @@
+{
+  "schema": "bb0-daemon-threadid-static-checks-v1",
+  "coordinator": "RusticCanyon",
+  "scout": "scout-port",
+  "verdict": "PARTIAL_STATIC_ONLY / authenticated-core-to-NativeWorker-context NOT_REACHED",
+  "sourceFiles": [
+    [
+      "/home/ubuntu/.bb-server/app/node_modules/bb-app/package.json",
+      2736,
+      "5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241"
+    ],
+    [
+      "/home/ubuntu/.bb-server/app/node_modules/bb-app/server/dist/plugin-sdk-runtime.js",
+      29313,
+      "62c27b9bbb127417f2c3e13494289fd36f999c09614c120826785955935d4126"
+    ],
+    [
+      "/home/ubuntu/.bb-server/app/node_modules/bb-app/host-daemon/dist/daemon-bundle.mjs",
+      1430303,
+      "acd96560885bf5410af4a53e8cba774f31cac1849ed9d94a3fccc5d56742c163"
+    ],
+    [
+      "/home/ubuntu/.bb-server/app/node_modules/bb-app/host-daemon/dist/bb-provider-bridge-worker.mjs",
+      13009,
+      "e41f25a5d4a4bdf251ded52a707c1e32359b0a6b22ef1cb38c8319f8bd553cd0"
+    ],
+    [
+      "evidence/BB0/sdk-definition-leaf-probe/pin-manifest.json",
+      24333,
+      "1554ecd608c540d2e31330fb5c24c25a5278e9d4a983b05ac40736bcade76c58"
+    ]
+  ],
+  "parentVerification": "Five actual SHA256 and lengths matched. Four exact literals found in installed daemon bundle at recorded offsets. This is literal/source evidence, not a control-flow/runtime/authentication proof.",
+  "daemonLine": 1,
+  "characterOffsetsAndLiterals": [
+    [
+      683861,
+      "case\"thread/start\":return{kind:\"request\",method:Dt.threadStart,params:{threadId:p.threadId,cwd:p.cwd,...u(p)}}"
+    ],
+    [
+      683972,
+      "case\"thread/resume\":return{kind:\"request\",method:Dt.threadResume,params:{threadId:p.threadId,cwd:p.cwd,providerThreadId:p.providerThreadId,...u(p)}}"
+    ],
+    [
+      649617,
+      "function FFe(e){return\"jsonrpc\"in e?e:{jsonrpc:\"2.0\",method:e.method,...e.params!==void 0?{params:e.params}:{}}}"
+    ],
+    [
+      650224,
+      "x0(e.child,JSON.stringify(n))"
+    ]
+  ],
+  "scoutAdditionalFindings": "Adapter helper u(p) contributes options, optional dynamicTools and instructionMode, not threadId/cwd. Bridge handler receives line; its recorder extracts params.threadId. providerThreadId returned from start is separately mapped and explicitly present on resume. Parent did not independently prove the full call graph.",
+  "unproved": [
+    "Originating authenticated core call and authorization boundary",
+    "Parity with requested source commit 4c87fdec7b7effc022ff2ee31ec95c0a09c9ee62",
+    "Whether this provider-process bridge is the named NativeWorker SDK/context path",
+    "Handling after bridge handler, including typed schema/context",
+    "Backend/session/conversation/K binding and trusted requester rights"
+  ],
+  "notImplications": [
+    "Preserved identity is not authorization",
+    "Previous NON-Pi ENVv2 proof does not prove thread.start parameter propagation",
+    "Stock package version0.46.0 and SDK build stamp0.6.37 do not prove source commit parity"
+  ],
+  "runtime": "NOEXEC; no Node/SDK/native calls or config/DB reads; SDK/Zod evaluation0",
+  "future": "Only after exact core/SDK source seam is established, separately propose isolated NON-Pi sentinel start/resume fixture. No API or transport invented, no fixture GO issued.",
+  "fullAcceptance": "0/222; no native-child acceptance or BB1 permission"
+}
