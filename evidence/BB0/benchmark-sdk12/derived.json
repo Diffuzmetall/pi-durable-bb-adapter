@@ -1,0 +1,87 @@
+{
+  "schema": "bb0-benchmark-derived-v1",
+  "claim": "Descriptive measurements from one already-finished SDK 1.2 standalone-host run; no speedup or performance-budget conclusion",
+  "source": {
+    "path": "evidence/BB0/lead-private/.cache/run-1dt3wg80/baseline-live-result.json",
+    "bytes": 87909,
+    "sha256": "e0957d0bd83289966efcb13e7fddf16b1d165bf481a0eeddafe0ea1887a775a0",
+    "outerReceipt": {
+      "path": "evidence/BB0/coordinator-sdk12-live-result.json",
+      "sha256": "9fa03acbeca6b809ff163b4a33a953ccee328278d88607c6efcaba06d8d78f4f"
+    }
+  },
+  "run": {
+    "startUTC": "2026-10-16T08:48:11.499649+00:00",
+    "endUTC": "2026-10-16T08:48:49.141732+00:00",
+    "measurementWindowUTC": ["2026-10-16T08:48:11.771130+00:00", "2026-10-16T08:48:26.335711+00:00"],
+    "exitCode": 0,
+    "attempts": 1,
+    "timedObservations": 62,
+    "coldPerSide": 1,
+    "warmPerSide": 30,
+    "requests": {"reference": 31, "candidate": 32, "candidateExtraFunctionalDiagnostic": 1},
+    "sampleJoin": "(side,index); timed indices 0..30; indices 1..30 are warm",
+    "pairedWarmInputHashMatch": "30/30",
+    "allMeasuredFirstTextBeforeTailRelease": true
+  },
+  "host": {
+    "sameImplementation": true,
+    "description": "Same corrected host source (CodeMode caller overlay f9495350672382574ee8f1e8b3e4c8e46ceb9ef3dd521b28cf2ffbeed900004f) with reference/original-parent versus candidate/adjusted-location managed loaders; identical histories and strict reference-first, candidate-second pairs.",
+    "overlayFile": "packages/coding-agent/src/extensions/codemode/tool.ts",
+    "originalOverlaySha256": "67216b67186567278527edc5c6544cbb7e52a515a4887b4cf433299f8d1e9113",
+    "candidateOverlaySha256": "f9495350672382574ee8f1e8b3e4c8e46ceb9ef3dd521b28cf2ffbeed900004f",
+    "loadAvgBefore": [5.091796875, 4.37353515625, 4.25439453125],
+    "loadAvgAfter": [4.775390625, 4.3388671875, 4.2451171875],
+    "logicalCPUs": 12,
+    "competingWorkloadAttribution": "UNKNOWN"
+  },
+  "statistics": {
+    "median": "statistics.median over raw sample values",
+    "p95": "nearest-rank sorted[ceil(0.95*n)-1]; for n=30, rank 29",
+    "range": "min..max over raw sample values",
+    "digits": "Values below rounded to 3 decimal ms; exact precision retained in source raw JSON"
+  },
+  "warmMetricsMs": {
+    "reference": {
+      "attachMs": {"n": 30, "median": 5.857, "p95": 9.206, "range": [3.620, 14.577]},
+      "wireFirstIncrementalTextObservedMs": {"n": 30, "median": 122.250, "p95": 128.898, "range": [117.382, 132.813]},
+      "terminalFirstIncrementalTextBytesObservedMs": {"n": 30, "median": 123.832, "p95": 130.987, "range": [118.462, 134.479]},
+      "submitToFixtureRequestMs": {"n": 30, "median": 14.446, "p95": 18.972, "range": [11.236, 22.383]},
+      "fixtureTraceDurationMs": {"n": 30, "median": 109.102, "p95": 112.489, "range": [106.200, 117.662]},
+      "fixtureFirstChunkToWireMs": {"n": 30, "median": 107.047, "p95": 110.535, "range": [104.816, 115.712]},
+      "fixtureFirstChunkToTerminalMs": {"n": 30, "median": 108.666, "p95": 112.236, "range": [105.896, 117.378]}
+    },
+    "candidate": {
+      "attachMs": {"n": 30, "median": 7.154, "p95": 30.855, "range": [4.042, 32.862]},
+      "wireFirstIncrementalTextObservedMs": {"n": 30, "median": 123.412, "p95": 141.288, "range": [116.626, 145.804]},
+      "terminalFirstIncrementalTextBytesObservedMs": {"n": 30, "median": 125.261, "p95": 145.853, "range": [117.998, 147.321]},
+      "submitToFixtureRequestMs": {"n": 30, "median": 15.689, "p95": 24.041, "range": [11.391, 26.251]},
+      "fixtureTraceDurationMs": {"n": 30, "median": 109.656, "p95": 121.877, "range": [106.319, 123.325]},
+      "fixtureFirstChunkToWireMs": {"n": 30, "median": 107.183, "p95": 117.111, "range": [104.677, 121.490]},
+      "fixtureFirstChunkToTerminalMs": {"n": 30, "median": 109.406, "p95": 121.676, "range": [106.049, 123.006]}
+    }
+  },
+  "coldMetricsMs": {
+    "n": 1,
+    "reference": {"attachMs": 27.333, "wireFirstIncrementalTextObservedMs": 370.743, "terminalFirstIncrementalTextBytesObservedMs": 377.254, "submitToFixtureRequestMs": 240.683, "fixtureTraceDurationMs": 136.521, "fixtureFirstChunkToWireMs": 129.709, "fixtureFirstChunkToTerminalMs": 136.221},
+    "candidate": {"attachMs": 24.703, "wireFirstIncrementalTextObservedMs": 377.280, "terminalFirstIncrementalTextBytesObservedMs": 384.072, "submitToFixtureRequestMs": 245.871, "fixtureTraceDurationMs": 138.360, "fixtureFirstChunkToWireMs": 131.123, "fixtureFirstChunkToTerminalMs": 137.915},
+    "interpretation": "Single observation per side; no cold significance or stable comparison claim. Cold means new process/session, not flushed OS page cache."
+  },
+  "measurementBoundary": {
+    "wire": "First incremental assistant text observed in shared-wire agent_events/message_start before tail release.",
+    "terminal": "First incremental text bytes observed by native-renderer PTY before tail release; not parsed terminal paint, browser paint, or proof of text being visible to a person.",
+    "submitAndFixtureSeparation": "submitToFixtureRequestMs ends when local HTTP fixture receives request; fixtureTraceDurationMs runs from fixture receipt through tail/completion; fixtureFirstChunkToWireMs and fixtureFirstChunkToTerminalMs start at first fixture SSE chunk flush. Do not add these as independent measures or label first chunk as submit latency.",
+    "workload": "Local two-chunk SSE faux response, ALPHA held until wire and PTY incremental bytes observed, then OMEGA/tail release. No external model inference/network."
+  },
+  "validityAndVerdict": {
+    "workOccurred": "All 62 measured rows recorded pre-tail text observation; 30/30 warm reference-candidate request message hashes match per index. Candidate index 31 is an extra held functional diagnostic, excluded from timed data.",
+    "errors": "Run raw errors array is empty; receipt records 11/11 standalone host scenarios exit 0 and expected deny probes. This is not proof of zero errors outside observed boundaries.",
+    "limiter": "NOT IDENTIFIED: no independent limiter profile/counter trace; run-level load averages and CPU count do not attribute the bottleneck.",
+    "verdict": "INCONCLUSIVE for candidate-vs-reference performance; descriptive baseline observations only.",
+    "limitations": ["Reference always first; no AB/BA counterbalancing, so order/drift confounded.", "Same host implementation on both sides; loader paths differ. This is not an implementation optimization comparison or SDK migration claim.", "Competing workload attribution UNKNOWN.", "PTY bytes are not browser paint or user-visible-text proof.", "No speedup, performance-budget PASS, or meaningful winner claim.", "BB0 baseline is not a current-optimization claim; the plan's 15% p95 rule applies to subsequent slices, not this baseline run.", "No ratio for absent native-BB-child capability; mark that path N/A, not a synthetic zero or fake speedup."]
+  },
+  "reproduction": {
+    "method": "Pure Python 3 standard-library transformation of the immutable source JSON; no benchmark, model, network, or host process was run for this report.",
+    "code": "import json, math, statistics; d=json.load(open(SOURCE)); rows=d['samples']; for phase in ('warm',): for side in ('reference','candidate'): for metric in METRICS: v=[r[metric] for r in rows if r['phase']==phase and r['side']==side]; median=statistics.median(v); p95=sorted(v)[math.ceil(.95*len(v))-1]; range=(min(v),max(v))"
+  }
+}
