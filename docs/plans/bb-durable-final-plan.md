@@ -15,14 +15,37 @@ One box is one unit of work. Every box names the evidence. Check a box only when
 
 Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.
 
+## Фактическая готовность — 2026-10-16
+
+Отметки ниже относятся к выполненным **отдельным пунктам**, а не к готовности всего BB0–BB9. Созданный файл не означает работающую интеграцию. Составной пункт остаётся `[ ]`, если хотя бы одна его обязательная часть не проверена; уже выполненные части перечислены здесь. Пороги, зависимости и требования live/perf не менялись.
+
+**Учёт:** **25/222 core-пунктов (11,3%)**, всего **36/272** с организационными пунктами и optional BB7. Это доля выполненных пунктов, не процент готовности продукта: часть отметок относится к созданным и проверенным исходникам. Полностью принятых core-срезов: **0/9**; BB7 optional/default-off. В полном документе 272 пункта: 222 core BB0–BB6/BB8–BB9, 25 организационных/закрывающих и 25 optional BB7.
+
+| Срез | Уже реализовано и проверено | Что ещё не принято |
+|---|---|---|
+| BB0 | Controlled candidate/manifest; provider 223 PASS, 1 optional skip, отдельно SQLite integration 2/2 и archived regressions 4/4; build/doctor exit 0; 9/9 outputs сохранены. SDK 1.2 fix: независимые 5/5. Изолированный host flow 11/11; Benchmark из 62 samples/63 requests. | Все 10 PNG; actual visible paint. Benchmark — INCONCLUSIVE, не speedup/budget PASS. Native terminal route 0.6.37 запускает login shell до wrapper: confinement NO-GO, нового GO нет. |
+| BB1 | Fail-closed binding/identity; lifecycle возвращает `projection-unavailable`; SOURCE PASS и независимая Node 24 QA 1/1, zero CLI/register/submit; author Bun 16/16 включает архив baseline. | Нет доказанного registration/attach port и UI caller. Нет native BB record/row, UI/perf. Минимальный isolated core/SDK patch уже разрешён в scope.md, но не реализован; installed dist не меняется. |
+| BB2 | SDK 1.2 Anchor/Reporter checkpoint, foreground/background/reopen; Courier persisted batch + hold/release. Author 10/10; отдельные SOURCE PASS и Node 24 QA 3/3, два результата/одна доставка, stable ID, reopen без child replay. Дополнительно forced SIGKILL recovery 2/2: admission на архиве Anchor v1 и batch-before-ack на текущем Courier. | Live transport/UI/PNG/perf не приняты; typecheck UNAVAILABLE. Составной unit-пункт открыт: нет evidence/BB2/tests.xml, а перенос admission-crash evidence с Anchor v1 на current candidate требует явного unchanged-code обоснования. Raw Courier QA 3/3 находится в native child thread, не в выдуманном receipt-файле. |
+| BB3 | Не реализован как отдельный срез. BB1 helper не засчитывается за durable binding/reconnect. | Зависит от BB1/BB2; controls, права, crash record→binding. |
+| BB4 | Graph bridge/translator и тесты созданы. v3 независимая SDK QA 2/2; найден реальный production-caller stale parent-turn bug. v4 candidate-006: author RED→GREEN, 15/15, build/typecheck exit 0. | Source review v4 ещё не согласован: reviewer заявил compaction HOLD, но Lead показал, что штатный child adapter такие события отбрасывает; production-достижимость замечания оспаривается, исправление без доказанного пути не засчитано. Независимая v4 QA 2/2 прошла обычный child lifecycle и active control; compaction не проверен. Старый v3 PASS не переносится на новый candidate; UI/PNG/perf не приняты. |
+| BB5 | SDK 1.2 loader/catalog, admission, aliases/realpath conflict. v2 SOURCE PASS + независимая actual SDK QA 4/4, author 10/10. | Нет runtime caller/inventory integration: Pi loader context и Durable invocation ещё не связаны. Leaf-only PASS не означает загрузку extensions при запуске host. |
+| BB6 | Не реализован. | Hook/context → commands/UI → reload; guards direct/nested, isolation, failed reload. |
+| BB7 | Не включён, optional/default-off. | Ни один adapter не принят пакетным historical PASS. |
+| BB8 | Не реализован как UI-срез. | Native child navigation/controls, accessibility, browser/paint/perf. |
+| BB9 | Не начат. | Cross-feature acceptance и проверенная restore parity. |
+
+**Evidence:** [BB0 tests.xml](../../evidence/BB0/tests.xml), [unit checkpoint](../../evidence/BB0/lead-baseline-unit-checkpoint.json), [host 11/11](../../evidence/BB0/coordinator-sdk12-live-result.json), [Benchmark](../../evidence/BB0/benchmark-sdk12/report.md), [source/output correction](../../evidence/BB0/luna-source-output-visual-boundary.json); [BB1 v2 QA](../../evidence/BB1/qa-luna-v2/receipt.md); [BB4 v3 QA](../../evidence/BB4/qa-luna-v3/receipt.md), [v4 manifest](../../candidates/parallel-bb4/provider/checks/v2/candidate-006.sha256); [BB5 v2 QA](../../evidence/BB5/qa-luna-v2/receipt.md); [BB2 forced-recovery 2/2](../../evidence/BB2/qa-crash-luna/forced-recovery-receipt.json), SHA-256 `d52a1816a28bdebb8bd928206ca276f51d41c1e5e6bdd52c4ed235e8117ec55a`. BB2 independent Courier command/exit/raw stdout и все пять before/after pins находятся в видимом native child `qa-courier-luna`; постоянный file receipt ещё не создан из-за сбоя Agent Mail.
+
+**Оговорки координации:** BB1 v2 и BB4 v3 QA сообщили запись artifacts после expiry lease; последующий reacquire не покрывает запись задним числом. Поэтому общий пункт про leases не отмечен. Действует поздний допуск Pocket children вместо обязательного BB-child execution surface; это не доказательство native projection. Isolated BB1/BB2/BB4/BB5 coding до приёмки BB0 отдельно разрешён; integration dependencies сохранены. Текущий выбор для всех новых детей — только `openai-codex/gpt-6-luna`, `thinking=high`, без free/fallback; effective model UNKNOWN не является work gate. Исторические free-model/timer записи в scope.md не переопределяют поздние команды; текущий owned timer — `5150f4`.
+
 ## Program checklist
 
 ### Arm the program
 
-- [ ] Показать этот план владельцу и остановиться. Начать реализацию только по явной команде.
-- [ ] Подтвердить scope BB + текущий host. Pocket только read-only донор, терминал только сохраняемый контракт. Сохранить `scope.md`.
-- [ ] Закрепить версии и живые source paths. `git show origin/main:` применять только к реально версионируемым правилам целевого проекта. Для глобальных Pi skills читать закреплённые локальные файлы, не выдумывать их наличие в trunk.
-- [ ] Не включать `/loop 1h` без отдельного unattended grant. Использовать completion events. Краткий status message отправлять только при изменении проверяемого результата или блокера.
+- [x] Показать этот план владельцу и остановиться. Начать реализацию только по явной команде.
+- [x] Подтвердить scope BB + текущий host. Pocket только read-only донор, терминал только сохраняемый контракт. Сохранить `scope.md`.
+- [x] Закрепить версии и живые source paths. `git show origin/main:` применять только к реально версионируемым правилам целевого проекта. Для глобальных Pi skills читать закреплённые локальные файлы, не выдумывать их наличие в trunk.
+- [x] Не включать `/loop 1h` без отдельного unattended grant. Использовать completion events. Краткий status message отправлять только при изменении проверяемого результата или блокера.
 - [ ] При hold остановить новые записи во всех lanes, сохранить частичные изменения и release leases. Ничего не удалять и не сбрасывать.
 
 ### Spawn owners
@@ -30,27 +53,27 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 - [ ] После BB0 можно параллельно исследовать/реализовывать BB1, BB2, BB4 и BB5 на непересекающихся файлах. Зависимости остальных единиц указаны ниже.
 - [ ] Каждый writer получает отдельную bridge identity, назначение и узкие exclusive Agent Mail leases. Совместные runtime.ts, shared-server.ts и общий git index не редактируются одновременно без сериализации.
 - [ ] Все исполнители и независимые проверяющие являются видимыми BB children на provider `pi-durable`. Перед стартом проверить каталог модели. В текущем исследовании доступны `openai-codex/gpt-6-luna` и `openai-codex/gpt-6.1-sol`; доступность перепроверяется при исполнении.
-- [ ] Не считать эти исследовательские BB children доказательством native conversation projection. Не запускать дубликат writer из-за позднего уведомления.
+- [x] Не считать эти исследовательские BB children доказательством native conversation projection. Не запускать дубликат writer из-за позднего уведомления.
 
 ### PR mechanics
 
 - [ ] Сначала согласовать узкий host/client/identity contract. Каждый work unit держать в пределах одного результата и примерно пяти файлов. Больший diff разделить до исполнения.
-- [ ] Source-controlled candidate должен сохранять managed 0.2.29 fixes и чужие изменения. Не менять рабочий dist вручную, не заменять его старым checkout целиком.
+- [x] Source-controlled candidate должен сохранять managed 0.2.29 fixes и чужие изменения. Не менять рабочий dist вручную, не заменять его старым checkout целиком.
 - [ ] До разрешённого commit выполнить deslop/manual quality pass и no-comments review. Lint, typecheck и focused checks должны относиться к окончательным файлам.
-- [ ] PR/commit/push/merge выполнять только в разрешённых правилами проекта пределах. Этот план не создаёт GitHub PR и не переписывает историю.
+- [x] PR/commit/push/merge выполнять только в разрешённых правилами проекта пределах. Этот план не создаёт GitHub PR и не переписывает историю.
 
 ### Verdict and merge
 
 - [ ] Независимый reviewer проверяет точный candidate fingerprint и evidence, не только описание владельца.
 - [ ] Для меняющихся взаимодействий показать владельцу screenshot и video. Не объявлять native child готовым по provider label, nested card или одному agent_end.
-- [ ] Failed или unavailable обязательный gate блокирует соответствующую единицу. Другие независимые lanes продолжаются. Любой новый candidate отменяет неподтверждённые старые verdicts.
+- [x] Failed или unavailable обязательный gate блокирует соответствующую единицу. Другие независимые lanes продолжаются. Любой новый candidate отменяет неподтверждённые старые verdicts.
 
 ### Boot recipe
 
-- [ ] Запускать отдельный local candidate с временным приватным data root, synthetic историями, faux models и отдельным Unix socket. Ни live Pocket, ни рабочая Durable SQLite не открываются.
+- [x] Запускать отдельный local candidate с временным приватным data root, synthetic историями, faux models и отдельным Unix socket. Ни live Pocket, ни рабочая Durable SQLite не открываются.
 - [ ] Проверять BB через реальный UI/control-ui или native agent_browser, host/CLI через control-cli и явные ready conditions. Screenshots сохранять в `evidence/BBx/lane-N.png`.
-- [ ] Каждый срез проверяет только собственный результат и существующие регрессии. Его десять сценариев ниже специализированы под этот срез и могут идти последовательно локально. BB0 не требует будущей native identity, BB2 проверяется через реальный host, BB4/BB5 не ждут BB3. Полный cross-feature набор обязателен только для BB9. Десять платных моделей или VM не требуются.
-- [ ] Для perf сначала прочитать benchmark-checklist, затем снять baseline на том же workload. Числа ниже являются будущими acceptance budgets, а не измеренными ускорениями.
+- [x] Каждый срез проверяет только собственный результат и существующие регрессии. Его десять сценариев ниже специализированы под этот срез и могут идти последовательно локально. BB0 не требует будущей native identity, BB2 проверяется через реальный host, BB4/BB5 не ждут BB3. Полный cross-feature набор обязателен только для BB9. Десять платных моделей или VM не требуются.
+- [x] Для perf сначала прочитать benchmark-checklist, затем снять baseline на том же workload. Числа ниже являются будущими acceptance budgets, а не измеренными ускорениями.
 
 ## Зафиксировать воспроизводимый кандидат и baseline (BB0)
 
@@ -58,13 +81,13 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 **Files.**
 
-- [ ] Артефакты candidate-manifest.json и baseline.json.
-- [ ] Существующие runtime launcher и package manifests только для чтения.
+- [x] Артефакты candidate-manifest.json и baseline.json.
+- [x] Существующие runtime launcher и package manifests только для чтения.
 
 **Build.**
 
-- [ ] Зафиксировать активный provider 0.2.29, host, SDK 1.2.0, реальные module-resolution paths и fingerprints. Сохранить managed 0.2.29 compatibility fixes и чужой dirty diff. Не брать 0.2.28 wholesale.
-- [ ] Подготовить отдельный кандидат без live SQLite и без записи в Pocket. Сначала установить controlled source-of-truth для host и provider, а не править установленный dist. Manifest содержит source roots/revisions, module-resolution paths, managed fixes, build command и связь fingerprints output с candidate.
+- [x] Зафиксировать активный provider 0.2.29, host, SDK 1.2.0, реальные module-resolution paths и fingerprints. Сохранить managed 0.2.29 compatibility fixes и чужой dirty diff. Не брать 0.2.28 wholesale.
+- [x] Подготовить отдельный кандидат без live SQLite и без записи в Pocket. Сначала установить controlled source-of-truth для host и provider, а не править установленный dist. Manifest содержит source roots/revisions, module-resolution paths, managed fixes, build command и связь fingerprints output с candidate.
 
 **You see.**
 
@@ -72,7 +95,7 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 **Verify, unit.** Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.
 
-- [ ] Повторить существующие upgrade-background-contract.test.mjs и upgrade-sdk-resources.test.mjs. Зафиксировать обычный provider npm test и build на идентифицированном кандидате. Сохранить evidence/BB0/tests.xml и окончательные fingerprints.
+- [x] Повторить существующие upgrade-background-contract.test.mjs и upgrade-sdk-resources.test.mjs. Зафиксировать обычный provider npm test и build на идентифицированном кандидате. Сохранить evidence/BB0/tests.xml и окончательные fingerprints.
 
 **Verify, live.** Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked. Ten lanes on `openai-codex/gpt-6-luna` at the PR head. Следовать local boot recipe и admission модели.
 
@@ -106,14 +129,14 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 **Files.**
 
-- [ ] provider src/host/subthread-spawner.ts.
-- [ ] provider src/host/native-child-binding.ts как новый узкий модуль.
-- [ ] provider tests/native-child-binding.test.ts.
-- [ ] Подтверждённый BB SDK contract только для чтения на этом срезе.
+- [x] provider src/host/subthread-spawner.ts.
+- [x] provider src/host/native-child-binding.ts как новый узкий модуль.
+- [x] provider tests/native-child-binding.test.ts.
+- [x] Подтверждённый BB SDK contract только для чтения на этом срезе.
 
 **Build.**
 
-- [ ] Проверить текущий SDK и BB thread service на создание представления существующей provider conversation без initial input. Не выдумывать attach API и не писать напрямую в BB DB.
+- [x] Проверить текущий SDK и BB thread service на создание представления существующей provider conversation без initial input. Не выдумывать attach API и не писать напрямую в BB DB.
 - [ ] До доказательства поддержанного порта native-to-BB projection в candidate fail-closed. Старый spawn-with-prompt не вызывается, native child исполняется только в Durable, а BB показывает projection unavailable. Если нужен BB core/SDK patch, выдать конкретный минимальный контракт и оставить BB1 blocked до отдельного допуска и проверки. Независимые host-only проверки BB2 не вызывают BB prompt-spawner.
 
 **You see.**
@@ -158,15 +181,15 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 **Files.**
 
-- [ ] host durable/subagent.ts.
-- [ ] host durable/subagents/tasks.ts.
-- [ ] host durable/subagents/documents.ts.
-- [ ] host durable/subagents/delivery.ts.
-- [ ] host durable/subagents/background.test.mjs.
+- [x] host durable/subagent.ts.
+- [x] host durable/subagents/tasks.ts.
+- [x] host durable/subagents/documents.ts.
+- [x] host durable/subagents/delivery.ts.
+- [x] host durable/subagents/background.test.mjs.
 
 **Build.**
 
-- [ ] Взять Pocket Anchor/Reporter/Courier и нужные документы как reviewed source. Портировать с SDK 1.1 на 1.2, включая content/output, lifecycle, admission и stable request IDs. Не переносить PocketApp или второй scheduler.
+- [x] Взять Pocket Anchor/Reporter/Courier и нужные документы как reviewed source. Портировать с SDK 1.1 на 1.2, включая content/output, lifecycle, admission и stable request IDs. Не переносить PocketApp или второй scheduler.
 - [ ] Сначала BB2.1 даёт anchored spawn и один reporter, затем BB2.2 добавляет courier batch/hold; каждый подсрез имеет свой зелёный checkpoint. Сохранить foreground как явную опцию. Добавить имена, разрешённые роли и configurable admission limit. Ограничение прав задаётся tools/env/profile, а не одним role prompt. Не разрешать бесконечный recursive spawn.
 - [ ] Различать Stop текущего родителя, Stop выбранного ребёнка и Stop всей background работы. Пакетная доставка результатов не должна терять их при idle, abort или лимите расходов.
 
@@ -265,10 +288,10 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 **Files.**
 
-- [ ] provider src/runner/task-graph-bridge.ts.
-- [ ] provider src/host/delta-translator.ts.
-- [ ] provider tests/task-graph-bridge.test.ts.
-- [ ] provider tests/delta-translator.test.ts.
+- [x] provider src/runner/task-graph-bridge.ts.
+- [x] provider src/host/delta-translator.ts.
+- [x] provider tests/task-graph-bridge.test.ts.
+- [x] provider tests/delta-translator.test.ts.
 
 **Build.**
 
@@ -317,15 +340,15 @@ Tests alone are not sufficient verification. A PR is verified only when its unit
 
 **Files.**
 
-- [ ] host durable/pi-extensions/loader.ts.
-- [ ] host durable/pi-extensions/catalog.ts.
+- [x] host durable/pi-extensions/loader.ts.
+- [x] host durable/pi-extensions/catalog.ts.
 - [ ] host durable/runtime.ts.
-- [ ] host durable/pi-extensions/loader.test.mjs.
-- [ ] host durable/pi-extensions/catalog.test.mjs.
+- [x] host durable/pi-extensions/loader.test.mjs.
+- [x] host durable/pi-extensions/catalog.test.mjs.
 
 **Build.**
 
-- [ ] Использовать опубликованный согласованный Pi SDK 1.2.0 для DefaultResourceLoader и package/settings discovery. Не импортировать старый coding-agent 1.0.2 ради удобства. Проверить реальные loader aliases.
+- [x] Использовать опубликованный согласованный Pi SDK 1.2.0 для DefaultResourceLoader и package/settings discovery. Не импортировать старый coding-agent 1.0.2 ради удобства. Проверить реальные loader aliases.
 - [ ] Переиспользовать Pocket enabled state, error reporting и name-conflict правила. Загружать только ранее допущенные ресурсы, не auto-trust новые drop-ins. Не устанавливать второй MCP connector, CodeMode или конкурирующий subagent owner.
 
 **You see.**
