@@ -1,0 +1,67 @@
+{
+  "bbPackage": "bb-app@0.46.0",
+  "baseBundleCommit": "UNKNOWN",
+  "overlayCommit": "af4354da38153e743137467e2c1f3bfb2557deba",
+  "overlaySourcePin": "4c87fdec7b7effc022ff2ee31ec95c0a09c9ee62",
+  "overlaySdk": "0.6.37",
+  "node": "v24.19.0",
+  "baseNativeDriver": "13.0.3",
+  "nativeSmoke": "memory SELECT1 passed with own copied13.0.3 wrapper/native; no12/13 mixing",
+  "artifacts": [
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/dist/bb-server.js",
+      "sha256": "6def8266cddbbac23f5df4e889edae693df6de8663093bc704c085aad575acca"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/dist/bb-host-daemon.js",
+      "sha256": "3b333113fa0044ac87b997059e7c5ff7baeb736fd39d29440b5bd84492418faa"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/server/dist/index.js",
+      "sha256": "9cba0784f317f943defd58a1561fae47aa5b1f88e228770787e752045ac38490"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/server/dist/start-server.js",
+      "sha256": "bc52385e242c85b5d77e97460d7d55785469d32b8d97bd073825500ed4c57148"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/server/dist/native-registration-support.mjs",
+      "sha256": "a1fe8337cc393bfbf66b242ebfb3e9cbc636a6f681b7a615fce4d2d4b58be7ba"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/daemon-bundle.mjs",
+      "sha256": "a8898d4cb5e56f34c5edb9425ef63170aec7bfc6f8b4c0f3056ac016a1038c04"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs",
+      "sha256": "bc770993bce76018fd215eafb2ca43b5a9cb6af73739e80eab208e4269795919"
+    },
+    {
+      "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/bb-provider-bridge-worker.mjs",
+      "sha256": "e41f25a5d4a4bdf251ded52a707c1e32359b0a6b22ef1cb38c8319f8bd553cd0"
+    }
+  ],
+  "recipeSHA256": "9e978b3f426ceadb400a1e45c4004de3cec87be22f4165906fd910c1be42db79",
+  "sourceParityManifestSHA256": "7c701131a5663175a4b63c731fe5ba40e0afb60db8580b5fcc8db9b6ec095898",
+  "outputManifestSHA256": "dd7dffb3eedf82d87dd9f30ab3abcfe731e8fcc8993cbc2df44099c0f454e77f",
+  "staticWiringAssertions": "PASS6",
+  "nodeCheck": "PASS4",
+  "serverMainStarted": false,
+  "daemonMainStarted": false,
+  "deploymentOwner": "GreenIvy",
+  "allowedPorts": [
+    40886,
+    40887
+  ],
+  "previousMainGO": "bb-parent-integrated-001 CONSUMED_FAIL; fresh main GO required",
+  "interopRebuildSHA256": "fdd160f7343c24e6e356220b5160e1daca4057094d1179a63252ef037069aaa4",
+  "interopRegressionSHA256": "e9412d0fe5c7520ec8432525721aa7a5be179cdc294371125c1aa310f97dae93",
+  "actualNode24SupportImport": "PASS",
+  "actualBundledRuntimeFactory": "PASS",
+  "privateHome": "PASS",
+  "shutdown": "PASS",
+  "mainProcessesStartedByFoggyShore": 0,
+  "interopArtifactManifestSHA256": "e4fab1d7846b412fb1d58d2fe6fadfef4aa8061fbb2cbb1aa1eb1e84d8141cd9",
+  "actualRegressionLogSHA256": "2575f368b3e42971d5ed7ef7706067aa1966e51c6edabbe8ede90cb17b941147",
+  "previousManifestRetained": true
+}

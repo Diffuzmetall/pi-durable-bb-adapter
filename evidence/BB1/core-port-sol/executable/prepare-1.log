@@ -1,0 +1,26 @@
+
+  .../node_modules/bb-app/server/dist/native-registration-support.mjs  743.6kb
+
+⚡ Done in 65ms
+
+  ..._modules/bb-app/host-daemon/dist/native-registration-support.mjs  820.1kb
+
+⚡ Done in 124ms
+[
+  {
+    "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/server/dist/start-server.js",
+    "sha256": "bc52385e242c85b5d77e97460d7d55785469d32b8d97bd073825500ed4c57148"
+  },
+  {
+    "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/daemon-bundle.mjs",
+    "sha256": "a8898d4cb5e56f34c5edb9425ef63170aec7bfc6f8b4c0f3056ac016a1038c04"
+  },
+  {
+    "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/server/dist/native-registration-support.mjs",
+    "sha256": "517dedeac6ee41de7aa3e416493481be42efcc0b02c7cf030d4acdeebdb5df3f"
+  },
+  {
+    "path": "/home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs",
+    "sha256": "a7e74edf415fb150f2912427f3a201b7b4cc854832ff74b0baddb86eca81192c"
+  }
+]

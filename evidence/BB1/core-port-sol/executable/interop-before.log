@@ -1,0 +1,14 @@
+file:///home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs:11
+  throw Error('Dynamic require of "' + x + '" is not supported');
+        ^
+
+Error: Dynamic require of "child_process" is not supported
+    at file:///home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs:11:9
+    at node_modules/.pnpm/cross-spawn@7.0.6/node_modules/cross-spawn/index.js (file:///home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs:511:14)
+    at __require2 (file:///home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs:14:50)
+    at file:///home/ubuntu/Projects/pi-durable-bb-adapter/.pi/fixtures/core-sol/executable/node_modules/bb-app/host-daemon/dist/native-registration-support.mjs:21663:34
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///home/ubuntu/Projects/pi-durable-bb-adapter/[eval1]:1:1
+
+Node.js v24.19.0
