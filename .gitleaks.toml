@@ -6,7 +6,7 @@ description = "Computed SHA-256 file checksums, not credentials (integrity manif
 condition = "AND"
 paths = ['''(^|/)compat/manifest\.json$''']
 regexTarget = "match"
-regexes = ['''[A-Za-z0-9_./@-]+\.(?:[cm]?js|json|ts|sql)"\s*:\s*"[a-f0-9]{64}"''']
+regexes = ['''[A-Za-z0-9_./@-]+\.(?:[cm]?[jt]s|json|sql|h|gyp|md)"\s*:\s*"[a-f0-9]{64}"''']
 
 [[allowlists]]
 description = "BB bundled auth library's JavaScript property-access expression, not a literal key"
@@ -16,14 +16,14 @@ regexes = ['''^apiKey2\.permissions$''']
 [[allowlists]]
 description = "Historical BB0 source-integrity log pairs: api.js filename and computed SHA-256"
 condition = "AND"
-paths = ['''^evidence/BB0/shared-required-fixture/logs/[^/]+\.log$''']
+paths = ['''(^|/)evidence/BB0/shared-required-fixture/logs/[^/]+\.log$''']
 regexTarget = "match"
 regexes = ['''^api\.js","[a-f0-9]{64}"$''']
 
 [[allowlists]]
 description = "Historical DCG README prose, not a credential"
 condition = "AND"
-paths = ['''^candidates/host/packages/coding-agent/src/experimental/durable/dcg/README\.md$''']
+paths = ['''(^|/)candidates/host/packages/coding-agent/src/experimental/durable/dcg/README\.md$''']
 regexTarget = "secret"
 regexes = ['''^evaluator/diagnostic$''']
 
