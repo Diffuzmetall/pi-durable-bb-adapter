@@ -9,8 +9,9 @@ This is fresh acceptance of the **new native-primary flow**, not a claim that ev
 | Check | Result |
 |---|---|
 | Clean root `npm ci` (no dependency symlink to another checkout) | PASS; prepare/build succeeded; npm reported zero vulnerabilities |
-| Regression suite on that installation | 238 PASS, 1 optional SKIP, 0 FAIL |
+| Regression suite on that installation | 239 PASS, 1 optional SKIP, 0 FAIL |
 | Offline doctor | PASS; all nine compatibility SDK packages resolved at 1.2.0, including nested ESM-only packages |
+| Portable runner lookup without a registered BB install | RED before repair, GREEN with owning-package resolution; full suite also passed with fresh HOME/BB data and no runner overrides |
 | Normal `bb plugin build` and main-instance install/reload | PASS |
 | Native default without classic Pi extension auto-loading | PASS; runtime/catalog canary regression retained |
 | Native launch failure followed by a safe retry | RED on old code, GREEN after per-attempt diagnostics fix; faux CLI/PTY only, no Harness/model |
@@ -26,7 +27,7 @@ This is fresh acceptance of the **new native-primary flow**, not a claim that ev
 
 The real native profile exposed **18 admitted extensions and 257 tools**, with one native subagent/configured-MCP/coding-tools/Hindsight owner each. These are observations of the selected profile, **not** hard-coded requirements or bundled private configuration. The earlier minimal private-profile fixture had different inventory counts and is not substituted for this main-instance proof.
 
-The native child had one user entry and one assistant entry (plus its native system entry). Total native tasks were nine and remained nine across navigation and reload. The main host artifact digest was `e5dddfbca289e2a2a0c1a99f85becc4c42773058ef8ff29127ad31910a27697e`; the clean-root rebuild produced that same artifact.
+The native child had one user entry and one assistant entry (plus its native system entry). Total native tasks were nine and remained nine across navigation and reload. The final main host artifact digest is `e052b2639ab0e9dc1c34852d3e67562278cabe24203764d8ae451fe6bb0d454f`. A clean remote CI run exposed the donor-layout runner lookup assumption; the repair resolves the package's own built runner without a BB database or foreign installation. Releasing the owned idle SDK client preserved the live native process and all counters before fresh-client browser reopening.
 
 ## Visibility finding adjudication
 

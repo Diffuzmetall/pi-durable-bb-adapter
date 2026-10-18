@@ -1,6 +1,7 @@
-import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { findPackageJSON } from "node:module";
 import { homedir, tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
 	cacheRootsFor,
@@ -45,6 +46,15 @@ export function resolveRunnerPath(options?: ResolveRunnerOptions): string {
 		resolve(baseDir, "..", "dist", "runner", "index.js"),
 		resolve(baseDir, "..", "..", "dist", "runner", "index.js"),
 	];
+
+	// The portable source is src/provider/host, one level deeper than the donor layout.
+	// Resolve its owning package, not another guessed ancestor or a foreign BB install.
+	if (!options?.fromDir) {
+		const manifest = findPackageJSON(import.meta.url);
+		if (manifest && basename(manifest) === "package.json" &&
+			JSON.parse(readFileSync(manifest, "utf8")).name === "bb-plugin-provider-pi-durable")
+			directCandidates.push(join(dirname(manifest), "dist", "runner", "index.js"));
+	}
 
 	for (const candidate of directCandidates) {
 		if (existsSync(candidate)) return candidate;
