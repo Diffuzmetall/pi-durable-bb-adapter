@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFile,mkdir,writeFile,realpath,symlink} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {parseArgs} from 'node:util';
+import {createHash} from 'node:crypto';
+import {build} from 'esbuild';
+const root=resolve(import.meta.dirname,'..'),{values}=parseArgs({options:{prepared:{type:'string'},out:{type:'string'}}});
+if(!values.prepared||!values.out)throw Error('Usage: node scripts/build-native-fixture.mjs --prepared PRIVATE_NATIVE_MANIFEST --out NEW_PRIVATE_DIRECTORY');
+const m=JSON.parse(await readFile(values.prepared,'utf8')),sha=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(sha(await readFile(m.nativeOwner.entrypoint)),m.nativeOwner.sha256,'Native owner changed');
+const sdk=m.sdkRoot;assert.ok(sdk,'Prepare the native adapter with this repository first');
+for(const n of ['pi-durable','pi-ai','chord'])assert.equal(JSON.parse(await readFile(join(sdk,'@earendil-works',n,'package.json'),'utf8')).version,'1.3.0');
+const directory=resolve(values.out);await mkdir(directory,{mode:0o700});
+const result=await build({absWorkingDir:root,entryPoints:['tests/integration/coherent-child.mjs'],outfile:join(directory,'fixture.mjs'),bundle:true,write:false,metafile:true,platform:'node',format:'esm',target:'node24',alias:{'@bb-durable/native-subagents':m.nativeOwner.entrypoint},external:['@earendil-works/*'],define:{__COHERENT_NATIVE_OWNER__:JSON.stringify(m.nativeOwner)},banner:{js:'import {createRequire as __fixtureRequire} from "node:module";const require=__fixtureRequire(import.meta.url);'}});
+const owners=Object.keys(result.metafile.inputs).filter(p=>p.endsWith('/packages/durable-subagents/src/index.ts'));assert.equal(owners.length,1,'One selected native owner only');
+await writeFile(join(directory,'fixture.mjs'),result.outputFiles[0].contents,{flag:'wx',mode:0o600});
+await mkdir(join(directory,'node_modules/@earendil-works'),{recursive:true,mode:0o700});for(const n of ['pi-durable','pi-ai','chord'])await symlink(await realpath(join(sdk,'@earendil-works',n)),join(directory,'node_modules/@earendil-works',n));
+console.log(JSON.stringify({status:'built-not-executed',fixture:join(directory,'fixture.mjs'),scope:'Private synthetic histories only; no user/global stores or actual model'}));

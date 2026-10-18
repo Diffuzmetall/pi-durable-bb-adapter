@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {mkdtempSync,mkdirSync,writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {parseArgs} from 'node:util';
+const {values}=parseArgs({options:{prepared:{type:'string'}}});if(!values.prepared)throw Error('Usage: node scripts/check-native.mjs --prepared PRIVATE_NATIVE_MANIFEST');
+const root=mkdtempSync(join(tmpdir(),'bb-native-check-')),workspace=join(root,'workspace');mkdirSync(workspace,{mode:0o700});
+const built=JSON.parse(execFileSync(process.execPath,[join(import.meta.dirname,'build-native-fixture.mjs'),'--prepared',values.prepared,'--out',join(root,'compiled')],{encoding:'utf8'}));
+const probe=join(root,'compiled/check.mjs');writeFileSync(probe,`import assert from 'node:assert/strict';import {seedCoherentNativeChild,verifyCoherentNativeChild} from './fixture.mjs';const m=await seedCoherentNativeChild(${JSON.stringify({directory:join(root,'seed'),cwd:workspace})});const v=await verifyCoherentNativeChild(m);assert.equal(v.inputCount,1);assert.equal(v.resultCount,1);assert.equal(v.reopenModelCalls,0);console.log(JSON.stringify({status:'pass',verified:v,scope:'Synthetic private store; no actual model, native CLI or BB started; production admission not tested'}));`,{flag:'wx',mode:0o600});
+const result=JSON.parse(execFileSync(process.execPath,['--experimental-transform-types',probe],{encoding:'utf8'}));assert.equal(result.status,'pass');console.log(JSON.stringify(result));

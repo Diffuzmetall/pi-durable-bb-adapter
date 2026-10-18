@@ -28,3 +28,12 @@
 /evidence/**/*.log
 /evidence/**/*.mp4
 /evidence/**/*.webm
+
+# Operator-only fixtures, grants, screenshots, scan reports and runtime receipts.
+/.pi/
+/evidence/Pi/native-default/
+/evidence/Pi/bb-extension/
+/operator/
+/native-prepared/
+*.private.*
+*.previous-*

@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {resolve} from 'node:path';
+const runner=resolve(import.meta.dirname,'../dist/runner/index.js');
+const child=spawn(process.execPath,[runner,'--mode','rpc','--no-session'],{stdio:['pipe','pipe','pipe','pipe','pipe']});
+let ready=false,stdout='',channel='',models,stderrBytes=0;
+child.stderr.on('data',b=>stderrBytes+=b.length);
+child.stdout.on('data',b=>{stdout+=b;let i;while((i=stdout.indexOf('\n'))>=0){const line=stdout.slice(0,i);stdout=stdout.slice(i+1);try{const response=JSON.parse(line);if(response.command==='get_available_models'){assert.equal(response.success,true);models=response.data?.models??[];child.stdin.end();}}catch{}}});
+child.stdio[3].on('data',b=>{channel+=b;let i;while((i=channel.indexOf('\n'))>=0){const line=channel.slice(0,i);channel=channel.slice(i+1);try{if(JSON.parse(line).kind==='ready'){ready=true;child.stdin.write(JSON.stringify({id:'catalog-only-check',type:'get_available_models'})+'\n');}}catch{}}});
+const timer=setTimeout(()=>child.kill('SIGTERM'),30000);const code=await new Promise((yes,no)=>{child.once('error',no);child.once('close',yes);});clearTimeout(timer);
+assert.equal(code,0,'Catalog exited before ready; run BB provider health for diagnostics');assert.equal(ready,true);assert.ok(Array.isArray(models));
+console.log(JSON.stringify({status:models.length?'ready':'no-authenticated-models',modelCount:models.length,stderrBytes,scope:'Catalog-only --no-session; no Harness, task, model submission or account details printed'}));
