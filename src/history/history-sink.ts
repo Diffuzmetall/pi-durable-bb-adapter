@@ -1,14 +1,7 @@
-/** Text-only DTO of the NEW Core port, not a Durable revision or transcript store. */
-export interface HistoricalSnapshot {
-  status: "completed" | "failed" | "interrupted";
-  items: Array<{
-    source: { entryId: string; messageIndex: number; blockIndex: number };
-    item: { type: "userMessage"; content: Array<{ type: "text"; text: string }> }
-      | { type: "agentMessage"; text: string };
-  }>;
-}
+import type { HistoricalSnapshot } from './history-projector.ts';
+export type { HistoricalSnapshot } from './history-projector.ts';
 
-export interface CoreResult { threadId: string; digest: string | null; changed: boolean }
+export interface CoreResult { threadId: string; digest: string | null; changed: boolean; deferred?: true }
 export type HistoryRequester = (method: string, params: {
   threadId: string; snapshot?: HistoricalSnapshot; expectedDigest?: string | null;
 }) => Promise<unknown>;
@@ -17,10 +10,11 @@ function receipt(value: unknown, threadId: string, mutation: boolean): CoreResul
   const result = value as CoreResult | null;
   if (!result || result.threadId !== threadId || typeof result.changed !== "boolean" ||
     !(result.digest === null || (typeof result.digest === "string" && /^[a-f0-9]{64}$/.test(result.digest))) ||
-    (mutation ? result.digest === null : result.changed)) {
+    (result.deferred !== undefined && (result.deferred !== true || result.changed || !mutation)) ||
+    (mutation ? result.digest === null && !result.deferred : result.changed)) {
     throw new Error("Invalid history reconciliation acknowledgement");
   }
-  return { threadId, digest: result.digest, changed: result.changed };
+  return { threadId, digest: result.digest, changed: result.changed, ...(result.deferred ? { deferred: true as const } : {}) };
 }
 
 /**
@@ -55,7 +49,8 @@ export async function openHistorySink({ threadId, request }: {
         const result = receipt(await request(method, {
           threadId, snapshot: JSON.parse(json) as HistoricalSnapshot, expectedDigest,
         }), threadId, true);
-        expectedDigest = result.digest; // ACK only; failures never advance or read a digest.
+        if (result.deferred && result.digest !== expectedDigest) throw new Error('Deferred history response changed its digest');
+        expectedDigest = result.digest; // ACK only; deferral explicitly has no mutation.
         pending = undefined;
         return result;
       } catch (cause) {

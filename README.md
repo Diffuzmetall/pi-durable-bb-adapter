@@ -21,7 +21,7 @@ The provider/catalog compatibility dependencies remain pinned to SDK **1.2.0**. 
 - An already working native **SDK 1.3.0** CLI and its admitted `local-host` global composition, including the native subagent/read-service lifecycle. Stock/classic Pi extensions are not a substitute.
 - Your native agent profile must already contain its normal models, authentication and safety environment (including the native DCG addon when enabled). These are deliberately **not** shipped or copied by this repository.
 
-The native global/private extension release is an external prerequisite, not something the plugin downloads or automatically trusts.
+The native global/private extension release is an external prerequisite, not something the plugin downloads or automatically trusts. The tested native subagent owner is `@pi-durable-extensions/durable-subagents@0.1.0-candidate.2`, with SDK 1.2.0/1.3.0 compatibility and ordinary-text answers. Check the actual package selected by your global composition: SDK 1.3.0 alone does not replace an older JSON-only owner.
 
 ## Install
 
@@ -93,13 +93,15 @@ Create a **new** BB thread using `pi-durable` and a model available in that nati
 
 ## Verified flow and beta limits
 
-The real native-primary test used BB prompt → native SDK 1.3.0 → native `subagent` → a separate Core-registered BB child. Opening that child and reloading showed the completed result without another user submission or increased native execution counters. See [the acceptance scope](docs/verification/native-primary-flow.md).
+The real native-primary test used BB prompt → native SDK 1.3.0 → native `subagent` → a separate Core-registered BB child. Opening that child and reloading showed the completed result without another user submission or increased native execution counters. A subsequent live check accepted an ordinary-text answer and a follow-up in the same child conversation. See [the acceptance scope](docs/verification/native-primary-flow.md).
+
+New native child views use **name · role · optional provider/model**, read from native ownership records and the child's actual agent configuration—not guessed from its prompt. Existing durable bindings are reused without replaying registration or overwriting manual titles. Titles are presentation, not identity or authorization.
 
 Important limits:
 
 - **Legacy managed SDK 1.2 BB identities are not silently migrated.** They fail with `NATIVE_LEGACY_SESSION_REQUIRES_EXPLICIT_MIGRATION`. Their original history remains intact. Retain the previous provider revision for rollback; continuing those threads requires explicit migration or restoring the previous runtime. A new empty native session is not history migration.
-- Projected existing native children are read-only in this beta. The accepted delegation case is a foreground native spawn; this is not acceptance of all background/follow-up delivery paths.
-- The admitted UI history projector is deliberately bounded. The completed text-only case is verified; unsupported/richer native histories fail closed rather than being presented as complete. This is not a claim of full native transcript-format coverage.
+- Native child follow-ups address the original conversation, without an initial-prompt replay. Foreground native delegation and same-conversation follow-up are verified; this is not acceptance of every background, budget or delivery combination.
+- The admitted UI history projector supports user/assistant text, tool calls/results and multiple turns, bounded to 512 KiB per text part and 8 MiB per observation request. Unsupported histories fail closed rather than being presented as complete; this is not full native transcript-format coverage.
 - The compatibility catalog is not guaranteed to equal every native-global model factory. Choose a model in your native profile; missing native models fail rather than silently substituting another model.
 - Failed/interrupted unsafe tool effects are **not** automatically replayed. Exactly-once admission does not guarantee exactly-once external side effects.
 - Native agent permissions and guards remain authoritative. This adapter does not turn a full-trust native CLI into a sandbox.

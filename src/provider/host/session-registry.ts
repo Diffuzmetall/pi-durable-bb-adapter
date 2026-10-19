@@ -53,8 +53,8 @@ export class SessionRegistry {
 		const binding = this.sessions.get(threadId);
 		if (!this.ownerGrant && !binding?.session.controlledObservation) return;
 		if (!binding) throw new Error("BB_OWNER_SESSION_NOT_AUTHORIZED");
-		if (parseProviderThreadId(binding.providerThreadId).conversationId !== undefined)
-			throw new Error("BB_OWNER_CHILD_READ_ONLY");
+		// Actual Core/native authorization is awaited by the controlled preflight;
+		// child identity alone neither denies controls nor grants them.
 	}
 
 	public createOrGet(threadId: string, providerThreadId: string, params: any): Promise<PiThreadSession> {

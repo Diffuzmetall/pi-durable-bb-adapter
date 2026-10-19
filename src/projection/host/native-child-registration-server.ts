@@ -11,6 +11,7 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-
 export interface NativeChildRegistrationRequest {
 	requestId: string;
 	conversationId: number;
+	title?: string;
 }
 
 export interface NativeChildRegistrationReceipt extends NativeChildRegistrationRequest {
@@ -38,11 +39,12 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[]):
 function parseRequest(value: unknown): RequestFrame | undefined {
 	if (value === null || typeof value !== "object" || Array.isArray(value)) return undefined;
 	const frame = value as Record<string, unknown>;
-	if (!exactKeys(frame, ["conversationId", "id", "protocol", "requestId", "type"]) ||
+	if (!exactKeys(frame, ["conversationId", "id", "protocol", "requestId", ...(frame.title === undefined ? [] : ["title"]), "type"]) ||
 		frame.protocol !== PROTOCOL || frame.type !== "register-existing" ||
 		typeof frame.id !== "string" || !UUID.test(frame.id) ||
 		!nonEmpty(frame.requestId) || frame.requestId.length > 200 ||
-		!Number.isSafeInteger(frame.conversationId) || (frame.conversationId as number) <= 0) {
+		!Number.isSafeInteger(frame.conversationId) || (frame.conversationId as number) <= 0 ||
+		(frame.title !== undefined && (!nonEmpty(frame.title) || frame.title.length > 500))) {
 		return undefined;
 	}
 	return frame as unknown as RequestFrame;
@@ -134,7 +136,8 @@ export class NativeChildRegistrationServer {
 			const request = parseRequest(parsed);
 			if (!request) { fail(""); return; }
 			processing = true;
-			void Promise.resolve().then(() => this.register({ requestId: request.requestId, conversationId: request.conversationId })).then((receipt) => {
+			void Promise.resolve().then(() => this.register({ requestId: request.requestId, conversationId: request.conversationId,
+				...(request.title === undefined ? {} : { title: request.title }) })).then((receipt) => {
 				if (!validReceipt(receipt, request)) {
 					fail(request.id);
 					return;

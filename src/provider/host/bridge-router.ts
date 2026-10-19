@@ -60,7 +60,17 @@ export async function handleTurnStart(
 	const session = await ctx.registry.reconcileCwd(params.threadId, targetCwd)
 		?? await ctx.registry.createOrGet(params.threadId, providerThreadId, params);
 
+	if (session.controlledObservation && parseProviderThreadId(providerThreadId).conversationId !== undefined
+		&& (!Array.isArray(params.input) || params.input.some(chunk => !chunk || typeof chunk !== 'object' || chunk.type !== 'text'))) {
+		ctx.sendError(id, -32602, 'Native child controls currently require text input; attachments were not submitted');
+		return;
+	}
+
 	if (isCompactCommand(params.input)) {
+		if (session.controlledObservation && parseProviderThreadId(providerThreadId).conversationId !== undefined) {
+			ctx.sendError(id, -32602, 'Native child compaction is not supported by this history projection');
+			return;
+		}
 		if (params.clientRequestId && CREQ_REGEX.test(params.clientRequestId)) {
 			ctx.sendNotification("thread/delta", {
 				threadId: params.threadId,
@@ -86,10 +96,10 @@ export async function handleTurnStart(
 
 	const { conversationId } = parseProviderThreadId(providerThreadId);
 	let targetConversationId = conversationId;
-	if (!targetConversationId && typeof session.findSubagentConversationForTask === "function") {
+	if (!session.controlledObservation && !targetConversationId && typeof session.findSubagentConversationForTask === "function") {
 		targetConversationId = session.findSubagentConversationForTask(text);
 	}
-	const mirrorState = targetConversationId && typeof session.getSubagentState === "function"
+	const mirrorState = !session.controlledObservation && targetConversationId && typeof session.getSubagentState === "function"
 		? session.getSubagentState(targetConversationId)
 		: undefined;
 
@@ -128,9 +138,11 @@ export async function handleTurnStart(
 		return;
 	}
 
-	await session.prompt(text, targetConversationId);
+	if (session.controlledObservation && targetConversationId !== undefined)
+		await session.prompt(text, targetConversationId, params.clientRequestId, params.threadId);
+	else await session.prompt(text, targetConversationId);
 
-	if (params.clientRequestId && CREQ_REGEX.test(params.clientRequestId)) {
+	if (!(session.controlledObservation && targetConversationId !== undefined) && params.clientRequestId && CREQ_REGEX.test(params.clientRequestId)) {
 		ctx.sendNotification("thread/delta", {
 			threadId: params.threadId,
 			deltas: [{ kind: "input.accepted", clientRequestId: params.clientRequestId }],
@@ -159,6 +171,11 @@ export async function handleTurnSteer(
 		};
 	}
 
+	if (session.controlledObservation && parseProviderThreadId(params.providerThreadId ?? session.options.providerThreadId).conversationId !== undefined
+		&& (!Array.isArray(params.input) || params.input.some(chunk => !chunk || typeof chunk !== 'object' || chunk.type !== 'text'))) {
+		ctx.sendError(id, -32602, 'Native child controls currently require text input; attachments were not submitted');
+		return;
+	}
 	const text = extractInputText(params.input);
 	if (!text) {
 		ctx.sendError(id, -32602, "Missing steer text");
@@ -167,9 +184,11 @@ export async function handleTurnSteer(
 
 	const effectiveProviderThreadId = params.providerThreadId ?? session.options?.providerThreadId ?? params.threadId;
 	const { conversationId } = parseProviderThreadId(effectiveProviderThreadId);
-	await session.steer(text, conversationId);
+	if (session.controlledObservation && conversationId !== undefined)
+		await session.steer(text, conversationId, params.clientRequestId, params.threadId);
+	else await session.steer(text, conversationId);
 
-	if (params.clientRequestId && CREQ_REGEX.test(params.clientRequestId)) {
+	if (!(session.controlledObservation && conversationId !== undefined) && params.clientRequestId && CREQ_REGEX.test(params.clientRequestId)) {
 		ctx.sendNotification("thread/delta", {
 			threadId: params.threadId,
 			deltas: [{
@@ -190,13 +209,14 @@ export async function handleThreadStop(
 	if (params.intent === "interrupt") {
 		const session = ctx.registry.get(params.threadId);
 		if (session) {
-			ctx.sendNotification("thread/delta", {
+			if (!session.controlledObservation) ctx.sendNotification("thread/delta", {
 				threadId: params.threadId,
 				deltas: [{ kind: "session.ended" }],
 			});
 			const effectiveProviderThreadId = params.providerThreadId ?? session.options?.providerThreadId ?? params.threadId;
 			const { conversationId } = parseProviderThreadId(effectiveProviderThreadId);
-			await session.abort(conversationId);
+			if (session.controlledObservation && conversationId !== undefined) await session.abort(conversationId, params.threadId);
+			else await session.abort(conversationId);
 		}
 		const checkpointId = session?.getLastCheckpointId() ?? null;
 		ctx.sendResult(id, { ok: true, providerCheckpointId: checkpointId });

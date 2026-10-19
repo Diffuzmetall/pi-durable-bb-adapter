@@ -11,6 +11,7 @@ export type { SubagentAdmission } from "./subagents/tasks.ts";
 export type NativeChildRegistrationRequest = Readonly<{
 	requestId: string;
 	conversationId: ConversationId;
+	title?: string;
 }>;
 
 /** Runs only inside this tool's real public ToolExecutionApi/Context callback. */

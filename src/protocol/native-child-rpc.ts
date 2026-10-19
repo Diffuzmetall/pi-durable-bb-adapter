@@ -49,7 +49,8 @@ export async function registerNativeChildOverSocket(
   request: NativeChildRegistrationRequest,
 ): Promise<NativeChildRegistrationReceipt> {
   if (!isAbsolute(socketPath) || !nonEmpty(request.requestId) ||
-      !Number.isSafeInteger(request.conversationId) || request.conversationId <= 0) {
+      !Number.isSafeInteger(request.conversationId) || request.conversationId <= 0 ||
+      (request.title !== undefined && (!nonEmpty(request.title) || request.title.length > 500))) {
     throw new TypeError('Native child RPC requires an absolute socket and valid child request identity');
   }
   const [socketInfo, directoryInfo] = await Promise.all([lstat(socketPath), lstat(dirname(socketPath))]);
@@ -77,7 +78,8 @@ export async function registerNativeChildOverSocket(
     socket.setEncoding('utf8');
     socket.once('connect', () => {
       socket.write(JSON.stringify({ protocol: PROTOCOL, type: 'register-existing', id,
-        requestId: request.requestId, conversationId: request.conversationId }) + '\n');
+        requestId: request.requestId, conversationId: request.conversationId,
+        ...(request.title === undefined ? {} : { title: request.title }) }) + '\n');
     });
     socket.on('data', (chunk: string) => {
       buffer += chunk;

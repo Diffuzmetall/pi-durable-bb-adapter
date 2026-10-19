@@ -3,16 +3,18 @@ import { withCancel } from '@earendil-works/chord/context';
 import { LiveDoc, InboxDoc, watchEvents, type AgentEventStream, type ConversationId, type Harness, type RegistryReader, type Storage } from '@earendil-works/pi-durable';
 import type { OutcomeHistory } from "../outcome/coherent.ts";
 import { bindNativePairer, type NativePairOptions, type NativePairOperation } from "../native/native-pair.ts";
+import { createChildControl, type ChildControl, type NativeSubmitter } from '../native/child-control.ts';
 
 export type ReadFacade = Readonly<Pick<Harness, 'snapshot' | 'closed'>> & {
   watchExisting(conversationId: ConversationId, context: Context): Promise<AgentEventStream>;
-  readOutcomeHistory(conversationId: ConversationId, requestId: string, context: Context): Promise<OutcomeHistory>;
+  subscribeOutcome(conversationId: ConversationId, notify: () => void, context: Context): () => void;
+  readOutcomeHistory(conversationId: ConversationId, requestIds: string | readonly string[], context: Context): Promise<OutcomeHistory>;
 };
 export type ReadServiceDefinition = {
   readonly revision: string;
   /** Roll back non-facade resources on rejection; observe context cancellation. */
   readonly registration?: NativePairOptions;
-  bind(read: ReadFacade, context: Context, pairExisting?: NativePairOperation): { close(): void | Promise<void> } | Promise<{ close(): void | Promise<void> }>; 
+  bind(read: ReadFacade, context: Context, pairExisting?: NativePairOperation, controlExisting?: ChildControl): { close(): void | Promise<void> } | Promise<{ close(): void | Promise<void> }>; 
 };
 
 // Compatibility with the documented EXTERNAL local-host handoff, not a Pi SDK API.
@@ -22,6 +24,7 @@ type HostBinding = { session: Harness; storage: Storage; directory: string; cont
 type Controller = {
   bind(host: HostBinding): Promise<unknown>;
   close(timeoutMs?: number): Promise<unknown>;
+  submit?: NativeSubmitter['submit'];
   [SERVICE]?: State;
 };
 type State = {
@@ -96,9 +99,11 @@ export function registerReadService<T extends RegistryReader>(registry: T, defin
       const read: ReadFacade = Object.freeze({
         snapshot: host.session.snapshot.bind(host.session),
         closed: host.session.closed,
-        async readOutcomeHistory(id: ConversationId, requestId: string, requestContext: Context) {
+        async readOutcomeHistory(id: ConversationId, requested: string | readonly string[], requestContext: Context) {
           if (!active) throw Error('READ_SERVICE_UNAVAILABLE');
-          if (!Number.isSafeInteger(id) || id <= 0 || typeof requestId !== 'string' || !requestId.trim() || requestId.length > 1024)
+          const requestIds = typeof requested === 'string' ? [requested] : requested;
+          if (!Number.isSafeInteger(id) || id <= 0 || !Array.isArray(requestIds) || !requestIds.length || requestIds.length > 1000
+            || requestIds.some(value => typeof value !== 'string' || !value.trim() || value.length > 1024))
             throw Error('READ_SERVICE_INVALID_OUTCOME_TARGET');
           // A per-read public commit listener is only a consistency guard, never a
           // replica/cursor. No Session API is called from its synchronous callback.
@@ -108,19 +113,56 @@ export function registerReadService<T extends RegistryReader>(registry: T, defin
               ? change.conversationId : change.type === 'conversation' ? change.value.id : change.value.conversationId) === id)) changed = true;
           });
           try {
+            const conversation = await host.session.conversation(id, requestContext);
+            const configuration = conversation && await conversation.agent(requestContext);
+            const agent = configuration?.model ? { model: `${configuration.model.provider}/${configuration.model.modelId}`,
+              thinkingLevel: configuration.thinkingLevel ?? 'off' } : undefined;
             const live = await host.session.snapshot(LiveDoc, id, requestContext);
             const inbox = await host.session.snapshot(InboxDoc, id, requestContext);
+            // Read the existing owner's public Storage, never open another store.
+            // Tx has no submission scan; the listener guards both read boundaries.
+            let latestRequest: string | undefined;
+            const inputs: { entryId: string; requestId: string }[] = [];
+            let cursor;
+            let submissionScanTruncated = false;
+            for (let pageIndex = 0; pageIndex < 16; pageIndex++) {
+              const page = await host.storage.scanSubmissions({ conversationId: id, order: 'descending' }, 64, cursor, requestContext);
+              for (const submission of page.items) if (submission.type === 'input') {
+                latestRequest ??= submission.requestId;
+                if ('entry' in submission && submission.entry !== undefined) inputs.push({ entryId: String(submission.entry), requestId: submission.requestId });
+              }
+              if (page.next === undefined) break;
+              cursor = page.next;
+              if (pageIndex === 15) submissionScanTruncated = true;
+            }
             const frame = await host.session.commit(async tx => {
               const conversation = await tx.conversation(id);
               if (!conversation) return { conversation, submission: undefined, entries: [], truncated: false };
-              const submission = await tx.submissionByRequest(id, requestId);
-              const page = await tx.scanEntries({ conversationId: id, order: 'ascending' }, 4);
-              return { conversation, submission, entries: page.items, truncated: page.next !== undefined };
+              const receipts = await Promise.all(requestIds.map(requestId => tx.submissionByRequest(id, requestId)));
+              const original = receipts[0];
+              const submission = original?.type === 'input'
+                ? await tx.submissionByRequest(id, latestRequest ?? requestIds[0]!) : undefined;
+              const page = await tx.scanEntries({ conversationId: id, order: 'ascending' }, 1000);
+              return { conversation, submission, entries: page.items, inputs,
+                pendingAdmission: receipts.slice(1).some(receipt => receipt === undefined),
+                truncated: page.next !== undefined || submissionScanTruncated };
             }, requestContext);
             if (!active) throw Error('READ_SERVICE_UNAVAILABLE');
-            return { ...frame, stable: !changed, unsupported: live?.compactionFailure !== undefined,
+            return { ...frame, ...(agent ? { agent } : {}), stable: !changed, unsupported: live?.compactionFailure !== undefined,
               active: live?.run !== undefined || (inbox?.items.length ?? 0) > 0 || (live?.compactions?.length ?? 0) > 0 };
           } finally { unsubscribe(); }
+        },
+        subscribeOutcome(id: ConversationId, notify: () => void, requestContext: Context) {
+          if (!active) throw Error('READ_SERVICE_UNAVAILABLE');
+          requestContext.abortSignal?.throwIfAborted();
+          // Input settlement can commit AFTER run_end. Observe that public receipt
+          // boundary, not LiveDoc token updates; the consumer defers any SDK reads.
+          const stop = host.session.subscribeCommits(publication => {
+            if (active && publication.changes.some(change => change.type === 'submission' && change.value.conversationId === id)) notify();
+          });
+          const unsubscribe = () => { stop(); requestContext.abortSignal?.removeEventListener('abort', unsubscribe); };
+          requestContext.abortSignal?.addEventListener('abort', unsubscribe, { once: true });
+          return unsubscribe;
         },
         async watchExisting(id: ConversationId, requestContext: Context) {
           if (!active) throw Error('READ_SERVICE_UNAVAILABLE');
@@ -151,7 +193,10 @@ export function registerReadService<T extends RegistryReader>(registry: T, defin
             };
           } catch { /* Unavailable pairing must not disable existing read-only observation. */ }
         }
-        service = await state.definition.bind(read, context, pairExisting);
+        const controlExisting = state.definition.registration && typeof controller.submit === 'function'
+          ? createChildControl(host.session, registry, state.definition.registration.ownerScope,
+            { submit: controller.submit.bind(controller) }, context) : undefined;
+        service = await state.definition.bind(read, context, pairExisting, controlExisting);
         if (!service || typeof service.close !== 'function') throw Error('READ_SERVICE_INVALID_HANDLE');
       } catch {
         // Keep native host available. No backend credentials/errors enter diagnostics.

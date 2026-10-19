@@ -1,7 +1,7 @@
 {
   "bbVersion": "0.46.0",
   "archive": "bb-0.46.0.tar.gz",
-  "archiveSHA256": "2e5c7fe04caa65749fc9d44d7664527acf53b2efba1e9d8c69ff1c3446da1b54",
+  "archiveSHA256": "653596e9e3aa95a41fb0c1f6df91f4e6a9e244feb6132efa0101f61f6729041b",
   "basePins": {
     "package.json": "5bd18210c67fe46ddc6ee99ec05092504825c375cae2b43d8117241392e2a241",
     "dist/bb-app.js": "86c975cde61f4c369a66e91f17c4ecb93e24df042234e261a526575ad707452a",
@@ -10,8 +10,8 @@
   },
   "outputs": {
     "start-server.mjs": "5da153c9c18008251a3a391e4413d9c466d0e1aa0aa2a361736637faf7bda5a3",
-    "daemon-bundle.mjs": "63b1db12790ec135b392873dc7f95bcb05dcdf00a7ee268b60e04f7bc11e02a1",
-    "native-history-server.mjs": "a0f836630ba0471a6aae669c62d401a7c69e1d6d1f2c6b4f58d9760e35913453",
+    "daemon-bundle.mjs": "02bcfae48cdea5022cb4ac58f40799ac3503183d3812df66bd4c2a17212d498c",
+    "native-history-server.mjs": "7da9272ecaf77346ee818e7833b0945c5e7b6714b42c6823683b2bbbcda9d5e9",
     "native-history-daemon.mjs": "635b14d16d8a678545200eb97eef31474f723a37815daec1bbc5e7620982b901",
     "owner-scope-server.mjs": "b55e9a621257dbd7ee2ba563d0065cd29a74276a63b13c35775c85e255d19b54",
     "owner-scope-daemon.mjs": "9b0f3e23c5f78c20c61678ed1541fb26f90cbf57bbec6f21aeaa7603eb9d5447",
@@ -2793,5 +2793,18 @@
       "license": null
     }
   ],
-  "scope": "BB compatibility output only; no Pi Host patch, native global, live data or frontend bundle"
+  "scope": "BB compatibility output only; no Pi Host patch, native global, live data or frontend bundle",
+  "historySources": {
+    "compat/source/native-child-session.mjs": "73cc4d53ee43ac1bef28f5933e79c010ddd5ed0ed5e13040acb2af7639897d3b",
+    "compat/source/native-history-route.ts": "8fad7abd0d907499c77274cd254bcf8ff635f67d6986ff4a61e3cc58061d51e3",
+    "compat/source/native-history-store.ts": "5a3e033646ce18790be6a02cfcce4bd44b25a3f9db4d7fd7080b071a3c68265a",
+    "compat/source/native-registration.ts": "2d3c09f37d30a31df2d2551e388f04dfe90ffead97e0405c5a771c4026903504",
+    "src/bb-compat/native-history-contract.ts": "81dfbda6b6892b4803cbc89aef5b938a8aac7d81294b9641c29a6663560f4c61"
+  },
+  "acceptedOverlayInputs": {
+    "host-daemon/dist/daemon-bundle.mjs": [
+      "63b1db12790ec135b392873dc7f95bcb05dcdf00a7ee268b60e04f7bc11e02a1",
+      "fbce19ee9bebc82fa82bfed3044bbd62075372433927a885d0939a83caa67303"
+    ]
+  }
 }

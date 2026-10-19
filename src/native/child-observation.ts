@@ -8,6 +8,7 @@ import { createDurableBindingReader } from "../store/binding-store.ts";
 import type { ReadFacade, ReadServiceDefinition } from "../local-host/read-service.ts";
 import { readCoherentOutcome, type CoherentOutcome } from "../outcome/coherent.ts";
 import type { NativePairOperation } from "./native-pair.ts";
+import type { ChildCommand, ChildControl } from './child-control.ts';
 
 export type OwnerScope = Readonly<{ providerId: string; sessionId: string; parentThreadId: string }>;
 export type ChildObservationOptions = {
@@ -18,19 +19,28 @@ export type ChildObservationOptions = {
 export const OBSERVATION_PROTOCOL = 'bb-durable-observation/v1';
 // One request/watch per connection. No custom history queue: SDK callbacks await writes.
 const MAX_CONNECTIONS = 8;
-const MAX_FRAME_BYTES = 8192;
+const MAX_FRAME_BYTES = 1024 * 1024;
 const MAX_OUTPUT_BYTES = 8 * 1024 * 1024;
 const TIMEOUT_MS = 5000;
 const PAIR_TIMEOUT_MS = 25000;
 type Request = { protocol: typeof OBSERVATION_PROTOCOL; id: string; conversationId: ConversationId } &
-  ({ type: 'observe' | 'observeOutcome'; bbThreadId: string } | { type: 'pairExisting' });
+  ({ type: 'observe' | 'observeOutcome'; bbThreadId: string } | { type: 'pairExisting' }
+    | { type: 'control'; bbThreadId: string; command: ChildCommand });
 const text = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0 && value.length <= 256;
 function requestFrom(value: unknown): Request {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('REFUSED');
   const request = value as Record<string, unknown>;
-  const pair = request.type === 'pairExisting';
-  if (Object.keys(request).length !== (pair ? 4 : 5) || request.protocol !== OBSERVATION_PROTOCOL
-    || (!pair && request.type !== 'observe' && request.type !== 'observeOutcome')
+  const pair = request.type === 'pairExisting', control = request.type === 'control';
+  if (control) {
+    const command = request.command;
+    if (!command || typeof command !== 'object' || Array.isArray(command)) throw Error('REFUSED');
+    const c = command as Record<string, unknown>;
+    if (c.type === 'abort' ? Object.keys(c).length !== 1
+      : !['prompt', 'steer'].includes(String(c.type)) || Object.keys(c).length !== 3
+        || typeof c.message !== 'string' || !c.message.trim() || Buffer.byteLength(c.message) > 512 * 1024 || !text(c.requestId)) throw Error('REFUSED');
+  } else if (Buffer.byteLength(JSON.stringify(request)) > 8192) throw Error('REFUSED');
+  if (Object.keys(request).length !== (pair ? 4 : control ? 6 : 5) || request.protocol !== OBSERVATION_PROTOCOL
+    || (!pair && !control && request.type !== 'observe' && request.type !== 'observeOutcome')
     || !text(request.id) || (!pair && !text(request.bbThreadId)) || !Number.isSafeInteger(request.conversationId)
     || (request.conversationId as number) <= 0) throw Error('REFUSED');
   return request as Request;
@@ -54,10 +64,11 @@ function writeFrame(socket: Socket, frame: object, timeoutMs = TIMEOUT_MS): Prom
   });
 }
 
-function observeConnection(socket: Socket, read: ReadFacade, owner: OwnerScope, context: Context, pairExisting?: NativePairOperation) {
+function observeConnection(socket: Socket, read: ReadFacade, owner: OwnerScope, context: Context, pairExisting?: NativePairOperation, controlExisting?: ChildControl) {
   const { context: connectionContext, cancel } = withCancel(context);
   let request: Request | undefined;
   let stream: AgentEventStream | undefined;
+  let unsubscribeOutcome: (() => void) | undefined;
   let attaching: Promise<void> | undefined;
   let finishing: Promise<void> | undefined;
   let ended = false;
@@ -72,6 +83,7 @@ function observeConnection(socket: Socket, read: ReadFacade, owner: OwnerScope, 
       ended = true;
       clearTimeout(deadline);
       cancel();
+      unsubscribeOutcome?.();
       socket.pause();
       if (reply && !pairMode && !socket.destroyed && socket.writable) {
         try { await writeFrame(socket, { protocol: OBSERVATION_PROTOCOL, type: 'end', id: request?.id ?? null, reason }); } catch { /* Peer may already be gone. */ }
@@ -98,7 +110,7 @@ function observeConnection(socket: Socket, read: ReadFacade, owner: OwnerScope, 
       pairMode = value !== null && typeof value === 'object' && Reflect.get(value, 'type') === 'pairExisting';
       if (newline !== buffer.length - 1) throw Error('REFUSED');
       request = requestFrom(value);
-      if (pairMode) deadline = setTimeout(() => { void finish('closed', false); }, Math.max(1, PAIR_TIMEOUT_MS - (Date.now() - openedAt)));
+      if (pairMode || request.type === 'control') deadline = setTimeout(() => { void finish('closed', false); }, Math.max(1, PAIR_TIMEOUT_MS - (Date.now() - openedAt)));
     } catch { void finish('refused').catch(() => {}); return; }
     buffer = Buffer.alloc(0);
     const selected = request;
@@ -122,6 +134,15 @@ function observeConnection(socket: Socket, read: ReadFacade, owner: OwnerScope, 
         || binding.parentThreadId !== owner.parentThreadId || binding.conversationId !== selected.conversationId
         || binding.bbThreadId !== selected.bbThreadId) throw Error('REFUSED');
       if (ended) return;
+      if (selected.type === 'control') {
+        if (!controlExisting) throw Error('REFUSED');
+        const receipt = await controlExisting(binding, selected.command, connectionContext);
+        if (!ended) {
+          await writeFrame(socket, { protocol: OBSERVATION_PROTOCOL, type: 'controlled', id: selected.id, identity: binding, receipt });
+          socket.end();
+        }
+        return;
+      }
       const publishOutcome = async () => {
         if (selected.type !== 'observeOutcome' || ended) return;
         let frame: CoherentOutcome;
@@ -129,17 +150,34 @@ function observeConnection(socket: Socket, read: ReadFacade, owner: OwnerScope, 
         catch { frame = { status: 'unknown', reason: 'unavailable' }; }
         if (!ended) await writeFrame(socket, { protocol: OBSERVATION_PROTOCOL, type: 'outcome', id: selected.id, identity: binding, frame });
       };
+      let outcomeReady = false, outcomeDirty = false;
+      let refreshing: Promise<void> | undefined;
+      const refreshOutcome = (): Promise<void> => {
+        outcomeDirty = true;
+        if (!outcomeReady || ended) return Promise.resolve();
+        return refreshing ??= (async () => {
+          try {
+            await Promise.resolve(); // Never call Session APIs in synchronous commit notification.
+            while (outcomeDirty && !ended) { outcomeDirty = false; await publishOutcome(); }
+          } finally { refreshing = undefined; }
+        })(); // Coalesce to one pending refresh, not a transcript/history queue.
+      };
+      if (selected.type === 'observeOutcome') unsubscribeOutcome = read.subscribeOutcome(binding.conversationId, () => {
+        void refreshOutcome().catch(() => { void finish('closed').catch(() => {}); });
+      }, connectionContext);
       stream = await read.watchExisting(binding.conversationId, connectionContext);
       if (ended) { await stream.stop(); return; }
       await writeFrame(socket, { protocol: OBSERVATION_PROTOCOL, type: 'snapshot', id: selected.id, identity: binding, snapshot: stream.snapshot });
-      await publishOutcome();
+      outcomeReady = true;
+      await refreshOutcome();
       if (ended) return;
       void stream.closed.then(() => finish('closed')).catch(() => {});
       stream.start(async events => {
         if (ended) return;
         try {
           await writeFrame(socket, { protocol: OBSERVATION_PROTOCOL, type: 'events', id: selected.id, events });
-          await publishOutcome();
+          if (events.some(event => ['snapshot', 'run_start', 'run_end', 'message_end', 'tool_execution_start', 'tool_execution_end'].includes(event.type)))
+            await refreshOutcome(); // Committed history boundaries, not every generated token.
         }
         catch { void finish('closed').catch(() => {}); }
       });
@@ -156,7 +194,7 @@ export function createChildObservationService(options: ChildObservationOptions):
     || !text(options.ownerScope.parentThreadId)) throw Error('INVALID_OBSERVATION_OPTIONS');
   const socketPath = resolve(options.socketPath);
   const owner = Object.freeze({ ...options.ownerScope });
-  return Object.freeze({ revision: options.revision, async bind(read: ReadFacade, context: Context, pairExisting?: NativePairOperation) {
+  return Object.freeze({ revision: options.revision, async bind(read: ReadFacade, context: Context, pairExisting?: NativePairOperation, controlExisting?: ChildControl) {
     const uid = process.getuid?.();
     const parent = dirname(socketPath);
     const directory = await lstat(parent);
@@ -178,7 +216,7 @@ export function createChildObservationService(options: ChildObservationOptions):
     let closing: Promise<void> | undefined;
     const server = createServer(socket => {
       if (!active || connections.size >= MAX_CONNECTIONS) { socket.destroy(); return; }
-      const connection = observeConnection(socket, read, owner, context, pairExisting);
+      const connection = observeConnection(socket, read, owner, context, pairExisting, controlExisting);
       connections.add(connection);
       socket.once('close', () => { void connection.close().finally(() => connections.delete(connection)).catch(() => {}); });
     });

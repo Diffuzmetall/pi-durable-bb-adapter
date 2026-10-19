@@ -4,13 +4,14 @@ import { chmod, lstat, mkdir, readdir, readFile, realpath, writeFile } from 'nod
 import lockfile from 'proper-lockfile';
 import { dirname, join, relative, resolve } from 'node:path';
 import { BACKGROUND_CONTEXT as context } from '@earendil-works/chord/context';
-import { fauxProvider, fauxAssistantMessage, fauxToolCall } from '@earendil-works/pi-ai';
+import { Type, fauxProvider, fauxAssistantMessage, fauxToolCall } from '@earendil-works/pi-ai';
 import { createModels } from '@earendil-works/pi-ai/models';
-import { createRegistry, defineExtension, Harness, ROOT_CONVERSATION_ID } from '@earendil-works/pi-durable';
+import { createRegistry, defineExtension, defineTool, Harness, ROOT_CONVERSATION_ID } from '@earendil-works/pi-durable';
 import { openNodeSqliteStorage } from '@earendil-works/pi-durable/storage/sqlite/node';
 import { createSubagent, ChildBindingDoc, SubagentsDoc, TeamDoc } from '@bb-durable/native-subagents';
 import { registerReadService } from '../../src/local-host/read-service.ts';
 import { readCoherentOutcome } from '../../src/outcome/coherent.ts';
+import { projectCoherentHistory } from '../../src/history/history-projector.ts';
 import { createDurableBindingStore, createDurableBindingReader } from '../../src/store/binding-store.ts';
 
 // Injected by the ordinary build-time native-owner alias; never resolved by a runtime hook.
@@ -37,16 +38,28 @@ async function withOwner(metadata, run, responses) {
   // Explicit fixture-only Hindsight lifecycle/admission stubs, NOT production admission proof.
   const admissionCalls = [];
   const admit = async (conversation, requestId) => { admissionCalls.push({ conversationId: conversation.id, requestId }); };
-  const controller = { async bind() {}, async close() {} };
+  const controller = { async bind() {}, async close() {}, async submit(conversation, content, whenBusy, requestId) {
+    await admit(conversation, requestId, context);
+    return conversation.submit({ type: 'input', content, whenBusy, requestId }, context);
+  } };
   const extension = defineExtension({ name: 'hindsight' });
   Object.defineProperty(extension, Symbol.for('pi.durable.hindsight.controller'), { value: controller });
   registry.install(extension);
   registry.install(createSubagent(admit));
-  let read;
-  registerReadService(registry, { revision: 'coherent-faux-fixture', bind(facade) { read = facade; return { close() {} }; } });
+  registry.install(defineExtension({ name: 'fixture-history-tool', tools: [defineTool({
+    name: 'fixture_history_echo', description: 'Synthetic echo; no shell, network or external side effects.',
+    replay: 'safe', callers: ['model'], parameters: Type.Object({ value: Type.String() }),
+    execute: async args => ({ output: [{ type: 'text', text: args.value }] }),
+  })] }));
+  let read, control;
+  registerReadService(registry, { revision: 'coherent-faux-fixture',
+    registration: { grantPath: join(metadata.directory, 'unused-fixture-grant'),
+      ownerScope: { providerId: 'pi-durable', sessionId: 'fixture-session', parentThreadId: 'fixture-parent' } },
+    bind(facade, _context, _pair, controls) { read = facade; control = controls; return { close() {} }; } });
   const counts = { childModelCalls: 0, parentModelCalls: 0, modelCalls: 0 };
   provider.setResponses(Array.from({ length: 12 }, () => transcript => {
     counts.modelCalls++;
+    if (typeof responses === 'function') return responses(transcript, counts);
     if (!responses) throw Error('coherent reopen must not invoke any model');
     const user = transcript.messages.findLast(m => m.role === 'user');
     const content = typeof user?.content === 'string' ? user.content : '';
@@ -62,7 +75,7 @@ async function withOwner(metadata, run, responses) {
     session = await Harness.open(storage, { registry, models }, context);
     await controller.bind({ session, storage, directory: metadata.sessionDirectory, context });
     assert.ok(read, 'real read-service must capture its facade');
-    return await run({ session, read, provider, counts, admissionCalls });
+    return await run({ session, storage, read, control, provider, counts, admissionCalls });
   } finally {
     try { await controller.close(); }
     finally {
@@ -166,5 +179,93 @@ export async function verifyCoherentNativeChild(metadata) {
       childEntryCount: metadata.childEntryCount, parentEntryCount: metadata.parentEntryCount,
       reopenModelCalls: counts.modelCalls, ownerClosed: true };
   }, false);
+}
+
+/** Real SDK/SQLite/native subagent owner, but explicitly faux model + echo tool. */
+export async function verifyRichNativeChild(options) {
+  const metadata = { ...await location(options), nativeOwner };
+  const first = 'rich-native-child:first', second = 'rich-native-child:follow-up';
+  const respond = (transcript, counts) => {
+    const user = transcript.messages.findLast(message => message.role === 'user');
+    const content = typeof user?.content === 'string' ? user.content : '';
+    if (content === first || content === second) {
+      counts.childModelCalls++;
+      return transcript.messages.at(-1)?.role === 'toolResult'
+        ? fauxAssistantMessage(content === first ? 'Natural language, deliberately not ChildReport' : '{"available_tools":["fixture_history_echo"]}')
+        : fauxAssistantMessage(fauxToolCall('fixture_history_echo', { value: content }), { stopReason: 'toolUse' });
+    }
+    counts.parentModelCalls++;
+    if (content.startsWith('Subagent ') || transcript.messages.at(-1)?.role === 'toolResult') return fauxAssistantMessage('FAUX_PARENT_ACK');
+    return fauxAssistantMessage(fauxToolCall('subagent', JSON.parse(content)), { stopReason: 'toolUse' });
+  };
+  const settled = await withOwner(metadata, async ({ session, storage, read, control, provider, counts }) => {
+    const model = provider.getModel();
+    const parent = await session.root(context, { agent: { cwd: metadata.cwd, model: { provider: model.provider, modelId: model.id } } });
+    async function send(action, task, requestId) {
+      const input = { action, name: 'rich-child', task, requestId, background: true,
+        ...(action === 'spawn' ? { tools: ['fixture_history_echo'] } : { followUp: true }) };
+      const submission = await parent.submit({ type: 'input', content: JSON.stringify(input), requestId }, context);
+      assert.equal((await submission.wait(context)).status, 'done');
+      for (let round = 0; round < 10; round++) {
+        const { tasks } = await session.inspect(context);
+        if (!tasks.length) break;
+        await Promise.all(tasks.map(task => session.waitForTask(task.record.id, context)));
+      }
+      await session.waitForIdle(context);
+      assert.equal((await session.inspect(context)).tasks.length, 0);
+    }
+    await send('spawn', first, 'rich-fixture-spawn');
+    let agents = await session.snapshot(SubagentsDoc, parent.id, context);
+    const childId = Object.values(agents.agents)[0].conversationId;
+    const original = await readCoherentOutcome(read, childId, context);
+    assert.equal(original.status, 'completed', JSON.stringify(original));
+    await send('send', second, 'rich-fixture-follow-up');
+    agents = await session.snapshot(SubagentsDoc, parent.id, context);
+    assert.equal(Object.values(agents.agents).length, 1);
+    assert.equal(Object.values(agents.agents)[0].conversationId, childId);
+    const team = await session.snapshot(TeamDoc, parent.id, context);
+    assert.equal(Object.values(team.executions).length, 2);
+    const outcome = await readCoherentOutcome(read, childId, context);
+    assert.equal(outcome.status, 'completed', JSON.stringify(outcome));
+    assert.equal(outcome.requestId, 'subagent-send:rich-fixture-follow-up');
+    assert.notEqual(outcome.answer, original.answer);
+    const projection = projectCoherentHistory(outcome);
+    assert.equal(projection.snapshot.items.filter(entry => entry.item.type === 'userMessage').length, 2);
+    assert.equal(projection.snapshot.items.filter(entry => entry.item.type === 'toolCall').length, 2);
+    assert.equal(projection.snapshot.items.filter(entry => entry.item.type === 'agentMessage').length, 2);
+    assert.equal(outcome.entries.filter(entry => entry.kind === 'pi.tool-result').length, 2);
+    assert.deepEqual(await readCoherentOutcome(read, childId, context), outcome);
+    const receipts = await storage.scanSubmissions({ conversationId: childId }, 100, undefined, context);
+    assert.equal(receipts.items.filter(receipt => receipt.type === 'input').length, 2);
+    assert.equal(typeof control, 'function');
+    const binding = { providerId: 'pi-durable', sessionId: 'fixture-session', parentThreadId: 'fixture-parent',
+      conversationId: childId, bbThreadId: 'fixture-child' };
+    await createDurableBindingStore(session, context).put(binding);
+    const command = { type: 'prompt', message: second, requestId: 'bb-child:fixture-human-input' };
+    const admitted = await control(binding, command, context);
+    const child = await session.conversation(childId, context);
+    await child.waitForIdle(context);
+    assert.deepEqual(await control(binding, command, context), admitted);
+    await child.waitForIdle(context);
+    await assert.rejects(control({ ...binding, parentThreadId: 'foreign-parent' }, command, context), /REFUSED/);
+    const humanOutcome = await readCoherentOutcome(read, childId, context);
+    assert.equal(humanOutcome.status, 'completed', JSON.stringify(humanOutcome));
+    assert.equal(humanOutcome.requestId, command.requestId);
+    const humanProjection = projectCoherentHistory(humanOutcome);
+    assert.equal(humanProjection.snapshot.items.filter(entry => entry.item.type === 'userMessage').length, 3);
+    assert.equal(humanProjection.snapshot.items.filter(entry => entry.item.type === 'toolCall').length, 3);
+    return { childId, outcome: humanOutcome, projection: humanProjection, counts: { ...counts } };
+  }, respond);
+  const reopened = await withOwner(metadata, async ({ session, storage, read, counts }) => {
+    const outcome = await readCoherentOutcome(read, settled.childId, context);
+    assert.deepEqual(outcome, settled.outcome);
+    assert.deepEqual(projectCoherentHistory(outcome), settled.projection);
+    assert.equal(counts.modelCalls, 0);
+    const receipts = await storage.scanSubmissions({ conversationId: settled.childId }, 100, undefined, context);
+    assert.equal(receipts.items.filter(receipt => receipt.type === 'input').length, 3);
+    return { reopenModelCalls: counts.modelCalls };
+  }, false);
+  return { status: 'pass', provenance: 'real SDK 1.3/SQLite/native owner; faux model and echo tool; not native CLI/browser acceptance',
+    childConversationId: settled.childId, userInputs: 3, toolResults: 3, duplicateControlInputs: 0, ...settled.counts, ...reopened };
 }
 

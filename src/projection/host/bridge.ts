@@ -124,8 +124,8 @@ export class ProviderBridge {
 		if (!session && execution && startParams) session = await this.registry.createOrGet(threadId, canonical, startParams);
 		if (!session) throw new Error("BB_OWNER_SESSION_NOT_AUTHORIZED");
 		const target = parseProviderThreadId(canonical).conversationId;
-		if (execution) await session.prepareControlledExecution(target);
-		else await session.assertControlledRootAuthority(target);
+		if (execution) await session.prepareControlledExecution(target, threadId);
+		else await session.assertControlledRootAuthority(target, threadId);
 	}
 
 	private get routerContext(): BridgeRouterContext {

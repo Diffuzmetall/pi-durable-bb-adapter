@@ -5,6 +5,7 @@ import { dirname, isAbsolute, resolve } from 'node:path';
 import type { AgentEvent, SnapshotEvent } from '@earendil-works/pi-durable';
 import type { DurableBinding } from "../store/binding-store.ts";
 import type { CoherentOutcome } from "../outcome/coherent.ts";
+import type { ChildCommand, ChildControlReceipt } from '../native/child-control.ts';
 
 const PROTOCOL = 'bb-durable-observation/v1';
 const MAX_FRAME_BYTES = 8 * 1024 * 1024; // Includes newline; matches the observation service.
@@ -76,12 +77,32 @@ function sameIdentity(v: unknown, expected: DurableBinding): v is DurableBinding
 }
 function outcome(v: unknown, conversationId: number): v is CoherentOutcome {
   if (!object(v)) return false;
+  if (Object.hasOwn(v, 'agent') && (!object(v.agent) || Object.keys(v.agent).length !== 2
+    || typeof v.agent.model !== 'string' || !v.agent.model.trim() || v.agent.model.length > 1024 || !text(v.agent.thinkingLevel))) return false;
   if (v.status === 'unknown' || v.status === 'working') {
-    return Object.keys(v).length === 2 && typeof v.reason === 'string' && v.reason.trim().length > 0;
+    const keys = ['status', 'reason'];
+    if (v.status === 'working' && Object.hasOwn(v, 'entries')) {
+      keys.push('entries');
+      if (Object.hasOwn(v, 'agent')) keys.push('agent');
+      if (!Array.isArray(v.entries) || !v.entries.every(entry => object(entry) && positiveId(entry.id)
+        && entry.conversationId === conversationId && text(entry.kind) && Array.isArray(entry.model))) return false;
+      if (Object.hasOwn(v, 'inputs')) {
+        keys.push('inputs');
+        if (!Array.isArray(v.inputs) || v.inputs.length > 1000 || !v.inputs.every(input => object(input)
+          && Object.keys(input).length === 2 && typeof input.entryId === 'string' && typeof input.requestId === 'string')) return false;
+      }
+    }
+    return Object.keys(v).length === keys.length && typeof v.reason === 'string' && v.reason.trim().length > 0;
   }
   if (v.status !== 'completed' && v.status !== 'failed' && v.status !== 'interrupted') return false;
   const keys = ['status', 'conversationId', 'parentConversationId', 'anchorTaskId', 'requestId', 'submissionId', 'entries'];
   if (Object.hasOwn(v, 'answer')) keys.push('answer');
+  if (Object.hasOwn(v, 'agent')) keys.push('agent');
+  if (Object.hasOwn(v, 'inputs')) {
+    keys.push('inputs');
+    if (!Array.isArray(v.inputs) || v.inputs.length > 1000 || !v.inputs.every(input => object(input)
+      && Object.keys(input).length === 2 && typeof input.entryId === 'string' && typeof input.requestId === 'string')) return false;
+  }
   return Object.keys(v).length === keys.length && keys.every(key => Object.hasOwn(v, key))
     && v.conversationId === conversationId && positiveId(v.parentConversationId) && positiveId(v.anchorTaskId)
     && typeof v.requestId === 'string' && v.requestId.trim().length > 0 && positiveId(v.submissionId)
@@ -171,6 +192,47 @@ export async function observeChild(options: ObserveChildOptions): Promise<{ clos
     }
   })();
   return ready;
+}
+
+/** One authorized command, no retries. Lost ACK means unconfirmed, never resubmit. */
+export async function controlChild(options: { socketPath: string; binding: DurableBinding; command: ChildCommand; signal?: AbortSignal }): Promise<ChildControlReceipt> {
+  const expected = Object.freeze({ ...options.binding });
+  const command = Object.freeze({ ...options.command });
+  if (!validBinding(expected) || (command.type !== 'abort' && (!text(command.requestId)
+    || typeof command.message !== 'string' || !command.message.trim() || Buffer.byteLength(command.message) > 512 * 1024)))
+    throw Error('CHILD_CONTROL_REFUSED_OR_UNCONFIRMED');
+  await privateSocketPath(options.socketPath, options.signal);
+  const socket = new Socket(), id = randomUUID();
+  const closed = new Promise<void>(yes => socket.once('close', () => yes()));
+  const abort = () => socket.destroy(Error('CHILD_CONTROL_REFUSED_OR_UNCONFIRMED'));
+  const deadline = setTimeout(abort, 25000);
+  socket.on('error', () => {});
+  options.signal?.addEventListener('abort', abort, { once: true });
+  socket.once('connect', () => socket.write(JSON.stringify({ protocol: PROTOCOL, type: 'control', id,
+    conversationId: expected.conversationId, bbThreadId: expected.bbThreadId, command }) + '\n'));
+  try {
+    options.signal?.throwIfAborted();
+    socket.connect(options.socketPath);
+    let receipt: ChildControlReceipt | undefined;
+    for await (const frame of readFrames(socket)) {
+      const result = frame.receipt;
+      if (receipt || frame.type !== 'controlled' || Object.keys(frame).length !== 5 || frame.id !== id
+        || !sameIdentity(frame.identity, expected) || !object(result) || result.conversationId !== expected.conversationId
+        || result.command !== command.type || (command.type === 'abort' ? Object.keys(result).length !== 2
+          : Object.keys(result).length !== 4 || result.requestId !== command.requestId || !positiveId(result.submissionId)))
+        throw Error('CHILD_CONTROL_REFUSED_OR_UNCONFIRMED');
+      receipt = result as ChildControlReceipt;
+    }
+    options.signal?.throwIfAborted();
+    if (!receipt) throw Error('CHILD_CONTROL_REFUSED_OR_UNCONFIRMED');
+    return receipt;
+  } catch { throw Error('CHILD_CONTROL_REFUSED_OR_UNCONFIRMED'); }
+  finally {
+    clearTimeout(deadline);
+    options.signal?.removeEventListener('abort', abort);
+    socket.destroy();
+    await closed;
+  }
 }
 
 export type PairExistingChildOptions = {

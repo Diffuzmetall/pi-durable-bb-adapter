@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { RunnerProcess, type RunnerProcessOptions } from "../../provider/host/runner-process.ts";
 import { SharedHostClient } from "../../bootstrap/shared-host-client.ts";
 import { publishRegistrationHandoff } from "../../bootstrap/registration-handoff.ts";
-import { pairExistingChild, observeChild } from "../../history/observation-client.ts";
+import { pairExistingChild, observeChild, controlChild } from "../../history/observation-client.ts";
 import { openHistorySink, type HistoryRequester } from "../../history/history-sink.ts";
 import { projectCoherentHistory } from "../../history/history-projector.ts";
 import type { OwnerGrant } from "../../bootstrap/owner-grant.ts";
@@ -354,8 +354,26 @@ export class PiThreadSession {
 		}
 	}
 
-	public async prompt(text: string, conversationId?: string): Promise<void> {
-		await this.prepareControlledExecution(conversationId);
+	private controlledChildBinding(conversationId?: string, threadId?: string): DurableBinding | undefined {
+		if (!this.observationOwner) return undefined;
+		const ownChild = parseProviderThreadId(this.options.providerThreadId).conversationId;
+		if (ownChild !== undefined && conversationId !== undefined && ownChild !== conversationId) throw new Error('BB_OWNER_CHILD_SCOPE_MISMATCH');
+		const child = conversationId ?? ownChild;
+		if (child === undefined) return undefined;
+		const alias = threadId ?? this.getThreadIdForConversation(child);
+		if (!alias || this.getThreadIdForConversation(child) !== alias || !this.observationGrant) throw new Error('BB_OWNER_CHILD_SCOPE_UNCONFIRMED');
+		return { ...this.observationGrant.ownerScope, conversationId: Number(child) as DurableBinding['conversationId'], bbThreadId: alias };
+	}
+
+	public async prompt(text: string, conversationId?: string, clientRequestId?: string, threadId?: string): Promise<void> {
+		await this.prepareControlledExecution(conversationId, threadId);
+		const child = this.controlledChildBinding(conversationId, threadId);
+		if (child) {
+			if (!clientRequestId) throw new Error('BB_OWNER_CHILD_REQUEST_ID_REQUIRED');
+			await controlChild({ socketPath: this.observationGrant!.socketPath, binding: child,
+				command: { type: 'prompt', message: text, requestId: `bb-child:${clientRequestId}` } });
+			return;
+		}
 		this.isProcessing = true;
 		try {
 			await this.runner.requestOk({ type: "prompt", message: text, streamingBehavior: "followUp", conversationId });
@@ -364,13 +382,25 @@ export class PiThreadSession {
 		}
 	}
 
-	public async steer(text: string, conversationId?: string): Promise<void> {
-		await this.prepareControlledExecution(conversationId);
+	public async steer(text: string, conversationId?: string, clientRequestId?: string, threadId?: string): Promise<void> {
+		await this.prepareControlledExecution(conversationId, threadId);
+		const child = this.controlledChildBinding(conversationId, threadId);
+		if (child) {
+			if (!clientRequestId) throw new Error('BB_OWNER_CHILD_REQUEST_ID_REQUIRED');
+			await controlChild({ socketPath: this.observationGrant!.socketPath, binding: child,
+				command: { type: 'steer', message: text, requestId: `bb-child:${clientRequestId}` } });
+			return;
+		}
 		await this.runner.requestOk({ type: "steer", message: text, conversationId });
 	}
 
-	public async abort(conversationId?: string): Promise<void> {
-		await this.assertControlledRootAuthority(conversationId); // NEVER configure merely to stop/detach.
+	public async abort(conversationId?: string, threadId?: string): Promise<void> {
+		await this.assertControlledRootAuthority(conversationId, threadId); // NEVER configure merely to stop/detach.
+		const child = this.controlledChildBinding(conversationId, threadId);
+		if (child) {
+			await controlChild({ socketPath: this.observationGrant!.socketPath, binding: child, command: { type: 'abort' } });
+			return;
+		}
 		try {
 			await this.runner.requestOk({ type: "abort", conversationId });
 		} catch (err) {
@@ -396,18 +426,19 @@ export class PiThreadSession {
 		}
 	}
 
-	public async assertControlledRootAuthority(conversationId?: string): Promise<void> {
+	public async assertControlledRootAuthority(conversationId?: string, threadId?: string): Promise<void> {
 		if (!this.observationOwner) return;
-		if (parseProviderThreadId(this.options.providerThreadId).conversationId !== undefined || conversationId !== undefined)
-			throw new Error("BB_OWNER_CHILD_READ_ONLY");
 		if (!this.observationAuthorized || this.closed) throw new Error("BB_OWNER_SCOPE_UNCONFIRMED");
-		await this.authorizeObservationThread(this.options.threadId, this.options.providerThreadId);
+		const child = this.controlledChildBinding(conversationId, threadId);
+		await this.authorizeObservationThread(child?.bbThreadId ?? this.options.threadId,
+			child ? `${child.sessionId}:${child.conversationId}` : this.options.providerThreadId);
 		if (!this.observationAuthorized || this.closed) throw new Error("BB_OWNER_SCOPE_UNCONFIRMED");
 	}
 
-	public async prepareControlledExecution(conversationId?: string): Promise<void> {
+	public async prepareControlledExecution(conversationId?: string, threadId?: string): Promise<void> {
 		if (this.observationOwner) {
-			await this.assertControlledRootAuthority(conversationId);
+			await this.assertControlledRootAuthority(conversationId, threadId);
+			if (this.controlledChildBinding(conversationId, threadId)) return; // Retain native child's model/tools.
 			if (!this.modelConfigured) {
 				this.modelConfiguration ??= this.configureSelectedModel().finally(() => { this.modelConfiguration = undefined; });
 				await this.modelConfiguration;
@@ -469,6 +500,7 @@ export class PiThreadSession {
 			requestId: request.requestId,
 			parentProviderThreadId: this.options.providerThreadId,
 			parentThreadId: this.options.threadId,
+			...(request.title ? { title: request.title } : {}),
 		}, this, {
 			owner: {
 				providerId: PROVIDER_ID,
@@ -607,17 +639,19 @@ export class PiThreadSession {
 					onSnapshot: async () => {}, onEvents: async () => {}, // NEVER legacy/live transcript callbacks.
 					onOutcome: async frame => {
 						if (signal.aborted || this.closed) return;
-						if (frame.status === "unknown" || frame.status === "working") {
+						if (frame.status === "unknown" || (frame.status === "working" && !frame.entries)) {
 							this.historyDiagnostic("BB_CHILD_OUTCOME_NOT_TERMINAL", binding.conversationId, binding.bbThreadId); return;
 						}
 						try {
-							const projection = projectCoherentHistory(frame); // ONLY terminal frame.entries, never initial snapshot.
+							const projection = projectCoherentHistory(frame); // Native committed entries; never root/live translated callbacks.
 							if (projection.omissions.length && !this.closed) console.warn("[BB history omissions]", JSON.stringify({
 								threadId: binding.bbThreadId, stage: "projection", omissions: projection.omissions,
 							})); // Account even if ACK is lost; NEVER thinking text/signatures or fabricated chat.
 							await sink.apply(projection.snapshot);
 						} catch {
 							this.historyDiagnostic("BB_CHILD_HISTORY_UNSUPPORTED_OR_MIGRATION_REQUIRED", binding.conversationId, binding.bbThreadId);
+							// A rejected/uncertain apply freezes this sink. End this observation;
+							// only an explicit reconnect may capture fresh history after a digest read.
 							throw new Error("BB_CHILD_HISTORY_REFUSED_OR_UNCONFIRMED");
 						}
 					},
