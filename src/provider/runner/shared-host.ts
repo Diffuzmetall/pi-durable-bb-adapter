@@ -29,6 +29,7 @@ export async function runSharedHost(
 	path: string, cwd: string, input: Readable,
 	output: (frame: unknown) => void, channel: (frame: unknown) => void,
 	onConversationIds?: (ids: readonly number[]) => void,
+	onView?: (view: DurableView) => void,
 ): Promise<void> {
 	const info = await lstat(path);
 	if (!info.isSocket() || info.uid !== process.getuid?.() || (info.mode & 0o077))
@@ -47,7 +48,7 @@ export async function runSharedHost(
 		// Numeric routing hints ONLY. No title/content/ROOT-based authority.
 		onConversationIds(Object.freeze([...new Set(view.conversations.map(item => Number(item.id)))]));
 	};
-	const updateView = (view: DurableView) => { current = view; locators(view); for (const listener of viewListeners) listener(); };
+	const updateView = (view: DurableView) => { current = view; onView?.(view); locators(view); for (const listener of viewListeners) listener(); };
 	const adapter = new BBEventAdapter(output, (provider, modelId) =>
 		current?.models.find((m) => m.provider === provider && m.modelId === modelId)?.contextWindow);
 	const detach = () => { detached = true; socket.destroy(); };
@@ -69,12 +70,12 @@ export async function runSharedHost(
 					if (frame.type === "response" && frame.id === "shared-attach") {
 						if (!frame.success) { fail(new Error(frame.error)); return; }
 						current = frame.data;
-						if (current) locators(current);
+						if (current) { onView?.(current); locators(current); }
 						startTaskGraphBridge({ current: () => current!, subscribe: (listener) => {
 							viewListeners.add(listener); return () => { viewListeners.delete(listener); };
 						} }, output);
 						attached = true; clearTimeout(timer);
-						channel({ kind: "ready", ready: true, sharedHost: true, session: current?.session });
+						channel({ kind: "ready", ready: true, sharedHost: true, session: current?.session, view: current });
 					} else if (frame.type === "shared_view") updateView(frame.view);
 					else if (frame.type === "agent_events") {
 						updateView(frame.view);

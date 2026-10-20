@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { RunnerProcess, type RunnerProcessOptions } from "../../provider/host/runner-process.ts";
 import { SharedHostClient } from "../../bootstrap/shared-host-client.ts";
+import type { DurableView } from "../../provider/runner/runtime-types.ts";
 import { publishRegistrationHandoff } from "../../bootstrap/registration-handoff.ts";
 import { pairExistingChild, observeChild, controlChild } from "../../history/observation-client.ts";
 import { openHistorySink, type HistoryRequester } from "../../history/history-sink.ts";
@@ -57,6 +58,9 @@ export class PiThreadSession {
 	private modelConfigured = false;
 	private modelConfiguration?: Promise<void>;
 	private readyView: unknown;
+	private rootRunOpen = false;
+	private recoveredCheckpoint?: string;
+	private pendingRootInput?: { afterEntryId: number; text: string };
 	private observationAuthorized = false;
 	private observationGrant?: OwnerGrant;
 	private observationsEnabled = false;
@@ -121,6 +125,20 @@ export class PiThreadSession {
 				// Capture early, but never pair/register/observe before actual authorization.
 				if (this.observationAuthorized && this.observationsEnabled && parseProviderThreadId(this.options.providerThreadId).conversationId === undefined)
 					void this.observeThread(this.options.threadId, this.options.providerThreadId, false);
+			}, {
+				onDisconnect: (error) => {
+					this.observationAuthorized = false;
+					this.pauseObservations();
+					console.warn(`[PiThreadSession] Native transport disconnected (${error.message}); reattaching without command replay`);
+				},
+				onReconnect: async (view) => {
+					this.readyView = { kind: "ready", sharedHost: true, session: view.session };
+					await this.authorizeObservationThread(this.options.threadId, this.options.providerThreadId);
+					if (this.closed) return;
+					this.observationAuthorized = true;
+					await this.recoverRootSnapshot(view);
+					await this.observeThread(this.options.threadId, this.options.providerThreadId);
+				},
 			})
 			: new RunnerProcess({
 				cwd: options.cwd || process.cwd(),
@@ -228,6 +246,17 @@ export class PiThreadSession {
 		// A child-only client must not translate unscoped ROOT stream events either.
 		if (this.observationOwner && (parseProviderThreadId(this.options.providerThreadId).conversationId !== undefined ||
 			(event.conversationId !== undefined && event.conversationId !== null))) return;
+		if (event.type === "agent_start" || event.type === "turn_start") {
+			this.rootRunOpen = true;
+			this.recoveredCheckpoint = undefined;
+		}
+		if (this.recoveredCheckpoint && !this.rootRunOpen &&
+			["message_update", "message_end", "tool_execution_start", "tool_execution_update", "tool_execution_end"].includes(event.type)) return;
+		if (event.type === "agent_end") {
+			if (this.recoveredCheckpoint && event.providerCheckpointId === this.recoveredCheckpoint) return;
+			this.rootRunOpen = false;
+			this.pendingRootInput = undefined;
+		}
 		if (typeof event.providerCheckpointId === "string" && event.providerCheckpointId.length > 0) {
 			this.lastCheckpointId = event.providerCheckpointId;
 		}
@@ -376,6 +405,11 @@ export class PiThreadSession {
 		}
 		this.isProcessing = true;
 		try {
+			if (this.runner instanceof SharedHostClient) {
+				const conversation = this.runner.view?.conversation;
+				if (conversation?.id !== 1) throw new Error("BB_OWNER_ROOT_SNAPSHOT_UNAVAILABLE");
+				this.pendingRootInput = { afterEntryId: Number(conversation.entries.at(-1)?.id ?? 0), text };
+			}
 			await this.runner.requestOk({ type: "prompt", message: text, streamingBehavior: "followUp", conversationId });
 		} finally {
 			this.isProcessing = false;
@@ -428,6 +462,7 @@ export class PiThreadSession {
 
 	public async assertControlledRootAuthority(conversationId?: string, threadId?: string): Promise<void> {
 		if (!this.observationOwner) return;
+		if (this.runner instanceof SharedHostClient) await this.runner.whenConnected();
 		if (!this.observationAuthorized || this.closed) throw new Error("BB_OWNER_SCOPE_UNCONFIRMED");
 		const child = this.controlledChildBinding(conversationId, threadId);
 		await this.authorizeObservationThread(child?.bbThreadId ?? this.options.threadId,
@@ -669,11 +704,43 @@ export class PiThreadSession {
 		return entry.ready;
 	}
 
+	private async recoverRootSnapshot(view: DurableView): Promise<void> {
+		if (view.conversation?.id !== 1 || parseProviderThreadId(this.options.providerThreadId).conversationId !== undefined) return;
+		const live = view.conversation?.docs?.["pi.live"] as Record<string, unknown> | undefined;
+		if (live?.run) {
+			await this.handleRunnerEvent({ type: "turn_start" });
+			return;
+		}
+		const pending = this.pendingRootInput;
+		const entries = view.conversation.entries;
+		const user = entries.findLast(entry => entry.kind === "pi.user");
+		const userMessage = user?.model?.[0];
+		const inputText = userMessage?.role === "user" ? (typeof userMessage.content === "string" ? userMessage.content :
+			userMessage.content.filter(block => block.type === "text").map(block => block.text).join("")) : undefined;
+		const inputCommitted = pending && user && Number(user.id) > pending.afterEntryId && inputText === pending.text;
+		if ((!this.rootRunOpen && !inputCommitted) || !live || live.generation || live.compactionFailure ||
+			["tools", "nestedTools", "compactions"].some(key => live[key] !== undefined && (!Array.isArray(live[key]) || live[key].length))) return;
+		const tail = view.conversation.entries.at(-1);
+		const message = tail?.kind === "pi.assistant" ? tail.model?.[0] : undefined;
+		// Absence of a run is not success: require a committed terminal assistant entry.
+		if (!tail || !message || message.role !== "assistant" || !["stop", "error", "aborted"].includes(message.stopReason)) return;
+		if (!this.rootRunOpen && inputCommitted) await this.handleRunnerEvent({ type: "turn_start" });
+		await this.handleRunnerEvent({ type: "message_end", message });
+		await this.handleRunnerEvent({ type: "agent_end", messages: [message], providerCheckpointId: String(tail.id) });
+		this.recoveredCheckpoint = String(tail.id);
+	}
+
+	private pauseObservations(): void {
+		this.observationsEnabled = false;
+		for (const entry of this.observationHandles.values()) { entry.abort.abort(); void entry.handle?.close(); }
+		this.observationHandles.clear();
+		this.nativeDiscovery.clear();
+	}
+
 	private detachObservations(): void {
 		this.closed = true;
-		this.observationsEnabled = false;
 		this.observationLifetime.abort();
-		for (const entry of this.observationHandles.values()) { entry.abort.abort(); void entry.handle?.close(); }
+		this.pauseObservations();
 	}
 
 	public getLastCheckpointId(): string | null { return this.lastCheckpointId; }

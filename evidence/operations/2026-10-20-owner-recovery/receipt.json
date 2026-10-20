@@ -1,0 +1,58 @@
+{
+  "scope": "Warm owner-transport recovery in the existing provider process; no live activation",
+  "baseCommit": "bd34c8a5d15047c55474c80c7177c16687f39169",
+  "candidate": "Clean export of base commit plus owned recovery changes only; pre-existing uncommitted model-selection work excluded",
+  "filesSHA256": {
+    "src/bootstrap/shared-host-client.ts": "3c559fc59309faa2d0166862aedbb3c84593ecaebf118dedce28ecdef979e2ec",
+    "src/provider/runner/shared-host.ts": "dadc12a745cf7c4791e70bc8bccd8d39b032cd7796a70fb963236b79ff46b34e",
+    "src/projection/host/session.ts": "18e7dbbd7f368f0831d9320c829981da0baf27e071f77e0f436928800e28de51",
+    "tests/packaging/native-reconnect.test.mjs": "29e5d0d0114cef53ddb5cca99707826cc5ebfbf8a04fadcb7870cc2a4251bb2a"
+  },
+  "checks": [
+    {
+      "command": "node --experimental-transform-types --test tests/packaging/native-reconnect.test.mjs",
+      "exitCode": 0,
+      "passed": 9,
+      "failed": 0,
+      "coverage": [
+        "Reconnect same socket and preserve registry binding/translator",
+        "Deliver saved answer and completion once, including repeated detach",
+        "Concurrent Steer and interrupt Stop await one authorized reconnection",
+        "A second disconnect during get_state retries transport rather than treating it as authority denial",
+        "Accepted input finishing before run_start is correlated with newly committed user/result entries",
+        "Sequential recovered answers A and B retain both texts",
+        "Uncertain prompt is never replayed; stale answer cannot settle pending input",
+        "Release cancels reconnect without native abort",
+        "Unknown snapshot is not terminal success",
+        "Changed authority prevents history/control release"
+      ]
+    },
+    { "command": "npm run build", "exitCode": 0 },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "tests": 274,
+      "passed": 273,
+      "failed": 0,
+      "skipped": 1,
+      "skipReason": "Optional real SQLite integration requires PI_DURABLE_SHARED_HOST_MODULE",
+      "prerequisite": "Build the clean source export first; its initial pre-build test attempt failed because dist runner was absent"
+    }
+  ],
+  "review": {
+    "reviewer": "owner-recovery-review",
+    "locator": "durable:356:839",
+    "verdict": "Accept clean candidate; no remaining must-fix in warm reconnect scope",
+    "independentProbes": ["A then B recovery", "stale-result refusal", "duplicate snapshot suppression", "transport loss during authorization"],
+    "candidateCheck": "Reviewer independently confirmed base plus owned patch reproduces all four pinned files",
+    "testsIndependentlyRerun": false
+  },
+  "limitations": [
+    "Cold provider-process restart recovery and delivery of an already-detached legacy worker's result are not implemented by this warm-reconnect patch",
+    "No live provider reload, host restart, thread switch or live-store mutation performed",
+    "External Core authority/grants are stubbed in the isolated socket tests; verifyNativeReady and get_state transport are real",
+    "Child observation reopen and sibling isolation not independently exercised in the new socket regressions",
+    "The original cause of the initial transport disconnect is still unknown",
+    "Raw command logs are machine-local under /tmp/bb-owner-recovery-plumsquirrel and are not published"
+  ]
+}
