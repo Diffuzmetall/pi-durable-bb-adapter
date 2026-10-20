@@ -23,7 +23,7 @@ async function fixture(t, { refuse = false, busy = false, unknown = false, holdP
   let attachments = 0, authorizations = 0, latest, committedInput;
   const final = { id: 7, conversationId: 1, kind: 'pi.assistant', model: [{ role: 'assistant', content: [{ type: 'text', text: 'saved answer' }], stopReason: 'stop' }] };
   const view = () => ({ session: { id: 'native', directory: dir, cwd: dir },
-    conversation: { id: 1, docs: unknown && attachments >= 2 ? {} : { 'pi.live': attachments < 2 || busy ? { run: { taskId: 1, inputs: [] } } : {} }, entries: attachments < 2 ? [] : [...(committedInput ? [committedInput] : []), final] },
+    conversation: { conversation: { id: 1 }, docs: unknown && attachments >= 2 ? {} : { 'pi.inbox': { items: [] }, 'pi.live': attachments < 2 || busy ? { run: { taskId: 1, inputs: [] } } : {} }, entries: attachments < 2 ? [] : [...(committedInput ? [committedInput] : []), final] },
     conversations: [{ id: 1, label: 'root' }], models: [], tasks: { tasks: {} } });
   const server = createServer(socket => {
     sockets.add(socket); latest = socket;

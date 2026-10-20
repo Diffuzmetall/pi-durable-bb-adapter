@@ -407,7 +407,7 @@ export class PiThreadSession {
 		try {
 			if (this.runner instanceof SharedHostClient) {
 				const conversation = this.runner.view?.conversation;
-				if (conversation?.id !== 1) throw new Error("BB_OWNER_ROOT_SNAPSHOT_UNAVAILABLE");
+				if (conversation?.conversation?.id !== 1) throw new Error("BB_OWNER_ROOT_SNAPSHOT_UNAVAILABLE");
 				this.pendingRootInput = { afterEntryId: Number(conversation.entries.at(-1)?.id ?? 0), text };
 			}
 			await this.runner.requestOk({ type: "prompt", message: text, streamingBehavior: "followUp", conversationId });
@@ -705,12 +705,14 @@ export class PiThreadSession {
 	}
 
 	private async recoverRootSnapshot(view: DurableView): Promise<void> {
-		if (view.conversation?.id !== 1 || parseProviderThreadId(this.options.providerThreadId).conversationId !== undefined) return;
+		if (view.conversation?.conversation?.id !== 1 || parseProviderThreadId(this.options.providerThreadId).conversationId !== undefined) return;
 		const live = view.conversation?.docs?.["pi.live"] as Record<string, unknown> | undefined;
 		if (live?.run) {
 			await this.handleRunnerEvent({ type: "turn_start" });
 			return;
 		}
+		const inbox = view.conversation.docs["pi.inbox"];
+		if (!inbox || !Array.isArray(inbox.items) || inbox.items.length) return;
 		const pending = this.pendingRootInput;
 		const entries = view.conversation.entries;
 		const user = entries.findLast(entry => entry.kind === "pi.user");
